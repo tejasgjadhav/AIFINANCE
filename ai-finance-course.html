@@ -36,13 +36,74 @@ body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overfl
 .o3{width:300px;height:300px;background:var(--c3);bottom:-80px;right:25%;opacity:.06}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.85rem 2.5rem;background:rgba(3,3,15,.88);backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;gap:1rem}
-.nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;padding:.75rem 2.5rem;background:rgba(3,3,15,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--b1);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.nav-brand{display:flex;flex-direction:column;gap:0;line-height:1}
+.nav-logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;white-space:nowrap;letter-spacing:.02em}
+.nav-sub{font-size:.6rem;color:var(--txt2);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
 .nav-links{display:flex;gap:1.6rem;list-style:none}
 .nav-links a{color:var(--txt2);text-decoration:none;font-size:.78rem;font-weight:500;letter-spacing:.04em;transition:color .25s}
 .nav-links a:hover,.nav-links a.active{color:var(--c1)}
 .nav-gh{display:inline-flex;align-items:center;gap:.4rem;padding:.42rem 1rem;background:transparent;border:1px solid var(--b1);border-radius:50px;color:var(--c1);text-decoration:none;font-size:.76rem;font-weight:600;letter-spacing:.04em;transition:all .25s;white-space:nowrap}
 .nav-gh:hover{background:rgba(0,212,255,.1);box-shadow:var(--glow1)}
+
+/* ─── UNIQUE SECTION ─── */
+.unique-section{padding:7rem 0;background:linear-gradient(180deg,transparent,rgba(124,58,237,.03) 50%,transparent)}
+.unique-hero{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;margin-bottom:5rem}
+.unique-left h2{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,4vw,3.2rem);font-weight:700;line-height:1.15;letter-spacing:-.025em;margin-bottom:1.25rem}
+.unique-left p{font-size:.95rem;color:var(--txt2);line-height:1.78;margin-bottom:2rem}
+.unique-stats{display:flex;gap:2rem;flex-wrap:wrap}
+.ustat{text-align:left}
+.ustat-n{font-family:'Space Grotesk',sans-serif;font-size:2.6rem;font-weight:700;line-height:1;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.ustat-l{font-size:.72rem;color:var(--txt2);text-transform:uppercase;letter-spacing:.1em;margin-top:.25rem}
+.unique-img{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--b1)}
+.unique-img img{width:100%;height:340px;object-fit:cover;display:block;filter:brightness(.85)}
+.unique-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,212,255,.12),rgba(124,58,237,.12))}
+.unique-img-label{position:absolute;bottom:1.25rem;left:1.25rem;right:1.25rem;z-index:1;background:rgba(3,3,15,.85);backdrop-filter:blur(12px);border:1px solid var(--b1);border-radius:10px;padding:.75rem 1rem;font-size:.8rem;color:var(--txt);font-weight:500}
+
+.pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem}
+.pillar{background:var(--card);border:1px solid var(--b2);border-radius:18px;padding:2rem;backdrop-filter:blur(12px);transition:all .35s;position:relative;overflow:hidden}
+.pillar::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c1),var(--c2));opacity:0;transition:opacity .35s}
+.pillar:hover{transform:translateY(-6px);border-color:rgba(0,212,255,.35);box-shadow:var(--glow1)}
+.pillar:hover::before{opacity:1}
+.pillar-num{font-family:'JetBrains Mono',monospace;font-size:.7rem;color:var(--c1);background:rgba(0,212,255,.1);border:1px solid rgba(0,212,255,.2);border-radius:6px;padding:.22rem .6rem;display:inline-block;margin-bottom:1rem;letter-spacing:.08em}
+.pillar-icon{font-size:2.2rem;margin-bottom:.9rem;display:block}
+.pillar-title{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;margin-bottom:.6rem;color:var(--txt)}
+.pillar-desc{font-size:.85rem;color:var(--txt2);line-height:1.68}
+.pillar-tag{display:inline-block;margin-top:1rem;font-size:.7rem;padding:.25rem .72rem;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.22);color:#34d399;border-radius:100px;font-weight:600}
+
+/* AI application flow */
+.ai-flow{background:var(--card);border:1px solid var(--b1);border-radius:18px;padding:2rem;margin-top:1.4rem;backdrop-filter:blur(12px)}
+.ai-flow-title{font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1.25rem;display:flex;align-items:center;gap:.75rem}
+.ai-flow-steps{display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.afs{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.85rem 1.1rem;font-size:.82rem;color:var(--txt2);flex:1;min-width:140px;text-align:center;transition:all .3s}
+.afs:hover{border-color:var(--b1);color:var(--txt)}
+.afs-icon{font-size:1.4rem;margin-bottom:.3rem;display:block}
+.afs-label{font-size:.72rem;font-weight:600;color:var(--txt)}
+.afs-desc{font-size:.7rem;color:var(--txt2);margin-top:.2rem}
+.afs-arrow{color:rgba(0,212,255,.4);font-size:1.2rem;padding:0 .5rem;flex-shrink:0}
+.afs-outputs{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.25rem;padding-top:1.25rem;border-top:1px solid rgba(255,255,255,.06)}
+.afs-out{font-size:.75rem;padding:.3rem .85rem;background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);color:var(--c1);border-radius:8px;font-weight:600}
+
+/* ─── SCHOOL METHODOLOGY CARDS ─── */
+.school-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.4rem;margin-top:3rem}
+.school-card{background:var(--card);border:1px solid var(--b2);border-radius:18px;padding:2rem;backdrop-filter:blur(12px);transition:all .35s;text-decoration:none;color:inherit;display:block;position:relative;overflow:hidden}
+.school-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c2),var(--c1));transform:scaleX(0);transition:transform .35s;transform-origin:left}
+.school-card:hover{transform:translateY(-5px);border-color:rgba(0,212,255,.35);box-shadow:var(--glow1)}
+.school-card:hover::after{transform:scaleX(1)}
+.school-institution{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--c1);margin-bottom:.4rem}
+.school-name{font-family:'Space Grotesk',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:.3rem}
+.school-what{font-size:.75rem;color:var(--c3);font-weight:600;margin-bottom:.85rem;font-style:italic}
+.school-desc{font-size:.84rem;color:var(--txt2);line-height:1.65;margin-bottom:1rem}
+.school-link{font-size:.75rem;color:var(--c1);font-weight:600;display:flex;align-items:center;gap:.3rem}
+.school-link::after{content:'→'}
+
+/* ─── CURRICULUM with photo overlay ─── */
+.curr-photo-bg{position:relative}
+.curr-photo-bg::before{content:'';position:absolute;inset:0;background-image:url('https://bunny-wp-pullzone-4y0e6szi1k.b-cdn.net/wp-content/uploads/2026/03/Imperial-Students.webp');background-size:cover;background-position:center;opacity:.045;z-index:0;border-radius:0}
+.curr-photo-bg .container{position:relative;z-index:1}
+
+@media(max-width:900px){.unique-hero{grid-template-columns:1fr}.unique-img{display:none}.integ-grid{grid-template-columns:1fr}}
+@media(max-width:768px){nav{padding:.7rem 1.2rem}.nav-links{display:none}.nav-sub{display:none}.mod-hdr{gap:.9rem;padding:1.2rem}.mod-body{padding:0 1.2rem 1.2rem}.cap-card{padding:2.5rem 1.5rem}.ai-flow-steps{flex-direction:column}.afs-arrow{transform:rotate(90deg)}}
 
 /* HERO */
 .hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:9rem 2rem 5rem;position:relative;z-index:1}
@@ -266,25 +327,26 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
 <!-- NAV -->
 <nav id="navbar">
-  <div class="nav-logo">ISBMS · Agentic AI in Finance</div>
+  <div class="nav-brand">
+    <div class="nav-logo">ISBMS</div>
+    <div class="nav-sub">Imperial School of Banking &amp; Management Studies</div>
+  </div>
   <ul class="nav-links">
     <li><a href="#overview">Overview</a></li>
+    <li><a href="#unique">Why ISBMS</a></li>
     <li><a href="#curriculum">Curriculum</a></li>
     <li><a href="#modules">Modules</a></li>
     <li><a href="#academic">Academic Design</a></li>
-    <li><a href="#placement">Placement Design</a></li>
+    <li><a href="#placement">Placement</a></li>
     <li><a href="#methodology">Methodology</a></li>
   </ul>
-  <a href="https://github.com/tejasgjadhav/AIFINANCE" target="_blank" class="nav-gh">
-    <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-    GitHub
-  </a>
+  <a href="https://imperialbschool.com/" target="_blank" class="nav-gh">Visit ISBMS ↗</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
-  <div class="badge"><span class="dot"></span>Semester 3 · MBA / PGDM · 30 Credit Hours</div>
+  <div class="badge"><span class="dot"></span>Semester 3 · MBA / PGDM · 30 Hours of Training</div>
 
   <h1 class="hero-h1">
     <span class="gt">Agentic AI</span> &amp;<br>
@@ -299,10 +361,10 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
   <div class="hero-inst">🏛️ Imperial School of Banking &amp; Management Studies, Pune</div>
 
   <div class="stats rv">
-    <div class="stat"><div class="stat-n" data-target="30">0</div><div class="stat-l">Credit Hours</div></div>
+    <div class="stat"><div class="stat-n" data-target="30">0</div><div class="stat-l">Training Hours</div></div>
     <div class="stat"><div class="stat-n" data-target="10">0</div><div class="stat-l">Modules</div></div>
     <div class="stat"><div class="stat-n" data-target="4">0</div><div class="stat-l">Learning Phases</div></div>
-    <div class="stat"><div class="stat-n" data-target="3">0</div><div class="stat-l">Hrs per Module</div></div>
+    <div class="stat"><div class="stat-n" data-target="3">0</div><div class="stat-l">Hrs / Module</div></div>
   </div>
 
   <div class="btns rv">
@@ -327,13 +389,127 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
       <div class="ov-card rv"><span class="ov-icon">📋</span><div class="ov-title">Regulatory Technology in Practice</div><p class="ov-text">Students simulate the real data journey from trade ledger to Basel disclosure report using AxiomSL-style templates — learning the RegTech stack that every bank GCC runs today.</p></div>
       <div class="ov-card rv"><span class="ov-icon">🏦</span><div class="ov-title">Fund Administration Automation</div><p class="ov-text">Automated NAV calculation, Transfer Agency workflows, and corporate actions processing — the exact middle and back-office operations being transformed at Opus, Apex, and SS&C GlobeOp right now.</p></div>
       <div class="ov-card rv"><span class="ov-icon">📈</span><div class="ov-title">Algorithmic Finance &amp; Execution</div><p class="ov-text">Trading bot construction, TWAP/VWAP execution, backtesting frameworks, and LLM-augmented signal generation — connecting quant finance theory to real implementation in Python.</p></div>
-      <div class="ov-card rv"><span class="ov-icon">🎯</span><div class="ov-title">A Portfolio, Not Just a Certificate</div><p class="ov-text">Students graduate with a deployed GitHub project — a live Market Commentary Dashboard that serves as their placement-season portfolio piece for fund accounting, risk, and analytics roles.</p></div>
+      <div class="ov-card rv"><span class="ov-icon">🎯</span><div class="ov-title">A Live Portfolio, Not Just a Certificate</div><p class="ov-text">Students graduate with a real deployed project — a live Market Commentary Dashboard built module by module, serving as a tangible placement-season portfolio piece that hiring managers can see working.</p></div>
     </div>
   </div>
 </section>
 
+<!-- WHAT MAKES ISBMS UNIQUE -->
+<section class="unique-section" id="unique">
+  <div class="container">
+    <div class="sec-head rv">
+      <span class="sec-tag">The ISBMS Difference</span>
+      <h2 class="sec-title">Why This Course Will <span class="gt">Change Placements</span></h2>
+      <p class="sec-sub">Five structural advantages built into the course design — not promises, but mechanics that directly raise shortlisting rates and interview success.</p>
+    </div>
+
+    <!-- Hero split: text + real photo -->
+    <div class="unique-hero rv">
+      <div class="unique-left">
+        <h2>The first finance classroom where every student leaves with a <span class="gt">live, working AI system</span></h2>
+        <p>Traditional MBA courses end with a case study or an exam. This course ends with a deployed financial AI platform that hiring managers at Opus, Apex, and EisnerAmper can open in a browser and see running. That changes everything about how a student walks into a placement interview.</p>
+        <div class="unique-stats">
+          <div class="ustat"><div class="ustat-n" data-target="10">0</div><div class="ustat-l">Live Projects Built</div></div>
+          <div class="ustat"><div class="ustat-n" data-target="100">0</div><div class="ustat-l">% Portfolio Rate</div></div>
+          <div class="ustat"><div class="ustat-n" data-target="7">0</div><div class="ustat-l">Role Types Unlocked</div></div>
+        </div>
+      </div>
+      <div class="unique-img">
+        <img src="https://bunny-wp-pullzone-4y0e6szi1k.b-cdn.net/wp-content/uploads/2026/03/Imperial-Students.webp" alt="ISBMS Students" loading="lazy">
+        <div class="unique-img-label">🎓 ISBMS students — every one of them leaves with a real deployed project, not just a certificate</div>
+      </div>
+    </div>
+
+    <!-- 5 pillars -->
+    <div class="pillars">
+
+      <div class="pillar rv">
+        <div class="pillar-num">01 / PORTFOLIO</div>
+        <span class="pillar-icon">🗂️</span>
+        <div class="pillar-title">Every Student Builds a Live Project Portfolio</div>
+        <p class="pillar-desc">Each of the 10 modules produces a real, deployable component — a VaR engine, a NAV calculator, a market commentary dashboard. By Module 10, all components integrate into one live financial AI system. Hiring managers don't read about it. They open it.</p>
+        <span class="pillar-tag">Interview Differentiator #1</span>
+      </div>
+
+      <div class="pillar rv">
+        <div class="pillar-num">02 / AI APPLICATIONS</div>
+        <span class="pillar-icon">🤖</span>
+        <div class="pillar-title">AI-Generated Placement Applications — For Every Student</div>
+        <p class="pillar-desc">Students use the AI tools they built in this very course to craft tailored cover letters, LinkedIn outreach messages, and pitch decks for each target GCC. Higher-quality, personalised applications mean higher shortlisting rates — and this course teaches students exactly how to build that pipeline.</p>
+        <span class="pillar-tag">Raises Shortlisting Rate</span>
+      </div>
+
+      <div class="pillar rv">
+        <div class="pillar-num">03 / REAL WORKFLOWS</div>
+        <span class="pillar-icon">⚙️</span>
+        <div class="pillar-title">Real Finance Workflows — Not Simulations</div>
+        <p class="pillar-desc">The NAV calculator in Module 8 uses the same logic as the one at Opus Fund Services. The Basel report pipeline in Module 6 mirrors what AxiomSL produces. Students don't practice on toy problems — they build production-grade systems and arrive at interviews having already done the job.</p>
+        <span class="pillar-tag">Day 1 Ready at Any GCC</span>
+      </div>
+
+      <div class="pillar rv">
+        <div class="pillar-num">04 / KICKOFF</div>
+        <span class="pillar-icon">🚀</span>
+        <div class="pillar-title">Industry Kickoff from Module 1</div>
+        <p class="pillar-desc">Unlike courses that introduce industry context at the end, this course connects students with GCC professionals from Day 1. ISBMS's Ignite Series mentors and I-Connect alumni network are activated at kickoff — so students build their projects with real industry feedback throughout, not in academic isolation.</p>
+        <span class="pillar-tag">Network Built During Course</span>
+      </div>
+
+      <div class="pillar rv">
+        <div class="pillar-num">05 / SHORTLISTING</div>
+        <span class="pillar-icon">📈</span>
+        <div class="pillar-title">Compounding Placement Advantage</div>
+        <p class="pillar-desc">A live portfolio + AI-tailored applications + demonstrated real-world workflows + industry network = a compounding advantage over peers from traditional programmes. Each factor multiplies the others. Students from this course walk into placement season with every structural advantage stacked in their favour.</p>
+        <span class="pillar-tag">The Full Stack Advantage</span>
+      </div>
+
+    </div>
+
+    <!-- AI Application flow visual -->
+    <div class="ai-flow rv">
+      <div class="ai-flow-title">
+        🤖 <span style="font-family:'Space Grotesk',sans-serif">How Students Use Course AI Tools to Auto-Generate Placement Applications</span>
+      </div>
+      <div class="ai-flow-steps">
+        <div class="afs">
+          <span class="afs-icon">🎯</span>
+          <div class="afs-label">Target Input</div>
+          <div class="afs-desc">Student selects company + role + project highlights</div>
+        </div>
+        <div class="afs-arrow">→</div>
+        <div class="afs">
+          <span class="afs-icon">🧠</span>
+          <div class="afs-label">AI Processing</div>
+          <div class="afs-desc">RAG + prompt engineering (learned in Mod 2–3) generates tailored content</div>
+        </div>
+        <div class="afs-arrow">→</div>
+        <div class="afs">
+          <span class="afs-icon">✍️</span>
+          <div class="afs-label">Review & Refine</div>
+          <div class="afs-desc">Student reviews, adjusts tone, adds personal context</div>
+        </div>
+        <div class="afs-arrow">→</div>
+        <div class="afs">
+          <span class="afs-icon">📤</span>
+          <div class="afs-label">Submit</div>
+          <div class="afs-desc">Higher-quality, targeted application sent to placement committee</div>
+        </div>
+      </div>
+      <div class="afs-outputs">
+        <span class="afs-out">✓ Tailored Cover Letter</span>
+        <span class="afs-out">✓ LinkedIn Outreach Message</span>
+        <span class="afs-out">✓ Technical Interview Pitch</span>
+        <span class="afs-out">✓ Project Portfolio Summary</span>
+        <span class="afs-out">✓ Role-Specific Resume Addendum</span>
+        <span class="afs-out">✓ GCC Pitch Deck (5 slides)</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- CURRICULUM TABLE -->
-<section class="sec-pad" id="curriculum" style="padding-top:2rem">
+<section class="sec-pad curr-photo-bg" id="curriculum" style="padding-top:2rem">
   <div class="container">
     <div class="sec-head rv">
       <span class="sec-tag">30-Hour Breakdown</span>
@@ -865,7 +1041,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
                 <li>Present technical projects to a mock GCC hiring panel</li>
                 <li>Articulate technical architecture decisions in business language</li>
                 <li>Demonstrate problem-solving under pressure with live Q&amp;A on your own code</li>
-                <li>Produce a placement-ready GitHub portfolio and pitch deck</li>
+                <li>Produce a placement-ready live project portfolio and pitch deck</li>
               </ul>
             </div>
             <div class="msec">
@@ -874,9 +1050,9 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
                 <li>Live Market Commentary Dashboard — RAG-powered, real-time data, deployed on Streamlit Cloud</li>
                 <li>Automated NAV Calculator with AI exception engine and daily report generation</li>
                 <li>Monte Carlo VaR engine with regulatory narrative in Basel disclosure format</li>
-                <li>GitHub repository — documented, with README and live demo link</li>
+                <li>Live project repository — documented, with README and demo link</li>
                 <li>5-slide pitch deck: "AI Transformation Proposal for [Target GCC]"</li>
-                <li>Technical resume addendum: "AI Projects" section with GitHub links</li>
+                <li>Technical resume addendum: "AI Projects" section with live project links</li>
               </ul>
             </div>
             <div class="msec">
@@ -891,7 +1067,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
               <ul>
                 <li>Every module's in-class output contributes one component to the final project</li>
                 <li>Assessment synthesizes technical, analytical, and communication competencies</li>
-                <li>GitHub repository serves as living proof of learning — continues to grow post-graduation</li>
+                <li>Live project repository serves as proof of learning — continues to grow post-graduation</li>
                 <li>Portfolio is shared directly with target GCC HR teams at placement season</li>
               </ul>
               <div class="pt-tags"><span class="ptag">Full Integration</span><span class="ptag">Portfolio Ready</span><span class="ptag">Interview Prep</span><span class="ptag">Deployed Project</span></div>
@@ -1020,7 +1196,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             </div>
             <div class="pc-item">
               <div class="pc-item-title">Final Deliverable</div>
-              <p>A live deployed GitHub project shared directly with target GCC hiring teams at placement season — a portfolio piece, not a PDF report.</p>
+              <p>A live deployed project shared directly with target GCC hiring teams at placement season — a portfolio piece, not a PDF report.</p>
             </div>
           </div>
         </div>
@@ -1114,9 +1290,9 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="pj-body">
           <div class="pj-phase p4">PHASE 4 · MODULE 10 · CAPSTONE</div>
           <div class="pj-title">The portfolio piece that goes into every GCC interview</div>
-          <p class="pj-desc">The Capstone is designed as a placement artifact. The GitHub repository and the 5-slide pitch deck are shared with target GCC HR teams before placement season begins. The mock panel interview — conducted with industry mentor judges — means students have already been through a realistic version of the hiring process before it happens for real. The Capstone doesn't prepare students for placement. It IS placement preparation.</p>
+          <p class="pj-desc">The Capstone is designed as a placement artifact. The live project portfolio and the 5-slide pitch deck are shared with target GCC HR teams before placement season begins. The mock panel interview — conducted with industry mentor judges — means students have already been through a realistic version of the hiring process before it happens for real. The Capstone doesn't prepare students for placement. It IS placement preparation.</p>
           <div class="pj-outcomes">
-            <span class="pj-out o4">Live deployed project on GitHub</span>
+            <span class="pj-out o4">Live deployed project portfolio</span>
             <span class="pj-out o4">Mock interview experience with structured feedback</span>
             <span class="pj-out o4">GCC-ready pitch deck per student</span>
             <span class="pj-out o4">Resume-ready AI projects section</span>
@@ -1194,31 +1370,90 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 <section class="sec-pad" id="methodology" style="background:linear-gradient(180deg,transparent,rgba(124,58,237,.025) 50%,transparent)">
   <div class="container">
     <div class="sec-head rv">
-      <span class="sec-tag">How We Teach</span>
-      <h2 class="sec-title">The <span class="gt">Applied-Agentic</span> Methodology</h2>
-      <p class="sec-sub">Four evidence-based teaching pillars borrowed from Harvard, LBS, and NUS — adapted for a classroom that builds real deployed systems, not just passes exams.</p>
+      <span class="sec-tag">Curriculum Methodology</span>
+      <h2 class="sec-title">Built on the World's <span class="gt">Best Teaching Frameworks</span></h2>
+      <p class="sec-sub">This course is not designed from scratch — it is assembled from proven pedagogical frameworks at institutions that have shaped the world's best finance professionals, adapted for the Indian GCC context.</p>
     </div>
+
+    <!-- 4 teaching pillars -->
     <div class="meth-grid">
       <div class="meth-card rv">
         <span class="meth-icon">📰</span>
         <div class="meth-title">Case Method First</div>
-        <p class="meth-desc">Harvard and LBS style. Every session opens with a real financial failure — a liquidity crisis, a reporting scandal, a rogue trading system. Students debate the cause before learning the AI-powered solution. Builds judgment, not just knowledge.</p>
+        <p class="meth-desc">Harvard and LBS style. Every session opens with a real financial failure — a liquidity crisis, a reporting scandal, a rogue algorithm. Students debate the cause before learning the AI-powered solution. Builds judgment, not just knowledge.</p>
       </div>
       <div class="meth-card rv">
         <span class="meth-icon">🧪</span>
         <div class="meth-title">Sandbox-First Learning</div>
-        <p class="meth-desc">No passive instruction. Students write code in every session. Every concept is immediately applied in a live sandboxed environment before the lecture continues. If you can't deploy it, you don't know it.</p>
+        <p class="meth-desc">Borrowed from NUS FinTech Lab's approach. Students write code in every session. Every concept is immediately applied in a live environment before the lecture continues. If you can't deploy it, you don't know it.</p>
       </div>
       <div class="meth-card rv">
         <span class="meth-icon">⚖️</span>
         <div class="meth-title">Regulatory Simulation</div>
-        <p class="meth-desc">Students experience the real data journey — raw trade ledger to Basel disclosure — using AxiomSL-style templates. Understanding every transformation and regulatory decision point, not just the framework names.</p>
+        <p class="meth-desc">Students experience the real data journey — raw trade ledger to Basel disclosure — using AxiomSL-style templates aligned with BIS documentation. Every transformation, every decision point, not just the framework names.</p>
       </div>
       <div class="meth-card rv">
         <span class="meth-icon">🏆</span>
-        <div class="meth-title">GCC Capstone Project</div>
-        <p class="meth-desc">The final project is not a test — it is a live deployed system presented to a mock hiring panel. Students leave with a GitHub portfolio, a pitch deck, and mock interview experience. The Capstone IS the placement preparation.</p>
+        <div class="meth-title">Industry Capstone</div>
+        <p class="meth-desc">Inspired by NUS Fintech Lab's industry-jury model. The final project is a live deployed system presented to a mock hiring panel — not a written exam. Students leave with a working portfolio and mock interview experience.</p>
       </div>
+    </div>
+
+    <!-- School benchmark cards with links -->
+    <div class="sec-head rv" style="margin-top:5rem;margin-bottom:0">
+      <span class="sec-tag">Academic Benchmarks</span>
+      <h2 class="sec-title" style="font-size:clamp(1.5rem,3vw,2.2rem)">What We Borrowed — and <span class="gt">From Whom</span></h2>
+    </div>
+    <div class="school-grid">
+
+      <a class="school-card rv" href="https://www.hbs.edu/mba/academic-experience/Pages/the-hbs-case-method.aspx" target="_blank" rel="noopener">
+        <div class="school-institution">Harvard Business School · USA</div>
+        <div class="school-name">The Case Method</div>
+        <div class="school-what">"Never tell students the answer before they've wrestled with the problem."</div>
+        <p class="school-desc">Every ISBMS module opens with a real financial failure case — the Deutsche Bank reporting fine, the Madoff NAV fraud, the 2008 GFC model collapse. Students debate before they learn. This is the Harvard Case Method applied to AI in finance.</p>
+        <div class="school-link">hbs.edu/case-method</div>
+      </a>
+
+      <a class="school-card rv" href="https://www.london.edu/masters-degrees/masters-in-finance" target="_blank" rel="noopener">
+        <div class="school-institution">London Business School · UK</div>
+        <div class="school-name">Finance Practitioner Curriculum</div>
+        <div class="school-what">"Finance education must be grounded in what practitioners actually do."</div>
+        <p class="school-desc">LBS's Masters in Finance is ranked #1 in Europe for its practitioner-led design. ISBMS adopts the same philosophy: assessment is based on real deliverables (NAV reports, VaR models, Basel disclosures) — not textbook multiple choice.</p>
+        <div class="school-link">london.edu/masters-in-finance</div>
+      </a>
+
+      <a class="school-card rv" href="https://bschool.nus.edu.sg/" target="_blank" rel="noopener">
+        <div class="school-institution">NUS Business School · Singapore</div>
+        <div class="school-name">FinTech Sandbox Learning</div>
+        <div class="school-what">"Students should build and deploy before they theorize."</div>
+        <p class="school-desc">NUS's FinTech programme pioneered sandbox-first learning — students deploy working systems before the lecture ends. ISBMS adopts this fully: every 3-hour module has a live coding lab, and every output becomes part of the final Capstone.</p>
+        <div class="school-link">bschool.nus.edu.sg</div>
+      </a>
+
+      <a class="school-card rv" href="https://www.garp.org/frm" target="_blank" rel="noopener">
+        <div class="school-institution">GARP · Global Association of Risk Professionals</div>
+        <div class="school-name">FRM Risk Framework</div>
+        <div class="school-what">"Risk professionals must quantify, not just qualify."</div>
+        <p class="school-desc">Modules 5 and 6 are explicitly aligned with the FRM Part I and II curriculum — PD modeling, Monte Carlo VaR, Basel III/IV, IFRS 9 ECL. Students who complete this course have a head start on FRM certification and can speak the exact language of risk roles.</p>
+        <div class="school-link">garp.org/frm</div>
+      </a>
+
+      <a class="school-card rv" href="https://www.bis.org/basel_framework/" target="_blank" rel="noopener">
+        <div class="school-institution">Bank for International Settlements · Basel</div>
+        <div class="school-name">Basel Regulatory Framework</div>
+        <div class="school-what">"Capital adequacy rules must be understood, not just memorized."</div>
+        <p class="school-desc">Module 6's regulatory simulation uses actual BIS Basel III/IV documentation — not a textbook summary. Students compute CET1 ratios and LCR from real data templates, producing output that mirrors what AxiomSL and Wolters Kluwer generate in production.</p>
+        <div class="school-link">bis.org/basel_framework</div>
+      </a>
+
+      <a class="school-card rv" href="https://www.cfainstitute.org/" target="_blank" rel="noopener">
+        <div class="school-institution">CFA Institute · Global</div>
+        <div class="school-name">Investment Analysis Standards</div>
+        <div class="school-what">"Ethics, analysis, and application — in that order."</div>
+        <p class="school-desc">The valuation methodology in Modules 4 and 9 — DCF, comparable companies, market commentary — follows CFA Institute standards. Students learn the same analytical frameworks that CFA charterholders use, applied through AI-powered tools.</p>
+        <div class="school-link">cfainstitute.org</div>
+      </a>
+
     </div>
   </div>
 </section>
@@ -1245,11 +1480,8 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="cap-feat">📊 Live Market Commentary (Mod 9)</div>
       </div>
       <div class="cap-btns">
-        <a href="https://github.com/tejasgjadhav/AIFINANCE" target="_blank" class="btn-p">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-          View on GitHub
-        </a>
-        <a href="#modules" class="btn-s">📚 Explore All Modules</a>
+        <a href="#modules" class="btn-p">📚 Explore All 10 Modules</a>
+        <a href="https://imperialbschool.com/" target="_blank" class="btn-s">🏛️ Visit ISBMS</a>
       </div>
     </div>
   </div>
@@ -1259,13 +1491,10 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 <footer>
   <div class="container">
     <div class="foot-logo">Agentic AI &amp; Advanced Analytics in Finance</div>
-    <p class="foot-txt">Imperial School of Banking &amp; Management Studies, Pune · MBA/PGDM Semester 3 · 30 Credit Hours</p>
-    <p class="foot-txt">Applied-Agentic Methodology · Benchmarked against NUS · Harvard · LBS curricula · Academic Year 2025–26</p>
-    <a href="https://github.com/tejasgjadhav/AIFINANCE" target="_blank" class="foot-gh">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-      github.com/tejasgjadhav/AIFINANCE
-    </a>
-    <p style="margin-top:1.8rem;font-size:.7rem;color:rgba(148,163,184,.35)">Senior Learning Design Team · ISBMS Pune · 2025–26</p>
+    <p class="foot-txt">Imperial School of Banking &amp; Management Studies, Pune · MBA/PGDM Semester 3 · 30 Hours of Training</p>
+    <p class="foot-txt">Applied-Agentic Methodology · Benchmarked against <a href="https://www.hbs.edu/mba/academic-experience/Pages/the-hbs-case-method.aspx" target="_blank" style="color:var(--c1);text-decoration:none">Harvard</a> · <a href="https://www.london.edu/masters-degrees/masters-in-finance" target="_blank" style="color:var(--c1);text-decoration:none">LBS</a> · <a href="https://bschool.nus.edu.sg/" target="_blank" style="color:var(--c1);text-decoration:none">NUS</a> curricula · Academic Year 2025–26</p>
+    <a href="https://imperialbschool.com/" target="_blank" class="foot-gh">🏛️ imperialbschool.com ↗</a>
+    <p style="margin-top:1.8rem;font-size:.7rem;color:rgba(148,163,184,.35)">An Exclusive B-School for Finance · Senior Learning Design Team · ISBMS Pune · 2025–26</p>
   </div>
 </footer>
 
@@ -1384,6 +1613,19 @@ window.addEventListener('scroll',()=>{
   secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)cur=s.id;});
   nls.forEach(l=>{l.classList.remove('active');if(l.getAttribute('href')==='#'+cur)l.classList.add('active');});
 },{passive:true});
+
+// ── PILLAR CARD 3D TILT ──
+document.querySelectorAll('.pillar,.school-card,.ov-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    card.style.transform=`perspective(800px) rotateX(${-y*6}deg) rotateY(${x*6}deg) translateY(-5px)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+  });
+});
 </script>
 </body>
 </html>

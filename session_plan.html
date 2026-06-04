@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Session Plan – Agentic AI & Advanced Analytics in Finance</title>
 <style>
-  /* ── Print & Screen Base ─────────────────────────────────── */
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: 'Segoe UI', Arial, sans-serif;
@@ -21,247 +20,138 @@
     box-shadow: 0 2px 16px rgba(0,0,0,.12);
     padding: 36px 44px 44px;
   }
-
-  /* ── Header ──────────────────────────────────────────────── */
   .inst-header {
     text-align: center;
     border-bottom: 3px solid #1a3a6e;
     padding-bottom: 14px;
     margin-bottom: 20px;
   }
-  .inst-header h1 {
-    font-size: 17pt;
-    color: #1a3a6e;
-    letter-spacing: .5px;
-  }
-  .inst-header h2 {
-    font-size: 13pt;
-    color: #c0392b;
-    margin-top: 4px;
-  }
+  .inst-header h1 { font-size: 17pt; color: #1a3a6e; letter-spacing: .5px; }
+  .inst-header h2 { font-size: 13pt; color: #c0392b; margin-top: 4px; }
   .inst-header p { font-size: 10pt; color: #555; margin-top: 4px; }
-
-  /* ── Meta Table ──────────────────────────────────────────── */
-  .meta-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 22px;
-    font-size: 10.5pt;
-  }
-  .meta-table td {
-    border: 1px solid #c5cdd9;
-    padding: 6px 10px;
-  }
-  .meta-table td:first-child {
-    font-weight: 600;
-    background: #f0f4fb;
-    width: 35%;
-    color: #1a3a6e;
-  }
-
-  /* ── Section Headings ────────────────────────────────────── */
+  .meta-table { width: 100%; border-collapse: collapse; margin-bottom: 22px; font-size: 10.5pt; }
+  .meta-table td { border: 1px solid #c5cdd9; padding: 6px 10px; }
+  .meta-table td:first-child { font-weight: 600; background: #f0f4fb; width: 35%; color: #1a3a6e; }
   h3.section {
-    background: #1a3a6e;
-    color: #fff;
-    padding: 7px 12px;
-    font-size: 11pt;
-    margin: 22px 0 10px;
-    border-radius: 2px;
-    letter-spacing: .4px;
+    background: #1a3a6e; color: #fff; padding: 7px 12px; font-size: 11pt;
+    margin: 22px 0 10px; border-radius: 2px; letter-spacing: .4px;
   }
   h4.sub-section {
-    color: #1a3a6e;
-    font-size: 10.5pt;
-    margin: 14px 0 6px;
-    border-bottom: 1px solid #d0d8e8;
-    padding-bottom: 3px;
+    color: #1a3a6e; font-size: 10.5pt; margin: 14px 0 6px;
+    border-bottom: 1px solid #d0d8e8; padding-bottom: 3px;
   }
-
-  /* ── About the Course ───────────────────────────────────── */
   .about-box {
-    background: #f8f9fc;
-    border-left: 4px solid #1a3a6e;
-    padding: 12px 16px;
-    font-size: 10.5pt;
-    line-height: 1.65;
-    margin-bottom: 6px;
+    background: #f8f9fc; border-left: 4px solid #1a3a6e;
+    padding: 12px 16px; font-size: 10.5pt; line-height: 1.65; margin-bottom: 6px;
   }
-
-  /* ── Objectives ─────────────────────────────────────────── */
-  .objectives ol {
-    padding-left: 20px;
-  }
-  .objectives ol li {
-    margin-bottom: 6px;
-    font-size: 10.5pt;
-  }
+  .objectives ol { padding-left: 20px; }
+  .objectives ol li { margin-bottom: 6px; font-size: 10.5pt; }
   .bloom-tag {
-    display: inline-block;
-    font-size: 8pt;
-    background: #e8f0fe;
-    color: #1a3a6e;
-    border: 1px solid #b8cdf0;
-    border-radius: 10px;
-    padding: 1px 7px;
-    margin-left: 6px;
-    vertical-align: middle;
-    font-weight: 600;
+    display: inline-block; font-size: 8pt; background: #e8f0fe; color: #1a3a6e;
+    border: 1px solid #b8cdf0; border-radius: 10px; padding: 1px 7px;
+    margin-left: 6px; vertical-align: middle; font-weight: 600;
   }
-
-  /* ── Session Plan Table ─────────────────────────────────── */
   table.session-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 9.5pt;
-    margin-bottom: 8px;
+    width: 100%; border-collapse: collapse; font-size: 9.5pt; margin-bottom: 8px;
   }
   table.session-table th {
-    background: #1a3a6e;
-    color: #fff;
-    padding: 7px 8px;
-    text-align: left;
-    font-weight: 600;
-    border: 1px solid #12305a;
+    background: #1a3a6e; color: #fff; padding: 7px 8px;
+    text-align: left; font-weight: 600; border: 1px solid #12305a;
   }
   table.session-table td {
-    border: 1px solid #c5cdd9;
-    padding: 6px 8px;
-    vertical-align: top;
+    border: 1px solid #c5cdd9; padding: 6px 8px; vertical-align: top;
   }
   table.session-table tr:nth-child(even) td { background: #f6f8fc; }
-  table.session-table td.session-num {
-    text-align: center;
-    font-weight: 700;
-    color: #1a3a6e;
-    white-space: nowrap;
+  table.session-table td.snum {
+    text-align: center; font-weight: 700; color: #1a3a6e;
+    white-space: nowrap; width: 5%;
   }
-  table.session-table td.module-header {
-    background: #dce6f8 !important;
-    font-weight: 700;
-    color: #1a3a6e;
-    font-size: 10pt;
+  table.session-table td.mod-hdr {
+    background: #dce6f8 !important; font-weight: 700; color: #1a3a6e;
+    font-size: 10pt; padding: 8px 10px;
   }
-
-  /* ── Assessment boxes ───────────────────────────────────── */
+  table.session-table td.hour-label {
+    background: #f0f4fb !important; font-weight: 600;
+    color: #1a3a6e; font-size: 9pt; white-space: nowrap; width: 7%;
+  }
   .assessment-box {
-    border: 1px solid #c5cdd9;
-    border-radius: 4px;
-    padding: 14px 16px;
-    margin-bottom: 14px;
-    background: #fafbfd;
+    border: 1px solid #c5cdd9; border-radius: 4px; padding: 14px 16px;
+    margin-bottom: 14px; background: #fafbfd;
   }
-  .assessment-box h4 {
-    color: #c0392b;
-    font-size: 11pt;
-    margin-bottom: 8px;
-  }
+  .assessment-box h4 { color: #c0392b; font-size: 11pt; margin-bottom: 8px; }
   .assessment-box p, .assessment-box li { font-size: 10.5pt; }
   .assessment-box ul { padding-left: 18px; margin-top: 6px; }
   .assessment-box ul li { margin-bottom: 4px; }
   .eval-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
   .eval-table th { background: #e8f0fe; color: #1a3a6e; font-size: 10pt; padding: 5px 8px; border: 1px solid #c5cdd9; }
   .eval-table td { border: 1px solid #c5cdd9; padding: 5px 8px; font-size: 10pt; text-align: center; }
-
-  /* ── References ─────────────────────────────────────────── */
   .ref-list { padding-left: 20px; }
   .ref-list li { margin-bottom: 7px; font-size: 10.5pt; }
   .ref-list li span.ref-type {
-    font-size: 8.5pt;
-    background: #fff0e0;
-    border: 1px solid #f0c080;
-    color: #b05000;
-    border-radius: 10px;
-    padding: 1px 7px;
-    margin-left: 6px;
-    font-weight: 600;
+    font-size: 8.5pt; background: #fff0e0; border: 1px solid #f0c080;
+    color: #b05000; border-radius: 10px; padding: 1px 7px; margin-left: 6px; font-weight: 600;
   }
-
-  /* ── 90 Topics ───────────────────────────────────────────── */
   .topics-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 4px 10px;
-    font-size: 9.5pt;
-    margin-bottom: 10px;
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 4px 10px; font-size: 9.5pt; margin-bottom: 10px;
   }
-  .topic-item {
-    border-left: 3px solid #1a3a6e;
-    padding: 3px 6px;
-    background: #f6f8fc;
-  }
-  .topic-item span.tnum {
-    font-weight: 700;
-    color: #1a3a6e;
-    margin-right: 4px;
-  }
+  .topic-item { border-left: 3px solid #1a3a6e; padding: 3px 6px; background: #f6f8fc; }
+  .topic-item span.tnum { font-weight: 700; color: #1a3a6e; margin-right: 4px; }
   .topics-cat {
-    font-weight: 700;
-    color: #c0392b;
-    font-size: 10pt;
-    margin: 10px 0 5px;
-    grid-column: 1 / -1;
-    border-bottom: 1px solid #f0c0b0;
-    padding-bottom: 2px;
+    font-weight: 700; color: #c0392b; font-size: 10pt;
+    margin: 10px 0 5px; grid-column: 1 / -1;
+    border-bottom: 1px solid #f0c0b0; padding-bottom: 2px;
   }
-
-  /* ── Footer ─────────────────────────────────────────────── */
   .doc-footer {
-    text-align: center;
-    font-size: 9pt;
-    color: #888;
-    border-top: 1px solid #ddd;
-    margin-top: 30px;
-    padding-top: 10px;
+    text-align: center; font-size: 9pt; color: #888;
+    border-top: 1px solid #ddd; margin-top: 30px; padding-top: 10px;
   }
   .signature-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    font-size: 10.5pt;
+    display: flex; justify-content: space-between;
+    margin-top: 30px; font-size: 10.5pt;
   }
   .sig-block { text-align: center; min-width: 160px; }
   .sig-block .sig-line { border-top: 1px solid #555; margin-top: 30px; padding-top: 4px; font-size: 9pt; }
-
-  /* ── Print Overrides ─────────────────────────────────────── */
   @media print {
     body { background: #fff; }
     .page { box-shadow: none; margin: 0; padding: 20px 28px; max-width: 100%; }
-    h3.section { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    table.session-table th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
-    table.session-table td.module-header { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    h3.section, table.session-table th, table.session-table td.mod-hdr,
+    table.session-table td.hour-label {
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+    }
   }
 </style>
 </head>
 <body>
 <div class="page">
 
-<!-- ═══════════════════ HEADER ═══════════════════ -->
+<!-- HEADER -->
 <div class="inst-header">
   <h1>Imperial School of Banking &amp; Management Studies</h1>
   <h2>Session Plan – PGDM 2025–27 | Semester III</h2>
   <p>Accredited | Approved by AICTE | Affiliated to Savitribai Phule Pune University</p>
 </div>
 
-<!-- ═══════════════════ META INFO ═══════════════════ -->
+<!-- META -->
 <table class="meta-table">
   <tr><td>Course Title</td><td><strong>Agentic AI &amp; Advanced Analytics in Finance</strong></td></tr>
   <tr><td>Course Code</td><td>PGDM-SEM3-SPEC-AIFINANCE</td></tr>
   <tr><td>Specialization</td><td>Finance (Elective / Specialization Subject)</td></tr>
   <tr><td>Programme</td><td>PGDM 2025–27 Batch — Semester III</td></tr>
-  <tr><td>Faculty</td><td>Tejas Jadhav &nbsp;|&nbsp; CFA Charterholder, FRM Certified</td></tr>
-  <tr><td>Total Teaching Hours</td><td>30 Hours &nbsp;(20 Sessions × 1.5 Hours)</td></tr>
+  <tr><td>Faculty</td><td>TEJAS JADHAV, CFA, FRM &nbsp;|&nbsp; MMS (SIMSREE) Mumbai</td></tr>
+  <tr><td>Total Teaching Hours</td><td>30 Hours &nbsp;(10 Sessions × 3 Hours each)</td></tr>
   <tr><td>Session Plan Submitted On</td><td>June 2026</td></tr>
   <tr><td>Academic Year</td><td>2025–26 (Semester III)</td></tr>
 </table>
 
-<!-- ═══════════════════ ABOUT THE COURSE ═══════════════════ -->
+<!-- ABOUT THE COURSE -->
 <h3 class="section">About the Course</h3>
 <div class="about-box">
   <em>Agentic AI &amp; Advanced Analytics in Finance</em> is a 30-hour specialization course for Semester III PGDM students at ISBMS, designed to bridge theoretical finance and contemporary AI-driven industry practice. The course equips students with production-grade skills in demand at Global Capability Centres (GCCs) and financial institutions across India and globally. Students explore agentic AI architectures, prompt engineering, Retrieval-Augmented Generation (RAG) pipelines, algorithmic trading, credit and market risk modelling (PD models, Monte Carlo VaR), regulatory compliance automation (Basel III/IV), and fund administration workflows. Drawing from Harvard Case Method, NUS sandbox-first learning, GARP's FRM framework, and CFA Institute standards, each module culminates in a deployable project artifact that builds a live portfolio. The capstone simulates a real GCC hiring panel, ensuring students are placement-ready upon completion.
 </div>
 <p style="font-size:9pt;color:#888;text-align:right;margin-top:4px;">Word count: ~130 words</p>
 
-<!-- ═══════════════════ COURSE OBJECTIVES ═══════════════════ -->
+<!-- COURSE OBJECTIVES -->
 <h3 class="section">Course Objectives (Bloom's Taxonomy)</h3>
 <div class="objectives">
   <ol>
@@ -274,208 +164,288 @@
   </ol>
 </div>
 
-<!-- ═══════════════════ SESSION-WISE PLAN ═══════════════════ -->
-<h3 class="section">Session-Wise Teaching Plan (30 Hours)</h3>
+<!-- SESSION-WISE PLAN -->
+<h3 class="section">Session-Wise Teaching Plan (10 Sessions × 3 Hours = 30 Hours)</h3>
 
 <table class="session-table">
   <thead>
     <tr>
       <th style="width:5%">Sess.</th>
-      <th style="width:5%">Hrs</th>
-      <th style="width:26%">Topic / Sub-Topic</th>
-      <th style="width:22%">Learning Objectives</th>
+      <th style="width:7%">Hour</th>
+      <th style="width:30%">Topic / Sub-Topic</th>
+      <th style="width:20%">Learning Objectives</th>
       <th style="width:18%">Pedagogy &amp; Activity</th>
-      <th style="width:24%">Teaching Aids &amp; References</th>
+      <th style="width:20%">Teaching Aids &amp; References</th>
     </tr>
   </thead>
   <tbody>
 
-    <!-- MODULE 1 -->
-    <tr><td colspan="6" class="module-header">Module 1: Foundations of Agentic AI in Financial Services &nbsp;|&nbsp; 3 Hours</td></tr>
+    <!-- SESSION 1 -->
+    <tr><td colspan="6" class="mod-hdr">Session 1 &nbsp;|&nbsp; Module 1: Foundations of Agentic AI in Financial Services &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">1</td><td>1.5 h</td>
-      <td>Introduction to AI in Finance: LLM fundamentals, transformer architecture, financial NLP use-cases; evolution from rule-based to agentic systems</td>
+      <td class="snum" rowspan="3">1</td>
+      <td class="hour-label">Hour 1</td>
+      <td>LLM Fundamentals &amp; Financial AI Overview: Transformer architecture, attention mechanism, tokenization; evolution of AI in finance from rule-based → ML → deep learning → agentic systems; Bloomberg GPT, FinBERT, Claude API applications in financial services</td>
       <td>Recall LLM concepts; explain financial NLP applications (L1, L2)</td>
-      <td>Lecture + Live Demo; Quiz (financial NLP examples)</td>
+      <td>Lecture; Concept Quiz; Group Discussion: "How has AI changed investment banking?"</td>
       <td>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch.1); GARP FRM Study Notes – Technology Risk</td>
     </tr>
     <tr>
-      <td class="session-num">2</td><td>1.5 h</td>
-      <td>Agentic AI Architecture: Agent loops (observe–plan–act), financial data APIs (Bloomberg, NSE), tool calling; Lab: Build a structured financial data extraction prompt</td>
+      <td class="hour-label">Hour 2</td>
+      <td>Agentic AI Architecture: Observe–Plan–Act–Reflect agent loop; tool definitions and function calling; agent memory types (short-term, episodic, semantic); financial data APIs — NSE, BSE, Yahoo Finance, RBI DBIE</td>
+      <td>Explain agentic architecture; apply agent design to financial use-cases (L2, L3)</td>
+      <td>Lecture + Live Demo; Case: "Morgan Stanley GPT-4 Wealth Advisor Program"</td>
+      <td>LangChain Docs; Anthropic API Reference; Hilpisch (2020) Ch. 2</td>
+    </tr>
+    <tr>
+      <td class="hour-label">Hour 3 – Lab</td>
+      <td>In-Class Lab: Build a structured financial data extraction prompt using the Claude API and Python (VS Code) — extract income statement line items from unstructured text; test with 3 different annual report excerpts</td>
       <td>Apply prompt engineering to extract structured financial data (L3)</td>
-      <td>Sandbox Lab (Python + OpenAI/Claude API); Case: "How Morgan Stanley uses GPT-4 for wealth advisors"</td>
-      <td>LangChain Docs; Anthropic API Reference; <em>Artificial Intelligence in Finance</em>, Yves Hilpisch (Ch. 2)</td>
+      <td>In-Class Python Lab (VS Code + Claude API); Instructor Demo; Peer Discussion</td>
+      <td>Anthropic Claude API Documentation; LangChain Python Docs</td>
     </tr>
 
-    <!-- MODULE 2 -->
-    <tr><td colspan="6" class="module-header">Module 2: Prompt Engineering &amp; RAG for Financial Analysis &nbsp;|&nbsp; 3 Hours</td></tr>
+    <!-- SESSION 2 -->
+    <tr><td colspan="6" class="mod-hdr">Session 2 &nbsp;|&nbsp; Module 2: Prompt Engineering &amp; RAG for Financial Analysis &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">3</td><td>1.5 h</td>
-      <td>Prompt Engineering for Finance: Zero-shot, few-shot, chain-of-thought prompting; financial reasoning patterns; common failure modes and hallucination risks</td>
+      <td class="snum" rowspan="3">2</td>
+      <td class="hour-label">Hour 1</td>
+      <td>Prompt Engineering for Finance: Zero-shot, few-shot, chain-of-thought (CoT) prompting; role prompting ("You are a CFO…"); output formatting (JSON, markdown tables); hallucination risks and mitigation strategies</td>
       <td>Apply prompt patterns; evaluate quality of AI financial outputs (L3, L5)</td>
-      <td>Lecture + Live Prompting; Group Activity: redesign a failing financial prompt</td>
-      <td>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch.3–4); White, J. et al. (2023). "A Prompt Pattern Catalog" – ArXiv:2302.11382</td>
+      <td>Lecture + Live Prompting Exercise; Pair Activity: compare prompt outputs for identical query</td>
+      <td>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch.3–4); White et al. (2023) ArXiv:2302.11382</td>
     </tr>
     <tr>
-      <td class="session-num">4</td><td>1.5 h</td>
-      <td>RAG Pipeline Construction: Vector databases (ChromaDB/Pinecone), document chunking, embeddings, retrieval; Lab: Build a 200-page prospectus Q&amp;A bot</td>
+      <td class="hour-label">Hour 2</td>
+      <td>RAG Pipeline Construction: Vector databases (ChromaDB, Pinecone); document chunking strategies for financial documents; embedding models (Sentence Transformers); retrieval and re-ranking; advanced prompting: self-consistency, tree-of-thought</td>
+      <td>Explain RAG pipeline components; design retrieval strategy for financial documents (L2, L3)</td>
+      <td>Lecture; Architecture Diagram Workshop; Group Activity: redesign five failing financial prompts</td>
+      <td>LlamaIndex Documentation; Lewis et al. (2020) NeurIPS ArXiv:2005.11401</td>
+    </tr>
+    <tr>
+      <td class="hour-label">Hour 3 – Lab</td>
+      <td>In-Class Lab: Build a Q&amp;A bot on a 200-page NSE IPO Prospectus using LlamaIndex + ChromaDB + Claude API (VS Code); test with 10 investor questions; evaluate retrieval accuracy</td>
       <td>Design and deploy a RAG pipeline for unstructured financial documents (L6)</td>
-      <td>Hands-On Lab; Industry Case: "SEBI DRHP Analysis using RAG"</td>
-      <td>LlamaIndex Documentation; Lewis et al. (2020). "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" – NeurIPS 2020</td>
+      <td>In-Class Python Lab (VS Code + LlamaIndex + ChromaDB); Industry Case: "SEBI DRHP Analysis using RAG"</td>
+      <td>LlamaIndex Python Docs; ChromaDB Documentation</td>
     </tr>
 
-    <!-- MODULE 3 -->
-    <tr><td colspan="6" class="module-header">Module 3: Model Context Protocol &amp; Agent Orchestration &nbsp;|&nbsp; 3 Hours</td></tr>
+    <!-- SESSION 3 -->
+    <tr><td colspan="6" class="mod-hdr">Session 3 &nbsp;|&nbsp; Module 3: Model Context Protocol &amp; Agent Orchestration &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">5</td><td>1.5 h</td>
-      <td>Model Context Protocol (MCP): Architecture, tool definitions, memory management, context windows; financial context design patterns</td>
+      <td class="snum" rowspan="3">3</td>
+      <td class="hour-label">Hour 1</td>
+      <td>Model Context Protocol (MCP): Protocol specification; tool definitions and JSON schemas; context window management for long financial documents; memory management (summarization, rolling context); financial context design patterns — credit analyst agent, portfolio manager agent</td>
       <td>Explain MCP architecture; apply context design in financial scenarios (L2, L3)</td>
-      <td>Lecture + Architecture Diagram Workshop; Simulation: design a credit analyst agent</td>
+      <td>Lecture; Architecture Diagram Workshop; Simulation: design a credit analyst MCP agent schema</td>
       <td>Anthropic MCP Specification (2024); Jadhav, <em>Claude AI for Finance Professionals</em> (Ch.6)</td>
     </tr>
     <tr>
-      <td class="session-num">6</td><td>1.5 h</td>
-      <td>Multi-Agent Orchestration: CrewAI / LangGraph frameworks; agent roles (researcher, analyst, writer); Lab: Build a 3-agent investment memo pipeline</td>
-      <td>Design multi-agent pipelines; evaluate output quality of orchestrated agents (L6, L5)</td>
-      <td>Sandbox Lab; Case: "Multi-agent due diligence at a PE firm"</td>
-      <td>CrewAI Documentation; Wu et al. (2023). "AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation" – ArXiv:2308.08155</td>
+      <td class="hour-label">Hour 2</td>
+      <td>Multi-Agent Frameworks: CrewAI and LangGraph introduction; agent roles (researcher, analyst, writer, reviewer); sequential vs. hierarchical vs. parallel workflows; inter-agent communication; designing agent crews for financial due diligence and investment research</td>
+      <td>Design multi-agent pipelines; evaluate architectural choices for financial workflows (L6, L5)</td>
+      <td>Lecture; Live Demo (CrewAI multi-agent crew); Architectural Design Exercise in pairs</td>
+      <td>CrewAI Documentation; Wu et al. (2023) AutoGen ArXiv:2308.08155</td>
+    </tr>
+    <tr>
+      <td class="hour-label">Hour 3 – Lab</td>
+      <td>In-Class Lab: Build a 3-agent Investment Memo pipeline — Research Agent (data gathering) → Analysis Agent (financial interpretation) → Writing Agent (memo drafting); run on a real NSE-listed company; peer review memo quality</td>
+      <td>Create and evaluate a multi-agent financial research pipeline (L6, L5)</td>
+      <td>In-Class Python Lab (VS Code + CrewAI + Claude API); Peer Review Panel</td>
+      <td>CrewAI Python Docs; Anthropic API Reference</td>
     </tr>
 
-    <!-- MODULE 4 -->
-    <tr><td colspan="6" class="module-header">Module 4: Algorithmic Trading &amp; Execution Strategies &nbsp;|&nbsp; 3 Hours</td></tr>
+    <!-- SESSION 4 -->
+    <tr><td colspan="6" class="mod-hdr">Session 4 &nbsp;|&nbsp; Module 4: Algorithmic Trading &amp; Execution Strategies &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">7</td><td>1.5 h</td>
-      <td>Algorithmic Trading Fundamentals: Market microstructure, order types, trading signals (momentum, mean-reversion), backtesting methodology; regulatory considerations (SEBI algo trading guidelines)</td>
+      <td class="snum" rowspan="3">4</td>
+      <td class="hour-label">Hour 1</td>
+      <td>Market Microstructure &amp; Trading Signals: Order book dynamics, bid-ask spread, order types (market, limit, stop-loss, IOC); trading signal categories — momentum (RSI, MACD), mean-reversion (Bollinger Bands), pairs trading (cointegration); SEBI algorithmic trading and co-location guidelines</td>
       <td>Explain algorithmic trading concepts; analyse signal performance metrics (L2, L4)</td>
-      <td>Lecture + Case Discussion: "Knight Capital $440M algo failure"; Simulation exercise</td>
-      <td>Chan, E. (2013). <em>Algorithmic Trading: Winning Strategies and Their Rationale</em> (Chs. 1–3); SEBI Circular on Algorithmic Trading (2012)</td>
+      <td>Lecture; Simulation Exercise (virtual order book); Case Excerpt: "Renaissance Technologies Medallion Fund"</td>
+      <td>Chan (2013) Chs. 1–3; SEBI Circular on Algorithmic Trading (2012)</td>
     </tr>
     <tr>
-      <td class="session-num">8</td><td>1.5 h</td>
-      <td>AI-Enhanced Execution Strategies: Reinforcement learning in trading, NLP-based signal generation from news; Lab: Build an AI trading bot with backtested results (Backtrader + Python)</td>
+      <td class="hour-label">Hour 2</td>
+      <td>Backtesting Methodology &amp; Case Study: Walk-forward vs. in-sample/out-of-sample testing; overfitting and data snooping bias; performance metrics — Sharpe ratio, Sortino ratio, Maximum Drawdown; transaction cost modelling; Case Discussion: "Knight Capital Group $440M algorithmic trading failure – August 2012"</td>
+      <td>Analyse backtesting results; evaluate strategy robustness and regulatory risk (L4, L5)</td>
+      <td>Case Discussion; Quantitative Exercise (compute Sharpe and Max Drawdown); Peer Analysis</td>
+      <td>Hilpisch (2020) Ch. 7; SEBI Order on Knight Capital India equivalent</td>
+    </tr>
+    <tr>
+      <td class="hour-label">Hour 3 – Lab</td>
+      <td>In-Class Lab: Build an AI trading bot using Backtrader + Python (VS Code) implementing a momentum strategy on NSE-listed stocks with 2 years of data; generate a full backtested performance report (Sharpe, CAGR, Max Drawdown); NLP-based signal generation from financial news</td>
       <td>Apply AI to trading strategy design; evaluate backtested Sharpe ratio and drawdown (L3, L4)</td>
-      <td>Hands-On Lab (Python/Backtrader); Peer Review of backtesting results</td>
-      <td>Hilpisch, Y. (2020). <em>Artificial Intelligence in Finance</em> (Ch. 7); QuantLib Python Documentation</td>
+      <td>In-Class Python Lab (VS Code + Backtrader + yfinance); Peer Performance Review</td>
+      <td>Backtrader Documentation; yfinance Python Library; QuantLib Python Docs</td>
     </tr>
 
-    <!-- MODULE 5 -->
-    <tr><td colspan="6" class="module-header">Module 5: Risk Modelling – PD Models &amp; Monte Carlo VaR &nbsp;|&nbsp; 3 Hours</td></tr>
+    <!-- SESSION 5 -->
+    <tr><td colspan="6" class="mod-hdr">Session 5 &nbsp;|&nbsp; Module 5: Risk Modelling – PD Models &amp; Monte Carlo VaR &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">9</td><td>1.5 h</td>
-      <td>Credit Risk &amp; Probability of Default Models: Logistic regression, ML-based PD estimation, scorecard development; validation metrics (Gini, KS statistic, AUC-ROC)</td>
+      <td class="snum" rowspan="3">5</td>
+      <td class="hour-label">Hour 1</td>
+      <td>Credit Risk &amp; PD Models: PD, LGD, EAD components; Basel II IRB approach; ML-based PD model development using logistic regression, decision trees, and XGBoost; feature engineering from financial ratios; model validation — Gini coefficient, KS statistic, AUC-ROC; SHAP for explainability; Case: "Fintech lender PD model failure and regulatory action"</td>
       <td>Apply ML models to credit risk; analyse model performance metrics (L3, L4)</td>
-      <td>Lecture + Python Demo (scikit-learn); Case: "Fintech lender PD model failure"</td>
-      <td>Basel Committee on Banking Supervision. (2006). <em>Basel II: International Convergence</em>; Siddiqi, N. (2017). <em>Intelligent Credit Scoring</em> (Ch. 4)</td>
+      <td>Lecture; Python Demo (scikit-learn); Case Discussion; SHAP Visualization Demo</td>
+      <td>Basel Committee (2006) Basel II; Siddiqi (2017) <em>Intelligent Credit Scoring</em> Ch. 4</td>
     </tr>
     <tr>
-      <td class="session-num">10</td><td>1.5 h</td>
-      <td>Market Risk &amp; Monte Carlo VaR: Historical simulation vs Monte Carlo, 10,000-path simulation, Conditional VaR (CVaR), risk decomposition; Lab: Generate a VaR report with AI commentary</td>
-      <td>Design Monte Carlo VaR model; evaluate risk outputs against Basel thresholds (L6, L5) — <strong>Assignment topic delivered in this session</strong></td>
-      <td>Sandbox Lab (NumPy/Python); Industry Simulation: multi-asset portfolio VaR</td>
-      <td>GARP FRM Part II – Market Risk Measurement; Hull, J. C. (2022). <em>Options, Futures, and Other Derivatives</em> (Ch. 21–22)</td>
+      <td class="hour-label">Hour 2</td>
+      <td>Market Risk &amp; Monte Carlo VaR: Historical simulation vs. parametric vs. Monte Carlo compared; 10,000-path Monte Carlo simulation for multi-asset equity portfolio; Conditional VaR (CVaR) / Expected Shortfall (ES); risk decomposition by asset; Basel III VaR thresholds (95%, 99%); <strong>Assignment introduced this session</strong></td>
+      <td>Design Monte Carlo VaR model; evaluate risk outputs against Basel thresholds (L6, L5)</td>
+      <td>Lecture; Industry Simulation (multi-asset portfolio VaR); Risk Interpretation Workshop</td>
+      <td>GARP FRM Part II – Market Risk; Hull (2022) Ch. 21–22</td>
+    </tr>
+    <tr>
+      <td class="hour-label">Hour 3 – Lab</td>
+      <td>In-Class Lab: Build a Monte Carlo VaR engine in Python (VS Code + NumPy) for a 5-stock NSE portfolio; run 10,000 simulation paths; compute 95% and 99% VaR and CVaR; generate AI-written risk commentary using Claude API; output: formatted PDF report</td>
+      <td>Implement and interpret Monte Carlo VaR; produce AI-enhanced risk report (L6, L3)</td>
+      <td>In-Class Python Lab (VS Code + NumPy + Claude API + reportlab); Peer Report Review</td>
+      <td>NumPy Documentation; Anthropic Claude API; GARP FRM Study Materials</td>
     </tr>
 
-    <!-- MODULE 6 -->
-    <tr><td colspan="6" class="module-header">Module 6: RegTech &amp; Automated Basel III/IV Compliance &nbsp;|&nbsp; 3 Hours</td></tr>
+    <!-- SESSION 6 -->
+    <tr><td colspan="6" class="mod-hdr">Session 6 &nbsp;|&nbsp; Module 6: RegTech &amp; Automated Basel III/IV Compliance &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">11</td><td>1.5 h</td>
-      <td>RegTech Overview &amp; Basel III/IV: Regulatory capital adequacy (CET1, Tier 1, Total Capital ratios), LCR, NSFR, leverage ratio; AI applications in compliance monitoring</td>
+      <td class="snum" rowspan="3">6</td>
+      <td class="hour-label">Hour 1</td>
+      <td>Regulatory Framework – Basel III/IV: CET1, Tier 1, Total Capital adequacy ratios; Liquidity Coverage Ratio (LCR) and Net Stable Funding Ratio (NSFR); leverage ratio; Basel IV FRTB overview; RBI implementation circular for Indian banks; AI applications in continuous compliance monitoring; AxiomSL and OneSumX platforms</td>
       <td>Recall Basel III/IV framework; explain AI's role in regulatory compliance (L1, L2)</td>
-      <td>Lecture + Regulatory Simulation (AxiomSL-style templates); Guest Talk segment (video)</td>
-      <td>BIS Basel Committee. (2017). <em>Basel III: Finalising Post-Crisis Reforms</em>; Deloitte RegTech Universe Report (2023)</td>
+      <td>Lecture; Regulatory Simulation (AxiomSL-style capital calculation template); Guest Video Segment</td>
+      <td>BIS Basel Committee (2017); Deloitte RegTech Universe Report (2023)</td>
     </tr>
     <tr>
-      <td class="session-num">12</td><td>1.5 h</td>
-      <td>Automated Compliance Reporting: Document generation pipelines, structured data extraction from financial statements; Lab: Auto-generate a Basel III Pillar 3 disclosure document using Claude API</td>
+      <td class="hour-label">Hour 2</td>
+      <td>AML, KYC &amp; Regulatory Reporting Automation: AML transaction monitoring using ML; KYC document automation using NLP (Aadhaar/PAN OCR); SAR auto-generation; FATF Recommendations; RBI guidelines on AI in banking; Case: "HDFC Bank ₹1,000 crore RBI penalty – KYC compliance failure analysis"</td>
+      <td>Analyse RegTech automation use-cases; evaluate regulatory and operational risk (L4, L5)</td>
+      <td>Case Discussion; AML Detection Simulation; NLP Demo (document classification for KYC)</td>
+      <td>EY RegTech Report: "AI in Regulatory Reporting" (2023); FATF Recommendations (2023)</td>
+    </tr>
+    <tr>
+      <td class="hour-label">Hour 3 – Lab</td>
+      <td>In-Class Lab: Auto-generate a Basel III Pillar 3 disclosure document from structured bank data using Claude API and Python (VS Code + python-docx); extract capital, risk, and liquidity metrics; produce formatted Word document matching RBI Pillar 3 template; peer review output</td>
       <td>Design automated compliance reporting pipeline; evaluate output accuracy (L6, L5)</td>
-      <td>Hands-On Lab (Claude API + Python); Peer Review of generated disclosure</td>
-      <td>Anthropic Claude API Documentation; EY RegTech Report: "AI in Regulatory Reporting" (2023)</td>
+      <td>In-Class Python Lab (VS Code + Claude API + python-docx); Peer Review of generated disclosure</td>
+      <td>Anthropic Claude API Documentation; RBI Pillar 3 Disclosure Template</td>
     </tr>
 
-    <!-- MODULE 7 -->
-    <tr><td colspan="6" class="module-header">Module 7: Enterprise AI Governance, Security &amp; Cost Management &nbsp;|&nbsp; 3 Hours</td></tr>
+    <!-- SESSION 7 -->
+    <tr><td colspan="6" class="mod-hdr">Session 7 &nbsp;|&nbsp; Module 7: Enterprise AI Governance, Security &amp; Cost Management &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">13</td><td>1.5 h</td>
-      <td>Enterprise AI Governance: Model Risk Management (SR 11-7), AI audit frameworks, explainability requirements (SHAP/LIME), bias and fairness in financial AI; EU AI Act implications</td>
+      <td class="snum" rowspan="3">7</td>
+      <td class="hour-label">Hour 1</td>
+      <td>AI Governance &amp; Model Risk Management: Federal Reserve SR 11-7 framework; model documentation, independent validation, ongoing monitoring; SHAP and LIME for explainability; algorithmic bias and fairness in credit, insurance, and hiring; Case: "Goldman Sachs Apple Card gender bias – CFPB investigation 2019"</td>
       <td>Evaluate AI governance frameworks; analyse regulatory risk in AI deployment (L5, L4)</td>
-      <td>Case Discussion: "Goldman Sachs Apple Card gender bias investigation"; Governance Blueprint Workshop</td>
-      <td>Federal Reserve SR 11-7 Guidance; FSB. (2022). "Artificial Intelligence and Machine Learning in Financial Services"</td>
+      <td>Case Discussion; Governance Blueprint Workshop; SHAP Visualization Demo in Python</td>
+      <td>Federal Reserve SR 11-7; FSB (2022) "AI and ML in Financial Services"</td>
     </tr>
     <tr>
-      <td class="session-num">14</td><td>1.5 h</td>
-      <td>AI Security &amp; Cost Management: Prompt injection attacks, hallucination risk mitigation, Total Cost of Ownership (TCO) modelling for LLM deployment; Lab: Design an AI governance blueprint document — <strong>Case Study conducted in this session</strong></td>
-      <td>Design AI governance blueprint; evaluate security and cost trade-offs (L6, L5)</td>
-      <td>Red-Team Exercise (prompt injection); TCO Modelling Spreadsheet Lab</td>
+      <td class="hour-label">Hour 2</td>
+      <td>AI Security, Ethics &amp; Cost: EU AI Act classification for financial services; India DPDP Act 2023; prompt injection attacks (direct and indirect); OWASP LLM Top 10; TCO modelling — API costs, compute, integration, maintenance; cost optimization strategies (caching, compression, batching); <strong>Case Study conducted this session</strong></td>
+      <td>Evaluate security and cost trade-offs of enterprise AI deployment (L5, L4)</td>
+      <td>Red-Team Security Exercise (live prompt injection); TCO Spreadsheet Modelling; Regulatory Comparison Table</td>
       <td>OWASP LLM Top 10 (2023); Jadhav, <em>Claude AI for Finance Professionals</em> (Ch.8)</td>
     </tr>
-
-    <!-- MODULE 8 -->
-    <tr><td colspan="6" class="module-header">Module 8: Fund Administration – NAV &amp; Transfer Agency Automation &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">15</td><td>1.5 h</td>
-      <td>Fund Accounting &amp; NAV Automation: Fund administration lifecycle (trade capture → NAV → investor reporting), AI in valuation, corporate actions processing; industry landscape (Opus, HC Global, SS&amp;C)</td>
+      <td class="hour-label">Hour 3 – Lab</td>
+      <td>In-Class Lab: Design an AI Governance Blueprint for a bank deploying an LLM-based credit decision system — covering model risk, data privacy, bias testing, and incident response; build TCO model in Excel; group presentations (5 min each)</td>
+      <td>Design an AI governance blueprint; evaluate compliance with SR 11-7 and EU AI Act (L6, L5)</td>
+      <td>In-Class Workshop (Excel TCO + Claude API + Word Blueprint); Peer Presentations</td>
+      <td>SR 11-7 Framework; EU AI Act (2024); DPDP Act India (2023)</td>
+    </tr>
+
+    <!-- SESSION 8 -->
+    <tr><td colspan="6" class="mod-hdr">Session 8 &nbsp;|&nbsp; Module 8: Fund Administration – NAV &amp; Transfer Agency Automation &nbsp;|&nbsp; 3 Hours</td></tr>
+    <tr>
+      <td class="snum" rowspan="3">8</td>
+      <td class="hour-label">Hour 1</td>
+      <td>Fund Administration Lifecycle: Fund types (mutual funds, hedge funds, PE/VC, AIFs); trade capture, portfolio valuation (mark-to-market, IFRS 9), corporate actions processing; NAV calculation steps; investor reporting; AI applications at Opus Fund Services, HC Global, SS&amp;C GlobeOp, Apex Group; Case: "Opus Fund Services AI-powered fund automation GCC Pune"</td>
       <td>Explain fund administration workflows; apply AI to NAV calculation process (L2, L3)</td>
-      <td>Lecture + Industry Case: "Opus Fund Services AI transformation"; Role-play exercise</td>
-      <td>IOSCO Principles for Fund Valuation (2013); Citi Securities Services: "AI in Fund Administration" Report (2023)</td>
+      <td>Lecture; Industry Case Discussion; Role-Mapping Exercise (identify AI insertion points in fund lifecycle)</td>
+      <td>IOSCO Principles for Fund Valuation (2013); Citi: "AI in Fund Administration" (2023)</td>
     </tr>
     <tr>
-      <td class="session-num">16</td><td>1.5 h</td>
-      <td>Transfer Agency &amp; KYC Automation: Investor onboarding (AML/KYC), transaction processing, e-KYC using NLP; Lab: Generate a daily NAV report with AI-written commentary</td>
-      <td>Design an automated NAV reporting system; evaluate KYC automation accuracy (L6, L4)</td>
-      <td>Hands-On Lab (Python + Claude API); Peer Review of NAV report</td>
-      <td>KFINTECH Product Documentation; SEBI Circular on KYC Registration Agencies (2022)</td>
+      <td class="hour-label">Hour 2</td>
+      <td>Transfer Agency &amp; KYC Automation: Investor onboarding (AML/KYC), subscription/redemption processing, dividend distribution; Aadhaar-based e-KYC and PAN verification using NLP; SEBI mutual fund KYC regulations 2023; KFINTECH and CAMS platforms; STP (Straight-Through Processing) and error reconciliation</td>
+      <td>Evaluate KYC automation accuracy; analyse transfer agency workflow efficiency (L5, L4)</td>
+      <td>Lecture; Role-Play Exercise (investor onboarding simulation); KYC NLP Demo</td>
+      <td>KFINTECH Documentation; SEBI Circular on KYC Registration Agencies (2022)</td>
+    </tr>
+    <tr>
+      <td class="hour-label">Hour 3 – Lab</td>
+      <td>In-Class Lab: Build a Python-based NAV calculation engine (VS Code) for a 10-holding equity mutual fund; auto-generate a daily fund manager commentary and NAV report using Claude API; implement reconciliation check; output: formatted Excel/PDF report matching SEBI disclosure format</td>
+      <td>Design an automated NAV reporting system; evaluate output quality (L6, L4)</td>
+      <td>In-Class Python Lab (VS Code + Claude API + openpyxl + reportlab); Peer Review of NAV report</td>
+      <td>Anthropic Claude API; openpyxl Documentation; SEBI NAV Disclosure Format</td>
     </tr>
 
-    <!-- MODULE 9 -->
-    <tr><td colspan="6" class="module-header">Module 9: Market Commentary &amp; Valuation Dashboards &nbsp;|&nbsp; 3 Hours</td></tr>
+    <!-- SESSION 9 -->
+    <tr><td colspan="6" class="mod-hdr">Session 9 &nbsp;|&nbsp; Module 9: Market Commentary &amp; Valuation Dashboards &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">17</td><td>1.5 h</td>
-      <td>Market Commentary Generation: NLP for financial news analysis, sentiment scoring (FinBERT), earnings call transcript analysis, AI-generated research reports</td>
+      <td class="snum" rowspan="3">9</td>
+      <td class="hour-label">Hour 1</td>
+      <td>Financial NLP &amp; Sentiment Analysis: FinBERT for financial sentiment; earnings call transcript mining and key phrase extraction; Bloomberg NLP use-cases; news-based event-driven signals; NLP pipeline — NSE announcement collection → preprocessing → FinBERT scoring → AI-generated equity research commentary; Case: "Bloomberg Intelligence AI-generated earnings summaries"</td>
       <td>Apply NLP models to market analysis; analyse sentiment signals from financial text (L3, L4)</td>
-      <td>Live Demo (FinBERT); Case: "AI-generated earnings summaries at Bloomberg Intelligence"</td>
-      <td>Yang et al. (2020). "FinBERT: A Pre-trained Financial Language Representation Model for Financial Text Mining" – IJCAI 2020; Bloomberg NLP Research</td>
+      <td>Lecture; Live Demo (FinBERT on NSE earnings transcript); Case Discussion</td>
+      <td>Yang et al. (2020) FinBERT IJCAI 2020; Bloomberg NLP Research</td>
     </tr>
     <tr>
-      <td class="session-num">18</td><td>1.5 h</td>
-      <td>Valuation Dashboards &amp; Data Visualization: Streamlit/Python dashboards, DCF modelling with AI assistance, interactive charts (Plotly), market intelligence prototype; Lab: Build a Streamlit market dashboard</td>
-      <td>Design and deploy an interactive financial dashboard; evaluate usability and data accuracy (L6, L5)</td>
-      <td>Hands-On Lab (Streamlit + Plotly); Live Demo</td>
-      <td>Streamlit Documentation; Damodaran, A. (2012). <em>Investment Valuation</em> (Ch. 2); Plotly Python Documentation</td>
+      <td class="hour-label">Hour 2</td>
+      <td>Valuation Modelling with AI: DCF model automation using Claude API — revenue projection, WACC, terminal value; Comparable Company Analysis (CCA) — extract and compare EV/EBITDA, P/E, P/BV multiples; ESG data integration in equity valuation; Damodaran valuation database application; live valuation exercise on NSE-listed company</td>
+      <td>Design AI-assisted valuation models; evaluate output accuracy against manual benchmarks (L6, L4)</td>
+      <td>Modelling Lab (Python-based DCF + Claude API); Live Company Valuation Exercise</td>
+      <td>Damodaran (2012) <em>Investment Valuation</em> Ch. 2; Damodaran Online Data; Anthropic Claude API</td>
+    </tr>
+    <tr>
+      <td class="hour-label">Hour 3 – Lab</td>
+      <td>In-Class Lab: Build a Streamlit market intelligence dashboard (VS Code) with — stock screener, candlestick charts (Plotly), portfolio analytics panel, and FinBERT sentiment feed from NSE news; integrate real-time data (yfinance); peer review for usability and data accuracy</td>
+      <td>Design and deploy an interactive financial dashboard with live data and NLP feeds (L6, L5)</td>
+      <td>In-Class Python Lab (VS Code + Streamlit + Plotly + yfinance + FinBERT); Live Demo; Peer Review</td>
+      <td>Streamlit Documentation; Plotly Python Docs; yfinance Library</td>
     </tr>
 
-    <!-- MODULE 10 -->
-    <tr><td colspan="6" class="module-header">Module 10: GCC Capstone – Integrated Financial AI System &nbsp;|&nbsp; 3 Hours</td></tr>
+    <!-- SESSION 10 -->
+    <tr><td colspan="6" class="mod-hdr">Session 10 &nbsp;|&nbsp; Module 10: GCC Capstone – Integrated Financial AI System &nbsp;|&nbsp; 3 Hours</td></tr>
     <tr>
-      <td class="session-num">19</td><td>1.5 h</td>
-      <td>Capstone Preparation: Portfolio integration (combine modules 1–9 outputs), pitch deck design (problem → solution → architecture → demo → impact), peer review and rehearsal</td>
+      <td class="snum" rowspan="3">10</td>
+      <td class="hour-label">Hour 1</td>
+      <td>Capstone Integration: Combine all module deliverables — RAG prospectus bot, Monte Carlo VaR engine, Basel III disclosure generator, NAV automation, Streamlit dashboard — into a unified Integrated Financial AI System; system architecture documentation; integration testing; GitHub portfolio setup; capstone evaluation rubric walkthrough</td>
       <td>Design integrated AI system; evaluate project readiness against GCC hiring criteria (L6, L5)</td>
-      <td>Workshop (peer review panels); Instructor feedback rounds</td>
+      <td>Workshop (Instructor-led integration session + Peer Review rounds); Integration Lab; GitHub Setup</td>
       <td>McKinsey GCC India Report (2024); Jadhav, <em>Claude AI for Finance Professionals</em> (Capstone Chapter)</td>
     </tr>
     <tr>
-      <td class="session-num">20</td><td>1.5 h</td>
-      <td>GCC Capstone Presentation: Mock hiring panel (simulated GCC interviewers), live demo of deployed project, Q&amp;A, course debrief, placement readiness assessment</td>
-      <td>Present integrated system to mock panel; demonstrate placement-ready communication (L6)</td>
-      <td>Mock Hiring Panel; Peer Evaluation; Course Debrief Discussion</td>
+      <td class="hour-label">Hour 2</td>
+      <td>Pitch Deck Design &amp; Mock Rehearsal: Pitch deck structure for GCC hiring panels — Problem → Solution Architecture → Live Demo → Business Impact → Team; AI-assisted resume and cover letter tailoring; common technical interview questions (Python, finance, AI governance); structured peer rehearsal with GCC hiring rubric feedback</td>
+      <td>Design and deliver a GCC-standard project pitch; evaluate communication effectiveness (L6, L5)</td>
+      <td>Group Rehearsal; Structured Peer Feedback (GCC hiring rubric); Instructor Coaching Round</td>
       <td>NASSCOM GCC Trends Report (2024); Course Portfolio Rubric</td>
+    </tr>
+    <tr>
+      <td class="hour-label">Hour 3 – Capstone</td>
+      <td>GCC Capstone Presentation: Live 15-minute project presentation to mock GCC hiring panel (EisnerAmper / Opus Fund Services scenario); 10-minute Q&amp;A with panel; placement readiness scoring on technical depth, communication, portfolio quality, and role alignment; individual feedback; course debrief — industry outlook and next steps</td>
+      <td>Present integrated system to mock panel; demonstrate placement-ready communication (L6)</td>
+      <td>Mock Hiring Panel (faculty as GCC panel); Peer Evaluation Rubric; Course Debrief Discussion</td>
+      <td>NASSCOM GCC Report (2024); EisnerAmper GCC Case; Course Portfolio Rubric</td>
     </tr>
 
   </tbody>
 </table>
 
-<!-- ═══════════════════ ASSESSMENTS ═══════════════════ -->
+<!-- ASSESSMENTS -->
 <h3 class="section">Assessments</h3>
 
 <div class="assessment-box">
   <h4>Assignment: AI-Powered Monte Carlo VaR Risk Report</h4>
-  <p><strong>Introduced in:</strong> Session 10 &nbsp;|&nbsp; <strong>Submitted to Academic Coordinator:</strong> At least 2 sessions (3 hours) before due date</p>
-  <p><strong>Conducted:</strong> In-class (Session 10 lab component) + take-home writeup</p>
+  <p><strong>Introduced in:</strong> Session 5 (Hour 2) &nbsp;|&nbsp; <strong>Submitted to Academic Coordinator:</strong> At least 2 sessions before due date</p>
+  <p><strong>Conducted:</strong> In-class lab component (Session 5, Hour 3) + individual take-home writeup</p>
   <br>
-  <p><strong>Description:</strong> Students will develop a Python-based Monte Carlo Value-at-Risk (VaR) model for a hypothetical equity portfolio of five NSE-listed stocks. The assignment requires students to: (1) collect 2 years of historical price data using Yahoo Finance API, (2) run 10,000 Monte Carlo simulation paths, (3) calculate 95% and 99% VaR and CVaR, (4) generate an AI-written risk commentary using Claude API, and (5) interpret results with reference to Basel III market risk capital requirements.</p>
+  <p><strong>Description:</strong> Students will develop a Python-based Monte Carlo Value-at-Risk (VaR) model for a hypothetical equity portfolio of five NSE-listed stocks. The assignment requires students to: (1) collect 2 years of historical price data using Yahoo Finance API in Python (VS Code), (2) run 10,000 Monte Carlo simulation paths using NumPy, (3) calculate 95% and 99% VaR and CVaR, (4) generate an AI-written risk commentary using Claude API, and (5) interpret results with reference to Basel III market risk capital requirements.</p>
   <br>
   <p><strong>Deliverables:</strong></p>
   <ul>
-    <li>Jupyter Notebook with all code, charts, and simulation output</li>
+    <li>Python script (.py) with all code, charts, and simulation output (VS Code project)</li>
     <li>2-page PDF summary report with AI-generated commentary and regulatory interpretation</li>
   </ul>
   <br>
@@ -487,20 +457,20 @@
 
 <div class="assessment-box">
   <h4>Case Study: "EisnerAmper GCC Pune – Automating Audit Analytics with Generative AI"</h4>
-  <p><strong>Conducted:</strong> Session 14 (in-class, 45 minutes discussion + 30 minutes write-up)</p>
-  <p><strong>Submitted to Academic Coordinator:</strong> Case material distributed and submitted to coordinator at least 2 sessions (3 hours) before the session</p>
+  <p><strong>Conducted:</strong> Session 7, Hour 2 (in-class, 45 minutes discussion + 30 minutes written response)</p>
+  <p><strong>Submitted to Academic Coordinator:</strong> Case material distributed and submitted to coordinator at least 2 sessions before the session</p>
   <br>
-  <p><strong>Case Summary:</strong> EisnerAmper's Global Capability Centre in Pune adopted generative AI tools to automate document review, extract financial data from unstructured PDFs, and draft preliminary audit findings. The case explores: technology stack selection, change management, regulatory risk (PCAOB/ICAI audit standards), ROI measurement, and competitive implications for mid-tier audit firms.</p>
+  <p><strong>Case Summary:</strong> EisnerAmper's Global Capability Centre in Pune adopted generative AI tools to automate document review, extract financial data from unstructured PDFs, and draft preliminary audit findings. The case explores: technology stack selection, change management challenges, regulatory risk (PCAOB/ICAI audit standards), ROI measurement, and competitive implications for mid-tier audit firms entering the GCC model.</p>
   <br>
   <p><strong>Discussion Questions:</strong></p>
   <ul>
     <li>What specific audit tasks were automated, and which AI techniques were applied to each?</li>
     <li>Analyse the governance and data privacy risks EisnerAmper faced in deploying AI in audit workflows.</li>
-    <li>Using the AI governance framework from Module 7, evaluate EisnerAmper's approach. What controls were missing?</li>
+    <li>Using the AI governance framework from Session 7, evaluate EisnerAmper's approach. What controls were missing?</li>
     <li>How does this GCC model create competitive moats, and what does it mean for entry-level finance careers?</li>
   </ul>
   <br>
-  <p><strong>Written Submission:</strong> Individual 1-page analytical response (submitted within 48 hours)</p>
+  <p><strong>Written Submission:</strong> Individual 1-page analytical response (submitted within 48 hours of class)</p>
   <br>
   <table class="eval-table">
     <tr><th>Criterion</th><th>Case Comprehension</th><th>Analytical Depth</th><th>Framework Application</th><th>Written Communication</th><th>Total</th></tr>
@@ -508,7 +478,7 @@
   </table>
 </div>
 
-<!-- ═══════════════════ REFERENCES ═══════════════════ -->
+<!-- REFERENCES -->
 <h3 class="section">References</h3>
 
 <h4 class="sub-section">Textbooks (Primary)</h4>
@@ -521,7 +491,7 @@
 
 <h4 class="sub-section">Research Papers (Primary)</h4>
 <ol class="ref-list">
-  <li>Yang, Z., Dai, Z., Yang, Y., Carbonell, J., Salakhutdinov, R., &amp; Le, Q. V. (2019). <em>XLNet: Generalized Autoregressive Pretraining for Language Understanding.</em> Advances in Neural Information Processing Systems (NeurIPS 2019). ArXiv:1906.08237. <span class="ref-type">Research Paper</span></li>
+  <li>Yang, Z., Dai, Z., Yang, Y., Carbonell, J., Salakhutdinov, R., &amp; Le, Q. V. (2019). <em>XLNet: Generalized Autoregressive Pretraining for Language Understanding.</em> NeurIPS 2019. ArXiv:1906.08237. <span class="ref-type">Research Paper</span></li>
   <li>Lewis, P., Perez, E., Piktus, A., Petroni, F., Karpukhin, V., Goyal, N., … Kiela, D. (2020). <em>Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks.</em> NeurIPS 2020. ArXiv:2005.11401. <span class="ref-type">Research Paper</span></li>
   <li>White, J., Fu, Q., Hays, S., Sandborn, M., Olea, C., Gilbert, H., … Schmidt, D. C. (2023). <em>A Prompt Pattern Catalog to Enhance Prompt Engineering with ChatGPT.</em> ArXiv:2302.11382. <span class="ref-type">Research Paper</span></li>
   <li>Financial Stability Board (FSB). (2022). <em>Artificial Intelligence and Machine Learning in Financial Services: Market Developments and Financial Stability Implications.</em> FSB Report, November 2022. <span class="ref-type">Research Paper</span></li>
@@ -535,7 +505,7 @@
   <li>Federal Reserve System. (2011). <em>SR 11-7: Guidance on Model Risk Management.</em> Board of Governors of the Federal Reserve System.</li>
 </ol>
 
-<!-- ═══════════════════ 90 RELEVANT TOPICS ═══════════════════ -->
+<!-- 90 RELEVANT TOPICS -->
 <h3 class="section">90 Relevant Topics – Specialization Subject List</h3>
 <p style="font-size:9.5pt;color:#555;margin-bottom:10px;"><em>As required under Guideline 7: Submitted by 13th August 2026. Topics span all 10 modules and adjacent industry domains.</em></p>
 
@@ -653,10 +623,10 @@
 
 </div>
 
-<!-- ═══════════════════ SIGNATURES ═══════════════════ -->
+<!-- SIGNATURES -->
 <div class="signature-row">
   <div class="sig-block">
-    <div class="sig-line">Faculty: Tejas Jadhav (CFA, FRM)</div>
+    <div class="sig-line">TEJAS JADHAV, CFA, FRM<br>MMS (SIMSREE) Mumbai</div>
   </div>
   <div class="sig-block">
     <div class="sig-line">HOD / Programme Coordinator</div>
@@ -669,13 +639,13 @@
   </div>
 </div>
 
-<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<!-- FOOTER -->
 <div class="doc-footer">
   Imperial School of Banking &amp; Management Studies, Pune &nbsp;|&nbsp; PGDM 2025–27 Semester III
   &nbsp;|&nbsp; Session Plan Submission Deadline: 14<sup>th</sup> June 2026
   &nbsp;|&nbsp; Contact: academic3@imperialbschool.com
 </div>
 
-</div><!-- .page -->
+</div>
 </body>
 </html>

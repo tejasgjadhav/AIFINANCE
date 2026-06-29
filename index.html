@@ -4,6 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agentic AI & Advanced Analytics in Finance | ISBMS Pune</title>
+<meta name="description" content="A 30-hour MBA/PGDM Semester 3 specialization at ISBMS Pune bridging academic finance with AI-driven GCC transformation. Ten modules from RAG and agentic AI to Monte Carlo VaR, Basel RegTech, and fund administration — every student graduates with a live deployed financial AI portfolio.">
+<meta name="theme-color" content="#03030f">
+<!-- Open Graph / social sharing -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Agentic AI & Advanced Analytics in Finance | ISBMS Pune">
+<meta property="og:description" content="30-hour MBA specialization where every student graduates with a live, deployed financial AI system — built for India's GCC placement market.">
+<meta property="og:image" content="https://bunny-wp-pullzone-4y0e6szi1k.b-cdn.net/wp-content/uploads/2026/03/Imperial-Students.webp">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Agentic AI & Advanced Analytics in Finance | ISBMS Pune">
+<meta name="twitter:description" content="30-hour MBA specialization where every student graduates with a live, deployed financial AI system.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -24,8 +34,17 @@
   --glow2: 0 0 40px rgba(124,58,237,0.22);
 }
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;line-height:1.6}
+html{scroll-behavior:smooth;scroll-padding-top:78px}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--txt);overflow-x:hidden;line-height:1.6;touch-action:manipulation}
+
+/* ── ACCESSIBLE FOCUS STATES (keyboard nav) ── */
+a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:focus-visible{
+  outline:2px solid var(--c1);outline-offset:3px;border-radius:6px
+}
+:focus:not(:focus-visible){outline:none}
+/* skip link — hidden until keyboard-focused */
+.skip-link{position:absolute;left:50%;top:0;transform:translate(-50%,-120%);z-index:10000;background:var(--c1);color:#03030f;font-weight:700;font-size:.82rem;padding:.6rem 1.2rem;border-radius:0 0 10px 10px;text-decoration:none;transition:transform .2s}
+.skip-link:focus{transform:translate(-50%,0)}
 
 #nc{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 #pb{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));z-index:9999;transition:width .1s}
@@ -503,15 +522,29 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
   .unique-left h2{font-size:clamp(1.5rem,6vw,2.2rem)}
   footer{padding:2.5rem 0}
 }
+
+/* ── REDUCED MOTION (accessibility) ── */
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important;scroll-behavior:auto!important
+  }
+  html{scroll-behavior:auto}
+  .rv{opacity:1!important;transform:none!important}
+  .scroll-hint,.dot,.ir-dot{display:none}
+  /* keep gradient text legible once shimmer is frozen */
+  .gt,.hero-fin,.nc-fin{-webkit-text-fill-color:initial;background:none;color:var(--c1)}
+}
 </style>
 </head>
 <body>
 
+<a href="#overview" class="skip-link">Skip to main content</a>
 <div id="pb"></div>
-<div class="orb o1"></div>
-<div class="orb o2"></div>
-<div class="orb o3"></div>
-<canvas id="nc"></canvas>
+<div class="orb o1" aria-hidden="true"></div>
+<div class="orb o2" aria-hidden="true"></div>
+<div class="orb o3" aria-hidden="true"></div>
+<canvas id="nc" aria-hidden="true"></canvas>
 
 <!-- NAV -->
 <nav id="navbar">
@@ -1872,6 +1905,9 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 </footer>
 
 <script>
+// ── MOTION PREFERENCE ──
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
 // ── NEURAL NETWORK CANVAS ──
 const canvas = document.getElementById('nc');
 const ctx = canvas.getContext('2d');
@@ -1931,16 +1967,20 @@ function draw() {
   }
   requestAnimationFrame(draw);
 }
-resize(); draw();
+resize();
 window.addEventListener('resize', resize);
+// Skip the continuously-animating canvas + parallax when the user prefers reduced motion
+if (!reduceMotion) {
+  draw();
 
-// ── MOUSE PARALLAX ──
-document.addEventListener('mousemove', e => {
-  const x = (e.clientX/window.innerWidth-.5)*22, y = (e.clientY/window.innerHeight-.5)*22;
-  document.querySelector('.o1').style.transform = `translate(${x*.5}px,${y*.5}px)`;
-  document.querySelector('.o2').style.transform = `translate(${-x*.32}px,${-y*.32}px)`;
-  document.querySelector('.o3').style.transform = `translate(${x*.22}px,${y*.38}px)`;
-});
+  // ── MOUSE PARALLAX ──
+  document.addEventListener('mousemove', e => {
+    const x = (e.clientX/window.innerWidth-.5)*22, y = (e.clientY/window.innerHeight-.5)*22;
+    document.querySelector('.o1').style.transform = `translate(${x*.5}px,${y*.5}px)`;
+    document.querySelector('.o2').style.transform = `translate(${-x*.32}px,${-y*.32}px)`;
+    document.querySelector('.o3').style.transform = `translate(${x*.22}px,${y*.38}px)`;
+  });
+}
 
 // ── PROGRESS BAR ──
 window.addEventListener('scroll', () => {
@@ -1974,8 +2014,16 @@ document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
 function toggleMod(hdr) {
   const card=hdr.closest('.mod-card');
   const was=card.classList.contains('active');
-  document.querySelectorAll('.mod-card').forEach(c=>c.classList.remove('active'));
-  if(!was){card.classList.add('active');setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'nearest'}),120);}
+  document.querySelectorAll('.mod-card').forEach(c=>{
+    c.classList.remove('active');
+    const h=c.querySelector('.mod-hdr');
+    if(h)h.setAttribute('aria-expanded','false');
+  });
+  if(!was){
+    card.classList.add('active');
+    hdr.setAttribute('aria-expanded','true');
+    setTimeout(()=>card.scrollIntoView({behavior:reduceMotion?'auto':'smooth',block:'nearest'}),120);
+  }
 }
 
 // ── INSTRUCTOR AI INTERVIEW ──
@@ -2045,6 +2093,7 @@ function toggleMod(hdr) {
     }
     requestAnimationFrame(step);
   }
+  if(reduceMotion){finEl.textContent=final;return;}
   setTimeout(()=>scramble(800),1000);
   setInterval(()=>scramble(650),10000);
 })();
@@ -2075,15 +2124,28 @@ window.addEventListener('scroll',()=>{
 },{passive:true});
 
 // ── PILLAR CARD 3D TILT ──
-document.querySelectorAll('.pillar,.school-card,.ov-card').forEach(card=>{
-  card.addEventListener('mousemove',e=>{
-    const r=card.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5;
-    const y=(e.clientY-r.top)/r.height-.5;
-    card.style.transform=`perspective(800px) rotateX(${-y*6}deg) rotateY(${x*6}deg) translateY(-5px)`;
+if (!reduceMotion) {
+  document.querySelectorAll('.pillar,.school-card,.ov-card').forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const x=(e.clientX-r.left)/r.width-.5;
+      const y=(e.clientY-r.top)/r.height-.5;
+      card.style.transform=`perspective(800px) rotateX(${-y*6}deg) rotateY(${x*6}deg) translateY(-5px)`;
+    });
+    card.addEventListener('mouseleave',()=>{
+      card.style.transform='';
+    });
   });
-  card.addEventListener('mouseleave',()=>{
-    card.style.transform='';
+}
+
+// ── ACCORDION: KEYBOARD ACCESSIBILITY ──
+// Module headers are clickable divs — expose them to keyboard + screen readers.
+document.querySelectorAll('.mod-hdr').forEach(hdr=>{
+  hdr.setAttribute('role','button');
+  hdr.setAttribute('tabindex','0');
+  hdr.setAttribute('aria-expanded','false');
+  hdr.addEventListener('keydown',e=>{
+    if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleMod(hdr);}
   });
 });
 </script>

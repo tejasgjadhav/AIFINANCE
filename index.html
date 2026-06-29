@@ -46,6 +46,46 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:fo
 .skip-link{position:absolute;left:50%;top:0;transform:translate(-50%,-120%);z-index:10000;background:var(--c1);color:#03030f;font-weight:700;font-size:.82rem;padding:.6rem 1.2rem;border-radius:0 0 10px 10px;text-decoration:none;transition:transform .2s}
 .skip-link:focus{transform:translate(-50%,0)}
 
+/* ─── SVG ICON SYSTEM (replaces emoji) ─── */
+.ic{width:1em;height:1em;display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;overflow:visible}
+.svg-defs{position:absolute;width:0;height:0;overflow:hidden}
+/* structural card icons inherit the parent span's font-size for sizing */
+.pillar-icon .ic,.meth-icon .ic,.integ-icon .ic,.iexp-icon .ic,.afs-icon .ic{width:1em;height:1em;display:block;margin:0 auto}
+.pillar-icon,.integ-icon,.iexp-icon{color:var(--c1)}
+.afs-icon{color:var(--c1)}
+.meth-icon{color:var(--c1)}
+/* color rhythm across cards */
+.pillar:nth-child(2) .pillar-icon,.pillar:nth-child(4) .pillar-icon{color:#a78bfa}
+.pillar:nth-child(3) .pillar-icon,.pillar:nth-child(5) .pillar-icon{color:var(--c3)}
+.meth-card:nth-child(2) .meth-icon{color:#a78bfa}
+.meth-card:nth-child(4) .meth-icon{color:var(--c3)}
+.integ-card:nth-child(2) .integ-icon{color:#a78bfa}
+.integ-card:nth-child(3) .integ-icon{color:var(--c3)}
+.iexp:nth-child(2) .iexp-icon{color:#a78bfa}
+.iexp:nth-child(4) .iexp-icon{color:var(--c3)}
+.afs:nth-child(3) .afs-icon{color:#a78bfa}.afs:nth-child(5) .afs-icon{color:var(--c3)}.afs:nth-child(7) .afs-icon{color:#34d399}
+/* inline icons (buttons, chips, headings, footer) */
+.ic-inline{width:1.05em;height:1.05em;vertical-align:-.16em;stroke-width:1.8}
+.lab-box strong .ic{width:1.05em;height:1.05em;vertical-align:-.16em;margin-right:.15rem}
+.mt-h .ic,.mt-cap .ic{width:.95em;height:.95em;vertical-align:-.13em;margin-right:.18rem}
+.cap-feat .ic{width:1.15em;height:1.15em;color:var(--c1)}
+.cap-feat:nth-child(2) .ic{color:#a78bfa}.cap-feat:nth-child(3) .ic{color:var(--c3)}.cap-feat:nth-child(4) .ic{color:#34d399}.cap-feat:nth-child(6) .ic{color:#a78bfa}
+.cap-title .ic{width:.9em;height:.9em;vertical-align:-.08em;color:var(--c3)}
+.ai-flow-title .ic{width:1.15em;height:1.15em;color:var(--c1)}
+.book-icon .ic{width:1.7rem;height:1.7rem;color:var(--c4)}
+.foot-gh .ic{width:1.05em;height:1.05em;vertical-align:-.16em}
+
+/* ─── FLUID MOTION POLISH ─── */
+:root{--ease:cubic-bezier(.16,1,.3,1)}
+.ov-card,.pillar,.meth-card,.integ-card,.school-card,.hc,.pg-card,.iexp,.mod-card,.cap-feat,.book-card,.afs,.ik,.btn-p,.btn-s{transition-timing-function:var(--ease)}
+.rv{transition:opacity .75s var(--ease),transform .75s var(--ease)}
+.btn-p,.btn-s,.foot-gh{transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .3s,color .3s,background .3s}
+/* sheen sweep on primary buttons */
+.btn-p{position:relative;overflow:hidden;isolation:isolate}
+.btn-p::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.32) 50%,transparent 70%);background-size:250% 100%;background-position:120% 0;transition:background-position .65s var(--ease)}
+.btn-p:hover::after{background-position:-40% 0}
+.btn-p:active,.btn-s:active{transform:translateY(-1px) scale(.985)}
+
 #nc{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none}
 #pb{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));z-index:9999;transition:width .1s}
 
@@ -540,6 +580,35 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 <body>
 
 <a href="#overview" class="skip-link">Skip to main content</a>
+
+<!-- ─── SVG ICON SPRITE (Lucide-style, currentColor) ─── -->
+<svg class="svg-defs" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"><defs>
+<symbol id="ic-portfolio" viewBox="0 0 24 24"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7z"/><path d="M3 11h18"/></symbol>
+<symbol id="ic-bot" viewBox="0 0 24 24"><rect x="5" y="8" width="14" height="11" rx="2.5"/><path d="M12 8V4.5"/><circle cx="12" cy="3.2" r="1.2"/><path d="M9.5 13h.01M14.5 13h.01"/><path d="M2.5 13.5v2M21.5 13.5v2"/></symbol>
+<symbol id="ic-gear" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.2 5.2l2.1 2.1M16.7 16.7l2.1 2.1M18.8 5.2l-2.1 2.1M7.3 16.7l-2.1 2.1"/></symbol>
+<symbol id="ic-rocket" viewBox="0 0 24 24"><path d="M12 2.5c2.8 2.4 4.2 5.6 4.2 9.3l-1.8 3h-4.8l-1.8-3C7 8.1 8.4 4.9 12 2.5z"/><circle cx="12" cy="9" r="1.6"/><path d="M9.6 15.2 7 19.5l3.2-1.4M14.4 15.2 17 19.5l-3.2-1.4"/></symbol>
+<symbol id="ic-trend" viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 6"/><polyline points="15 6 21 6 21 12"/></symbol>
+<symbol id="ic-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.4" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-cpu" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="2"/><rect x="9.5" y="9.5" width="5" height="5" rx="1"/><path d="M9 2.5v3M15 2.5v3M9 18.5v3M15 18.5v3M2.5 9h3M2.5 15h3M18.5 9h3M18.5 15h3"/></symbol>
+<symbol id="ic-pen" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4 12.5-12.5z"/></symbol>
+<symbol id="ic-send" viewBox="0 0 24 24"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7z"/></symbol>
+<symbol id="ic-link" viewBox="0 0 24 24"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1.5-1.5"/></symbol>
+<symbol id="ic-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1.3 2.7 3 6 3s6-1.7 6-3v-5"/><path d="M22 10v6"/></symbol>
+<symbol id="ic-ruler" viewBox="0 0 24 24"><path d="M3 16.5 16.5 3l4.5 4.5L7.5 21z"/><path d="M7.8 11.2l2 2M11 8l2 2M14.2 4.8l2 2"/></symbol>
+<symbol id="ic-news" viewBox="0 0 24 24"><rect x="3" y="5" width="15" height="15" rx="1.5"/><path d="M18 9h2a1 1 0 0 1 1 1v8a2 2 0 0 1-2 2"/><path d="M7 9h7M7 13h7M7 17h4"/></symbol>
+<symbol id="ic-flask" viewBox="0 0 24 24"><path d="M9 3h6"/><path d="M10 3v6.5l-5 8.5a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-8.5V3"/><path d="M7 15h10"/></symbol>
+<symbol id="ic-scale" viewBox="0 0 24 24"><path d="M12 3v18M7 21h10M5 7h14"/><path d="M5 7 2 13a3 3 0 0 0 6 0L5 7zM19 7l-3 6a3 3 0 0 0 6 0l-3-6z"/></symbol>
+<symbol id="ic-trophy" viewBox="0 0 24 24"><path d="M8 21h8M12 17v4"/><path d="M7 4h10v5a5 5 0 0 1-10 0V4z"/><path d="M7 6H4.5a1.8 1.8 0 0 0 0 3.6H6M17 6h2.5a1.8 1.8 0 0 1 0 3.6H18"/></symbol>
+<symbol id="ic-book" viewBox="0 0 24 24"><path d="M12 7v13"/><path d="M3 18a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3H3z"/></symbol>
+<symbol id="ic-landmark" viewBox="0 0 24 24"><path d="M3 21h18M4 21V10M9 21V10M15 21V10M20 21V10"/><path d="M2.5 10 12 3l9.5 7z"/></symbol>
+<symbol id="ic-bank" viewBox="0 0 24 24"><path d="M3 21h18M5 21V11M10 21V11M14 21V11M19 21V11"/><path d="M3 11 12 4l9 7z"/><path d="M3 11h18"/></symbol>
+<symbol id="ic-alert" viewBox="0 0 24 24"><path d="M10.3 3.8 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.8a2 2 0 0 0-3.4 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+<symbol id="ic-file" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 13h6M9 17h6"/></symbol>
+<symbol id="ic-clipboard" viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4a3 3 0 0 1 6 0"/><path d="M9 12h6M9 16h4"/></symbol>
+<symbol id="ic-bars" viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="10" width="3" height="7" rx="1"/><rect x="12" y="6" width="3" height="11" rx="1"/><rect x="17" y="13" width="3" height="4" rx="1"/></symbol>
+<symbol id="ic-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+</defs></svg>
+
 <div id="pb"></div>
 <div class="orb o1" aria-hidden="true"></div>
 <div class="orb o2" aria-hidden="true"></div>
@@ -587,8 +656,8 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
   </div>
 
   <div class="btns rv">
-    <a href="#curriculum" class="btn-p">📚 View Full Curriculum</a>
-    <a href="#placement" class="btn-s">📈 Placement Strategy</a>
+    <a href="#curriculum" class="btn-p"><svg class="ic ic-inline"><use href="#ic-book"/></svg> View Full Curriculum</a>
+    <a href="#placement" class="btn-s"><svg class="ic ic-inline"><use href="#ic-trend"/></svg> Placement Strategy</a>
   </div>
 
   <div class="scroll-hint">↓ SCROLL</div>
@@ -635,7 +704,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
       </div>
       <div class="unique-img">
         <img src="https://bunny-wp-pullzone-4y0e6szi1k.b-cdn.net/wp-content/uploads/2026/03/Imperial-Students.webp" alt="ISBMS Students" loading="lazy">
-        <div class="unique-img-label">🎓 ISBMS students — every one of them leaves with a real deployed project, not just a certificate</div>
+        <div class="unique-img-label"><svg class="ic ic-inline"><use href="#ic-cap"/></svg> ISBMS students — every one of them leaves with a real deployed project, not just a certificate</div>
       </div>
     </div>
 
@@ -644,7 +713,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
       <div class="pillar rv">
         <div class="pillar-num">01 / PORTFOLIO</div>
-        <span class="pillar-icon">🗂️</span>
+        <span class="pillar-icon"><svg class="ic"><use href="#ic-portfolio"/></svg></span>
         <div class="pillar-title">Every Student Builds a Live Project Portfolio</div>
         <p class="pillar-desc">Each of the 10 modules produces a real, deployable component — a VaR engine, a NAV calculator, a market commentary dashboard. By Module 10, all components integrate into one live financial AI system. Hiring managers don't read about it. They open it.</p>
         <span class="pillar-tag">Interview Differentiator #1</span>
@@ -652,7 +721,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
       <div class="pillar rv">
         <div class="pillar-num">02 / AI APPLICATIONS</div>
-        <span class="pillar-icon">🤖</span>
+        <span class="pillar-icon"><svg class="ic"><use href="#ic-bot"/></svg></span>
         <div class="pillar-title">AI-Generated Placement Applications — For Every Student</div>
         <p class="pillar-desc">Students use the AI tools they built in this very course to craft tailored cover letters, LinkedIn outreach messages, and pitch decks for each target GCC. Higher-quality, personalised applications mean higher shortlisting rates — and this course teaches students exactly how to build that pipeline.</p>
         <span class="pillar-tag">Raises Shortlisting Rate</span>
@@ -660,7 +729,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
       <div class="pillar rv">
         <div class="pillar-num">03 / REAL WORKFLOWS</div>
-        <span class="pillar-icon">⚙️</span>
+        <span class="pillar-icon"><svg class="ic"><use href="#ic-gear"/></svg></span>
         <div class="pillar-title">Real Finance Workflows — Not Simulations</div>
         <p class="pillar-desc">The NAV calculator in Module 8 uses the same logic as the one at Opus Fund Services. The Basel report pipeline in Module 6 mirrors what AxiomSL produces. Students don't practice on toy problems — they build production-grade systems and arrive at interviews having already done the job.</p>
         <span class="pillar-tag">Day 1 Ready at Any GCC</span>
@@ -668,7 +737,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
       <div class="pillar rv">
         <div class="pillar-num">04 / KICKOFF</div>
-        <span class="pillar-icon">🚀</span>
+        <span class="pillar-icon"><svg class="ic"><use href="#ic-rocket"/></svg></span>
         <div class="pillar-title">Industry Kickoff from Module 1</div>
         <p class="pillar-desc">Unlike courses that introduce industry context at the end, this course connects students with GCC professionals from Day 1. ISBMS's Ignite Series mentors and I-Connect alumni network are activated at kickoff — so students build their projects with real industry feedback throughout, not in academic isolation.</p>
         <span class="pillar-tag">Network Built During Course</span>
@@ -676,7 +745,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
       <div class="pillar rv">
         <div class="pillar-num">05 / SHORTLISTING</div>
-        <span class="pillar-icon">📈</span>
+        <span class="pillar-icon"><svg class="ic"><use href="#ic-trend"/></svg></span>
         <div class="pillar-title">Compounding Placement Advantage</div>
         <p class="pillar-desc">A live portfolio + AI-tailored applications + demonstrated real-world workflows + industry network = a compounding advantage over peers from traditional programmes. Each factor multiplies the others. Students from this course walk into placement season with every structural advantage stacked in their favour.</p>
         <span class="pillar-tag">The Full Stack Advantage</span>
@@ -687,29 +756,29 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
     <!-- AI Application flow visual -->
     <div class="ai-flow rv">
       <div class="ai-flow-title">
-        🤖 <span style="font-family:'Space Grotesk',sans-serif">How Students Use Course AI Tools to Auto-Generate Placement Applications</span>
+        <svg class="ic"><use href="#ic-bot"/></svg> <span style="font-family:'Space Grotesk',sans-serif">How Students Use Course AI Tools to Auto-Generate Placement Applications</span>
       </div>
       <div class="ai-flow-steps">
         <div class="afs">
-          <span class="afs-icon">🎯</span>
+          <span class="afs-icon"><svg class="ic"><use href="#ic-target"/></svg></span>
           <div class="afs-label">Target Input</div>
           <div class="afs-desc">Student selects company + role + project highlights</div>
         </div>
         <div class="afs-arrow">→</div>
         <div class="afs">
-          <span class="afs-icon">🧠</span>
+          <span class="afs-icon"><svg class="ic"><use href="#ic-cpu"/></svg></span>
           <div class="afs-label">AI Processing</div>
           <div class="afs-desc">RAG + prompt engineering (learned in Mod 2–3) generates tailored content</div>
         </div>
         <div class="afs-arrow">→</div>
         <div class="afs">
-          <span class="afs-icon">✍️</span>
+          <span class="afs-icon"><svg class="ic"><use href="#ic-pen"/></svg></span>
           <div class="afs-label">Review & Refine</div>
           <div class="afs-desc">Student reviews, adjusts tone, adds personal context</div>
         </div>
         <div class="afs-arrow">→</div>
         <div class="afs">
-          <span class="afs-icon">📤</span>
+          <span class="afs-icon"><svg class="ic"><use href="#ic-send"/></svg></span>
           <div class="afs-label">Submit</div>
           <div class="afs-desc">Higher-quality, targeted application sent to placement committee</div>
         </div>
@@ -756,7 +825,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <tr><td>MOD 07</td><td>Enterprise AI Governance, Security &amp; Cost</td><td><span class="qb qb-t">Governance</span></td><td>AI risk frameworks for regulated firms</td><td>AI governance blueprint document</td></tr>
           <tr><td>MOD 08</td><td>Fund Administration: NAV &amp; Transfer Agency</td><td><span class="qb qb-g">Fund Admin</span></td><td>Automated NAV + exception engine</td><td>Daily NAV report with AI commentary</td></tr>
           <tr><td>MOD 09</td><td>Market Commentary &amp; Valuation Dashboards</td><td><span class="qb qb-t">NLP + Viz</span></td><td>Live dashboard + automated commentary</td><td>Streamlit market intelligence prototype</td></tr>
-          <tr style="background:rgba(245,158,11,.04)"><td>MOD 10</td><td>GCC Capstone: Integrated Financial AI System</td><td><span class="qb qb-f">Capstone 🏆</span></td><td>Full integration + mock panel interview</td><td>Deployed portfolio + pitch deck</td></tr>
+          <tr style="background:rgba(245,158,11,.04)"><td>MOD 10</td><td>GCC Capstone: Integrated Financial AI System</td><td><span class="qb qb-f">Capstone <svg class="ic" style="width:.95em;height:.95em;vertical-align:-.12em"><use href="#ic-trophy"/></svg></span></td><td>Full integration + mock panel interview</td><td>Deployed portfolio + pitch deck</td></tr>
         </tbody>
       </table>
     </div>
@@ -779,7 +848,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num">MOD 01</div>
           <div class="mod-tg">
             <div class="mod-name">Foundations of Agentic AI in Financial Services</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-t">Phase 1 · AI Literacy</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 1 · AI Literacy</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -808,7 +877,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">In-Class Lab</div>
               <div class="lab-box">
-                <strong>🔬 First API Call — Financial Data Extraction</strong>
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>First API Call — Financial Data Extraction</strong>
                 Students write structured prompts to extract key risk factors from a sample 10-K filing, revenue segments from an earnings transcript, and covenant details from a credit agreement. Compare zero-shot, few-shot, and chain-of-thought outputs. Measure hallucination rates across prompt patterns.
               </div>
             </div>
@@ -831,7 +900,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num">MOD 02</div>
           <div class="mod-tg">
             <div class="mod-name">Prompt Engineering &amp; RAG for Financial Analysis</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-t">Phase 1 · AI Literacy</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 1 · AI Literacy</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -860,7 +929,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">In-Class Lab</div>
               <div class="lab-box">
-                <strong>🔬 Prospectus Intelligence Bot</strong>
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Prospectus Intelligence Bot</strong>
                 Students receive a 200-page hedge fund prospectus. Build a RAG pipeline: parse and chunk the document, embed with a text model, store in a vector database, build a Q&amp;A interface. Test questions: "What are the redemption terms?" "What fees apply to Class B units?" Benchmark RAG accuracy vs raw LLM on 20 test questions.
               </div>
             </div>
@@ -883,7 +952,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num">MOD 03</div>
           <div class="mod-tg">
             <div class="mod-name">Model Context Protocol (MCP) &amp; Agent Orchestration</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-t">Phase 1 · AI Literacy</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 1 · AI Literacy</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -912,7 +981,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">In-Class Lab</div>
               <div class="lab-box">
-                <strong>🔬 3-Agent Investment Memo System</strong>
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>3-Agent Investment Memo System</strong>
                 Students build a 3-agent pipeline: Agent 1 fetches market data + fundamentals, Agent 2 computes P/E, EV/EBITDA, and DCF, Agent 3 formats a 1-page investment memo with buy/hold/sell recommendation. Agents communicate asynchronously. Final output: auto-saved investment memo PDF.
               </div>
             </div>
@@ -935,7 +1004,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num">MOD 04</div>
           <div class="mod-tg">
             <div class="mod-name">Algorithmic Trading &amp; Automated Execution Strategies</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-t">Phase 2 · Quantitative Finance</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 2 · Quantitative Finance</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -964,7 +1033,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">In-Class Lab</div>
               <div class="lab-box">
-                <strong>🔬 AI-Augmented Trading Bot</strong>
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>AI-Augmented Trading Bot</strong>
                 Fetch OHLCV data for 5 NSE stocks, classify financial headlines using a sentiment model, generate buy/sell signals combining momentum + sentiment, execute simulated trades with 2% stop-loss and 1% max daily drawdown. Backtest on 12 months of data. Measure Sharpe ratio, max drawdown, and win rate.
               </div>
             </div>
@@ -987,7 +1056,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num">MOD 05</div>
           <div class="mod-tg">
             <div class="mod-name">Risk Modeling: Probability of Default &amp; Monte Carlo VaR</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-t">Phase 2 · Quantitative Finance</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 2 · Quantitative Finance</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -1016,7 +1085,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">In-Class Lab</div>
               <div class="lab-box">
-                <strong>🔬 Monte Carlo VaR Engine + Auto Report</strong>
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Monte Carlo VaR Engine + Auto Report</strong>
                 Load a 10-stock portfolio, compute covariance matrix, apply Cholesky decomposition, run 10,000 correlated MC paths over a 1-day horizon, compute 95% and 99% VaR and CVaR, stress test with COVID March 2020 volatility shock, feed results to an LLM that writes a 3-paragraph risk narrative in regulatory language. Export as PDF.
               </div>
             </div>
@@ -1039,7 +1108,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num">MOD 06</div>
           <div class="mod-tg">
             <div class="mod-name">RegTech &amp; Automated Basel III/IV Compliance Reporting</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-t">Phase 2 · Quantitative Finance</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 2 · Quantitative Finance</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -1068,7 +1137,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">In-Class Lab</div>
               <div class="lab-box">
-                <strong>🔬 Trade-to-Basel Report Pipeline</strong>
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Trade-to-Basel Report Pipeline</strong>
                 Students receive a mock trade ledger (500 rows: equities, bonds, FX forwards, interest rate swaps). Build a pipeline: aggregate exposures, apply standardized RWA weights, compute CET1 ratio, calculate LCR using HQLA templates, auto-generate a Pillar 3 disclosure document using LLM narrative. Output mimics AxiomSL report structure.
               </div>
             </div>
@@ -1091,7 +1160,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num">MOD 07</div>
           <div class="mod-tg">
             <div class="mod-name">Enterprise AI Governance, Security &amp; Cost Management</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-t">Phase 3 · Applied Enterprise AI</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 3 · Applied Enterprise AI</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -1120,7 +1189,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">In-Class Lab</div>
               <div class="lab-box">
-                <strong>🔬 AI Governance Blueprint</strong>
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>AI Governance Blueprint</strong>
                 Teams design a governance framework for a GCC deploying 3 LLM use cases. Produce: AI Use Case Risk Classification Matrix (High/Medium/Low), data security checklist for PII handling and API key management, token budget calculator for 10,000 daily queries across 3 models, and a Model Explainability Requirements Document for audit.
               </div>
             </div>
@@ -1143,7 +1212,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num">MOD 08</div>
           <div class="mod-tg">
             <div class="mod-name">Fund Administration: NAV Automation &amp; Transfer Agency Workflows</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-t">Phase 3 · Applied Enterprise AI</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 3 · Applied Enterprise AI</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -1172,7 +1241,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">In-Class Lab</div>
               <div class="lab-box">
-                <strong>🔬 Automated NAV Calculator + AI Exception Engine</strong>
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Automated NAV Calculator + AI Exception Engine</strong>
                 Students receive a mock hedge fund portfolio (50 positions, mixed asset classes). Build: a Python NAV calculator with accruals, fees, and high watermark logic; a reconciliation agent that flags exceptions &gt;0.5bps; an auto-generated daily NAV report with LLM commentary explaining variances; a Transfer Agency subscriber register update with full audit trail.
               </div>
             </div>
@@ -1195,7 +1264,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num">MOD 09</div>
           <div class="mod-tg">
             <div class="mod-name">Market Commentary &amp; AI-Powered Valuation Dashboards</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-t">Phase 3 · Applied Enterprise AI</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 3 · Applied Enterprise AI</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -1224,7 +1293,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">In-Class Lab</div>
               <div class="lab-box">
-                <strong>🔬 Market Intelligence Dashboard (Capstone Prototype)</strong>
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Market Intelligence Dashboard (Capstone Prototype)</strong>
                 Build a live Streamlit dashboard: pull real-time data for 10 securities, run sentiment scoring on 50 headlines per stock, compute DCF with 3 scenarios and a tornado chart, display technical indicators, auto-generate 3-paragraph morning commentary refreshed every 15 minutes using structured LLM prompts. This prototype is submitted as the base for the Capstone.
               </div>
             </div>
@@ -1247,7 +1316,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <div class="mod-num" style="color:var(--c3);border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.1)">MOD 10</div>
           <div class="mod-tg">
             <div class="mod-name" style="color:var(--c3)">GCC Capstone: Integrated Financial AI System &amp; Placement Simulation</div>
-            <div class="mod-meta"><span class="mtag mt-h">⏱ 3 Hours</span><span class="mtag mt-cap">🏆 Phase 4 · Capstone</span></div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-cap"><svg class="ic"><use href="#ic-trophy"/></svg> Phase 4 · Capstone</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
@@ -1277,7 +1346,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
             <div class="msec">
               <div class="msec-title">Mock GCC Panel Simulation</div>
               <div class="lab-box">
-                <strong>🎯 30-Minute Hiring Panel — Live Simulation</strong>
+                <strong><svg class="ic"><use href="#ic-target"/></svg> 30-Minute Hiring Panel — Live Simulation</strong>
                 Round 1 (Technical): "Walk me through your NAV automation logic. How do you handle corporate actions?" Round 2 (Problem-solving): "Your exception engine flagged 12 positions today with &gt;1bps variance. Walk me through your escalation protocol." Round 3 (Strategic): "If you were Chief Data Officer at Apex Group, what AI initiative would you prioritize in Year 1?" Peer panel evaluation using a structured GCC rubric. Written feedback report for each student.
               </div>
             </div>
@@ -1429,17 +1498,17 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
     </div>
     <div class="integ-grid rv">
       <div class="integ-card">
-        <span class="integ-icon">🔗</span>
+        <span class="integ-icon"><svg class="ic"><use href="#ic-link"/></svg></span>
         <div class="integ-title">Vertical Integration</div>
         <p class="integ-desc">The RAG system from Module 2, the VaR engine from Module 5, the NAV calculator from Module 8, and the dashboard from Module 9 are all components of the single Module 10 Capstone. Students build the whole while learning the parts.</p>
       </div>
       <div class="integ-card">
-        <span class="integ-icon">🎓</span>
+        <span class="integ-icon"><svg class="ic"><use href="#ic-cap"/></svg></span>
         <div class="integ-title">Core MBA Curriculum Links</div>
         <p class="integ-desc">Financial Accounting → Module 8 (NAV). Corporate Finance → Module 9 (DCF). Portfolio Theory → Module 5 (VaR). Business Law → Module 6 (Basel). Organizational Behavior → Module 7 (AI Governance). This course extends, not replaces, what students already know.</p>
       </div>
       <div class="integ-card">
-        <span class="integ-icon">📐</span>
+        <span class="integ-icon"><svg class="ic"><use href="#ic-ruler"/></svg></span>
         <div class="integ-title">Case Method Continuity</div>
         <p class="integ-desc">Each module opens with a real financial failure: GFC (Mod 5), Deutsche Bank fine (Mod 6), Madoff (Mod 8), Schroders' efficiency challenge (Mod 9). The cases thread a narrative of AI as a solution to documented industry failures — building judgment, not just skills.</p>
       </div>
@@ -1698,22 +1767,22 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
     <!-- 4 teaching pillars -->
     <div class="meth-grid">
       <div class="meth-card rv">
-        <span class="meth-icon">📰</span>
+        <span class="meth-icon"><svg class="ic"><use href="#ic-news"/></svg></span>
         <div class="meth-title">Case Method First</div>
         <p class="meth-desc">Harvard and LBS style. Every session opens with a real financial failure — a liquidity crisis, a reporting scandal, a rogue algorithm. Students debate the cause before learning the AI-powered solution. Builds judgment, not just knowledge.</p>
       </div>
       <div class="meth-card rv">
-        <span class="meth-icon">🧪</span>
+        <span class="meth-icon"><svg class="ic"><use href="#ic-flask"/></svg></span>
         <div class="meth-title">Sandbox-First Learning</div>
         <p class="meth-desc">Borrowed from NUS FinTech Lab's approach. Students write code in every session. Every concept is immediately applied in a live environment before the lecture continues. If you can't deploy it, you don't know it.</p>
       </div>
       <div class="meth-card rv">
-        <span class="meth-icon">⚖️</span>
+        <span class="meth-icon"><svg class="ic"><use href="#ic-scale"/></svg></span>
         <div class="meth-title">Regulatory Simulation</div>
         <p class="meth-desc">Students experience the real data journey — raw trade ledger to Basel disclosure — using AxiomSL-style templates aligned with BIS documentation. Every transformation, every decision point, not just the framework names.</p>
       </div>
       <div class="meth-card rv">
-        <span class="meth-icon">🏆</span>
+        <span class="meth-icon"><svg class="ic"><use href="#ic-trophy"/></svg></span>
         <div class="meth-title">Industry Capstone</div>
         <p class="meth-desc">Inspired by NUS Fintech Lab's industry-jury model. The final project is a live deployed system presented to a mock hiring panel — not a written exam. Students leave with a working portfolio and mock interview experience.</p>
       </div>
@@ -1787,20 +1856,20 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
     </div>
     <div class="cap-card rv">
       <div class="cap-title">
-        🏆 Market Commentary &amp; Intelligence Dashboard<br>
+        <svg class="ic"><use href="#ic-trophy"/></svg> Market Commentary &amp; Intelligence Dashboard<br>
         <span style="font-size:.52em;color:var(--txt2);font-weight:400">Live Deployed · RAG-Powered · Real-Time Data · Placement Portfolio Piece</span>
       </div>
       <p class="cap-sub">Every in-class output from Module 1 through Module 9 becomes a component of this one deployed system. Students don't build a new project for the Capstone — they integrate everything they've already built. The result is a production-grade financial AI platform that serves as their primary placement artifact.</p>
       <div class="cap-feats">
-        <div class="cap-feat">📄 RAG Prospectus Q&amp;A Engine (Mod 2)</div>
-        <div class="cap-feat">🤖 Investment Memo Agent (Mod 3)</div>
-        <div class="cap-feat">⚠️ Monte Carlo VaR Dashboard (Mod 5)</div>
-        <div class="cap-feat">📋 Basel Report Auto-Generator (Mod 6)</div>
-        <div class="cap-feat">🏦 NAV Calculator + Exception Engine (Mod 8)</div>
-        <div class="cap-feat">📊 Live Market Commentary (Mod 9)</div>
+        <div class="cap-feat"><svg class="ic"><use href="#ic-file"/></svg> RAG Prospectus Q&amp;A Engine (Mod 2)</div>
+        <div class="cap-feat"><svg class="ic"><use href="#ic-bot"/></svg> Investment Memo Agent (Mod 3)</div>
+        <div class="cap-feat"><svg class="ic"><use href="#ic-alert"/></svg> Monte Carlo VaR Dashboard (Mod 5)</div>
+        <div class="cap-feat"><svg class="ic"><use href="#ic-clipboard"/></svg> Basel Report Auto-Generator (Mod 6)</div>
+        <div class="cap-feat"><svg class="ic"><use href="#ic-bank"/></svg> NAV Calculator + Exception Engine (Mod 8)</div>
+        <div class="cap-feat"><svg class="ic"><use href="#ic-bars"/></svg> Live Market Commentary (Mod 9)</div>
       </div>
       <div class="cap-btns">
-        <a href="#modules" class="btn-p">📚 Explore All 10 Modules</a>
+        <a href="#modules" class="btn-p"><svg class="ic ic-inline"><use href="#ic-book"/></svg> Explore All 10 Modules</a>
         <a href="#overview" class="btn-s">↑ Back to Overview</a>
       </div>
     </div>
@@ -1844,7 +1913,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
         <!-- Book -->
         <a href="https://www.amazon.com/Claude-Cowork-Finance-Dashboards-Automations-ebook/dp/B0H1R2GZX9" target="_blank" rel="noopener" class="book-card">
-          <span class="book-icon">📗</span>
+          <span class="book-icon"><svg class="ic"><use href="#ic-book"/></svg></span>
           <div>
             <div class="book-title">Claude AI for Finance Professionals</div>
             <div class="book-sub">AI Agents · Financial Workflows · Automation</div>
@@ -1867,22 +1936,22 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
         <div class="instr-exp-grid">
           <div class="iexp rv">
-            <span class="iexp-icon">📈</span>
+            <span class="iexp-icon"><svg class="ic"><use href="#ic-trend"/></svg></span>
             <div class="iexp-title">HNI Portfolio Management</div>
             <p class="iexp-desc">Managed high-net-worth client portfolios across equity, structured products, and fixed income — real P&amp;L responsibility, not simulated.</p>
           </div>
           <div class="iexp rv">
-            <span class="iexp-icon">⚙️</span>
+            <span class="iexp-icon"><svg class="ic"><use href="#ic-gear"/></svg></span>
             <div class="iexp-title">ESG &amp; Climate Risk Platforms</div>
             <p class="iexp-desc">Built technology and data platforms for ESG investing, climate risk, and FRTB market risk for institutional financial services firms.</p>
           </div>
           <div class="iexp rv">
-            <span class="iexp-icon">🎓</span>
+            <span class="iexp-icon"><svg class="ic"><use href="#ic-cap"/></svg></span>
             <div class="iexp-title">MMS · Sydenham Mumbai</div>
             <p class="iexp-desc">MMS from Sydenham Institute of Management Studies, Mumbai. CFA Charterholder. FRM Certified. All three earned while working full-time in finance.</p>
           </div>
           <div class="iexp rv">
-            <span class="iexp-icon">✍️</span>
+            <span class="iexp-icon"><svg class="ic"><use href="#ic-pen"/></svg></span>
             <div class="iexp-title">AI Finance Author</div>
             <p class="iexp-desc">"Claude AI for Finance Professionals" — Amazon best-selling guide to building AI agents and financial workflow automations for practitioners across India.</p>
           </div>
@@ -1899,7 +1968,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
     <div class="foot-logo">Agentic AI &amp; Advanced Analytics in Finance</div>
     <p class="foot-txt">Imperial School of Banking &amp; Management Studies, Pune · MBA/PGDM Semester 3 · 30 Hours of Training</p>
     <p class="foot-txt">Applied-Agentic Methodology · Benchmarked against <a href="https://www.hbs.edu/mba/academic-experience/Pages/the-hbs-case-method.aspx" target="_blank" style="color:var(--c1);text-decoration:none">Harvard</a> · <a href="https://www.london.edu/masters-degrees/masters-in-finance" target="_blank" style="color:var(--c1);text-decoration:none">LBS</a> · <a href="https://bschool.nus.edu.sg/" target="_blank" style="color:var(--c1);text-decoration:none">NUS</a> curricula · Academic Year 2025–26</p>
-    <a href="https://imperialbschool.com/" target="_blank" class="foot-gh">🏛️ imperialbschool.com ↗</a>
+    <a href="https://imperialbschool.com/" target="_blank" class="foot-gh"><svg class="ic ic-inline"><use href="#ic-landmark"/></svg> imperialbschool.com ↗</a>
     <p style="margin-top:1.8rem;font-size:.7rem;color:rgba(148,163,184,.35)">An Exclusive B-School for Finance · Senior Learning Design Team · ISBMS Pune · 2025–26</p>
   </div>
 </footer>

@@ -563,6 +563,9 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
   footer{padding:2.5rem 0}
 }
 
+/* ── PRESS FEEDBACK ── */
+.btn-p:active,.btn-s:active,.foot-gh:active{transform:scale(.96)}
+
 /* ── REDUCED MOTION (accessibility) ── */
 @media (prefers-reduced-motion: reduce){
   *,*::before,*::after{
@@ -2078,6 +2081,19 @@ const rvObs=new IntersectionObserver((entries)=>{
   });
 },{threshold:.07});
 document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
+
+// ── CARD TILT (subtle 3D, desktop pointers only) ──
+if(!reduceMotion && matchMedia('(hover:hover) and (pointer:fine)').matches){
+  document.querySelectorAll('.ov-card,.pillar,.school-card,.meth-card').forEach(card=>{
+    card.addEventListener('pointermove',e=>{
+      const r=card.getBoundingClientRect();
+      const rx=((e.clientY-r.top)/r.height-.5)*-4;
+      const ry=((e.clientX-r.left)/r.width-.5)*4;
+      card.style.transform=`perspective(750px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-5px)`;
+    });
+    card.addEventListener('pointerleave',()=>{card.style.transform='';});
+  });
+}
 
 // ── MODULE TOGGLE ──
 function toggleMod(hdr) {

@@ -1,0 +1,33 @@
+SAMPLE INDUSTRIES LIMITED
+Standalone Statement of Profit and Loss for the year ended 31 March 2025
+(All amounts in ₹ crore, unless otherwise stated)
+
+                                                                    Year ended
+                                                                  31 March 2025
+
+  I.   Revenue from operations                                        1,48,320
+  II.  Other income                                                       3,120
+                                                                     ---------
+  III. Total income (I + II)                                          1,51,440
+
+  IV.  Expenses
+       Cost of materials consumed                                       62,140
+       Employee benefits expense                                        31,905
+       Finance costs                                                     4,220
+       Depreciation and amortisation expense                             7,880
+       Other expenses                                                    15,310
+                                                                     ---------
+       Total expenses                                                 1,21,455
+
+  V.   Profit before tax (III - IV)                                      29,985
+  VI.  Tax expense
+       Current tax                                                        7,905
+       Deferred tax                                                       (425)
+                                                                     ---------
+       Total tax expense                                                  7,480
+
+  VII. Profit for the year                                               22,505
+
+  Earnings per equity share (face value ₹2 each)
+       Basic (₹)                                                          54.12
+       Diluted (₹)                                                        54.02

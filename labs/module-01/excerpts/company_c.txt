@@ -1,0 +1,27 @@
+MERIDIAN CHEMICALS LIMITED
+Consolidated Statement of Profit and Loss
+(₹ in crore)
+
+                                                   Year ended        Year ended
+Particulars                                      31 Mar 2025       31 Mar 2024
+
+Revenue from operations                              62,480            57,915
+Other income                                          1,905             2,240
+Total income                                         64,385            60,155
+
+Expenses
+  Cost of materials consumed                         28,340            26,880
+  Employee benefits expense                          9,115              8,470
+  Finance costs                                      2,760              3,105
+  Depreciation and amortisation expense              4,020              3,860
+  Other expenses                                     7,905              7,220
+Total expenses                                       52,140            49,535
+
+Profit before share of associates and tax            12,245            10,620
+Share of profit of associates                           330               285
+Profit before tax                                    12,575            10,905
+Tax expense                                           3,145             2,760
+Profit for the year                                   9,430             8,145
+
+The accompanying notes 1 to 42 form an integral part of these
+consolidated financial statements.

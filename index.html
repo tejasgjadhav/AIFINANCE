@@ -635,6 +635,10 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 .mat-dl:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,212,255,.32)}
 .mat-dl .ic{width:1em;height:1em}
 .mat-soon{font-size:.72rem;font-weight:600;letter-spacing:.05em;color:var(--txt2);border:1px dashed rgba(255,255,255,.15);border-radius:50px;padding:.5rem 1rem}
+.mat-btns{display:flex;gap:.55rem;flex-wrap:wrap}
+.mat-lab{background:linear-gradient(135deg,var(--c4),#0891b2)}
+.mat-lab:hover{box-shadow:0 10px 26px rgba(16,185,129,.3)}
+.mat-free{margin-top:.35rem;font-size:.74rem;color:var(--c4);font-weight:600;letter-spacing:.03em}
 .mat-note{margin-top:1.6rem;background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.18);border-radius:12px;padding:1.1rem 1.3rem;font-size:.84rem;color:var(--txt2);line-height:1.75}
 .mat-note strong{color:var(--txt)}
 @media(max-width:768px){.mat-grid{grid-template-columns:1fr}.mat-card{padding:1.1rem}}
@@ -1426,7 +1430,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Hour 3 — In-Class Lab</div>
+              <div class="msec-title">Hour 3 — GCC Capstone Presentation</div>
               <div class="lab-box">
                 <strong><svg class="ic"><use href="#ic-target"/></svg>GCC Capstone Presentation</strong>
                 A live 15-minute project presentation to a mock GCC hiring panel (EisnerAmper / Opus Fund Services scenario), followed by 10 minutes of panel Q&amp;A. Placement readiness is scored on technical depth, communication, portfolio quality and role alignment, with individual feedback and a course debrief on industry outlook and next steps. <strong>Objective:</strong> present the integrated system to a mock panel and demonstrate placement-ready communication (L6).
@@ -1464,9 +1468,13 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
       <div class="mat-card live rv">
         <div class="mat-top"><span class="mat-num">MOD 01</span><span class="mat-name">Foundations of Agentic AI in Financial Services</span></div>
         <p class="mat-desc">LLM fundamentals, tokens and attention, four eras of AI in finance, the Observe–Plan–Act–Reflect agent loop, tool definitions, agent memory, Indian financial data sources, and the in-class extraction lab.</p>
+        <div class="mat-free">Lab runs free — no API key, no subscription, no installs. Plain Python 3.</div>
         <div class="mat-foot">
           <span class="mat-meta">20 slides · Session 1 · 10 practice questions</span>
-          <a class="mat-dl" href="slides/Module-01-Foundations-of-Agentic-AI.pptx" download><svg class="ic"><use href="#ic-file"/></svg> Download PPTX</a>
+          <span class="mat-btns">
+            <a class="mat-dl" href="slides/Module-01-Foundations-of-Agentic-AI.pptx" download><svg class="ic"><use href="#ic-file"/></svg> Download PPTX</a>
+            <a class="mat-dl mat-lab" href="labs/module-01.zip" download><svg class="ic"><use href="#ic-flask"/></svg> Practice Lab (free)</a>
+          </span>
         </div>
       </div>
 
@@ -1527,6 +1535,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
     </div>
 
     <div class="mat-note rv">
+      <strong>Every practice lab runs free.</strong> Students need no Claude subscription and no API key. The labs are plain Python 3 with nothing to install, so they run in a free Codex session, in Google Colab, or on any laptop; where a lab needs a model, you paste the prompt into whichever free AI chat you already use and run the checker on what it gives back. The paid API is shown in class as an instructor demo, and every lab folder carries that version too, clearly marked as optional.<br><br>
       <strong>How to use these.</strong> Read the deck before the session — the class time is spent on the lab, not on the slides. Every deck closes with practice questions on that module; work through them after class, because they are written in the same style as the assessment. The lab in each deck produces one artifact, and those ten artifacts are the portfolio you take into placement season.
     </div>
   </div>

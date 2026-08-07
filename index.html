@@ -618,6 +618,26 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
   /* keep gradient text legible once shimmer is frozen */
   .gt,.hero-fin,.nc-fin{-webkit-text-fill-color:initial;background:none;color:var(--c1)}
 }
+
+/* ── CLASS MATERIALS: slide decks by module ── */
+.mat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.1rem}
+.mat-card{background:var(--card);border:1px solid rgba(255,255,255,.07);border-radius:14px;padding:1.35rem 1.4rem;display:flex;flex-direction:column;gap:.75rem;transition:transform .35s var(--ease),border-color .3s,background .3s}
+.mat-card:hover{transform:translateY(-4px);border-color:var(--b1);background:rgba(0,212,255,.035)}
+.mat-card.live{border-color:rgba(0,212,255,.34);background:linear-gradient(160deg,rgba(0,212,255,.07),rgba(124,58,237,.04))}
+.mat-top{display:flex;align-items:center;gap:.7rem}
+.mat-num{font-family:'JetBrains Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.09em;color:var(--c1);border:1px solid rgba(0,212,255,.28);background:rgba(0,212,255,.08);padding:.24rem .6rem;border-radius:7px;white-space:nowrap}
+.mat-card.live .mat-num{color:var(--c3);border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.1)}
+.mat-name{font-family:'Space Grotesk',sans-serif;font-size:.94rem;font-weight:600;line-height:1.35}
+.mat-desc{font-size:.8rem;color:var(--txt2);line-height:1.65;flex:1}
+.mat-foot{display:flex;align-items:center;justify-content:space-between;gap:.8rem;flex-wrap:wrap;margin-top:.15rem}
+.mat-meta{font-size:.7rem;color:var(--txt2);letter-spacing:.05em;text-transform:uppercase}
+.mat-dl{display:inline-flex;align-items:center;gap:.45rem;padding:.55rem 1.05rem;border-radius:50px;background:linear-gradient(135deg,var(--c1),var(--c2));color:#fff;text-decoration:none;font-size:.76rem;font-weight:700;letter-spacing:.03em;transition:transform .3s var(--ease),box-shadow .3s}
+.mat-dl:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(0,212,255,.32)}
+.mat-dl .ic{width:1em;height:1em}
+.mat-soon{font-size:.72rem;font-weight:600;letter-spacing:.05em;color:var(--txt2);border:1px dashed rgba(255,255,255,.15);border-radius:50px;padding:.5rem 1rem}
+.mat-note{margin-top:1.6rem;background:rgba(124,58,237,.06);border:1px solid rgba(124,58,237,.18);border-radius:12px;padding:1.1rem 1.3rem;font-size:.84rem;color:var(--txt2);line-height:1.75}
+.mat-note strong{color:var(--txt)}
+@media(max-width:768px){.mat-grid{grid-template-columns:1fr}.mat-card{padding:1.1rem}}
 </style>
 </head>
 <body>
@@ -666,6 +686,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
     <li><a href="#unique" onclick="closeNav()">Why ISBMS</a></li>
     <li><a href="#curriculum" onclick="closeNav()">Curriculum</a></li>
     <li><a href="#modules" onclick="closeNav()">Modules</a></li>
+    <li><a href="#materials" onclick="closeNav()">Slides</a></li>
     <li><a href="#academic" onclick="closeNav()">Academic Design</a></li>
     <li><a href="#placement" onclick="closeNav()">Placement</a></li>
     <li><a href="#methodology" onclick="closeNav()">Methodology</a></li>
@@ -700,6 +721,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
   <div class="btns rv">
     <a href="#curriculum" class="btn-p"><svg class="ic ic-inline"><use href="#ic-book"/></svg> View Full Curriculum</a>
+    <a href="#materials" class="btn-s"><svg class="ic ic-inline"><use href="#ic-file"/></svg> Module Slides</a>
     <a href="#placement" class="btn-s"><svg class="ic ic-inline"><use href="#ic-trend"/></svg> Placement Strategy</a>
   </div>
 
@@ -864,7 +886,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
           <tr><td>MOD 03</td><td>Model Context Protocol &amp; Agent Orchestration</td><td><span class="qb qb-t">Multi-Agent</span></td><td>Design multi-agent financial workflows</td><td>3-agent investment memo pipeline</td></tr>
           <tr><td>MOD 04</td><td>Algorithmic Trading &amp; Execution Strategies</td><td><span class="qb qb-f">Quant Finance</span></td><td>Build and backtest trading strategies</td><td>AI trading bot with backtested results</td></tr>
           <tr><td>MOD 05</td><td>Risk Modeling: PD Models &amp; Monte Carlo VaR</td><td><span class="qb qb-f">FRM Focus</span></td><td>Credit risk + portfolio VaR engine</td><td>10,000-path Monte Carlo VaR report</td></tr>
-          <tr><td>MOD 06</td><td>RegTech &amp; Automated Basel III/IV Compliance</td><td><span class="qb qb-f">Regulatory</span></td><td>Trade-to-report regulatory pipeline</td><td>Auto-generated Basel III disclosure</td></tr>
+          <tr><td>MOD 06</td><td>RegTech &amp; Automated Basel III/IV Compliance</td><td><span class="qb qb-f">Regulatory</span></td><td>Automated Pillar 3 disclosure pipeline</td><td>Basel III Pillar 3 document (RBI template)</td></tr>
           <tr><td>MOD 07</td><td>Enterprise AI Governance, Security &amp; Cost</td><td><span class="qb qb-t">Governance</span></td><td>AI risk frameworks for regulated firms</td><td>AI governance blueprint document</td></tr>
           <tr><td>MOD 08</td><td>Fund Administration: NAV &amp; Transfer Agency</td><td><span class="qb qb-g">Fund Admin</span></td><td>Automated NAV + exception engine</td><td>Daily NAV report with AI commentary</td></tr>
           <tr><td>MOD 09</td><td>Market Commentary &amp; Valuation Dashboards</td><td><span class="qb qb-t">NLP + Viz</span></td><td>Live dashboard + automated commentary</td><td>Streamlit market intelligence prototype</td></tr>
@@ -898,40 +920,42 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — LLM Fundamentals &amp; Financial AI Overview</div>
               <ul>
-                <li>Trace the evolution from rule-based systems to autonomous agentic AI</li>
-                <li>Differentiate GenAI, LLMs, and multi-step Agentic architecture</li>
-                <li>Map financial AI applications across fund admin, risk, trading, and compliance</li>
-                <li>Understand LLM limitations: hallucination, grounding, token windows</li>
-                <li>Articulate AI's role in middle-office transformation confidently</li>
+                <li>Transformer architecture, the attention mechanism and tokenization — explained without the maths</li>
+                <li>Evolution of AI in finance: rule-based → machine learning → deep learning → agentic systems</li>
+                <li>BloombergGPT, FinBERT and Claude API applications in financial services</li>
+                <li>Concept quiz plus group discussion: “How has AI changed investment banking?”</li>
+                <li><em>Objectives:</em> recall LLM concepts; explain financial NLP applications (L1, L2)</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Core Concepts &amp; Academic Benchmarks</div>
+              <div class="msec-title">Hour 2 — Agentic AI Architecture</div>
               <ul>
-                <li><strong>Harvard AI for Finance:</strong> Transformer architecture for practitioners</li>
-                <li>Observe → Plan → Act: the autonomous agent loop explained</li>
-                <li>Tokenization, embeddings, and why financial text is structurally different</li>
-                <li><strong>NUS Case:</strong> AI adoption at MAS-regulated GCCs — DBS digital transformation</li>
-                <li><strong>LBS Case:</strong> HSBC enterprise AI roadmap 2023–25</li>
+                <li>The Observe → Plan → Act → Reflect agent loop</li>
+                <li>Tool definitions and function calling</li>
+                <li>Agent memory types: short-term, episodic, semantic</li>
+                <li>Financial data APIs — NSE, BSE, Yahoo Finance, RBI DBIE</li>
+                <li><em>Objectives:</em> explain agentic architecture; apply agent design to financial use-cases (L2, L3)</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">In-Class Lab</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
-                <strong><svg class="ic"><use href="#ic-flask"/></svg>First API Call — Financial Data Extraction</strong>
-                Students write structured prompts to extract key risk factors from a sample 10-K filing, revenue segments from an earnings transcript, and covenant details from a credit agreement. Compare zero-shot, few-shot, and chain-of-thought outputs. Measure hallucination rates across prompt patterns.
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Structured Financial Data Extraction</strong>
+                Build a structured financial data extraction prompt using the Claude API and Python in VS Code. Extract income statement line items from unstructured text, then test the same prompt against three different annual report excerpts. Instructor demo plus peer discussion. <strong>Objective:</strong> apply prompt engineering to extract structured financial data (L3).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>Establishes shared vocabulary for all 9 subsequent modules</li>
-                <li>Directly supports the Prompt Engineering skills built in Module 2</li>
-                <li>Links to financial reporting theory from core MBA finance modules</li>
+                <li><strong>Case:</strong> Morgan Stanley GPT-4 Wealth Advisor Program</li>
+                <li><strong>Pedagogy:</strong> lecture, concept quiz, live demo, in-class Python lab</li>
+                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch. 1)</li>
+                <li>GARP FRM Study Notes — Technology Risk</li>
+                <li>LangChain Docs; Anthropic API Reference; Hilpisch (2020) Ch. 2</li>
               </ul>
-              <div class="pt-tags"><span class="ptag">AI Foundations</span><span class="ptag">Financial Documents</span><span class="ptag">API Literacy</span></div>
+              <div class="pt-tags"><span class="ptag">AI Foundations</span><span class="ptag">Agent Architecture</span><span class="ptag">API Literacy</span></div>
             </div>
           </div>
         </div>
@@ -950,40 +974,42 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — Prompt Engineering for Finance</div>
               <ul>
-                <li>Master advanced prompt patterns: Chain-of-Thought, ReAct, few-shot for finance</li>
-                <li>Design and implement a RAG pipeline from chunking to answer generation</li>
-                <li>Use vector databases for financial document retrieval</li>
-                <li>Build grounded, citation-traceable, hallucination-resistant responses</li>
-                <li>Compare RAG vs fine-tuning — cost vs accuracy trade-offs</li>
+                <li>Zero-shot, few-shot and chain-of-thought (CoT) prompting</li>
+                <li>Role prompting (“You are a CFO…”) and output formatting in JSON and markdown tables</li>
+                <li>Hallucination risks and mitigation strategies</li>
+                <li>Pair activity: compare prompt outputs for an identical query</li>
+                <li><em>Objectives:</em> apply prompt patterns; evaluate quality of AI financial outputs (L3, L5)</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Core Concepts &amp; Academic Benchmarks</div>
+              <div class="msec-title">Hour 2 — RAG Pipeline Construction</div>
               <ul>
-                <li>RAG architecture: Document loader → Chunker → Embedder → Retriever → Generator</li>
-                <li>Hybrid search: semantic + BM25 keyword for financial precision</li>
-                <li><strong>Harvard Case:</strong> Bloomberg AI extracting structured earnings insights from transcripts</li>
-                <li><strong>LBS Case:</strong> Clifford Chance legal document automation — 200-page contracts</li>
-                <li>Chunking strategies for regulatory documents: prospectuses, ODD reports, PPMs</li>
+                <li>Vector databases — ChromaDB and Pinecone</li>
+                <li>Document chunking strategies for financial documents; embedding models (Sentence Transformers)</li>
+                <li>Retrieval and re-ranking</li>
+                <li>Advanced prompting: self-consistency and tree-of-thought</li>
+                <li>Group activity: redesign five failing financial prompts</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">In-Class Lab</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
-                <strong><svg class="ic"><use href="#ic-flask"/></svg>Prospectus Intelligence Bot</strong>
-                Students receive a 200-page hedge fund prospectus. Build a RAG pipeline: parse and chunk the document, embed with a text model, store in a vector database, build a Q&amp;A interface. Test questions: "What are the redemption terms?" "What fees apply to Class B units?" Benchmark RAG accuracy vs raw LLM on 20 test questions.
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Prospectus Q&amp;A Bot</strong>
+                Build a Q&amp;A bot on a 200-page NSE IPO prospectus using LlamaIndex + ChromaDB + Claude API in VS Code. Test it with ten investor questions and evaluate retrieval accuracy. Industry case run alongside: “SEBI DRHP Analysis using RAG”. <strong>Objective:</strong> design and deploy a RAG pipeline for unstructured financial documents (L6).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>RAG system built here becomes the retrieval layer for the Module 10 Capstone</li>
-                <li>Connects to fund accounting theory — prospectus as the authoritative source of fund rules</li>
-                <li>Reinforces information quality and source verification — core audit principles</li>
+                <li><strong>Industry case:</strong> SEBI DRHP analysis using RAG</li>
+                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch. 3–4)</li>
+                <li>White et al. (2023), arXiv:2302.11382</li>
+                <li>Lewis et al. (2020), NeurIPS — arXiv:2005.11401</li>
+                <li>LlamaIndex and ChromaDB documentation</li>
               </ul>
-              <div class="pt-tags"><span class="ptag">RAG Architecture</span><span class="ptag">Document Intelligence</span><span class="ptag">Information Retrieval</span></div>
+              <div class="pt-tags"><span class="ptag">Prompt Patterns</span><span class="ptag">RAG Architecture</span><span class="ptag">Document Intelligence</span></div>
             </div>
           </div>
         </div>
@@ -994,7 +1020,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-hdr" onclick="toggleMod(this)">
           <div class="mod-num">MOD 03</div>
           <div class="mod-tg">
-            <div class="mod-name">Model Context Protocol (MCP) &amp; Agent Orchestration</div>
+            <div class="mod-name">Model Context Protocol &amp; Agent Orchestration</div>
             <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 1 · AI Literacy</span></div>
           </div>
           <span class="mod-arr">⌄</span>
@@ -1002,40 +1028,42 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — Model Context Protocol (MCP)</div>
               <ul>
-                <li>Understand MCP as the emerging standard for AI agent communication</li>
-                <li>Design multi-agent financial workflows using orchestration patterns</li>
-                <li>Implement tool-use and function-calling in agentic pipelines</li>
-                <li>Evaluate orchestration frameworks: LangChain, CrewAI, AutoGen</li>
-                <li>Build fail-safe agents for mission-critical financial operations</li>
+                <li>Protocol specification; tool definitions and JSON schemas</li>
+                <li>Context window management for long financial documents</li>
+                <li>Memory management — summarization and rolling context</li>
+                <li>Financial context design patterns: credit analyst agent, portfolio manager agent</li>
+                <li>Simulation: design a credit analyst MCP agent schema</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Core Concepts &amp; Academic Benchmarks</div>
+              <div class="msec-title">Hour 2 — Multi-Agent Frameworks</div>
               <ul>
-                <li>ReAct (Reason + Act) loop — the cognitive engine of financial agents</li>
-                <li>Choreography vs. orchestration: when to use each in financial workflows</li>
-                <li><strong>NUS Case:</strong> Multi-agent credit decisioning at DBS Bank Singapore</li>
-                <li><strong>LBS Case:</strong> JP Morgan's COIN — 360,000 hours of legal work automated</li>
-                <li>Error handling, idempotency, and circuit breakers for financial agents</li>
+                <li>CrewAI and LangGraph introduction</li>
+                <li>Agent roles — researcher, analyst, writer, reviewer</li>
+                <li>Sequential vs. hierarchical vs. parallel workflows; inter-agent communication</li>
+                <li>Designing agent crews for financial due diligence and investment research</li>
+                <li><em>Objectives:</em> design multi-agent pipelines; evaluate architectural choices (L6, L5)</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">In-Class Lab</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
-                <strong><svg class="ic"><use href="#ic-flask"/></svg>3-Agent Investment Memo System</strong>
-                Students build a 3-agent pipeline: Agent 1 fetches market data + fundamentals, Agent 2 computes P/E, EV/EBITDA, and DCF, Agent 3 formats a 1-page investment memo with buy/hold/sell recommendation. Agents communicate asynchronously. Final output: auto-saved investment memo PDF.
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>3-Agent Investment Memo Pipeline</strong>
+                Build a three-agent pipeline — Research Agent (data gathering) → Analysis Agent (financial interpretation) → Writing Agent (memo drafting) — in VS Code with CrewAI and the Claude API. Run it on a real NSE-listed company and peer review memo quality through a review panel. <strong>Objective:</strong> create and evaluate a multi-agent financial research pipeline (L6, L5).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>Agent orchestration patterns reused in Module 8 NAV automation pipeline</li>
-                <li>Connects to operations management theory: workflow decomposition and handoffs</li>
-                <li>Prepares students to reason about automation design in any back-office context</li>
+                <li><strong>Pedagogy:</strong> architecture diagram workshop, live CrewAI demo, paired design exercise</li>
+                <li>Anthropic MCP Specification (2024)</li>
+                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch. 6)</li>
+                <li>CrewAI documentation; Anthropic API Reference</li>
+                <li>Wu et al. (2023), AutoGen — arXiv:2308.08155</li>
               </ul>
-              <div class="pt-tags"><span class="ptag">Agent Design</span><span class="ptag">Workflow Automation</span><span class="ptag">MCP Protocol</span></div>
+              <div class="pt-tags"><span class="ptag">MCP Protocol</span><span class="ptag">Multi-Agent</span><span class="ptag">Workflow Design</span></div>
             </div>
           </div>
         </div>
@@ -1046,7 +1074,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-hdr" onclick="toggleMod(this)">
           <div class="mod-num">MOD 04</div>
           <div class="mod-tg">
-            <div class="mod-name">Algorithmic Trading &amp; Automated Execution Strategies</div>
+            <div class="mod-name">Algorithmic Trading &amp; Execution Strategies</div>
             <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 2 · Quantitative Finance</span></div>
           </div>
           <span class="mod-arr">⌄</span>
@@ -1054,38 +1082,40 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — Market Microstructure &amp; Trading Signals</div>
               <ul>
-                <li>Understand the architecture of modern algorithmic trading systems</li>
-                <li>Build, backtest, and evaluate trading strategies using Python</li>
-                <li>Implement execution algorithms: TWAP, VWAP, Implementation Shortfall</li>
-                <li>Integrate LLM-based news sentiment as a trading signal</li>
-                <li>Apply position sizing and drawdown-based risk controls programmatically</li>
+                <li>Order book dynamics, bid-ask spread, order types — market, limit, stop-loss, IOC</li>
+                <li>Signal categories: momentum (RSI, MACD), mean reversion (Bollinger Bands), pairs trading (cointegration)</li>
+                <li>SEBI algorithmic trading and co-location guidelines</li>
+                <li>Simulation exercise on a virtual order book</li>
+                <li>Case excerpt: Renaissance Technologies Medallion Fund</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Core Concepts &amp; Academic Benchmarks</div>
+              <div class="msec-title">Hour 2 — Backtesting Methodology &amp; Case Study</div>
               <ul>
-                <li>Strategy taxonomy: momentum, mean-reversion, pairs trading, stat arb</li>
-                <li>Look-ahead bias, survivorship bias — the two killers of backtested alpha</li>
-                <li><strong>Harvard Case:</strong> Renaissance Technologies' Medallion Fund — the math behind 66% annualized returns</li>
-                <li><strong>NUS Case:</strong> AI-driven execution at Singapore Exchange — latency and liquidity management</li>
-                <li>Market microstructure: bid-ask spread, slippage, market impact modeling</li>
+                <li>Walk-forward vs. in-sample / out-of-sample testing</li>
+                <li>Overfitting and data snooping bias</li>
+                <li>Performance metrics — Sharpe ratio, Sortino ratio, maximum drawdown</li>
+                <li>Transaction cost modelling</li>
+                <li>Case discussion: Knight Capital Group $440M algorithmic trading failure, August 2012</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">In-Class Lab</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
-                <strong><svg class="ic"><use href="#ic-flask"/></svg>AI-Augmented Trading Bot</strong>
-                Fetch OHLCV data for 5 NSE stocks, classify financial headlines using a sentiment model, generate buy/sell signals combining momentum + sentiment, execute simulated trades with 2% stop-loss and 1% max daily drawdown. Backtest on 12 months of data. Measure Sharpe ratio, max drawdown, and win rate.
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>AI Trading Bot with Backtrader</strong>
+                Build an AI trading bot in VS Code using Backtrader and Python — a momentum strategy on NSE-listed stocks with two years of data. Generate a full backtested performance report covering Sharpe, CAGR and maximum drawdown, and add NLP-based signal generation from financial news. Peer performance review closes the session. <strong>Objective:</strong> apply AI to trading strategy design; evaluate backtested Sharpe and drawdown (L3, L4).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>Quant finance layer that deepens the risk intuition built in Module 5</li>
-                <li>Connects to portfolio theory and CAPM from core MBA finance</li>
-                <li>The sentiment signal pipeline is reused in the Module 9 dashboard</li>
+                <li><strong>Case:</strong> Knight Capital Group $440M failure (2012)</li>
+                <li>Chan (2013), <em>Quantitative Trading</em>, Ch. 1–3</li>
+                <li>SEBI Circular on Algorithmic Trading (2012)</li>
+                <li>Hilpisch (2020) Ch. 7</li>
+                <li>Backtrader, yfinance and QuantLib Python documentation</li>
               </ul>
               <div class="pt-tags"><span class="ptag">Algo Trading</span><span class="ptag">Backtesting</span><span class="ptag">Execution Logic</span></div>
             </div>
@@ -1098,7 +1128,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-hdr" onclick="toggleMod(this)">
           <div class="mod-num">MOD 05</div>
           <div class="mod-tg">
-            <div class="mod-name">Risk Modeling: Probability of Default &amp; Monte Carlo VaR</div>
+            <div class="mod-name">Risk Modelling — PD Models &amp; Monte Carlo VaR</div>
             <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 2 · Quantitative Finance</span></div>
           </div>
           <span class="mod-arr">⌄</span>
@@ -1106,40 +1136,42 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — Credit Risk &amp; PD Models</div>
               <ul>
-                <li>Build Probability of Default models: logistic regression, gradient boosting, scorecards</li>
-                <li>Implement full Monte Carlo VaR with correlated asset simulation</li>
-                <li>Understand Expected Credit Loss under IFRS 9: PD × LGD × EAD</li>
-                <li>Automate risk model outputs into regulatory narrative reports</li>
-                <li>Conduct stress testing using historical crisis scenarios</li>
+                <li>PD, LGD and EAD components; the Basel II IRB approach</li>
+                <li>ML-based PD model development — logistic regression, decision trees, XGBoost</li>
+                <li>Feature engineering from financial ratios</li>
+                <li>Model validation: Gini coefficient, KS statistic, AUC-ROC; SHAP for explainability</li>
+                <li>Case: fintech lender PD model failure and regulatory action</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Core Concepts &amp; Academic Benchmarks</div>
+              <div class="msec-title">Hour 2 — Market Risk &amp; Monte Carlo VaR</div>
               <ul>
-                <li>PD, LGD, EAD: the three pillars of credit risk quantification (FRM aligned)</li>
-                <li>VaR methodologies: Historical, Parametric, Monte Carlo — pros and cons</li>
-                <li>Cholesky decomposition for correlated multi-asset MC simulation</li>
-                <li><strong>Harvard Case:</strong> The 2008 GFC — when Gaussian copula VaR models failed catastrophically</li>
-                <li><strong>LBS Case:</strong> IFRS 9 ECL implementation at Standard Chartered</li>
+                <li>Historical simulation vs. parametric vs. Monte Carlo, compared</li>
+                <li>10,000-path Monte Carlo simulation for a multi-asset equity portfolio</li>
+                <li>Conditional VaR (CVaR) / Expected Shortfall; risk decomposition by asset</li>
+                <li>Basel III VaR thresholds at 95% and 99%</li>
+                <li><strong>Graded assignment introduced this session</strong></li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">In-Class Lab</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
-                <strong><svg class="ic"><use href="#ic-flask"/></svg>Monte Carlo VaR Engine + Auto Report</strong>
-                Load a 10-stock portfolio, compute covariance matrix, apply Cholesky decomposition, run 10,000 correlated MC paths over a 1-day horizon, compute 95% and 99% VaR and CVaR, stress test with COVID March 2020 volatility shock, feed results to an LLM that writes a 3-paragraph risk narrative in regulatory language. Export as PDF.
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Monte Carlo VaR Engine</strong>
+                Build a Monte Carlo VaR engine in VS Code with NumPy for a five-stock NSE portfolio. Run 10,000 simulation paths, compute 95% and 99% VaR and CVaR, generate AI-written risk commentary with the Claude API, and output a formatted PDF report. Peer report review follows. <strong>Objective:</strong> implement and interpret Monte Carlo VaR; produce an AI-enhanced risk report (L6, L3).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>Risk outputs from this module feed directly into Module 6 Basel reporting pipeline</li>
-                <li>FRM Part I and II curriculum alignment — strengthens certification study</li>
-                <li>Capstone includes the VaR engine as one of its core analytical components</li>
+                <li><strong>Assessment:</strong> AI-Powered Monte Carlo VaR Risk Report — Python script plus a 2-page PDF summary</li>
+                <li>Basel Committee (2006), Basel II</li>
+                <li>Siddiqi (2017), <em>Intelligent Credit Scoring</em>, Ch. 4</li>
+                <li>GARP FRM Part II — Market Risk; Hull (2022) Ch. 21–22</li>
+                <li>NumPy documentation; Anthropic Claude API</li>
               </ul>
-              <div class="pt-tags"><span class="ptag">FRM Aligned</span><span class="ptag">Credit Risk</span><span class="ptag">Monte Carlo</span><span class="ptag">IFRS 9</span></div>
+              <div class="pt-tags"><span class="ptag">FRM Aligned</span><span class="ptag">Credit Risk</span><span class="ptag">Monte Carlo</span></div>
             </div>
           </div>
         </div>
@@ -1150,7 +1182,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-hdr" onclick="toggleMod(this)">
           <div class="mod-num">MOD 06</div>
           <div class="mod-tg">
-            <div class="mod-name">RegTech &amp; Automated Basel III/IV Compliance Reporting</div>
+            <div class="mod-name">RegTech &amp; Automated Basel III/IV Compliance</div>
             <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 2 · Quantitative Finance</span></div>
           </div>
           <span class="mod-arr">⌄</span>
@@ -1158,38 +1190,40 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — Regulatory Framework — Basel III/IV</div>
               <ul>
-                <li>Understand Basel III capital adequacy: CET1, Tier 1, Total Capital ratios</li>
-                <li>Compute Liquidity Coverage Ratio and Net Stable Funding Ratio</li>
-                <li>Apply SA-CCR (standardized approach for counterparty credit risk)</li>
-                <li>Map the full data flow from raw trade ledger to final regulatory disclosure</li>
-                <li>Simulate AxiomSL-style automated report generation using Python + LLM</li>
+                <li>CET1, Tier 1 and Total Capital adequacy ratios</li>
+                <li>Liquidity Coverage Ratio (LCR) and Net Stable Funding Ratio (NSFR); leverage ratio</li>
+                <li>Basel IV FRTB overview; RBI implementation circular for Indian banks</li>
+                <li>AI applications in continuous compliance monitoring; AxiomSL and OneSumX platforms</li>
+                <li>Regulatory simulation on an AxiomSL-style capital calculation template</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Core Concepts &amp; Academic Benchmarks</div>
+              <div class="msec-title">Hour 2 — AML, KYC &amp; Regulatory Reporting Automation</div>
               <ul>
-                <li>Risk-Weighted Assets calculation: Standardized vs Internal Ratings-Based approaches</li>
-                <li>Three Pillars: minimum capital, supervisory review, market discipline</li>
-                <li>FRTB — the fundamental review of the trading book under Basel IV</li>
-                <li><strong>NUS Case:</strong> MAS reporting automation at OCBC — from T+3 to real-time</li>
-                <li><strong>Harvard Case:</strong> Deutsche Bank's €2B fine for regulatory reporting failures (2022)</li>
+                <li>AML transaction monitoring using machine learning</li>
+                <li>KYC document automation using NLP — Aadhaar and PAN OCR</li>
+                <li>SAR auto-generation; FATF Recommendations</li>
+                <li>RBI guidelines on AI in banking</li>
+                <li>Case: RBI penalty on HDFC Bank — KYC compliance failure analysis</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">In-Class Lab</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
-                <strong><svg class="ic"><use href="#ic-flask"/></svg>Trade-to-Basel Report Pipeline</strong>
-                Students receive a mock trade ledger (500 rows: equities, bonds, FX forwards, interest rate swaps). Build a pipeline: aggregate exposures, apply standardized RWA weights, compute CET1 ratio, calculate LCR using HQLA templates, auto-generate a Pillar 3 disclosure document using LLM narrative. Output mimics AxiomSL report structure.
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Basel III Pillar 3 Disclosure Generator</strong>
+                Auto-generate a Basel III Pillar 3 disclosure document from structured bank data using the Claude API and Python (python-docx) in VS Code. Extract capital, risk and liquidity metrics and produce a formatted Word document matching the RBI Pillar 3 template, then peer review the output. <strong>Objective:</strong> design an automated compliance reporting pipeline; evaluate output accuracy (L6, L5).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>Completes the risk-to-reporting arc started in Module 5 (VaR → Basel disclosure)</li>
-                <li>Regulatory framework connects to law and governance electives in MBA curriculum</li>
-                <li>The pipeline architecture is a direct precursor to the Capstone's reporting module</li>
+                <li><strong>Case:</strong> RBI penalty on HDFC Bank for KYC compliance failure</li>
+                <li>BIS Basel Committee (2017)</li>
+                <li>Deloitte RegTech Universe Report (2023)</li>
+                <li>EY RegTech Report: “AI in Regulatory Reporting” (2023); FATF Recommendations (2023)</li>
+                <li>RBI Pillar 3 Disclosure Template; Anthropic Claude API documentation</li>
               </ul>
               <div class="pt-tags"><span class="ptag">Basel III/IV</span><span class="ptag">RegTech</span><span class="ptag">Regulatory Reporting</span></div>
             </div>
@@ -1210,38 +1244,40 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — AI Governance &amp; Model Risk Management</div>
               <ul>
-                <li>Design AI governance frameworks for regulated financial institutions</li>
-                <li>Identify and mitigate AI security threats: prompt injection, data exfiltration</li>
-                <li>Build a token budget calculator for enterprise-scale LLM deployments</li>
-                <li>Apply EU AI Act, MAS AI guidelines, and SR 11-7 model risk management</li>
-                <li>Design explainable AI outputs for regulatory submission and audit trail</li>
+                <li>The Federal Reserve SR 11-7 framework</li>
+                <li>Model documentation, independent validation and ongoing monitoring</li>
+                <li>SHAP and LIME for explainability</li>
+                <li>Algorithmic bias and fairness in credit, insurance and hiring</li>
+                <li>Case: Goldman Sachs Apple Card gender bias — CFPB investigation, 2019</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Core Concepts &amp; Academic Benchmarks</div>
+              <div class="msec-title">Hour 2 — AI Security, Ethics &amp; Cost</div>
               <ul>
-                <li>AI governance pillars: accountability, transparency, fairness, robustness, privacy</li>
-                <li>Prompt injection attack vectors in financial AI — security-first thinking</li>
-                <li>Token economics: context optimization, caching strategies, cost per query modeling</li>
-                <li><strong>LBS Case:</strong> RBS AI governance failure — model risk and the £3.1B IT disaster</li>
-                <li>SHAP values and LIME for explainable credit decisions under consumer protection law</li>
+                <li>EU AI Act classification for financial services; India DPDP Act 2023</li>
+                <li>Prompt injection attacks, direct and indirect; OWASP LLM Top 10</li>
+                <li>TCO modelling — API costs, compute, integration, maintenance</li>
+                <li>Cost optimization: caching, compression, batching</li>
+                <li>Red-team security exercise with live prompt injection; TCO spreadsheet modelling</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">In-Class Lab</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
                 <strong><svg class="ic"><use href="#ic-flask"/></svg>AI Governance Blueprint</strong>
-                Teams design a governance framework for a GCC deploying 3 LLM use cases. Produce: AI Use Case Risk Classification Matrix (High/Medium/Low), data security checklist for PII handling and API key management, token budget calculator for 10,000 daily queries across 3 models, and a Model Explainability Requirements Document for audit.
+                Design an AI Governance Blueprint for a bank deploying an LLM-based credit decision system, covering model risk, data privacy, bias testing and incident response. <strong>Objective:</strong> evaluate AI governance frameworks and analyse regulatory risk in AI deployment (L5, L4).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>Bridges AI technical skills (Modules 1–3) with corporate governance theory</li>
-                <li>Connects to business ethics and CSR modules in the MBA curriculum</li>
-                <li>Governance principles applied in every subsequent module and the Capstone</li>
+                <li><strong>Case:</strong> Goldman Sachs Apple Card gender bias (CFPB, 2019)</li>
+                <li>Federal Reserve SR 11-7</li>
+                <li>FSB (2022), “AI and ML in Financial Services”</li>
+                <li>OWASP LLM Top 10 (2023)</li>
+                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch. 8)</li>
               </ul>
               <div class="pt-tags"><span class="ptag">AI Governance</span><span class="ptag">Security</span><span class="ptag">Responsible AI</span></div>
             </div>
@@ -1254,7 +1290,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-hdr" onclick="toggleMod(this)">
           <div class="mod-num">MOD 08</div>
           <div class="mod-tg">
-            <div class="mod-name">Fund Administration: NAV Automation &amp; Transfer Agency Workflows</div>
+            <div class="mod-name">Fund Administration — NAV &amp; Transfer Agency Automation</div>
             <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 3 · Applied Enterprise AI</span></div>
           </div>
           <span class="mod-arr">⌄</span>
@@ -1262,38 +1298,40 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — Fund Administration Lifecycle</div>
               <ul>
-                <li>Master the NAV calculation process for mutual funds, hedge funds, and private equity</li>
-                <li>Automate Transfer Agency workflows: subscription → AML → allocation → settlement</li>
-                <li>Build AI-powered reconciliation with intelligent exception flagging (&gt;0.5bps)</li>
-                <li>Understand corporate actions processing and their NAV impact</li>
-                <li>Implement the full middle/back-office automation stack used at Opus and Apex</li>
+                <li>Fund types — mutual funds, hedge funds, PE/VC, AIFs</li>
+                <li>Trade capture, portfolio valuation (mark-to-market, IFRS 9), corporate actions processing</li>
+                <li>NAV calculation steps and investor reporting</li>
+                <li>AI applications at Opus Fund Services, HC Global, SS&amp;C GlobeOp and Apex Group</li>
+                <li>Case: Opus Fund Services AI-powered fund automation, GCC Pune</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Core Concepts &amp; Academic Benchmarks</div>
+              <div class="msec-title">Hour 2 — Transfer Agency &amp; KYC Automation</div>
               <ul>
-                <li>NAV components: securities pricing, daily accruals, management and performance fees</li>
-                <li>T+1 settlement impact on NAV timing and liquidity requirements</li>
-                <li>Pricing hierarchy: exchange → evaluated pricing → broker quotes → fair value models</li>
-                <li><strong>Harvard Case:</strong> Madoff Ponzi scheme — why independent NAV verification is non-negotiable</li>
-                <li><strong>NUS Case:</strong> SS&amp;C GlobeOp's automated fund accounting platform serving $35T AUA</li>
+                <li>Investor onboarding (AML/KYC), subscription and redemption processing, dividend distribution</li>
+                <li>Aadhaar-based e-KYC and PAN verification using NLP</li>
+                <li>SEBI mutual fund KYC regulations 2023; KFinTech and CAMS platforms</li>
+                <li>Straight-Through Processing (STP) and error reconciliation</li>
+                <li>Role-play exercise: investor onboarding simulation</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">In-Class Lab</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
-                <strong><svg class="ic"><use href="#ic-flask"/></svg>Automated NAV Calculator + AI Exception Engine</strong>
-                Students receive a mock hedge fund portfolio (50 positions, mixed asset classes). Build: a Python NAV calculator with accruals, fees, and high watermark logic; a reconciliation agent that flags exceptions &gt;0.5bps; an auto-generated daily NAV report with LLM commentary explaining variances; a Transfer Agency subscriber register update with full audit trail.
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>NAV Calculation Engine + AI Commentary</strong>
+                Build a Python NAV calculation engine in VS Code for a ten-holding equity mutual fund. Auto-generate a daily fund manager commentary and NAV report using the Claude API, implement a reconciliation check, and output a formatted Excel/PDF report matching the SEBI disclosure format. Peer review of the NAV report closes the lab. <strong>Objective:</strong> design an automated NAV reporting system; evaluate output quality (L6, L4).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>Draws on accounting theory (accrual basis, matching principle) from core MBA accounting</li>
-                <li>Agent orchestration from Module 3 applied to a real-world operational workflow</li>
-                <li>NAV calculator becomes a live component of the Module 10 Capstone project</li>
+                <li><strong>Case:</strong> Opus Fund Services AI-powered fund automation, GCC Pune</li>
+                <li>IOSCO Principles for Fund Valuation (2013)</li>
+                <li>Citi: “AI in Fund Administration” (2023)</li>
+                <li>KFinTech documentation; SEBI Circular on KYC Registration Agencies (2022)</li>
+                <li>openpyxl documentation; SEBI NAV Disclosure Format</li>
               </ul>
               <div class="pt-tags"><span class="ptag">Fund Accounting</span><span class="ptag">NAV Calculation</span><span class="ptag">Transfer Agency</span></div>
             </div>
@@ -1306,7 +1344,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-hdr" onclick="toggleMod(this)">
           <div class="mod-num">MOD 09</div>
           <div class="mod-tg">
-            <div class="mod-name">Market Commentary &amp; AI-Powered Valuation Dashboards</div>
+            <div class="mod-name">Market Commentary &amp; Valuation Dashboards</div>
             <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 3 · Applied Enterprise AI</span></div>
           </div>
           <span class="mod-arr">⌄</span>
@@ -1314,38 +1352,40 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — Financial NLP &amp; Sentiment Analysis</div>
               <ul>
-                <li>Build automated market commentary systems combining NLP sentiment + LLM generation</li>
-                <li>Create production-quality valuation dashboards in Streamlit + Plotly</li>
-                <li>Implement real-time data feeds for live market intelligence</li>
-                <li>Build DCF models with sensitivity analysis and scenario tables programmatically</li>
-                <li>Design client-facing financial intelligence products for non-technical users</li>
+                <li>FinBERT for financial sentiment; earnings call transcript mining and key phrase extraction</li>
+                <li>Bloomberg NLP use-cases; news-based event-driven signals</li>
+                <li>The NLP pipeline: NSE announcement collection → preprocessing → FinBERT scoring → AI-generated equity research commentary</li>
+                <li>Live demo: FinBERT on an NSE earnings transcript</li>
+                <li>Case: Bloomberg Intelligence AI-generated earnings summaries</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Core Concepts &amp; Academic Benchmarks</div>
+              <div class="msec-title">Hour 2 — Valuation Modelling with AI</div>
               <ul>
-                <li>NLP progression: VADER (lexicon) → FinBERT (domain fine-tuned) → GPT-4 (contextual)</li>
-                <li>Valuation methodology hierarchy: DCF → Comparable Companies → Precedent Transactions</li>
-                <li>Dashboard UX design: information density vs clarity for financial professionals</li>
-                <li><strong>LBS Case:</strong> Schroders' AI-generated fund commentary — 200 reports/minute vs 2/hour manually</li>
-                <li>Alternative data signals: web scraping, news sentiment, management tone analysis</li>
+                <li>DCF model automation using the Claude API — revenue projection, WACC, terminal value</li>
+                <li>Comparable Company Analysis — extracting and comparing EV/EBITDA, P/E and P/BV multiples</li>
+                <li>ESG data integration in equity valuation</li>
+                <li>Damodaran valuation database application</li>
+                <li>Live valuation exercise on an NSE-listed company</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">In-Class Lab</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
-                <strong><svg class="ic"><use href="#ic-flask"/></svg>Market Intelligence Dashboard (Capstone Prototype)</strong>
-                Build a live Streamlit dashboard: pull real-time data for 10 securities, run sentiment scoring on 50 headlines per stock, compute DCF with 3 scenarios and a tornado chart, display technical indicators, auto-generate 3-paragraph morning commentary refreshed every 15 minutes using structured LLM prompts. This prototype is submitted as the base for the Capstone.
+                <strong><svg class="ic"><use href="#ic-flask"/></svg>Streamlit Market Intelligence Dashboard</strong>
+                Build a Streamlit market intelligence dashboard in VS Code with a stock screener, Plotly candlestick charts, a portfolio analytics panel and a FinBERT sentiment feed from NSE news, integrating live data through yfinance. Peer review covers usability and data accuracy. <strong>Objective:</strong> design and deploy an interactive financial dashboard with live data and NLP feeds (L6, L5).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>Integrates all three preceding phases: AI layer (Mod 1–3) + Quant (Mod 4–6) + Enterprise (Mod 7–8)</li>
-                <li>Valuation connects to corporate finance and equity analysis from core MBA curriculum</li>
-                <li>Dashboard built here is expanded and deployed as the final Capstone project</li>
+                <li><strong>Case:</strong> Bloomberg Intelligence AI-generated earnings summaries</li>
+                <li>Yang et al. (2020), FinBERT — IJCAI 2020</li>
+                <li>Damodaran (2012), <em>Investment Valuation</em>, Ch. 2; Damodaran Online data</li>
+                <li>Streamlit and Plotly Python documentation</li>
+                <li>yfinance library; Anthropic Claude API</li>
               </ul>
               <div class="pt-tags"><span class="ptag">NLP + Sentiment</span><span class="ptag">Valuation Models</span><span class="ptag">Dashboard Design</span></div>
             </div>
@@ -1355,58 +1395,139 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 
       <!-- M10 -->
       <div class="mod-card rv" style="border-color:rgba(245,158,11,.35)">
-        <div class="mod-hdr" onclick="toggleMod(this)" style="background:rgba(245,158,11,.04)">
+        <div class="mod-hdr" onclick="toggleMod(this)">
           <div class="mod-num" style="color:var(--c3);border-color:rgba(245,158,11,.3);background:rgba(245,158,11,.1)">MOD 10</div>
           <div class="mod-tg">
-            <div class="mod-name" style="color:var(--c3)">GCC Capstone: Integrated Financial AI System &amp; Placement Simulation</div>
-            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-cap"><svg class="ic"><use href="#ic-trophy"/></svg> Phase 4 · Capstone</span></div>
+            <div class="mod-name">GCC Capstone — Integrated Financial AI System</div>
+            <div class="mod-meta"><span class="mtag mt-h"><svg class="ic"><use href="#ic-clock"/></svg> 3 Hours</span><span class="mtag mt-t">Phase 4 · Capstone</span></div>
           </div>
           <span class="mod-arr">⌄</span>
         </div>
         <div class="mod-body">
           <div class="mod-grid">
             <div class="msec">
-              <div class="msec-title">Learning Objectives</div>
+              <div class="msec-title">Hour 1 — Capstone Integration</div>
               <ul>
-                <li>Integrate all 9 module skills into one cohesive, deployable AI financial platform</li>
-                <li>Present technical projects to a mock GCC hiring panel</li>
-                <li>Articulate technical architecture decisions in business language</li>
-                <li>Demonstrate problem-solving under pressure with live Q&amp;A on your own code</li>
-                <li>Produce a placement-ready live project portfolio and pitch deck</li>
+                <li>Combine every module deliverable — RAG prospectus bot, Monte Carlo VaR engine, Basel III disclosure generator, NAV automation, Streamlit dashboard — into one Integrated Financial AI System</li>
+                <li>System architecture documentation and integration testing</li>
+                <li>GitHub portfolio setup</li>
+                <li>Capstone evaluation rubric walkthrough</li>
+                <li>Instructor-led integration workshop with peer review rounds</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Capstone Project Deliverables</div>
+              <div class="msec-title">Hour 2 — Pitch Deck Design &amp; Mock Rehearsal</div>
               <ul>
-                <li>Live Market Commentary Dashboard — RAG-powered, real-time data, deployed on Streamlit Cloud</li>
-                <li>Automated NAV Calculator with AI exception engine and daily report generation</li>
-                <li>Monte Carlo VaR engine with regulatory narrative in Basel disclosure format</li>
-                <li>Live project repository — documented, with README and demo link</li>
-                <li>5-slide pitch deck: "AI Transformation Proposal for [Target GCC]"</li>
-                <li>Technical resume addendum: "AI Projects" section with live project links</li>
+                <li>Pitch structure for GCC hiring panels: Problem → Solution Architecture → Live Demo → Business Impact → Team</li>
+                <li>AI-assisted resume and cover letter tailoring</li>
+                <li>Common technical interview questions across Python, finance and AI governance</li>
+                <li>Structured peer rehearsal against the GCC hiring rubric</li>
+                <li>Instructor coaching round</li>
               </ul>
             </div>
             <div class="msec">
-              <div class="msec-title">Mock GCC Panel Simulation</div>
+              <div class="msec-title">Hour 3 — In-Class Lab</div>
               <div class="lab-box">
-                <strong><svg class="ic"><use href="#ic-target"/></svg> 30-Minute Hiring Panel — Live Simulation</strong>
-                Round 1 (Technical): "Walk me through your NAV automation logic. How do you handle corporate actions?" Round 2 (Problem-solving): "Your exception engine flagged 12 positions today with &gt;1bps variance. Walk me through your escalation protocol." Round 3 (Strategic): "If you were Chief Data Officer at Apex Group, what AI initiative would you prioritize in Year 1?" Peer panel evaluation using a structured GCC rubric. Written feedback report for each student.
+                <strong><svg class="ic"><use href="#ic-target"/></svg>GCC Capstone Presentation</strong>
+                A live 15-minute project presentation to a mock GCC hiring panel (EisnerAmper / Opus Fund Services scenario), followed by 10 minutes of panel Q&amp;A. Placement readiness is scored on technical depth, communication, portfolio quality and role alignment, with individual feedback and a course debrief on industry outlook and next steps. <strong>Objective:</strong> present the integrated system to a mock panel and demonstrate placement-ready communication (L6).
               </div>
             </div>
             <div class="msec">
-              <div class="msec-title">Academic Integration</div>
+              <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
-                <li>Every module's in-class output contributes one component to the final project</li>
-                <li>Assessment synthesizes technical, analytical, and communication competencies</li>
-                <li>Live project repository serves as proof of learning — continues to grow post-graduation</li>
-                <li>Portfolio is shared directly with target GCC HR teams at placement season</li>
+                <li><strong>Panel:</strong> faculty as GCC hiring panel; peer evaluation rubric</li>
+                <li>McKinsey GCC India Report (2024)</li>
+                <li>NASSCOM GCC Trends Report (2024)</li>
+                <li>EisnerAmper GCC case; Course Portfolio Rubric</li>
+                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Capstone Chapter)</li>
               </ul>
-              <div class="pt-tags"><span class="ptag">Full Integration</span><span class="ptag">Portfolio Ready</span><span class="ptag">Interview Prep</span><span class="ptag">Deployed Project</span></div>
+              <div class="pt-tags"><span class="ptag">Full Integration</span><span class="ptag">Portfolio Ready</span><span class="ptag">Interview Prep</span></div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
 
+<!-- CLASS MATERIALS -->
+<section class="sec-pad" id="materials" style="background:linear-gradient(180deg,transparent,rgba(124,58,237,.02) 50%,transparent)">
+  <div class="container">
+    <div class="sec-head rv">
+      <span class="sec-tag">Class Materials</span>
+      <h2 class="sec-title">Slide Decks, <span class="gt">Module by Module</span></h2>
+      <p class="sec-sub">One deck per module — 20 slides, built around the session plan for that module, ending with practice questions students can rehearse before the exam. Each deck is published here before its session.</p>
+    </div>
+
+    <div class="mat-grid">
+
+      <div class="mat-card live rv">
+        <div class="mat-top"><span class="mat-num">MOD 01</span><span class="mat-name">Foundations of Agentic AI in Financial Services</span></div>
+        <p class="mat-desc">LLM fundamentals, tokens and attention, four eras of AI in finance, the Observe–Plan–Act–Reflect agent loop, tool definitions, agent memory, Indian financial data sources, and the in-class extraction lab.</p>
+        <div class="mat-foot">
+          <span class="mat-meta">20 slides · Session 1 · 10 practice questions</span>
+          <a class="mat-dl" href="slides/Module-01-Foundations-of-Agentic-AI.pptx" download><svg class="ic"><use href="#ic-file"/></svg> Download PPTX</a>
+        </div>
+      </div>
+
+      <div class="mat-card rv">
+        <div class="mat-top"><span class="mat-num">MOD 02</span><span class="mat-name">Prompt Engineering &amp; RAG for Financial Analysis</span></div>
+        <p class="mat-desc">Zero-shot, few-shot and chain-of-thought prompting, role prompting, JSON and table output, hallucination risks, and a retrieval-augmented Q&amp;A pipeline over a 200-page prospectus.</p>
+        <div class="mat-foot"><span class="mat-meta">20 slides · Session 2</span><span class="mat-soon">Released before class</span></div>
+      </div>
+
+      <div class="mat-card rv">
+        <div class="mat-top"><span class="mat-num">MOD 03</span><span class="mat-name">Model Context Protocol &amp; Agent Orchestration</span></div>
+        <p class="mat-desc">MCP as the connector standard, multi-agent patterns, planner–executor–critic design, and a three-agent investment memo pipeline built in class.</p>
+        <div class="mat-foot"><span class="mat-meta">20 slides · Session 3</span><span class="mat-soon">Released before class</span></div>
+      </div>
+
+      <div class="mat-card rv">
+        <div class="mat-top"><span class="mat-num">MOD 04</span><span class="mat-name">Algorithmic Trading &amp; Execution Strategies</span></div>
+        <p class="mat-desc">Momentum and mean reversion, TWAP and VWAP execution, backtesting discipline and its traps, and an AI-assisted signal layer on NSE data.</p>
+        <div class="mat-foot"><span class="mat-meta">20 slides · Session 4</span><span class="mat-soon">Released before class</span></div>
+      </div>
+
+      <div class="mat-card rv">
+        <div class="mat-top"><span class="mat-num">MOD 05</span><span class="mat-name">Risk Modelling — PD Models &amp; Monte Carlo VaR</span></div>
+        <p class="mat-desc">PD, LGD and EAD, ML-based scorecards and their validation, 10,000-path Monte Carlo VaR and CVaR, and the graded risk report assignment.</p>
+        <div class="mat-foot"><span class="mat-meta">20 slides · Session 5</span><span class="mat-soon">Released before class</span></div>
+      </div>
+
+      <div class="mat-card rv">
+        <div class="mat-top"><span class="mat-num">MOD 06</span><span class="mat-name">RegTech &amp; Automated Basel III/IV Compliance</span></div>
+        <p class="mat-desc">CET1, LCR and NSFR, FRTB in outline, AML and KYC automation, and auto-generating a Pillar 3 disclosure from structured bank data.</p>
+        <div class="mat-foot"><span class="mat-meta">20 slides · Session 6</span><span class="mat-soon">Released before class</span></div>
+      </div>
+
+      <div class="mat-card rv">
+        <div class="mat-top"><span class="mat-num">MOD 07</span><span class="mat-name">Enterprise AI Governance, Security &amp; Cost</span></div>
+        <p class="mat-desc">SR 11-7 model risk management, explainability with SHAP and LIME, prompt injection and the OWASP LLM risks, DPDP Act duties, and total cost modelling.</p>
+        <div class="mat-foot"><span class="mat-meta">20 slides · Session 7</span><span class="mat-soon">Released before class</span></div>
+      </div>
+
+      <div class="mat-card rv">
+        <div class="mat-top"><span class="mat-num">MOD 08</span><span class="mat-name">Fund Administration — NAV &amp; Transfer Agency</span></div>
+        <p class="mat-desc">The NAV production cycle, corporate actions and exception handling, transfer agency workflows, and an automated NAV pack with AI-written commentary.</p>
+        <div class="mat-foot"><span class="mat-meta">20 slides · Session 8</span><span class="mat-soon">Released before class</span></div>
+      </div>
+
+      <div class="mat-card rv">
+        <div class="mat-top"><span class="mat-num">MOD 09</span><span class="mat-name">Market Commentary &amp; Valuation Dashboards</span></div>
+        <p class="mat-desc">News and filings ingestion, sentiment scoring, valuation summaries, and a Streamlit dashboard that writes its own daily commentary.</p>
+        <div class="mat-foot"><span class="mat-meta">20 slides · Session 9</span><span class="mat-soon">Released before class</span></div>
+      </div>
+
+      <div class="mat-card rv">
+        <div class="mat-top"><span class="mat-num">MOD 10</span><span class="mat-name">GCC Capstone — Integrated Financial AI System</span></div>
+        <p class="mat-desc">Integration of the nine module artifacts, deployment, the five-slide GCC pitch structure, and the mock hiring panel that closes the course.</p>
+        <div class="mat-foot"><span class="mat-meta">20 slides · Session 10</span><span class="mat-soon">Released before class</span></div>
+      </div>
+
+    </div>
+
+    <div class="mat-note rv">
+      <strong>How to use these.</strong> Read the deck before the session — the class time is spent on the lab, not on the slides. Every deck closes with practice questions on that module; work through them after class, because they are written in the same style as the assessment. The lab in each deck produces one artifact, and those ten artifacts are the portfolio you take into placement season.
     </div>
   </div>
 </section>

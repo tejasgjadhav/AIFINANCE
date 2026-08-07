@@ -66,7 +66,8 @@ nobody read the output?
 
 ## Step 2 — Do it with AI, then refuse to trust it (25 minutes)
 
-1. Open `prompt.txt` and copy all of it.
+1. Open `prompt.txt` and copy all of it. It is written with CRAFT — Context, Role,
+   Action, Format, Tone — the same five headings you will use on every prompt this semester.
 2. Open any free AI chat you already use — ChatGPT, Claude.ai, Gemini, Copilot, or the
    sandbox we use in class.
 3. Paste the prompt. Where it says *paste the contents of one file*, paste

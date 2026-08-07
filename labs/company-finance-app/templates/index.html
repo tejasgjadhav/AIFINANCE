@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Company Finance Lookup</title>
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="lookup-panel">
+        <div>
+          <p class="eyebrow">Yahoo Finance lookup</p>
+          <h1>Company finance snapshot</h1>
+          <p class="intro">Enter a company name or ticker to fetch latest market price and revenue.</p>
+        </div>
+
+        <form id="lookupForm" class="search-form">
+          <label for="companyName">Company name</label>
+          <div class="input-row">
+            <input id="companyName" name="companyName" type="text" placeholder="Apple, Reliance, MSFT..." autocomplete="off" required />
+            <button type="submit">
+              <span>Search</span>
+            </button>
+          </div>
+        </form>
+
+        <div class="examples" aria-label="Example companies">
+          <button type="button" data-company="Apple">Apple</button>
+          <button type="button" data-company="Reliance">Reliance</button>
+          <button type="button" data-company="Microsoft">Microsoft</button>
+        </div>
+      </section>
+
+      <section class="results-panel" aria-live="polite">
+        <div id="emptyState" class="empty-state">
+          <div class="market-mark">₹</div>
+          <h2>Ready for a ticker check</h2>
+          <p>Results will appear here with the resolved Yahoo Finance symbol.</p>
+        </div>
+
+        <div id="loadingState" class="status hidden">
+          <div class="spinner"></div>
+          <p>Fetching finance data...</p>
+        </div>
+
+        <div id="errorState" class="status error hidden"></div>
+
+        <article id="resultCard" class="result-card hidden">
+          <header>
+            <div>
+              <p id="exchange" class="eyebrow"></p>
+              <h2 id="companyTitle"></h2>
+              <a id="website" class="website" target="_blank" rel="noreferrer"></a>
+            </div>
+            <span id="symbol" class="symbol"></span>
+          </header>
+
+          <div class="metric-grid">
+            <div class="metric primary">
+              <span>Latest market price</span>
+              <strong id="price"></strong>
+              <small id="priceSource"></small>
+            </div>
+            <div class="metric">
+              <span>Revenue</span>
+              <strong id="revenue"></strong>
+              <small id="revenueSource"></small>
+            </div>
+            <div class="metric">
+              <span>Market cap</span>
+              <strong id="marketCap"></strong>
+              <small>From Yahoo Finance profile</small>
+            </div>
+          </div>
+
+          <footer>
+            <span id="updatedAt"></span>
+          </footer>
+        </article>
+      </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>

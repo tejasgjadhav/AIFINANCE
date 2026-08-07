@@ -1,8 +1,16 @@
 # Module 1 Lab — Read a filing, and check what you were told
 
-**Everything here runs free.** No Claude subscription, no API key, no paid account,
-no `pip install`. Plain Python 3 and the standard library. It works in a free Codex
-session, in Google Colab, in Replit, or on your own laptop.
+**Everything here runs free.** No Claude subscription, no API key, no paid account.
+
+### Nothing installed on your laptop? Start here
+
+**[Open the lab in Google Colab](https://colab.research.google.com/github/tejasgjadhav/AIFINANCE/blob/main/labs/module-01/Module1_Lab_Colab.ipynb)**
+
+It runs in your browser on Google's machine. You need a Google account and nothing else.
+Work through the four steps in the notebook, then come back here if you want the longer
+versions of each script.
+
+The files below are the same lab as plain Python 3, for anyone who has Python locally.
 
 You will do in 60 minutes what a first-year analyst does on a Monday morning: pull six
 numbers out of an annual report, and prove they are right.

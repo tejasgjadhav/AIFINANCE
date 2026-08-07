@@ -15,6 +15,11 @@ browser. 702 lines, no line typed by a human.
 
 ---
 
+## No Python on your laptop?
+
+Run the same lookup in your browser instead: **[open the Colab notebook](https://colab.research.google.com/github/tejasgjadhav/AIFINANCE/blob/main/labs/module-01/Module1_Lab_Colab.ipynb)**.
+Step 2 there catches the Infosys error described below.
+
 ## Run it
 
 ```bash

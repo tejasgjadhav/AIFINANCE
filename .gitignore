@@ -3,3 +3,4 @@ HANDOFF.md
 capstone/*.py
 capstone/*.html
 capstone/groups.json
+capstone/originals.json

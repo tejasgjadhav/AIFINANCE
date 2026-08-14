@@ -1,2 +1,5 @@
 HANDOFF.md
 .DS_Store
+capstone/*.py
+capstone/*.html
+capstone/groups.json

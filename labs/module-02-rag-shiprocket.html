@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Building RAG for Shiprocket IPO DHRP</title>
+<meta name="description" content="Module 2 class project: a RAG pipeline over the 543-page Shiprocket UDRHP with LlamaIndex, ChromaDB and Codex.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#03030f;--bg2:#07071a;--c1:#00d4ff;--c2:#7c3aed;--c3:#f59e0b;--txt:#f1f5f9;--txt2:#94a3b8;--b1:rgba(0,212,255,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:4rem 1.4rem 5rem}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c1);margin-bottom:1rem}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,5vw,2.9rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.lede{color:var(--txt2);font-size:1.05rem;max-width:680px;margin-bottom:.6rem}
+.pipe{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--c1);background:rgba(0,212,255,.06);border:1px solid var(--b1);border-radius:10px;padding:.6rem 1rem;margin:1.4rem 0 0}
+h2{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;margin:3.2rem 0 .9rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.07)}
+h2 .n{color:var(--c1);font-size:1rem;vertical-align:.12em;margin-right:.5rem}
+p{margin-bottom:1rem;color:var(--txt)}
+p.dim{color:var(--txt2)}
+ol.comp{list-style:none;counter-reset:c;margin:1.2rem 0}
+ol.comp li{counter-increment:c;position:relative;padding:0 0 1.15rem 3rem}
+ol.comp li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:.15rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;color:var(--c1);border:1px solid var(--b1);border-radius:8px;padding:.1rem .45rem;background:rgba(0,212,255,.05)}
+ol.comp b,ul.libs b{color:var(--txt);font-weight:600}
+ul.libs{list-style:none;margin:1.2rem 0}
+ul.libs li{padding:.55rem 0 .55rem 1.2rem;border-left:2px solid var(--b1);margin-bottom:.55rem}
+ul.libs code{font-family:'JetBrains Mono',monospace;font-size:.88rem;color:var(--c1)}
+pre{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.1rem 1.25rem;overflow-x:auto;margin:1.1rem 0 1.5rem;font-family:'JetBrains Mono',monospace;font-size:.83rem;line-height:1.6;color:#c9d6e3}
+.cmd{border-left:3px solid var(--c1)}
+.out{border-left:3px solid var(--c3)}
+.label{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:1.6rem 0 -.5rem}
+.note{background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(124,58,237,.06));border:1px solid var(--b1);border-radius:14px;padding:1.1rem 1.3rem;margin:1.4rem 0}
+.note b{color:var(--c1)}
+.free{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.05)}
+.free b{color:var(--c3)}
+a{color:var(--c1);text-decoration:none}
+a:hover{text-decoration:underline}
+footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);color:var(--txt2);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Module 02 · Class Project · Agentic AI &amp; Advanced Analytics in Finance</div>
+<h1>Building RAG for Shiprocket IPO DHRP</h1>
+<p class="lede">We build a RAG pipeline over the 543-page Shiprocket draft prospectus from SEBI. You ask a question in plain English and get a short answer with page numbers you can verify.</p>
+<div class="pipe">PDF &rarr; LlamaIndex splits and embeds &rarr; ChromaDB stores the chunks &rarr; Codex writes the answer</div>
+
+<h2><span class="n">01</span>Why we built it</h2>
+<p>Nobody reads 543 pages to answer one question. You also cannot paste 543 pages into a normal AI chat, because the chat cannot hold that much text. There is a bigger problem than size: an AI answering from its own memory can invent numbers, and an invented number in an IPO note is a career risk.</p>
+<p>RAG stands for Retrieval-Augmented Generation. It fixes both problems in two moves. First it retrieves the few paragraphs in the document that match your question. Then the AI receives only those paragraphs and writes the answer from them, with page numbers. If the retrieved paragraphs do not contain the answer, the AI says so. It does not guess.</p>
+
+<h2><span class="n">02</span>The components, one by one</h2>
+<ol class="comp">
+<li><b>The PDF.</b> This is the source document. We downloaded the Shiprocket UDRHP from the <a href="https://www.sebi.gov.in/filings/public-issues/dec-2025/shiprocket-limited-udrhp_98357.html" target="_blank" rel="noopener">SEBI filing page</a> and saved it as <code>data/shiprocket-udrhp.pdf</code>. Everything the system says must come from this file.</li>
+<li><b>uv.</b> This is a free tool that installs Python and Python libraries. We used it because the laptop only had an old Python 3.9, and uv fetched Python 3.12 in seconds without admin rights.</li>
+<li><b>The virtual environment.</b> This is an isolated box for our libraries. It keeps the project's installs separate, so nothing else on the machine breaks.</li>
+<li><b>LlamaIndex.</b> This is the pipeline manager. It loads the PDF, cuts it into 885 chunks, sends each chunk to the embedding model, and hands the results to the database. It also does the retrieval when you ask a question.</li>
+<li><b>The embedding model.</b> <code>BAAI/bge-small-en-v1.5</code> is a free 130&nbsp;MB model that runs on the laptop with no API key. It turns each chunk into a vector, which is a list of 384 numbers. Chunks with similar meaning get similar numbers. This is how the computer finds relevant text by meaning instead of by keywords.</li>
+<li><b>ChromaDB.</b> This is the vector database. It stores all 885 chunks with their vectors in the <code>chroma_db/</code> folder on disk. When you ask a question, it returns the nearest chunks in milliseconds. Because it lives on disk, we embed the document once and query it forever.</li>
+<li><b>Codex CLI.</b> This is the writer. It receives your question plus the retrieved chunks as one prompt and writes the final answer. It runs on a ChatGPT login, so it needs no API key either.</li>
+</ol>
+
+<h2><span class="n">03</span>The five Python libraries</h2>
+<ul class="libs">
+<li><code>llama-index-core</code> &mdash; <b>the engine.</b> It runs the load, split, embed and store pipeline.</li>
+<li><code>llama-index-readers-file</code> &mdash; <b>the reader.</b> It reads the PDF and keeps each page number as metadata.</li>
+<li><code>llama-index-embeddings-huggingface</code> &mdash; <b>the embedder.</b> It downloads the free embedding model and runs it locally.</li>
+<li><code>llama-index-vector-stores-chroma</code> &mdash; <b>the bridge.</b> It lets LlamaIndex write into ChromaDB and read back from it.</li>
+<li><code>chromadb</code> &mdash; <b>the database.</b> It stores the chunks and finds the nearest ones.</li>
+</ul>
+
+<h2><span class="n">04</span>Set up the project</h2>
+<p>Install uv once. Mac:</p>
+<pre class="cmd">curl -LsSf https://astral.sh/uv/install.sh | sh</pre>
+<p>Windows (PowerShell):</p>
+<pre class="cmd">powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"</pre>
+<p>Create the project, the environment and install the five libraries:</p>
+<pre class="cmd">mkdir shiprocket-rag
+cd shiprocket-rag
+mkdir data          # save the SEBI PDF here as shiprocket-udrhp.pdf
+uv venv --python 3.12
+uv pip install llama-index-core llama-index-readers-file llama-index-embeddings-huggingface llama-index-vector-stores-chroma chromadb</pre>
+
+<h2><span class="n">05</span>Script 1: ingest.py builds the database</h2>
+<p>The script runs five steps in order: load, split, embed, store, run. You run it once.</p>
+<pre>"""Build the vector store for the Shiprocket DHRP.
+
+Pipeline: PDF -&gt; LOAD -&gt; SPLIT -&gt; EMBED -&gt; STORE.
+LlamaIndex does the loading, splitting and embedding.
+ChromaDB stores the chunks with their vectors, on disk.
+
+Run from this folder:  .venv/bin/python ingest.py
+"""
+
+import chromadb
+from llama_index.core import SimpleDirectoryReader, StorageContext, VectorStoreIndex
+from llama_index.core.node_parser import SentenceSplitter
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.vector_stores.chroma import ChromaVectorStore
+
+# Step 1 - LOAD. One Document per PDF page, with the page number kept as metadata.
+documents = SimpleDirectoryReader("data", exclude_hidden=False).load_data()
+print(f"Step 1: loaded {len(documents)} pages from data/")
+
+# Step 2 - SPLIT. Each page becomes overlapping chunks of ~1024 tokens.
+# The overlap stops a sentence being cut in half at a chunk border.
+splitter = SentenceSplitter(chunk_size=1024, chunk_overlap=200)
+
+# Step 3 - EMBED. A free local model turns each chunk into a 384-number vector.
+# No API key: the model (~130 MB) downloads once from Hugging Face, then runs offline.
+embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
+
+# Step 4 - STORE. ChromaDB keeps chunks + vectors in the chroma_db/ folder,
+# so ingestion runs once and every later query just reads from disk.
+db = chromadb.PersistentClient(path="chroma_db")
+collection = db.get_or_create_collection("shiprocket_dhrp")
+vector_store = ChromaVectorStore(chroma_collection=collection)
+storage_context = StorageContext.from_defaults(vector_store=vector_store)
+
+# Step 5 - RUN the pipeline: split every page, embed every chunk, write to Chroma.
+index = VectorStoreIndex.from_documents(
+    documents,
+    storage_context=storage_context,
+    transformations=[splitter],
+    embed_model=embed_model,
+    show_progress=True,
+)
+
+print(f"Done. Chroma collection 'shiprocket_dhrp' holds {collection.count()} chunks.")</pre>
+<div class="label">Run it</div>
+<pre class="cmd">.venv/bin/python ingest.py</pre>
+<div class="label">The output we got</div>
+<pre class="out">Step 1: loaded 543 pages from data/
+Done. Chroma collection 'shiprocket_dhrp' holds 885 chunks.</pre>
+
+<h2><span class="n">06</span>Script 2: query_test.py proves the retrieval works</h2>
+<p>This script embeds your question with the same model and asks ChromaDB for the 3 nearest chunks. It uses no AI writing and no API key.</p>
+<pre>"""Sanity check: pull the 3 most relevant chunks for a question.
+
+Pure retrieval - no LLM and no API key needed.
+
+Run from this folder:  .venv/bin/python query_test.py "your question"
+"""
+
+import sys
+
+import chromadb
+from llama_index.core import VectorStoreIndex
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.vector_stores.chroma import ChromaVectorStore
+
+question = " ".join(sys.argv[1:]) or "What are the main risk factors for Shiprocket?"
+
+# Same embedding model as ingest.py - the question must live in the same vector space.
+embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
+
+# Reopen the store built by ingest.py. Nothing is re-embedded here.
+db = chromadb.PersistentClient(path="chroma_db")
+collection = db.get_or_create_collection("shiprocket_dhrp")
+vector_store = ChromaVectorStore(chroma_collection=collection)
+index = VectorStoreIndex.from_vector_store(vector_store, embed_model=embed_model)
+
+retriever = index.as_retriever(similarity_top_k=3)
+print(f"Question: {question}\n")
+for i, node in enumerate(retriever.retrieve(question), 1):
+    page = node.metadata.get("page_label", "?")
+    print(f"--- Result {i} | page {page} | score {node.score:.3f} ---")
+    print(node.text[:400].strip())
+    print()</pre>
+<div class="label">The output we got</div>
+<pre class="out">Question: What are the main risk factors for Shiprocket?
+
+--- Result 1 | page 39 | score 0.645 ---
+See - "Risk Factors - There are outstanding legal proceedings against
+our Company. Any adverse decision in such proceedings may render
+us/them liable to liabilities/penalties and may adversely affect our
+business, cash flows and reputation." on page 54. ...
+
+--- Result 2 | page 377 | score 0.588 ---
+Shiprocket Limited ... Annexure VII - Notes to the Restated
+Consolidated Ind AS Summary Statements ... Financial Risk Management
+Objectives and Policies ... Credit risk ... Trade receivables ...
+
+--- Result 3 | page 417 | score 0.587 ---
+Other price risk. Our exposure to price risk arises from our
+investment in mutual funds. ...</pre>
+
+<h2><span class="n">07</span>Script 3: ask.py writes the answer through Codex</h2>
+<p>Install the Codex CLI once and log in with a ChatGPT account:</p>
+<pre class="cmd">npm install -g @openai/codex
+codex login</pre>
+<p>The script retrieves the 5 nearest chunks, builds one prompt with the chunks inside it, and sends the prompt to Codex. The prompt tells the model to use only the retrieved context.</p>
+<pre>"""Ask the Shiprocket DHRP a question and get a written answer.
+
+Retrieval: LlamaIndex embeds the question and ChromaDB returns the
+nearest chunks. That part is local and free.
+Generation: the chunks and the question go to an LLM as one prompt.
+
+Two modes:
+  .venv/bin/python ask.py "your question"          -&gt; answers via the Codex CLI
+  .venv/bin/python ask.py --print "your question"  -&gt; prints the prompt instead,
+                                                      to paste into any free AI chat
+"""
+
+import subprocess
+import sys
+
+import chromadb
+from llama_index.core import VectorStoreIndex
+from llama_index.embeddings.huggingface import HuggingFaceEmbedding
+from llama_index.vector_stores.chroma import ChromaVectorStore
+
+args = sys.argv[1:]
+print_only = "--print" in args
+args = [a for a in args if a != "--print"]
+question = " ".join(args) or "What are the main risk factors for Shiprocket?"
+
+# Step 1 - RETRIEVE. Same embedding model as ingest.py, top 5 chunks.
+embed_model = HuggingFaceEmbedding(model_name="BAAI/bge-small-en-v1.5")
+db = chromadb.PersistentClient(path="chroma_db")
+collection = db.get_or_create_collection("shiprocket_dhrp")
+index = VectorStoreIndex.from_vector_store(
+    ChromaVectorStore(chroma_collection=collection), embed_model=embed_model
+)
+nodes = index.as_retriever(similarity_top_k=5).retrieve(question)
+print(f"Retrieved {len(nodes)} chunks from pages: "
+      f"{[n.metadata.get('page_label', '?') for n in nodes]}\n", flush=True)
+
+# Step 2 - BUILD the prompt. The context travels inside the prompt itself,
+# so the LLM answers from the prospectus and not from its own memory.
+context = "\n\n".join(
+    f"[{i}] (page {n.metadata.get('page_label', '?')})\n{n.text.strip()}"
+    for i, n in enumerate(nodes, 1)
+)
+prompt = f"""You are a financial analyst. Answer the question using ONLY the context below, which comes from the Shiprocket Limited draft red herring prospectus (UDRHP). Cite the page number after each fact, like (p. 54). If the context does not contain the answer, say "The retrieved sections do not answer this." Do not use any other knowledge.
+
+CONTEXT:
+{context}
+
+QUESTION: {question}"""
+
+# Step 3 - GENERATE.
+if print_only:
+    print(prompt)
+    sys.exit(0)
+
+# codex exec runs one non-interactive turn and prints the answer.
+# It uses the ChatGPT login stored by `codex login`; no API key is needed.
+subprocess.run(["codex", "exec", prompt])</pre>
+<div class="label">Run it</div>
+<pre class="cmd">.venv/bin/python ask.py "How much money does Shiprocket plan to raise in this IPO and what will the money be used for?"</pre>
+<div class="label">The answer Codex wrote</div>
+<pre class="out">The retrieved sections do not state the total amount Shiprocket plans
+to raise in the IPO.
+
+It plans to use net proceeds for:
+
+- Rs 5,050 million to grow its platforms, including marketing and
+  technology investments for its Core and Emerging Businesses. (p. 137)
+- Rs 2,100 million to repay or prepay certain borrowings, including
+  accrued interest. (p. 137)
+- Unspecified amounts for inorganic growth through unidentified
+  acquisitions and general corporate purposes; together, these cannot
+  exceed 35% of gross proceeds. (p. 137)</pre>
+<div class="note"><b>Read the first line again.</b> The total raise was not inside the retrieved chunks, so the model said so instead of inventing a number. The two amounts it did give are real figures from the prospectus, each with a page you can check. That behaviour is the purpose of the whole pipeline.</div>
+
+<div class="note free"><b>Free route at home.</b> You do not need a ChatGPT plan for this lab. Run <code>ask.py --print "your question"</code> and the script prints the full prompt with the retrieved chunks inside it. Paste that prompt into whichever free AI chat you already use. The retrieval on your laptop stays free forever.</div>
+
+<h2><span class="n">08</span>Where to go from here</h2>
+<p>Change <code>chunk_size</code> in ingest.py to 512 and rebuild, then compare the retrieval quality. Raise <code>similarity_top_k</code> in ask.py from 5 to 10 and watch the answers gain detail. Swap the document: every DHRP on the SEBI site has objects of the issue, risk factors, promoter details and litigation, so your ten test questions transfer to any IPO you are studying.</p>
+
+<footer>
+Module 02 &middot; Prompt Engineering &amp; RAG for Financial Analysis &middot; Faculty: Tejas Jadhav, CFA, FRM<br>
+<a href="../index.html">&larr; Back to the course site</a>
+</footer>
+
+</div>
+</body>
+</html>

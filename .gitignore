@@ -4,3 +4,4 @@ capstone/*.py
 capstone/*.html
 capstone/groups.json
 capstone/originals.json
+build_module3.py

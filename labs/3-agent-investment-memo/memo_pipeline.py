@@ -48,7 +48,7 @@ def research_agent():
     lines.append(f"- Total debt FY{facts['year']}: Rs {facts['debt']:,.0f} cr")
     lines.append(f"- Equity FY{facts['year']}: Rs {facts['equity']:,.0f} cr")
     lines.append("")
-    lines.append("Source: company_facts.csv (filled by the student from published results).")
+    lines.append("Source: company_facts.csv (filled from the company's published results).")
     (OUT / "1_research_notes.md").write_text("\n".join(lines))
     print(f"RESEARCH AGENT  done — {len(facts)} facts handed to the Analysis Agent")
     return facts

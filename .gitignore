@@ -5,3 +5,4 @@ capstone/*.html
 capstone/groups.json
 capstone/originals.json
 build_module3.py
+build_m3_doc.py

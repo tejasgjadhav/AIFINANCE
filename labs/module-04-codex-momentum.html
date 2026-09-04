@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Momentum Backtest in Codex</title>
+<meta name="description" content="Module 4 live lab: one English sentence into Codex becomes a NIFTY 50 momentum backtest with a plan, cost scenarios and a monthly return table.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#03030f;--bg2:#07071a;--c1:#00d4ff;--c2:#7c3aed;--c3:#f59e0b;--txt:#f1f5f9;--txt2:#94a3b8;--b1:rgba(0,212,255,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:860px;margin:0 auto;padding:4rem 1.4rem 5rem}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c1);margin-bottom:1rem}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,5vw,2.9rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.lede{color:var(--txt2);font-size:1.05rem;max-width:680px;margin-bottom:.6rem}
+.pipe{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--c1);background:rgba(0,212,255,.06);border:1px solid var(--b1);border-radius:10px;padding:.6rem 1rem;margin:1.4rem 0 0}
+h2{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;margin:3.2rem 0 .9rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.07)}
+h2 .n{color:var(--c1);font-size:1rem;vertical-align:.12em;margin-right:.5rem}
+p{margin-bottom:1rem;color:var(--txt)}
+p.dim{color:var(--txt2)}
+ol.comp{list-style:none;counter-reset:c;margin:1.2rem 0}
+ol.comp li{counter-increment:c;position:relative;padding:0 0 1.15rem 3rem}
+ol.comp li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:.15rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;color:var(--c1);border:1px solid var(--b1);border-radius:8px;padding:.1rem .45rem;background:rgba(0,212,255,.05)}
+ol.comp b{color:var(--txt);font-weight:600}
+pre{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.1rem 1.25rem;overflow-x:auto;margin:1.1rem 0 1.5rem;font-family:'JetBrains Mono',monospace;font-size:.83rem;line-height:1.6;color:#c9d6e3;white-space:pre-wrap}
+.cmd{border-left:3px solid var(--c1)}
+.label{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:1.6rem 0 .6rem}
+.shot{border:1px solid rgba(255,255,255,.1);border-radius:14px;overflow:hidden;margin:.4rem 0 1.4rem;background:var(--bg2)}
+.shot img{display:block;width:100%;height:auto}
+.note{background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(124,58,237,.06));border:1px solid var(--b1);border-radius:14px;padding:1.1rem 1.3rem;margin:1.4rem 0}
+.note b{color:var(--c1)}
+.free{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.05)}
+.free b{color:var(--c3)}
+a{color:var(--c1);text-decoration:none}
+a:hover{text-decoration:underline}
+footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);color:var(--txt2);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Module 04 · Live Lab · Agentic AI &amp; Advanced Analytics in Finance</div>
+<h1>Momentum Backtest in Codex</h1>
+<p class="lede">We type one English sentence into Codex. Codex writes a research plan, asks for approval, then builds and runs a momentum backtest on two years of NSE data in front of the class.</p>
+<div class="pipe">One sentence &rarr; Codex asks 3 questions &rarr; Codex writes a plan &rarr; we approve &rarr; the backtest runs &rarr; a monthly return table</div>
+
+<h2><span class="n">01</span>The sentence we typed</h2>
+<pre class="cmd">We want to run a Momentum strategy on last two year NSE data with a goal that we get monthly returns above 5%.</pre>
+<p>That is the whole brief. There is no code in it and no data attached. It carries a goal, a market, a window and a target. Module 4 calls this the goal. Everything Codex does next is the loop.</p>
+
+<h2><span class="n">02</span>What Codex did before it wrote any code</h2>
+<ol class="comp">
+<li><b>It checked the workspace.</b> It ran one command to list the files and found no data and no code.</li>
+<li><b>It asked us three questions.</b> It pinned down the strategy and the success criteria before planning.</li>
+<li><b>It searched the web for NSE data sources.</b> It found the NSE historical reports and the reports catalogue, so the data pipeline is auditable.</li>
+<li><b>It called the target what it is.</b> Codex wrote that 5% a month is an aggressive target and that the plan should treat it as a constraint to evaluate, not a return to promise.</li>
+<li><b>It wrote the plan and stopped.</b> It asked "Implement this plan?" and waited. Nothing was built until we said yes.</li>
+</ol>
+
+<div class="label">The screen in class</div>
+<div class="shot"><img src="module-04-codex-plan.png" alt="Codex chat on the left with the one-sentence brief and its working notes, and the NIFTY 50 momentum backtest plan on the right with summary, strategy and data rules, and outputs"></div>
+
+<h2><span class="n">03</span>The plan Codex wrote</h2>
+<ol class="comp">
+<li><b>Data.</b> Download 36 months of NSE data ending at the latest completed session. The first 12 months form the signal. The final 24 months are the test.</li>
+<li><b>Universe.</b> At each month-end, use the NIFTY 50 constituents that were actually in the index on that date, not today's list.</li>
+<li><b>Signal.</b> Rank the stocks by 12-1 momentum: the return from 12 months ago to one month before the rebalance date.</li>
+<li><b>Portfolio.</b> Hold the top five at 20% each. Long only, always fully invested.</li>
+<li><b>Timing.</b> Use only month-end information for the signal, then trade at the next NSE session's open. Compute daily NAV and calendar-month returns.</li>
+<li><b>Data honesty.</b> Use adjusted prices with documented corporate-action adjustments. If a stock lacks enough validated history, halt and flag the run instead of quietly substituting data.</li>
+<li><b>Costs.</b> Run three scenarios: 25, 50 and 100 bps round trip, charged as 12.5, 25 and 50 bps on each buy and sell leg.</li>
+<li><b>Benchmark.</b> Compare every run to the NIFTY 50 total return, with a price-return comparison kept for reconciliation.</li>
+<li><b>Outputs.</b> One run configuration with the as-of date, data path, lookback of 12 months, skip of 1 month, holdings of 5 and the cost scenario. The run writes monthly holdings, ranks, turnover, trades, and gross and net NAV and return series.</li>
+</ol>
+
+<h2><span class="n">04</span>What you do in class</h2>
+<p>Approve the plan. Watch the run. Then read the monthly return table and count the months above 5%. Read the same table at 25, 50 and 100 bps and write down what costs take away. Compare the final line to the NIFTY 50 total return over the same 24 months.</p>
+<div class="note"><b>The point of the lab.</b> The 5% target survives or fails on data, not on the prompt. A backtest is a ceiling on what a rule can earn, never a promise. Codex said the same thing in its first paragraph, and that habit is the one to copy.</div>
+
+<div class="note free"><b>Do it yourself.</b> Open Codex, paste the sentence from section 01 and read the plan it writes before you approve anything. Change one thing, such as holding ten stocks instead of five or skipping two months instead of one, and read how the plan and the monthly table change. If you have no Codex plan, paste the same sentence into any free AI chat and ask it for the plan only. Compare it to the one above.</div>
+
+<h2><span class="n">05</span>Where to go from here</h2>
+<p>Swap the universe to the NIFTY Next 50 and see whether the signal holds. Add a stop at a fixed drawdown and see what it does to the monthly table. Run the same brief with a mean-reversion rule instead of momentum and put the two tables side by side.</p>
+
+<footer>
+Module 04 &middot; Algorithmic Trading &amp; Execution Strategies &middot; Faculty: Tejas Jadhav, CFA, FRM<br>
+<a href="../index.html">&larr; Back to the course site</a>
+</footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Module 4 Group Assignment — Connect, Retrieve, Backtest</title>
+<meta name="description" content="Module 4 graded group assignment, 10 marks: connect an MCP server to TradingView or a broker, build a RAG bot over the three latest IPO prospectuses, and backtest a momentum strategy against a 75% win rate and 5% net return target.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#03030f;--bg2:#07071a;--c1:#00d4ff;--c2:#7c3aed;--c3:#f59e0b;--c4:#ef4444;--txt:#f1f5f9;--txt2:#94a3b8;--b1:rgba(0,212,255,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:4rem 1.4rem 5rem}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c1);margin-bottom:1rem}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,5vw,2.9rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.lede{color:var(--txt2);font-size:1.05rem;max-width:700px;margin-bottom:.6rem}
+.pipe{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--c1);background:rgba(0,212,255,.06);border:1px solid var(--b1);border-radius:10px;padding:.6rem 1rem;margin:1.4rem 0 0}
+h2{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;margin:3.2rem 0 .9rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.07)}
+h2 .n{color:var(--c1);font-size:1rem;vertical-align:.12em;margin-right:.5rem}
+h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin:1.8rem 0 .6rem;color:var(--txt)}
+p{margin-bottom:1rem;color:var(--txt)}
+p.dim{color:var(--txt2)}
+ol.comp{list-style:none;counter-reset:c;margin:1.2rem 0}
+ol.comp li{counter-increment:c;position:relative;padding:0 0 1.15rem 3rem}
+ol.comp li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:.15rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;color:var(--c1);border:1px solid var(--b1);border-radius:8px;padding:.1rem .45rem;background:rgba(0,212,255,.05)}
+ol.comp b,ul.plain b{color:var(--txt);font-weight:600}
+ul.plain{list-style:none;margin:1rem 0}
+ul.plain li{position:relative;padding:0 0 .7rem 1.3rem;color:var(--txt)}
+ul.plain li::before{content:"";position:absolute;left:0;top:.72rem;width:6px;height:6px;border-radius:50%;background:var(--c1)}
+pre{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.1rem 1.25rem;overflow-x:auto;margin:1.1rem 0 1.5rem;font-family:'JetBrains Mono',monospace;font-size:.83rem;line-height:1.6;color:#c9d6e3;white-space:pre-wrap}
+.cmd{border-left:3px solid var(--c1)}
+code{font-family:'JetBrains Mono',monospace;font-size:.84em;color:var(--c1);background:rgba(0,212,255,.07);border:1px solid var(--b1);border-radius:6px;padding:.08em .38em}
+.tablewrap{overflow-x:auto;margin:1.1rem 0 1.5rem;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:var(--bg2)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:.72rem .95rem;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+th{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);font-weight:500;background:rgba(255,255,255,.02)}
+tbody tr:last-child td{border-bottom:none}
+td.mk{font-family:'JetBrains Mono',monospace;color:var(--c1);white-space:nowrap}
+.label{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:1.6rem 0 .6rem}
+.note{background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(124,58,237,.06));border:1px solid var(--b1);border-radius:14px;padding:1.1rem 1.3rem;margin:1.4rem 0}
+.note b{color:var(--c1)}
+.free{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.05)}
+.free b{color:var(--c3)}
+.warn{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.05)}
+.warn b{color:var(--c4)}
+.marks{display:inline-block;font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--c3);border:1px solid rgba(245,158,11,.35);background:rgba(245,158,11,.06);border-radius:8px;padding:.15rem .55rem;margin-left:.6rem;vertical-align:.18em}
+a{color:var(--c1);text-decoration:none}
+a:hover{text-decoration:underline}
+footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);color:var(--txt2);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Module 04 &middot; Graded Group Assignment &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
+<h1>Connect, Retrieve, Backtest</h1>
+<p class="lede">The class is split into six groups. Every group does all three parts. The assignment carries 10 marks and is graded in a two-hour live review, not on the slides.</p>
+<div class="pipe">Part 1 MCP &rarr; Part 2 RAG &rarr; Part 3 Backtest &rarr; one hour coding live &rarr; one hour demonstrating</div>
+
+<div class="note"><b>Read this first.</b> You are not asked to produce a profitable strategy. You are asked to produce a result you can defend. A group that reports "we did not hit the target, and here is the evidence" scores full marks on Part 3. A group that reports a hit it cannot reproduce scores zero on Part 3.</div>
+
+<h2><span class="n">01</span>How the assignment is organised</h2>
+<ul class="plain">
+<li><b>Six groups.</b> Group sizes are announced in class. Each group works on all three parts.</li>
+<li><b>Ten marks in total.</b> Part 1 carries 3, Part 2 carries 3, Part 3 carries 3, and the demonstration carries 1.</li>
+<li><b>We use Codex.</b> Codex is the client for every part of this assignment. Claude Code is accepted as an alternative, and section 02 gives the route for both.</li>
+<li><b>The review is live.</b> You get one hour to code in front of the faculty and one hour to demonstrate. Section 07 explains what each hour is for.</li>
+<li><b>Everything must be free.</b> No group is expected to pay for a data feed, an API plan or an AI subscription. Every route below has a free tier.</li>
+<li><b>Nothing goes live.</b> Use a paper account, a sandbox key or a read-only connection. No group places a real order. Any group that trades real money on this assignment scores zero on Part 1.</li>
+<li><b>Each group gets its own instrument set.</b> The table in section 05 gives every group its own chart instruction and its own backtest universe, so six different systems are demonstrated in class.</li>
+</ul>
+
+<h2><span class="n">02</span>Part 1 — Install an MCP and drive a chart<span class="marks">3 marks</span></h2>
+<p>Module 3 taught what MCP is. This part asks you to run one. You will not write a configuration file. You will find the MCP, tell Codex to install it in one plain English line, and then ask it to do something on a chart.</p>
+
+<h3>The method, in three steps</h3>
+<ol class="comp">
+<li><b>Search for it.</b> Type what you want into Google, followed by the word MCP. Example: <code>TradingView MCP</code>. Read the top result and confirm that the server exists and is free.</li>
+<li><b>Set up the thing it drives.</b> An MCP that drives TradingView needs TradingView on the machine. Download the TradingView desktop app and complete the free sign-up. Log in and leave a chart open. Do this before you talk to Codex, because the server has nothing to connect to otherwise.</li>
+<li><b>Tell Codex in one line.</b> Open Codex and type the instruction as a sentence. Codex installs the server and does the work.</li>
+</ol>
+
+<div class="label">The line we typed in class</div>
+<pre class="cmd">Install TradingView MCP and draw open high low on the Bitcoin chart for intraday.</pre>
+<p>That is the whole instruction. There is no config file in it, no path and no command. Codex finds the server, installs it, connects to the app that is already running, and draws on the chart. Watch what it asks you before it acts, and approve each step.</p>
+
+<h3>What your group does</h3>
+<ol class="comp">
+<li><b>Run the search</b> and write down the server you picked, where it came from and who publishes it.</li>
+<li><b>Install the app and log in</b> on a free account. Record which version you installed.</li>
+<li><b>Give Codex your group&rsquo;s one-line instruction</b> from the table in section 05. Type it as a sentence, not as a command.</li>
+<li><b>Let it draw.</b> The chart must change on screen. A text answer about what the levels are does not count.</li>
+<li><b>Ask one question the tool must answer, not the model.</b> Example: "What is the last traded price on this chart and what is the timestamp on it?" Then check that price against the exchange or the exchange website yourself.</li>
+<li><b>Write down the delay.</b> State whether your feed is real time or delayed, and by how many minutes. A free account is usually delayed. Saying so is part of the mark.</li>
+</ol>
+
+<h3>What you show in the review</h3>
+<ul class="plain">
+<li>Say which search you ran and which server you chose.</li>
+<li>Read out the exact sentence you gave Codex.</li>
+<li>Open Codex on screen with the server installed and its tools listed.</li>
+<li>Show the chart with your drawing on it, live.</li>
+<li>Tell us in six lines what the server is, what it drew, what the delay is, and the one thing that broke on the way.</li>
+</ul>
+
+<div class="note warn"><b>Never paste a live API key into a chat window or a slide.</b> TradingView needs only a free login, so most groups will not touch a key at all. Any group that takes the broker route keeps its keys in a local file and in an environment variable. Close the file before you share your screen. A key that appears on screen loses the Part 1 mark, and you must rotate that key the same day.</div>
+
+<h2><span class="n">03</span>Part 2 — RAG over the three latest IPO prospectuses<span class="marks">3 marks</span></h2>
+<p>Module 2 built a question and answer bot over the Shiprocket DRHP. This part repeats that work on three documents at once, and on documents nobody has read for you.</p>
+
+<h3>The stack is fixed</h3>
+<p>Every group builds the same pipeline, so the six results are comparable and the marker can read any group&rsquo;s code.</p>
+<ul class="plain">
+<li><b>LlamaIndex</b> loads the prospectus, splits it into chunks and creates the embeddings.</li>
+<li><b>ChromaDB</b> stores the vectors.</li>
+<li><b>The LlamaIndex retriever</b> fetches the chunks that answer each question.</li>
+<li><b>Codex</b> writes the code. Tell it the stack in your first sentence, the same way you told it the MCP.</li>
+</ul>
+<p class="dim">Do not substitute another framework or another database. A group that ships LangChain or FAISS instead loses one mark on Part 2, however well it works.</p>
+
+<h3>Pick the documents</h3>
+<ul class="plain">
+<li>Take the <b>three most recent mainboard IPOs</b> listed on the NSE or the BSE as of the day your group starts.</li>
+<li>Write down each company name, the listing date and the exchange. Those three dates fix your document set for the rest of the assignment.</li>
+<li>Download the <b>RHP or the DRHP</b> for each company from the SEBI website or the exchange filing page. Note the file name, the number of pages and the date on the cover.</li>
+<li>Do not use a news summary or a broker note in place of the prospectus. The prospectus is the source.</li>
+</ul>
+
+<h3>Answer these six questions for each company</h3>
+<ol class="comp">
+<li><b>Issue size.</b> How large is the issue, and how does it split between the fresh issue and the offer for sale?</li>
+<li><b>Objects of the issue.</b> What does the company say it will do with the fresh issue money?</li>
+<li><b>Financials.</b> Revenue from operations and profit after tax for each of the last three financial years.</li>
+<li><b>Risk factors.</b> Three risks that are specific to this company. A risk that would apply to any listed company does not count.</li>
+<li><b>Promoter holding.</b> The promoter shareholding before the issue and after the issue.</li>
+<li><b>Peers.</b> The peer group the company itself names, and how the price band compares with the peer median on the multiple the prospectus uses.</li>
+</ol>
+
+<div class="note"><b>Every answer carries a page number.</b> Six questions across three companies come to eighteen answers, so the table carries eighteen citations. The marker will open your prospectus at three of those pages at random. If the number is not on the page you cited, that answer is wrong even if the number is right.</div>
+
+<h3>What you show in the review</h3>
+<ul class="plain">
+<li>Name the three companies, their listing dates and the prospectus files you used.</li>
+<li>Show your LlamaIndex settings on screen: chunk size, chunk overlap, the embedding model, and how many chunks the retriever returns per question.</li>
+<li>Show the ChromaDB collection and how many vectors it holds.</li>
+<li>Put the table of 18 answers with page citations on a slide.</li>
+<li>Tell us one question your bot got wrong, the wrong answer it gave, and why the retrieval missed.</li>
+</ul>
+
+<h2><span class="n">04</span>Part 3 — Backtest against a hard target<span class="marks">3 marks</span></h2>
+<p>Build a momentum strategy on your assigned universe and test it against a target of a <b>75% win rate</b> and a <b>5% net monthly return</b>. Net means after costs. The target is deliberately hard. Your job is to measure the distance to it and to report that distance honestly.</p>
+
+<h3>The rules of the test</h3>
+<ol class="comp">
+<li><b>Window.</b> Use the last 24 completed months of daily data, ending on the last completed session before you start.</li>
+<li><b>Split the window.</b> Use the first 12 months to choose your parameters. Freeze those parameters. Then run the last 12 months once, and do not go back and change anything. Report both halves separately.</li>
+<li><b>Signal.</b> A momentum rule of your choosing. Rank by trailing return, or use a moving average crossover, or use RSI. Write the rule in one sentence before you code it.</li>
+<li><b>Timing.</b> Generate the signal on a closed bar. Enter on the next session. A backtest that enters on the same bar that produced the signal is looking into the future and scores zero.</li>
+<li><b>Costs.</b> Run the same strategy three times, at 25, 50 and 100 basis points round trip. Report all three.</li>
+<li><b>Trade count.</b> Report the number of trades. A win rate computed on fewer than 30 trades is not evidence, and you should say so in your own report.</li>
+<li><b>Benchmark.</b> Compare the net result with buying and holding the index for your universe over the same 24 months.</li>
+</ol>
+
+<h3>What you report</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Number</th><th>What it means</th></tr></thead>
+<tbody>
+<tr><td>Win rate</td><td>Winning trades divided by total trades, in sample and out of sample, stated separately</td></tr>
+<tr><td>Net monthly return</td><td>The monthly return series after costs, at each of the three cost levels</td></tr>
+<tr><td>Months above 5%</td><td>How many of the 24 months cleared the target, and how many did not</td></tr>
+<tr><td>Maximum drawdown</td><td>The largest peak to trough fall in the equity curve</td></tr>
+<tr><td>Sharpe ratio</td><td>Computed on the net series, with the risk-free rate you used stated</td></tr>
+<tr><td>Trades</td><td>The count, and the average holding period in sessions</td></tr>
+<tr><td>Verdict</td><td>One sentence: was the 75% and 5% target met, and on which half of the data</td></tr>
+</tbody>
+</table></div>
+
+<div class="note free"><b>The target is probably out of reach, and that is the lesson.</b> A win rate of 75% and a net 5% a month is roughly an 80% annual return with almost no losing trades. Very few strategies survive that test once costs are charged. If your first result clears the target easily, the most likely explanation is a bug: a same-bar entry, a survivorship-biased universe, or parameters fitted on the same data you tested. Look for the bug before you report the win.</div>
+
+<h2><span class="n">05</span>Group allocations</h2>
+<p>Every group uses TradingView for Part 1, because a free login is all it needs and nobody has to open a demat account. Each group gets its own one-line instruction and its own backtest universe, so six different systems are demonstrated in class. All six groups answer the same six IPO questions in Part 2, on whichever three companies are the most recent listings when they start.</p>
+
+<div class="tablewrap"><table>
+<thead><tr><th>Group</th><th>Part 1 — the line you give Codex</th><th>Part 3 universe</th><th>Benchmark</th></tr></thead>
+<tbody>
+<tr><td class="mk">G1</td><td>Install TradingView MCP and mark the previous day high and low on the NIFTY 50 chart on a 15 minute timeframe.</td><td>NIFTY 50 constituents</td><td>NIFTY 50</td></tr>
+<tr><td class="mk">G2</td><td>Install TradingView MCP and mark the opening range of the first 15 minutes on the BANKNIFTY chart on a 5 minute timeframe.</td><td>NIFTY Bank constituents</td><td>NIFTY Bank</td></tr>
+<tr><td class="mk">G3</td><td>Install TradingView MCP and add a 20 day and a 50 day moving average to the INFY daily chart and mark where they cross.</td><td>NIFTY IT constituents</td><td>NIFTY IT</td></tr>
+<tr><td class="mk">G4</td><td>Install TradingView MCP and draw the open, the high and the low on the Bitcoin chart on a 1 hour timeframe.</td><td>NIFTY Auto constituents</td><td>NIFTY Auto</td></tr>
+<tr><td class="mk">G5</td><td>Install TradingView MCP and mark the 52 week high and the 52 week low on the Gold daily chart.</td><td>NIFTY FMCG constituents</td><td>NIFTY FMCG</td></tr>
+<tr><td class="mk">G6</td><td>Install TradingView MCP and add RSI to the USDINR 1 hour chart and mark every point where it crosses 70 or 30.</td><td>NIFTY Pharma constituents</td><td>NIFTY Pharma</td></tr>
+</tbody>
+</table></div>
+
+<p class="dim">A group that already holds a demat account may swap TradingView for its own broker&rsquo;s MCP, keeping the same drawing task where the broker supports it. Ask for that swap in class before you start. Do not swap silently. A group that demonstrates a different connector without approval loses one mark on Part 1.</p>
+
+<h2><span class="n">06</span>What you bring</h2>
+<p>There is nothing to upload and no file to hand in. You present the work. Bring these four things to your review slot.</p>
+<ol class="comp">
+<li><b>A working laptop.</b> It needs Codex installed, the TradingView app logged in, your prospectus files on disk, your ChromaDB folder built, and your backtest script ready to run. The review runs on your machine.</li>
+<li><b>Five slides.</b> Give one slide to each part, one to the numbers table and one to what broke. Do not bring more than five.</li>
+<li><b>Your prompt log.</b> Keep the prompts you used, in the order you used them, open in a file you can show. AI use is expected on this assignment. Hiding it is the problem, not using it.</li>
+<li><b>Every member of the group.</b> The review cannot start with a member missing.</li>
+</ol>
+
+<h2><span class="n">07</span>The live review — two hours</h2>
+<p>The faculty reviews every group in person. The session runs for two hours and splits in half.</p>
+
+<h3>Hour one — you code in front of us</h3>
+<ul class="plain">
+<li>Open your own project on your own laptop and work on it while we watch.</li>
+<li>Expect a change request on the spot. Example: swap the momentum lookback from 12 months to 6 and rerun, or add a fourth question to the RAG bot, or point the MCP connection at a symbol outside your universe.</li>
+<li>Use Codex during this hour. That is the point of the course, and it is not cheating here.</li>
+<li>We are watching whether the group can steer the tool, read the error and fix the thing. We are not watching whether you can type from memory.</li>
+</ul>
+
+<h3>Hour two — you demonstrate</h3>
+<ul class="plain">
+<li>Run the MCP live and redraw your chart while we watch, then read the last traded price and its timestamp off it.</li>
+<li>Answer two prospectus questions the faculty picks, and open the cited page to prove the answer.</li>
+<li>Show the backtest output at all three cost levels and state the verdict on the target.</li>
+<li>Every member of the group speaks. A silent member costs the group the live review mark.</li>
+</ul>
+
+<h2><span class="n">08</span>How it is marked</h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Part</th><th>What earns the mark</th><th>Marks</th></tr></thead>
+<tbody>
+<tr><td><b>Part 1 — MCP</b></td><td>Codex installs the server from one plain sentence, the drawing appears on the chart in front of the class, the price the tool returns matches the exchange, and the group states the feed delay</td><td class="mk">3</td></tr>
+<tr><td><b>Part 2 — RAG</b></td><td>The pipeline runs on LlamaIndex and ChromaDB, eighteen answers carry page citations that survive three spot checks, and the group gives one honest account of a retrieval failure</td><td class="mk">3</td></tr>
+<tr><td><b>Part 3 — Backtest</b></td><td>The split is respected, the three cost levels are reported, the trade count is stated, and the verdict on the target is defended with numbers</td><td class="mk">3</td></tr>
+<tr><td><b>Live review</b></td><td>The group changes its own code in the coding hour, every member speaks in the demonstration hour, the faculty’s questions are answered from the tool rather than from memory, and the group can say what it would fix next</td><td class="mk">1</td></tr>
+<tr><td colspan="2"><b>Total</b></td><td class="mk">10</td></tr>
+</tbody>
+</table></div>
+
+<h3>What loses marks</h3>
+<ul class="plain">
+<li>A number on a slide loses its mark when nobody can trace it back to an output file.</li>
+<li>A backtest that enters on the same bar as its signal scores zero on Part 3.</li>
+<li>A citation that points at the wrong page fails that answer.</li>
+<li>A live API key that appears on screen costs the whole Part 1 mark.</li>
+<li>A group where only one member can explain the code loses the demonstration mark.</li>
+</ul>
+
+<div class="note"><b>Reporting a failure correctly is worth full marks.</b> If the MCP server never connected, show the error and what you tried. If the RAG bot could not find the promoter table, say which page it should have found and why it missed. If the strategy lost money, report the loss. The course marks the quality of the evidence, not the size of the return.</div>
+
+<h2><span class="n">09</span>When it happens</h2>
+<p>The two-hour review slot for each group is announced in class. Start Part 2 first, because the prospectus download and the page-by-page checking take longer than the code.</p>
+
+<footer>
+Module 04 &middot; Algorithmic Trading &amp; Execution Strategies &middot; Agentic AI &amp; Advanced Analytics in Finance &middot; PGDM Semester III<br>
+Tejas Jadhav, CFA, FRM &middot; <a href="../index.html">Back to the course page</a>
+</footer>
+
+</div>
+</body>
+</html>

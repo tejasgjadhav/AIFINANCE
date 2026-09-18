@@ -258,83 +258,169 @@ goal_band(s, "Basel II, in one sentence:",
           "a bank that can prove its own PD, LGD and EAD models work is allowed to use them to set its own capital.")
 footer(s, 3)
 
-# ---------------------------------------------------------------- S4 BUILDING PD
+# ---------------------------------------------------------------- S4 BASEL II
+s = new_slide()
+slide_bg(s, BG)
+eyebrow(s, "HOUR 1 · BASEL II")
+title(s, "Who is allowed to use their own model?")
+txt(s, 0.6, 1.58, 12.13, 0.32, [(None, 0, [
+    ("Every bank must hold capital against its loans. Basel II gave banks two ways to work out how much.",
+     None, 12, False, MUTE)])])
+two = [
+    (0.6, WHITE, "THE STANDARDISED APPROACH", "The regulator gives you the numbers.", [
+        "A loan gets a risk weight from a published table.",
+        "The weight comes off the borrower's external rating.",
+        "The bank models nothing and estimates nothing.",
+        "Simple to run, and it usually demands more capital.",
+    ]),
+    (6.73, NAVY, "THE IRB APPROACH", "The bank estimates its own numbers.", [
+        "Foundation IRB: the bank estimates PD. The regulator still sets LGD and EAD.",
+        "Advanced IRB: the bank estimates PD, LGD and EAD itself.",
+        "This is where every model in this module actually gets used.",
+        "Permission is granted by the supervisor, and it can be taken away.",
+    ]),
+]
+for x, fill, kick, head, items in two:
+    dark = fill == NAVY
+    box(s, x, 2.0, 6.0, 2.6, fill)
+    txt(s, x + 0.28, 2.2, 5.4, 0.3, [(None, 0, [(kick, None, 9.5, True, GOLD if dark else BLUE)])])
+    txt(s, x + 0.28, 2.54, 5.4, 0.36, [(None, 0, [(head, "Georgia", 15, True, WHITE if dark else NAVY)])])
+    for k, t in enumerate(items):
+        txt(s, x + 0.28, 3.0 + k * 0.4, 5.4, 0.38,
+            [(None, 0, [("▪  ", None, 9.5, True, GOLD), (t, None, 9.5, False, SUBN if dark else INK)])])
+box(s, 0.6, 4.78, 12.13, 1.16, TINT1)
+box(s, 0.6, 4.78, 0.07, 1.16, BLUE)
+txt(s, 0.95, 4.94, 11.5, 0.9, [
+    (None, 0, [("WHY A BANK WANTS ITS OWN MODEL, IN ONE SUM", None, 9.5, True, BLUE)]),
+    (None, 4, [("Take a ₹100 crore corporate book. On the standardised weight of 100% the bank "
+                "holds 8% of ₹100 crore, which is ₹8 crore. Suppose its own model justifies an "
+                "effective weight of 60%. Now it holds 8% of ₹60 crore, which is ₹4.8 crore. "
+                "The same book has freed ₹3.2 crore of capital to lend again.",
+                None, 11, False, INK)]),
+])
+goal_band(s, "Basel II is a bargain, not a gift:",
+          "prove your model works and you may set your own capital. Fail to prove it and you go back to the regulator's table.")
+footer(s, 4)
+
+# ---------------------------------------------------------------- S5 BUILDING PD
 s = new_slide()
 slide_bg(s, BG)
 eyebrow(s, "HOUR 1 · BUILDING THE MODEL")
-title(s, "From a balance sheet to a probability")
-txt(s, 0.6, 1.62, 12.13, 0.34, [(None, 0, [
-    ("You start with things you already know about the borrower, and you end with one number between 0 and 1.",
+title(s, "From five ratios to one probability")
+txt(s, 0.6, 1.58, 12.13, 0.32, [(None, 0, [
+    ("Here is one borrower. These are numbers you already know how to compute from a balance sheet.",
      None, 12, False, MUTE)])])
-steps = [
-    ("WHAT GOES IN", "The ratios you already compute", [
-        "Current ratio and quick ratio",
-        "Debt to equity, and interest cover",
-        "Sales growth and margin trend",
-        "Behaviour: how often they paid late",
-    ]),
-    ("THE MODEL", "Three choices, in order of age", [
-        "Logistic regression: a formula you can print",
-        "Decision tree: a flowchart of if-then splits",
-        "XGBoost: hundreds of small trees, voting",
-        "Regulated lending still leans on the first",
-    ]),
-    ("WHAT COMES OUT", "One probability, per borrower", [
-        "0.04 means four in a hundred, not 'risky'",
-        "A cut-off turns it into approve or decline",
-        "The cut-off is a business decision",
-        "Move the cut-off and the losses move",
-    ]),
-]
-for i, (kick, head, items) in enumerate(steps):
-    x = 0.6 + i * 4.12
-    dark = i == 1
-    box(s, x, 2.1, 3.95, 3.4, NAVY if dark else WHITE)
-    txt(s, x + 0.28, 2.34, 3.4, 0.3, [(None, 0, [(kick, None, 9.5, True, GOLD if dark else BLUE)])])
-    txt(s, x + 0.28, 2.68, 3.4, 0.4, [(None, 0, [(head, "Georgia", 14, True, WHITE if dark else NAVY)])])
-    for j, t in enumerate(items):
-        txt(s, x + 0.28, 3.24 + j * 0.52, 3.4, 0.5,
-            [(None, 0, [("▪  ", None, 10, True, GOLD), (t, None, 10, False, SUBN if dark else INK)])])
-goal_band(s, "The trade you are making:",
-          "the newer the model, the better it predicts and the harder it is to explain to the person you just declined.")
-footer(s, 4)
+ratios = [("Current ratio", "1.4"), ("Debt to equity", "2.1"), ("Interest cover", "2.3"),
+          ("Sales growth", "−4%"), ("Times paid late", "3")]
+for k, (lab, val) in enumerate(ratios):
+    x = 0.6 + k * 2.45
+    box(s, x, 1.98, 2.3, 0.86, WHITE)
+    txt(s, x + 0.18, 2.1, 1.95, 0.3, [(None, 0, [(lab, None, 9, True, BLUE)])])
+    txt(s, x + 0.18, 2.4, 1.95, 0.38, [(None, 0, [(val, "Georgia", 17, True, NAVY)])])
+box(s, 0.6, 3.02, 12.13, 0.72, NAVY)
+box(s, 0.6, 3.02, 0.07, 0.72, GOLD)
+txt(s, 0.95, 3.02, 11.5, 0.72, [(None, 0, [
+    ("SCORE  =  −3.2  +  (0.8 × debt to equity)  −  (0.5 × interest cover)  +  (0.4 × times late)      ",
+     "Georgia", 13, True, WHITE),
+    ("→  PD = 4%", "Georgia", 14, True, GOLD)])], anchor=MSO_ANCHOR.MIDDLE)
+txt(s, 0.6, 3.94, 6.0, 1.7, [
+    (None, 0, [("Say what just happened", "Georgia", 15, True, NAVY)]),
+    (None, 6, [("Every ratio gets a weight. Multiply each ratio by its weight and add them up. "
+                "That total is the score. A curve then squeezes the score into a number between "
+                "0 and 1, and that number is the probability of default. There is nothing else "
+                "inside a logistic regression.", None, 11, False, INK)]),
+])
+txt(s, 6.9, 3.94, 5.83, 1.7, [
+    (None, 0, [("Why banks still start here", "Georgia", 15, True, NAVY)]),
+    (None, 6, [("You can print this model on one line. You can point at the weight that hurt "
+                "this borrower. A supervisor can recompute it by hand. For a regulated lending "
+                "decision, that matters more than the last two points of accuracy.",
+                None, 11, False, INK)]),
+])
+goal_band(s, "Do it live:",
+          "change interest cover from 2.3 to 1.1 in front of the class, recompute the score, and watch the PD move.")
+footer(s, 5)
 
-# ---------------------------------------------------------------- S5 IS IT ANY GOOD
+# ---------------------------------------------------------------- S6 LR vs XGBOOST
 s = new_slide()
 slide_bg(s, BG)
-eyebrow(s, "HOUR 1 · DOES THE MODEL ACTUALLY WORK?")
-title(s, "Four checks, in plain English")
-checks = [
-    ("AUC-ROC", "Pick one borrower who defaulted and one who did not, at random. AUC is the chance "
-     "the model scored the defaulter as riskier. 0.5 is a coin flip. A real model sits near 0.75."),
-    ("GINI", "The same information on a different scale: Gini = 2 × AUC − 1. A working scorecard is "
-     "usually somewhere around 0.5. Banks quote this one out of habit."),
-    ("KS STATISTIC", "The widest gap between the good borrowers and the bad ones as you move down "
-     "the score. It tells you where to put the cut-off."),
-    ("SHAP", "Which input pushed THIS applicant's score up or down. It is how you answer the only "
-     "question the customer asks, which is why they were declined."),
+eyebrow(s, "HOUR 1 · THE CHOICE EVERY TEAM ARGUES ABOUT")
+title(s, "The older model, or the one that predicts better?")
+three = [
+    (0.6, 3.95, WHITE, "LOGISTIC REGRESSION", "One weight per ratio, added up.",
+     "You can print it, explain one decline, and defend it line by line.",
+     "It assumes each ratio pushes in a straight line, which is not always true."),
+    (4.72, 3.95, WHITE, "DECISION TREE", "A flowchart of yes and no questions.",
+     "Anyone can read it. Interest cover below 1.5? Then debt to equity above 3?",
+     "Change the data slightly and the tree redraws itself completely."),
+    (8.84, 3.89, NAVY, "XGBOOST", "Hundreds of small trees, voting.",
+     "Each tree fixes the mistakes of the one before it. Usually the most accurate.",
+     "There is no single weight to point at, so a decline is hard to explain."),
 ]
-for i, (head, body) in enumerate(checks):
-    x = 0.6 + (i % 2) * 6.13
-    y = 1.72 + (i // 2) * 1.5
-    box(s, x, y, 6.0, 1.34, WHITE)
-    box(s, x, y, 0.06, 1.34, GOLD)
-    txt(s, x + 0.3, y + 0.18, 5.4, 0.32, [(None, 0, [(head, None, 11, True, BLUE)])])
-    txt(s, x + 0.3, y + 0.56, 5.4, 0.7, [(None, 0, [(body, None, 10.5, False, INK)])])
-box(s, 0.6, 4.78, 12.13, 1.32, NAVY)
-box(s, 0.6, 4.78, 0.07, 1.32, GOLD)
-txt(s, 0.95, 4.96, 11.5, 1.0, [
-    (None, 0, [("CASE  ·  WHEN A LENDER'S PD MODEL FAILS", None, 10, True, GOLD)]),
-    (None, 5, [("The pattern repeats. A lender trains on a boom, so the model has never seen a "
-                "downturn. Approvals rise because the model is confident. Nobody can explain an "
-                "individual decline, so the complaints land with the regulator. The finding is "
-                "rarely the mathematics. It is that the lender could not show how the model was "
-                "built, tested or monitored.", None, 11, False, SUBN)]),
-], anchor=MSO_ANCHOR.TOP)
-txt(s, 0.6, 6.3, 12.13, 0.4, [(None, 0, [
-    ("A model you cannot explain is a model you cannot defend, and defending it is the job.",
-     "Georgia", 14, True, NAVY)])])
-footer(s, 5)
+for x, w, fill, kick, head, pro, con in three:
+    dark = fill == NAVY
+    box(s, x, 1.68, w, 3.0, fill)
+    txt(s, x + 0.28, 1.9, w - 0.56, 0.3, [(None, 0, [(kick, None, 9.5, True, GOLD if dark else BLUE)])])
+    txt(s, x + 0.28, 2.24, w - 0.56, 0.6, [(None, 0, [(head, "Georgia", 15, True, WHITE if dark else NAVY)])])
+    txt(s, x + 0.28, 2.96, w - 0.56, 0.74,
+        [(None, 0, [("+  ", None, 10, True, GOLD), (pro, None, 10, False, SUBN if dark else INK)])])
+    txt(s, x + 0.28, 3.82, w - 0.56, 0.74,
+        [(None, 0, [("−  ", None, 10, True, GOLD), (con, None, 10, False, SUBN if dark else MUTE)])])
+box(s, 0.6, 4.86, 12.13, 1.1, TINT1)
+box(s, 0.6, 4.86, 0.07, 1.1, BLUE)
+txt(s, 0.95, 5.0, 11.5, 0.9, [
+    (None, 0, [("WHAT YOU ACTUALLY GAIN AND LOSE", None, 9.5, True, BLUE)]),
+    (None, 4, [("On the same data XGBoost usually buys you a few points of accuracy. That is real, "
+                "and it is smaller than people expect. What it costs you is the sentence you give "
+                "the customer who was declined. Most banks build both, use the sharper one to "
+                "challenge the simpler one, and ship the one they can explain.",
+                None, 11, False, INK)]),
+])
+goal_band(s, "The rule of thumb:",
+          "the newer the model, the better it predicts and the harder it is to defend to the person you just declined.")
+footer(s, 6)
+
+# ---------------------------------------------------------------- S7 READING IT
+s = new_slide()
+slide_bg(s, BG)
+eyebrow(s, "HOUR 1 · DOES IT WORK, AND CAN YOU EXPLAIN IT?")
+title(s, "Three checks on the model, one check on the decision")
+txt(s, 0.6, 1.56, 12.13, 0.32, [(None, 0, [
+    ("Take 1,000 borrowers. Fifty of them defaulted. Here is how you find out whether the model saw them coming.",
+     None, 12, False, MUTE)])])
+checks = [
+    ("AUC-ROC", "0.78", "Pick one borrower who defaulted and one who did not, at random. AUC is "
+     "how often the model gave the defaulter the higher risk score. Half is a coin flip. A real "
+     "working model sits near 0.78."),
+    ("GINI", "0.56", "The same fact on the scale banks prefer: Gini = 2 × AUC − 1. An AUC of 0.78 "
+     "is a Gini of 0.56. If somebody quotes you one, you can compute the other."),
+    ("KS STATISTIC", "0.41", "Sort all 1,000 by score, riskiest first. Walk down the list and "
+     "track how many defaulters and how many good borrowers you have picked up. KS is the widest "
+     "gap between the two, and it shows you where the cut-off earns its keep."),
+]
+for k, (head, val, body) in enumerate(checks):
+    x = 0.6 + k * 4.12
+    w = 3.95 if k < 2 else 3.89
+    box(s, x, 1.96, w, 2.2, WHITE)
+    box(s, x, 1.96, w, 0.05, GOLD)
+    txt(s, x + 0.28, 2.2, 2.2, 0.32, [(None, 0, [(head, None, 10, True, BLUE)])])
+    txt(s, x + w - 1.3, 2.12, 1.05, 0.44, [(PP_ALIGN.RIGHT, 0, [(val, "Georgia", 20, True, NAVY)])],
+        align=PP_ALIGN.RIGHT)
+    txt(s, x + 0.28, 2.66, w - 0.56, 1.3, [(None, 0, [(body, None, 10, False, INK)])])
+box(s, 0.6, 4.3, 12.13, 1.64, NAVY)
+box(s, 0.6, 4.3, 0.07, 1.64, GOLD)
+txt(s, 0.95, 4.48, 11.5, 1.3, [
+    (None, 0, [("SHAP  ·  THE ONE THAT EXPLAINS A PERSON, NOT A MODEL", None, 10, True, GOLD)]),
+    (None, 5, [("The three numbers above judge the whole model. They tell you it ranks borrowers "
+                "well. They cannot tell one rejected applicant why.", None, 11, False, SUBN)]),
+    (None, 5, [("SHAP takes a single decision apart. For this borrower: the interest cover of 2.3 "
+                "pushed the PD up by 1.8 points, the three late payments pushed it up 0.9 more, "
+                "and the current ratio pulled it back down 0.3. That is the sentence you give the "
+                "customer, and it is the one the regulator asks to see.", None, 11, False, WHITE)]),
+])
+goal_band(s, "Do it live:",
+          "train both models on a public credit file, print the AUC of each, then SHAP one rejected applicant and read the reason out loud.")
+footer(s, 7)
 
 # ---------------------------------------------------------------- S6 VaR
 s = new_slide()
@@ -376,7 +462,7 @@ txt(s, 6.9, 5.16, 5.83, 1.1, [
     (None, 6, [("95% and 99% are the thresholds you report. Run all three methods on the same "
                 "portfolio and you get three different answers. That gap is the lesson.", None, 11, False, INK)]),
 ])
-footer(s, 6)
+footer(s, 8)
 
 # ---------------------------------------------------------------- S7 THE LAB
 s = new_slide()
@@ -420,7 +506,7 @@ for x, w, fill, kick, head, items in parts:
             [(None, 0, [("\u25aa  ", None, 10, True, GOLD), (t, None, 10, False, SUBN if dark else INK)])])
 goal_band(s, "Why Part C matters most:",
           "building a VaR takes 35 minutes. Finding out it breached nine times when it should have breached three takes 15.")
-footer(s, 7)
+footer(s, 9)
 
 # ---------------------------------------------------------------- S8 PRACTICE
 s = new_slide()
@@ -458,7 +544,7 @@ txt(s, 0.9, 6.42, 11.5, 0.56, [(None, 0, [
     ("pick five listed stocks, and write down the one thing that would make all five fall together.", None, 11, False, WHITE)])],
     anchor=MSO_ANCHOR.MIDDLE)
 txt(s, 0.6, 7.08, 9.0, 0.25, [(None, 0, [("The tip is the shape of the answer, not the whole answer. Two or three sentences each in the exam.", None, 8, False, MUTE)])])
-txt(s, 10.13, 7.08, 2.6, 0.25, [(PP_ALIGN.RIGHT, 0, [("MODULE 5  ·  08", None, 8, False, MUTE)])], align=PP_ALIGN.RIGHT)
+txt(s, 10.13, 7.08, 2.6, 0.25, [(PP_ALIGN.RIGHT, 0, [("MODULE 5  ·  10", None, 8, False, MUTE)])], align=PP_ALIGN.RIGHT)
 
 OUT = "slides/Module-05-Risk-Modelling.pptx"
 prs.save(OUT)

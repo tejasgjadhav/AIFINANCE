@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Monte Carlo VaR in Codex</title>
+<meta name="description" content="Module 5 live lab: build a Monte Carlo VaR engine on five NSE stocks in Codex, compare it against two other methods, then backtest it against 250 real days.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#03030f;--bg2:#07071a;--c1:#00d4ff;--c2:#7c3aed;--c3:#f59e0b;--c4:#ef4444;--c5:#22c55e;--txt:#f1f5f9;--txt2:#94a3b8;--b1:rgba(0,212,255,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:4rem 1.4rem 5rem}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c1);margin-bottom:1rem}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,5vw,2.9rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.lede{color:var(--txt2);font-size:1.05rem;max-width:700px;margin-bottom:.6rem}
+.pipe{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--c1);background:rgba(0,212,255,.06);border:1px solid var(--b1);border-radius:10px;padding:.6rem 1rem;margin:1.4rem 0 0}
+h2{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;margin:3.2rem 0 .9rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.07)}
+h2 .n{color:var(--c1);font-size:1rem;vertical-align:.12em;margin-right:.5rem}
+h2 .mins{float:right;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--txt2);font-weight:400;margin-top:.45rem}
+h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin:1.8rem 0 .6rem}
+p{margin-bottom:1rem}
+p.dim{color:var(--txt2)}
+ol.comp{list-style:none;counter-reset:c;margin:1.2rem 0}
+ol.comp li{counter-increment:c;position:relative;padding:0 0 1.15rem 3rem}
+ol.comp li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:.15rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;color:var(--c1);border:1px solid var(--b1);border-radius:8px;padding:.1rem .45rem;background:rgba(0,212,255,.05)}
+ol.comp b,ul.plain b{color:var(--txt);font-weight:600}
+ul.plain{list-style:none;margin:1rem 0}
+ul.plain li{position:relative;padding:0 0 .7rem 1.3rem}
+ul.plain li::before{content:"";position:absolute;left:0;top:.72rem;width:6px;height:6px;border-radius:50%;background:var(--c1)}
+pre{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.1rem 1.25rem;overflow-x:auto;margin:1.1rem 0 1.5rem;font-family:'JetBrains Mono',monospace;font-size:.83rem;line-height:1.6;color:#c9d6e3;white-space:pre-wrap}
+.cmd{border-left:3px solid var(--c1)}
+.tablewrap{overflow-x:auto;margin:1.1rem 0 1.5rem;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:var(--bg2)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:.72rem .95rem;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+th{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);font-weight:500;background:rgba(255,255,255,.02)}
+tbody tr:last-child td{border-bottom:none}
+td.mk{font-family:'JetBrains Mono',monospace;color:var(--c1);white-space:nowrap}
+.label{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:1.6rem 0 .6rem}
+.note{background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(124,58,237,.06));border:1px solid var(--b1);border-radius:14px;padding:1.1rem 1.3rem;margin:1.4rem 0}
+.note b{color:var(--c1)}
+.free{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.05)}
+.free b{color:var(--c3)}
+.warn{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.05)}
+.warn b{color:var(--c4)}
+.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1.2rem 0 1.5rem}
+.zone{border-radius:14px;padding:.95rem 1.1rem;border:1px solid rgba(255,255,255,.1)}
+.zone .z{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.zone .c{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:500;line-height:1.2}
+.zg{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.3)}.zg .z,.zg .c{color:var(--c5)}
+.zy{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.3)}.zy .z,.zy .c{color:var(--c3)}
+.zr{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.3)}.zr .z,.zr .c{color:var(--c4)}
+.zone p{font-size:.85rem;color:var(--txt2);margin:.35rem 0 0}
+a{color:var(--c1);text-decoration:none}
+a:hover{text-decoration:underline}
+footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);color:var(--txt2);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Module 05 &middot; Live Lab &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
+<h1>Monte Carlo VaR in Codex</h1>
+<p class="lede">We build a value-at-risk engine on five NSE stocks in front of the class, then we do the two things nobody does afterwards. We check it against two other methods, and we test it against what actually happened.</p>
+<div class="pipe">A &nbsp;build the engine &nbsp;&rarr;&nbsp; B &nbsp;three methods, three answers &nbsp;&rarr;&nbsp; C &nbsp;count the breaches</div>
+
+<div class="note free"><b>Everything here is free, and no key is needed.</b> Codex writes the code. NumPy does the arithmetic. The risk note at the end can be written by pasting the computed numbers into any free AI chat. There is nothing to buy for this lab.</div>
+
+<h2><span class="n">A</span>Build the engine<span class="mins">35 minutes</span></h2>
+<p>We type one sentence. Codex asks what it needs, writes a plan, and waits for approval before it builds anything.</p>
+<pre class="cmd">Build a Monte Carlo VaR engine for a portfolio of five NSE stocks. Use two years of daily data. Run 10,000 paths and give me the 95% and 99% one-day VaR and the CVaR at each level.</pre>
+
+<h3>What the engine actually does</h3>
+<ol class="comp">
+<li><b>Gets the prices.</b> Two years of daily closes for five NSE stocks, converted into daily returns.</li>
+<li><b>Measures two things.</b> How much each stock moves on its own, and how the five move together. The second one is the covariance matrix, and it is the part that matters.</li>
+<li><b>Invents 10,000 tomorrows.</b> Each simulated day is one draw that respects both the volatilities and the correlations.</li>
+<li><b>Values the portfolio in each one.</b> Ten thousand portfolio outcomes, one per simulated day.</li>
+<li><b>Sorts them.</b> The 500th worst outcome is the 95% VaR. The 100th worst is the 99% VaR.</li>
+<li><b>Averages the tail.</b> The mean of everything past the 99th line is the 99% CVaR, and it is always worse than the VaR.</li>
+<li><b>Writes the report.</b> A PDF with the portfolio, the method, the numbers and a short commentary.</li>
+</ol>
+
+<div class="note"><b>Read the number out loud before you accept it.</b> A 99% one-day VaR of &#8377;6,60,000 means that on 99 days out of 100 the portfolio should lose less than &#8377;6,60,000. It says nothing at all about the hundredth day. If a student cannot say that sentence, the engine has taught them nothing.</div>
+
+<h2><span class="n">B</span>Three methods, three answers<span class="mins">10 minutes</span></h2>
+<p>Now we run the same portfolio through the other two methods and put the three numbers side by side. They will not agree.</p>
+
+<div class="tablewrap"><table>
+<thead><tr><th>Method</th><th>What it assumes</th><th>Where it is weak</th></tr></thead>
+<tbody>
+<tr><td><b>Historical simulation</b></td><td>That the last 500 days are a fair sample of tomorrow. It replays them and assumes nothing about the shape of returns.</td><td>You only ever see what already happened. A crash that has not occurred in your window does not exist.</td></tr>
+<tr><td><b>Parametric</b></td><td>That returns follow a normal curve, so one volatility number describes the whole distribution.</td><td>Real markets have fatter tails than a normal curve. This method understates exactly the days you care about.</td></tr>
+<tr><td><b>Monte Carlo</b></td><td>That the volatilities and correlations you measured will hold tomorrow, and it builds 10,000 futures from them.</td><td>It is only as good as those inputs. Feed it calm-period correlations and it will tell you a calm-period answer.</td></tr>
+</tbody>
+</table></div>
+
+<h3>The two questions to put to the class</h3>
+<ul class="plain">
+<li><b>Which number do you report?</b> The answer is the one your risk policy names, and you disclose the other two alongside it. Picking the lowest is how people get fired.</li>
+<li><b>Why do they differ?</b> Because each one makes a different assumption about what tomorrow looks like. The gap between them is not an error. It is the size of your uncertainty, made visible.</li>
+</ul>
+
+<h2><span class="n">C</span>Count the breaches<span class="mins">15 minutes</span></h2>
+<p>This is the part that makes the hour honest. We take the 99% number and ask a simple question: over the last 250 trading days, how many times did the portfolio actually lose more than that?</p>
+<p>At 99% confidence you expect to breach on about one day in every hundred. Over 250 days that is two or three breaches. Basel sets out what to do with the answer.</p>
+
+<div class="zones">
+<div class="zone zg"><div class="z">Green zone</div><div class="c">0 &ndash; 4</div><p>The model is behaving as advertised. Nothing to do.</p></div>
+<div class="zone zy"><div class="z">Yellow zone</div><div class="c">5 &ndash; 9</div><p>More breaches than expected. The bank must explain why, and its capital requirement is scaled up.</p></div>
+<div class="zone zr"><div class="z">Red zone</div><div class="c">10 or more</div><p>The model is wrong. It is not explained away, it is rebuilt, and the supervisor is involved.</p></div>
+</div>
+
+<h3>What to do with the result in class</h3>
+<ol class="comp">
+<li><b>Count them on screen.</b> Line up the 250 actual daily profit and loss figures against the VaR number and count how many fall below it.</li>
+<li><b>Say which zone you landed in</b> before anyone starts explaining the result away.</li>
+<li><b>Ask what you would change.</b> A longer data window, a fatter-tailed distribution, or correlations measured in a stressed period rather than a calm one.</li>
+<li><b>Re-run with one of those changes</b> and count again. The number will move, and the class will see that the model was a set of choices all along.</li>
+</ol>
+
+<div class="note warn"><b>The lesson of the hour.</b> Building a VaR takes thirty-five minutes. Finding out that it breached nine times when it should have breached three takes fifteen. The second half is the part that separates a risk analyst from somebody who ran a script.</div>
+
+<h2><span class="n">&rarr;</span>What you leave with</h2>
+<ul class="plain">
+<li>One working Monte Carlo VaR engine, built from a single sentence in front of you.</li>
+<li>Three different VaR numbers on one portfolio, and a reason for each difference.</li>
+<li>A breach count against 250 real days, and the Basel zone it puts you in.</li>
+<li>One PDF risk report, and the ability to say which of its numbers you would defend and which you would not.</li>
+</ul>
+
+<div class="note"><b>The graded assignment starts here.</b> You will run this on a portfolio of your own choosing and defend the numbers in it. The backtest in Part C is not optional in that submission. A VaR you never tested is a number, not a risk measure.</div>
+
+<footer>
+Module 05 &middot; Risk Modelling &mdash; PD Models &amp; Monte Carlo VaR &middot; Agentic AI &amp; Advanced Analytics in Finance &middot; PGDM Semester III<br>
+Tejas Jadhav, CFA, FRM &middot; <a href="../index.html">Back to the course page</a>
+</footer>
+
+</div>
+</body>
+</html>

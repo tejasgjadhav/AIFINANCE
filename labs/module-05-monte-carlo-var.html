@@ -123,6 +123,32 @@ footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,
 
 <div class="note warn"><b>The lesson of the hour.</b> Building a VaR takes thirty-five minutes. Finding out that it breached nine times when it should have breached three takes fifteen. The second half is the part that separates a risk analyst from somebody who ran a script.</div>
 
+<h2><span class="n">+</span>The Hour 1 companion — the PD workbook<span class="mins">open it alongside</span></h2>
+<p>Hour 1 asks a different question from the rest of this lab. Not how much the book could lose, but whether one borrower will pay. This workbook answers it three times over, on real data, with the arithmetic left visible.</p>
+
+<div class="note free"><b>The data is real and it is a bank's.</b> 30,000 actual credit-card customers of a Taiwanese bank, April to September 2005, with the default outcome for the following month. UCI Machine Learning Repository dataset 350; Yeh and Lien (2009), <i>Expert Systems with Applications</i> 36(2), 2473&ndash;2480. Nothing in it is simulated.</div>
+
+<div class="tablewrap"><table>
+<thead><tr><th>Sheet</th><th>What is on it</th></tr></thead>
+<tbody>
+<tr><td><b>1 Data</b></td><td>1,000 real customers with six variables and what actually happened. The models were fitted on 21,000 other rows, so these are unseen.</td></tr>
+<tr><td><b>2 Logistic Regression</b></td><td>Seven coefficients, the equation written out, and a worked example that takes one customer term by term to a PD. Every probability is an Excel formula.</td></tr>
+<tr><td><b>3 Decision Tree</b></td><td>The fitted tree drawn as a diagram, and its seven boxes with the counts behind each one. The PD of a box is defaulted divided by customers, computed in the cell.</td></tr>
+<tr><td><b>4 XGBoost</b></td><td>A diagram of how 200 trees add up, and the predictions. These are values, not formulas, and the sheet says why.</td></tr>
+<tr><td><b>5 Compare</b></td><td>AUC, Gini and KS side by side, plus a confusion matrix that redraws when you change the cut-off.</td></tr>
+<tr><td><b>6 AUC and KS live</b></td><td>AUC built from ranks and KS built from bands, both as formulas. Nothing on this sheet is typed in.</td></tr>
+</tbody>
+</table></div>
+
+<h3>Three things to do with it in class</h3>
+<ol class="comp">
+<li><b>Change a coefficient on sheet 2.</b> Set the PAY_0 weight to zero and watch all 1,000 probabilities, the AUC and the confusion matrices move at once. That is what it means for a model to be one line you can print.</li>
+<li><b>Move the cut-off on sheet 5.</b> Pull it from 0.30 down to 0.15 and read what happens: more defaults caught, more good customers refused. That trade is a commercial decision, not a modelling one.</li>
+<li><b>Compare the three.</b> XGBoost wins on every measure and by about five points of AUC. Then ask which of the three you could explain to the customer you just declined.</li>
+</ol>
+
+<p class="dim"><a href="module-05-pd-model-three-ways.xlsx" download><b>Download the workbook</b></a> &nbsp;&middot;&nbsp; six sheets, 14,000 live formulas, three diagrams drawn from the fitted models.</p>
+
 <h2><span class="n">&rarr;</span>What you leave with</h2>
 <ul class="plain">
 <li>One working Monte Carlo VaR engine, built from a single sentence in front of you.</li>

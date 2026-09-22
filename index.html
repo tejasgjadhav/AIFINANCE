@@ -87,8 +87,8 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:fo
 .ic{width:1em;height:1em;display:inline-block;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0;overflow:visible}
 .svg-defs{position:absolute;width:0;height:0;overflow:hidden}
 /* structural card icons inherit the parent span's font-size for sizing */
-.pillar-icon .ic,.meth-icon .ic,.integ-icon .ic,.iexp-icon .ic,.afs-icon .ic{width:1em;height:1em;display:block;margin:0 auto}
-.pillar-icon,.integ-icon,.iexp-icon{color:var(--c1)}
+.pillar-icon .ic,.meth-icon .ic,.integ-icon .ic,.afs-icon .ic{width:1em;height:1em;display:block;margin:0 auto}
+.pillar-icon,.integ-icon{color:var(--c1)}
 .afs-icon{color:var(--c1)}
 .meth-icon{color:var(--c1)}
 /* color rhythm across cards */
@@ -98,8 +98,6 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:fo
 .meth-card:nth-child(4) .meth-icon{color:var(--c3)}
 .integ-card:nth-child(2) .integ-icon{color:#a78bfa}
 .integ-card:nth-child(3) .integ-icon{color:var(--c3)}
-.iexp:nth-child(2) .iexp-icon{color:#a78bfa}
-.iexp:nth-child(4) .iexp-icon{color:var(--c3)}
 .afs:nth-child(3) .afs-icon{color:#a78bfa}.afs:nth-child(5) .afs-icon{color:var(--c3)}.afs:nth-child(7) .afs-icon{color:#34d399}
 /* inline icons (buttons, chips, headings, footer) */
 .ic-inline{width:1.05em;height:1.05em;vertical-align:-.16em;stroke-width:1.8}
@@ -113,7 +111,7 @@ a:focus-visible,button:focus-visible,[role="button"]:focus-visible,[tabindex]:fo
 
 /* ─── FLUID MOTION POLISH ─── */
 :root{--ease:cubic-bezier(.16,1,.3,1)}
-.ov-card,.pillar,.meth-card,.integ-card,.school-card,.hc,.pg-card,.iexp,.mod-card,.cap-feat,.afs,.ik,.btn-p,.btn-s{transition-timing-function:var(--ease)}
+.ov-card,.pillar,.meth-card,.integ-card,.school-card,.hc,.pg-card,.mod-card,.cap-feat,.afs,.btn-p,.btn-s{transition-timing-function:var(--ease)}
 .rv{transition:opacity .75s var(--ease),transform .75s var(--ease)}
 .btn-p,.btn-s,.foot-gh{transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .3s,color .3s,background .3s}
 /* sheen sweep on primary buttons */
@@ -455,54 +453,20 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
 .hero-fin{background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3),var(--c1));background-size:300% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:finshimmer 2.4s linear infinite;font-weight:700;letter-spacing:.02em}
 
 /* INSTRUCTOR SECTION */
-.instr-section{padding:7rem 0;background:linear-gradient(180deg,transparent,rgba(124,58,237,.04) 50%,transparent)}
-.instr-grid{display:grid;grid-template-columns:320px 1fr;gap:3.5rem;align-items:start;margin-top:4rem}
-.instr-left{display:flex;flex-direction:column;gap:0}
 
 /* Avatar card */
-.instr-avatar-card{background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(124,58,237,.08));border:1px solid rgba(0,212,255,.22);border-radius:24px;padding:2rem 1.6rem 1.6rem;text-align:center;position:relative;overflow:hidden;margin-bottom:1.4rem}
-.instr-avatar-card::before{content:'';position:absolute;inset:0;background:conic-gradient(from 180deg at 50% 0%,rgba(0,212,255,.08) 0deg,transparent 120deg,rgba(124,58,237,.06) 240deg,transparent 360deg);pointer-events:none}
-.instr-initials{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,rgba(0,212,255,.18),rgba(124,58,237,.22));border:2px solid rgba(0,212,255,.45);display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem;font-family:'Space Grotesk',sans-serif;font-size:1.9rem;font-weight:800;color:#fff;position:relative;z-index:1;animation:iavp 3s ease-in-out infinite;overflow:hidden}
-.instr-initials img{width:100%;height:100%;object-fit:cover;object-position:center top;border-radius:50%;display:block}
 @keyframes iavp{0%,100%{box-shadow:0 0 0 0 rgba(0,212,255,0),0 0 0 0 rgba(124,58,237,0)}50%{box-shadow:0 0 0 8px rgba(0,212,255,.12),0 0 0 16px rgba(124,58,237,.06)}}
-.instr-name-big{font-family:'Space Grotesk',sans-serif;font-size:1.55rem;font-weight:800;line-height:1.15;margin-bottom:.28rem;background:linear-gradient(135deg,#fff 60%,rgba(255,255,255,.6));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;position:relative;z-index:1}
-.instr-title-line{font-size:.75rem;color:var(--c1);font-weight:600;letter-spacing:.07em;text-transform:uppercase;margin-bottom:1.2rem;position:relative;z-index:1}
-.ic-badges{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;margin-bottom:.55rem;position:relative;z-index:1}
-.ic-badge{font-size:.68rem;font-weight:700;padding:.3rem .7rem;border-radius:50px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap}
-.ic-cfa{background:rgba(0,212,255,.12);color:var(--c1);border:1px solid rgba(0,212,255,.35)}
-.ic-frm{background:rgba(124,58,237,.12);color:#a78bfa;border:1px solid rgba(124,58,237,.35)}
 
 /* KPI row */
-.instr-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem;margin-bottom:1.4rem}
-.ik{background:var(--card);border:1px solid var(--b2);border-radius:14px;padding:.9rem .6rem;text-align:center}
-.ik-n{font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:800;background:linear-gradient(135deg,var(--c1),var(--c2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.15}
-.ik-l{font-size:.62rem;color:var(--txt2);font-weight:600;letter-spacing:.04em;text-transform:uppercase;margin-top:.25rem;line-height:1.35}
 
 
 /* Interview panel */
-.interview-panel{background:rgba(255,255,255,.02);border:1px solid var(--b1);border-radius:20px;overflow:hidden;margin-bottom:1.6rem}
-.interview-header{background:rgba(0,0,0,.3);border-bottom:1px solid rgba(255,255,255,.06);padding:.85rem 1.4rem;display:flex;align-items:center;gap:.75rem}
-.ir-dot{width:9px;height:9px;background:#ef4444;border-radius:50%;animation:blink 1s ease-in-out infinite;flex-shrink:0}
-.ir-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2)}
-.ir-name{font-size:.7rem;color:var(--c1);font-weight:600;margin-left:auto;white-space:nowrap}
-.interview-body{padding:1.5rem;display:flex;flex-direction:column;gap:1rem;max-height:340px;overflow-y:auto}
-.interview-body::-webkit-scrollbar{width:3px}
-.interview-body::-webkit-scrollbar-thumb{background:var(--b1);border-radius:2px}
 .iq{background:rgba(0,212,255,.07);border:1px solid rgba(0,212,255,.2);border-radius:12px 12px 12px 3px;padding:.8rem 1rem;font-size:.8rem;color:var(--c1);font-weight:500;opacity:0;transform:translateX(-14px);transition:opacity .5s ease,transform .5s ease}
 .ia{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px 12px 3px 12px;padding:.8rem 1rem;font-size:.83rem;color:var(--txt);line-height:1.68;opacity:0;transform:translateX(14px);transition:opacity .5s ease,transform .5s ease}
 .iq.show,.ia.show{opacity:1;transform:translateX(0)}
 
 /* Experience mini-grid */
-.instr-exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-.iexp{background:var(--card);border:1px solid var(--b2);border-radius:14px;padding:1.25rem;transition:all .3s}
-.iexp:hover{border-color:rgba(0,212,255,.3);transform:translateY(-4px);box-shadow:var(--glow1)}
-.iexp-icon{font-size:1.6rem;margin-bottom:.6rem;display:inline-block;animation:ifl 3.5s ease-in-out infinite}
-.iexp:nth-child(1) .iexp-icon{animation-delay:0s}.iexp:nth-child(2) .iexp-icon{animation-delay:.6s}.iexp:nth-child(3) .iexp-icon{animation-delay:1.2s}.iexp:nth-child(4) .iexp-icon{animation-delay:1.8s}
-.iexp-title{font-family:'Space Grotesk',sans-serif;font-size:.88rem;font-weight:700;margin-bottom:.45rem}
-.iexp-desc{font-size:.78rem;color:var(--txt2);line-height:1.6}
 
-@media(max-width:900px){.instr-grid{grid-template-columns:1fr}.instr-left{max-width:380px;margin:0 auto}.instr-exp-grid{grid-template-columns:1fr 1fr}.instr-avatar-card{text-align:center}}
-@media(max-width:520px){.instr-kpis{grid-template-columns:repeat(3,1fr)}.instr-exp-grid{grid-template-columns:1fr}}
 
 /* ── ANIMATED ICON SYSTEM ── */
 .ov-icon,.pillar-icon,.meth-icon,.integ-icon{display:inline-block;animation:ifl 3.6s ease-in-out infinite,igl 3s ease-in-out infinite}
@@ -603,7 +567,7 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
   }
   html{scroll-behavior:auto}
   .rv{opacity:1!important;transform:none!important}
-  .scroll-hint,.dot,.ir-dot{display:none}
+  .scroll-hint,.dot{display:none}
   /* keep gradient text legible once shimmer is frozen */
   .gt,.hero-fin,.nc-fin{-webkit-text-fill-color:initial;background:none;color:var(--c1)}
 }
@@ -689,7 +653,6 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
     <li><a href="#academic" onclick="closeNav()">Academic Design</a></li>
     <li><a href="#placement" onclick="closeNav()">Placement</a></li>
     <li><a href="#methodology" onclick="closeNav()">Methodology</a></li>
-    <li><a href="#instructor" onclick="closeNav()">Instructor</a></li>
   </ul>
   <button class="nav-toggle" id="navToggle" onclick="toggleNav()" aria-label="Menu">
     <span></span><span></span><span></span>
@@ -950,7 +913,6 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
               <ul>
                 <li><strong>Case:</strong> Morgan Stanley GPT-4 Wealth Advisor Program</li>
                 <li><strong>Pedagogy:</strong> lecture, concept quiz, live demo, in-class Python lab</li>
-                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch. 1)</li>
                 <li>GARP FRM Study Notes — Technology Risk</li>
                 <li>LangChain Docs; Anthropic API Reference; Hilpisch (2020) Ch. 2</li>
               </ul>
@@ -1003,7 +965,6 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
               <div class="msec-title">Case, Pedagogy &amp; References</div>
               <ul>
                 <li><strong>Industry case:</strong> SEBI DRHP analysis using RAG</li>
-                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch. 3–4)</li>
                 <li>White et al. (2023), arXiv:2302.11382</li>
                 <li>Lewis et al. (2020), NeurIPS — arXiv:2005.11401</li>
                 <li>LlamaIndex and ChromaDB documentation</li>
@@ -1058,7 +1019,6 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
               <ul>
                 <li><strong>Pedagogy:</strong> architecture diagram workshop, live CrewAI demo, paired design exercise</li>
                 <li>Anthropic MCP Specification (2024)</li>
-                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch. 6)</li>
                 <li>CrewAI documentation; Anthropic API Reference</li>
                 <li>Wu et al. (2023), AutoGen — arXiv:2308.08155</li>
               </ul>
@@ -1276,7 +1236,6 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
                 <li>Federal Reserve SR 11-7</li>
                 <li>FSB (2022), “AI and ML in Financial Services”</li>
                 <li>OWASP LLM Top 10 (2023)</li>
-                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Ch. 8)</li>
               </ul>
               <div class="pt-tags"><span class="ptag">AI Governance</span><span class="ptag">Security</span><span class="ptag">Responsible AI</span></div>
             </div>
@@ -1438,7 +1397,6 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
                 <li>McKinsey GCC India Report (2024)</li>
                 <li>NASSCOM GCC Trends Report (2024)</li>
                 <li>EisnerAmper GCC case; Course Portfolio Rubric</li>
-                <li>Jadhav, <em>Claude AI for Finance Professionals</em> (Capstone Chapter)</li>
               </ul>
               <div class="pt-tags"><span class="ptag">Full Integration</span><span class="ptag">Portfolio Ready</span><span class="ptag">Interview Prep</span></div>
             </div>
@@ -2082,78 +2040,6 @@ footer{padding:3.2rem 0;border-top:1px solid var(--b1);text-align:center;positio
   </div>
 </section>
 
-<!-- INSTRUCTOR -->
-<section class="instr-section" id="instructor">
-  <div class="container">
-    <div class="sec-head rv">
-      <span class="sec-tag">Course Architect &amp; Faculty</span>
-      <h2 class="sec-title">Built by a <span class="gt">Practitioner</span>. Taught by One.</h2>
-      <p class="sec-sub">Not a visiting lecturer. Not a textbook theorist. The architect of this course spent 12 years building the exact systems students will learn — from live trading desks to fund automation at institutional level.</p>
-    </div>
-    <div class="instr-grid">
-
-      <!-- LEFT: Credentials -->
-      <div class="instr-left rv">
-
-        <!-- Avatar card -->
-        <div class="instr-avatar-card">
-          <div class="instr-initials"><img src="https://tejasgjadhav.github.io/tejas-jadhav.jpg" alt="Tejas Jadhav, CFA, FRM" width="90" height="90" loading="lazy"/></div>
-          <div class="instr-name-big">Tejas Jadhav</div>
-          <div class="instr-title-line">CFA · FRM · MMS Sydenham Mumbai</div>
-          <div class="ic-badges">
-            <span class="ic-badge ic-cfa">CFA Charterholder</span>
-            <span class="ic-badge ic-frm">FRM Certified</span>
-          </div>
-        </div>
-
-        <!-- KPIs -->
-        <div class="instr-kpis">
-          <div class="ik"><div class="ik-n">12+</div><div class="ik-l">Years in Finance</div></div>
-          <div class="ik"><div class="ik-n">CFA<br>FRM</div><div class="ik-l">Dual Certified</div></div>
-          <div class="ik"><div class="ik-n">4</div><div class="ik-l">Global Institutions</div></div>
-        </div>
-
-      </div>
-
-      <!-- RIGHT: AI Interview + experience -->
-      <div class="instr-right rv">
-        <div class="interview-panel">
-          <div class="interview-header">
-            <div class="ir-dot"></div>
-            <span class="ir-label">AI Faculty Interview</span>
-            <span class="ir-name">Tejas Jadhav · CFA, FRM</span>
-          </div>
-          <div class="interview-body" id="interviewBody"></div>
-        </div>
-
-        <div class="instr-exp-grid">
-          <div class="iexp rv">
-            <span class="iexp-icon"><svg class="ic"><use href="#ic-trend"/></svg></span>
-            <div class="iexp-title">HNI Portfolio Management</div>
-            <p class="iexp-desc">Managed high-net-worth client portfolios across equity, structured products, and fixed income — real P&amp;L responsibility, not simulated.</p>
-          </div>
-          <div class="iexp rv">
-            <span class="iexp-icon"><svg class="ic"><use href="#ic-gear"/></svg></span>
-            <div class="iexp-title">ESG &amp; Climate Risk Platforms</div>
-            <p class="iexp-desc">Built technology and data platforms for ESG investing, climate risk, and FRTB market risk for institutional financial services firms.</p>
-          </div>
-          <div class="iexp rv">
-            <span class="iexp-icon"><svg class="ic"><use href="#ic-cap"/></svg></span>
-            <div class="iexp-title">MMS · Sydenham Mumbai</div>
-            <p class="iexp-desc">MMS from Sydenham Institute of Management Studies, Mumbai. CFA Charterholder. FRM Certified. All three earned while working full-time in finance.</p>
-          </div>
-          <div class="iexp rv">
-            <span class="iexp-icon"><svg class="ic"><use href="#ic-pen"/></svg></span>
-            <div class="iexp-title">Guest Faculty &amp; Research Judge</div>
-            <p class="iexp-desc">Teaches AI and finance as guest faculty at management institutes in India. Judges equity research at Bloomberg Club competitions.</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
   <div class="container">
@@ -2301,51 +2187,7 @@ function toggleMod(hdr) {
   }
 }
 
-// ── INSTRUCTOR AI INTERVIEW ──
-(function(){
-  const body = document.getElementById('interviewBody');
-  if(!body) return;
-  const qa = [
-    {
-      q:"Sir, what makes this course different from any regular finance elective?",
-      a:"See, the thing is — I spent 12 years actually building these systems. On trading desks, in risk technology, managing HNI portfolios. When I joined a fund house and started building NAV automation and ESG risk platforms, I realised — the gap between what colleges teach and what GCCs actually need is very large. So I designed this course to close that gap completely. Every lab session is something I personally built professionally."
-    },
-    {
-      q:"You are a CFA and FRM. Why focus on AI specifically?",
-      a:"Because the finance professional of tomorrow needs all three. CFA gives you investment judgment. FRM gives you risk quantification. AI gives you the ability to automate and scale both — at ten times the speed. The students who learn AI on top of their finance foundation will be hired first. That is simply the reality of what GCCs are looking for right now."
-    },
-    {
-      q:"What should a student expect from your teaching style?",
-      a:"In my class, you will build something in the first 30 minutes. Always. Whether it is your first API call or a Monte Carlo VaR engine — you will have something running before I explain why it works. That is how I learned on real finance floors. You do first, you understand later. That habit will carry you through your entire career, not just placement season."
-    }
-  ];
-  let fired = false;
-  function runInterview(){
-    if(fired) return; fired = true;
-    let delay = 300;
-    qa.forEach(({q, a}) => {
-      setTimeout(() => {
-        const qEl = document.createElement('div');
-        qEl.className = 'iq';
-        qEl.textContent = q;
-        body.appendChild(qEl);
-        requestAnimationFrame(() => requestAnimationFrame(() => qEl.classList.add('show')));
-        setTimeout(() => {
-          const aEl = document.createElement('div');
-          aEl.className = 'ia';
-          aEl.textContent = a;
-          body.appendChild(aEl);
-          requestAnimationFrame(() => requestAnimationFrame(() => aEl.classList.add('show')));
-          body.scrollTop = body.scrollHeight;
-        }, 900);
-      }, delay);
-      delay += 3800;
-    });
-  }
-  const obs = new IntersectionObserver(e => { if(e[0].isIntersecting) runInterview(); }, {threshold: 0.25});
-  const sec = document.getElementById('instructor');
-  if(sec) obs.observe(sec);
-})();
+
 
 // ── AI × FINANCE SCRAMBLE ──
 (function(){

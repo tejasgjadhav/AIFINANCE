@@ -63,51 +63,69 @@ footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,
 <div class="wrap">
 
 <div class="eyebrow">Module 06 &middot; Live Lab &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
-<h1>A Pillar 3 disclosure from one sentence</h1>
-<p class="lede">We take a bank's capital and leverage numbers, compute the six ratios a regulator reads first, and write the Basel III Pillar 3 document in Word. Then we do the part that matters. We check our document against the ratios the bank itself published.</p>
-<div class="pipe">A &nbsp;build the document &nbsp;&rarr;&nbsp; B &nbsp;check it against the bank's own numbers &nbsp;&rarr;&nbsp; C &nbsp;peer review and AI commentary</div>
+<h1>The RBI Pillar 3 filing set from one sentence</h1>
+<p class="lede">We take one structured data file for a real bank and turn it into the files RBI asks for: one Word document per Pillar 3 table, DF-1 to DF-18, written one after another in filing order, with a log. Then we do the part that matters. We check our ratios against the ones the bank itself published, and the run stops if they disagree.</p>
+<div class="pipe">A &nbsp;build the filing set &nbsp;&rarr;&nbsp; B &nbsp;reconcile to the bank's own numbers &nbsp;&rarr;&nbsp; C &nbsp;peer review and AI commentary</div>
 
 <div class="note free"><b>Everything here is free, and no key is needed.</b> Codex writes the code. Python and python-docx build the Word file. The commentary at the end can be written by pasting the ratio tables into any free AI chat. There is nothing to buy for this lab.</div>
 
-<div class="note"><b>The data is real and it is a bank's.</b> The capital and leverage inputs are ICICI Bank's own figures from its Basel III Pillar 3 disclosure at 31 March 2025, consolidated, read from pages 11, 12, 75 and 76 of the published PDF. The LCR and NSFR inputs are illustrative teaching values, because the bank publishes those two ratios in its annual report and quarterly liquidity disclosure, not in the Pillar 3 document. The data file says which is which.</div>
+<div class="note"><b>The data is real and it is a bank's.</b> Every figure in the data file is ICICI Bank's own, from its Basel III Pillar 3 disclosure at 31 March 2025, consolidated, with the PDF page cited on each block: capital and RWA, NPAs and provisions, exposures by risk weight, market and operational risk capital, interest-rate risk by currency, banking-book equities, and the leverage reconciliation. Seven of the eighteen tables have no figures in the file, and the script writes those as stubs that say so. Nothing is invented. The LCR and NSFR inputs are illustrative teaching values, because the bank publishes those two ratios elsewhere, and they sit in a separate appendix file marked as such.</div>
 
-<h2><span class="n">A</span>Build the document<span class="mins">30 minutes</span></h2>
+<h2><span class="n">A</span>Build the filing set<span class="mins">30 minutes</span></h2>
 <p>We type one sentence. Codex asks what it needs, writes a plan, and waits for approval before it builds anything.</p>
-<pre class="cmd">Here is a bank's capital, RWA and leverage data in bank_data.json. Compute CET1, Tier 1, total capital, leverage, LCR and NSFR, compare each with the RBI minimum, and write a Pillar 3 disclosure in Word with the DF-2 and DF-18 tables.</pre>
+<pre class="cmd">Here is a bank's Pillar 3 data in bank_data.json, one block per RBI table. Compute CET1, Tier 1, total capital, leverage, LCR and NSFR, compare each with the RBI minimum, check them against the ratios the bank published, and then write one Word file per RBI table, DF-1 to DF-18, in filing order, with a filing log. Where the data has no figures for a table, write a stub that says so.</pre>
 
 <h3>What the script actually does</h3>
 <ol class="comp">
-<li><b>Reads the data.</b> One JSON file with the capital stack, the capital requirement by risk type, total risk weighted assets, and the leverage exposures.</li>
+<li><b>Reads the data.</b> One JSON file, one block per RBI table, DF-1 to DF-18, each with its PDF page and a status: complete, partial, or not in data.</li>
 <li><b>Divides six times.</b> CET1 over RWA. Tier 1 over RWA. Total capital over RWA. Tier 1 over total exposure. HQLA over 30-day outflows. Available over required stable funding.</li>
 <li><b>Builds the floor.</b> For a D-SIB, the total capital minimum is 9.0% base plus the 2.5% conservation buffer plus the 0.2% surcharge, which is 11.7%. CET1 starts at 5.5% and Tier 1 at 7.0%, with the same buffers on top.</li>
-<li><b>Puts each ratio beside its floor.</b> The gap between them is the headroom, in percentage points.</li>
-<li><b>Writes the Word file.</b> Table DF-2 for capital adequacy, Table DF-18 for the leverage ratio, a liquidity table, and a commentary section, in the RBI layout.</li>
-<li><b>Reconciles.</b> It prints the computed ratios next to the ratios the bank published, and says MATCH or MISMATCH on each line.</li>
+<li><b>Reconciles before it writes anything.</b> Each computed ratio is put next to the ratio the bank published. The DF-17 rows must add to the leverage exposure. The DF-4 buckets must add to the total. One mismatch and the run stops with nothing filed.</li>
+<li><b>Writes one file per table, in order.</b> 01_DF-1 to 18_DF-18, each a Word document in the RBI layout with its source pages and its data status on the first line. A table with no data is a stub that says so, not an empty table.</li>
+<li><b>Writes the log.</b> 00_filing_log.csv lists every table, its status and its file. That is the checklist a compliance officer files against. A combined reading copy is written too.</li>
 </ol>
 
-<h3>The inputs, and where each one comes from</h3>
+<h3>The filing set, table by table</h3>
 <div class="tablewrap"><table>
-<thead><tr><th>Input</th><th>INR million</th><th>Source</th></tr></thead>
+<thead><tr><th>RBI table</th><th>What it carries</th><th>PDF pages</th><th>Status</th></tr></thead>
 <tbody>
-<tr><td>Tier 1 capital (CET1, no AT1 outstanding)</td><td class="mk">27,56,153.3</td><td>Pillar 3, page 75</td></tr>
-<tr><td>Total capital funds</td><td class="mk">28,60,742.1</td><td>Pillar 3, page 11</td></tr>
-<tr><td>Total risk weighted assets</td><td class="mk">1,74,37,160.9</td><td>Pillar 3, page 11</td></tr>
-<tr><td>Capital required: credit / market / operational</td><td class="mk">17,53,721 / 93,032 / 1,93,394</td><td>Pillar 3, page 11</td></tr>
-<tr><td>Total leverage exposure</td><td class="mk">2,65,66,890.2</td><td>Pillar 3, page 75</td></tr>
-<tr><td>HQLA and 30-day net outflows</td><td class="mk">45,00,000 / 36,00,000</td><td><b>Illustrative</b>, not the bank's</td></tr>
-<tr><td>Available and required stable funding</td><td class="mk">1,80,00,000 / 1,44,00,000</td><td><b>Illustrative</b>, not the bank's</td></tr>
+<tr><td class="mk">DF-1</td><td>Scope of application: the group entities</td><td>1&ndash;8</td><td>Partial: names only</td></tr>
+<tr><td class="mk">DF-2</td><td>Capital adequacy: capital stack, requirement by risk, RWA, the three ratios</td><td>9&ndash;12</td><td>Complete</td></tr>
+<tr><td class="mk">DF-3</td><td>Credit risk: NPAs by class, NPA movement, provisions, NPIs</td><td>13&ndash;26</td><td>Complete</td></tr>
+<tr><td class="mk">DF-4</td><td>Exposures by risk-weight bucket after mitigation</td><td>27&ndash;28</td><td>Complete</td></tr>
+<tr><td class="mk">DF-5</td><td>Credit risk mitigation</td><td>29&ndash;31</td><td>Stub</td></tr>
+<tr><td class="mk">DF-6</td><td>Securitisation: capital required</td><td>32&ndash;38</td><td>Partial</td></tr>
+<tr><td class="mk">DF-7</td><td>Market risk capital: interest rate, FX and gold, equity</td><td>39&ndash;42</td><td>Complete</td></tr>
+<tr><td class="mk">DF-8</td><td>Operational risk: approach and capital</td><td>43&ndash;46</td><td>Complete</td></tr>
+<tr><td class="mk">DF-9</td><td>IRRBB: earnings and economic-value impact of 100 bps, by currency</td><td>47&ndash;54</td><td>Complete</td></tr>
+<tr><td class="mk">DF-10</td><td>Counterparty credit risk</td><td>55&ndash;63</td><td>Stub</td></tr>
+<tr><td class="mk">DF-11 to DF-14</td><td>Composition of capital, reconciliation, capital instruments</td><td>separate annexure</td><td>Stubs</td></tr>
+<tr><td class="mk">DF-15</td><td>Remuneration</td><td>64&ndash;72</td><td>Stub</td></tr>
+<tr><td class="mk">DF-16</td><td>Banking-book equities: book value, market value, gains</td><td>73</td><td>Complete</td></tr>
+<tr><td class="mk">DF-17</td><td>Accounting assets to leverage exposure, seven rows that must add up</td><td>74</td><td>Complete</td></tr>
+<tr><td class="mk">DF-18</td><td>Leverage ratio common template</td><td>74&ndash;76</td><td>Complete</td></tr>
 </tbody>
 </table></div>
+<p class="dim">Nine complete, two partial, seven stubs. A stub is a file that names its table, its pages and the fact that the data is missing. It is filed as a gap, not hidden.</p>
 
-<h2><span class="n">B</span>Check it against the bank's own numbers<span class="mins">15 minutes</span></h2>
-<p>The bank printed its ratios on page 12 and page 76 of the same document. Your generated file must land on the same four numbers. This is the run from the script in this folder.</p>
-<pre>Ratio                   computed  published  RBI min  status
-CET1 ratio                15.81%     15.81%    8.20%  MATCH
-Tier 1 ratio              15.81%     15.81%    9.70%  MATCH
-Total capital ratio       16.41%     16.41%   11.70%  MATCH
-Leverage ratio            10.37%     10.37%    4.00%  MATCH
-LCR                      125.00%        n/a  100.00%  illustrative inputs
-NSFR                     125.00%        n/a  100.00%  illustrative inputs</pre>
+<h2><span class="n">B</span>Reconcile to the bank's own numbers<span class="mins">15 minutes</span></h2>
+<p>The bank printed its ratios on page 12 and page 76 of the same document. Your run must land on the same four numbers, and the two tables that are sums must add up. This is the gate the script runs before it writes a single file. This is the actual output from the script in this folder.</p>
+<pre>RECONCILIATION against the bank's published ratios
+  CET1 ratio             computed  15.81%  published  15.81%  RBI min  8.20%  MATCH
+  Tier 1 ratio           computed  15.81%  published  15.81%  RBI min  9.70%  MATCH
+  Total capital ratio    computed  16.41%  published  16.41%  RBI min 11.70%  MATCH
+  Leverage ratio         computed  10.37%  published  10.37%  RBI min  4.00%  MATCH
+  DF-17 adds up          26,566,890.2 vs 26,566,890.2  MATCH
+  DF-4 adds up           MATCH
+
+FILING, in RBI order
+  DF-1   partial      -> 01_DF-1_Scope_of_Application.docx
+  DF-2   complete     -> 02_DF-2_Capital_Adequacy.docx
+  DF-3   complete     -> 03_DF-3_Credit_Risk_General_Disclosures.docx
+  ...
+  DF-18  complete     -> 18_DF-18_Leverage_Ratio_Common_Disclosure_Template.docx
+
+9 tables complete, 2 partial, 7 stubs, out of 18. Log: output/00_filing_log.csv</pre>
 
 <div class="tablewrap"><table>
 <thead><tr><th>Ratio</th><th>The division</th><th>What it answers</th></tr></thead>
@@ -125,20 +143,20 @@ NSFR                     125.00%        n/a  100.00%  illustrative inputs</pre>
 
 <h2><span class="n">C</span>Peer review and AI commentary<span class="mins">15 minutes</span></h2>
 <ol class="comp">
-<li><b>Swap documents with the next desk.</b> Open theirs. Check the four ratios against the published ones without looking at their script.</li>
+<li><b>Swap folders with the next desk.</b> Open their 00_filing_log.csv, then their DF-2 and DF-18. Check the four ratios against the published ones without looking at their script.</li>
 <li><b>Paste the two ratio tables into any free AI chat.</b> Ask for a one-paragraph management commentary on capital adequacy.</li>
 <li><b>Check every number in its paragraph against your tables.</b> A wrong number, an invented trend, or a ratio it was never given is a strike.</li>
-<li><b>Keep only the sentences that survive.</b> Paste them into the commentary section of the Word file. That is the AI-written part of the disclosure, and it has now been read by a person.</li>
+<li><b>Keep only the sentences that survive.</b> Paste them into the DF-2 file under the capital ratios. That is the AI-written part of the disclosure, and it has now been read by a person.</li>
 </ol>
 
 <div class="note"><b>The rule for this hour.</b> Automation earns its place by doing the division and the formatting. It never earns the right to skip the reconciliation, and no disclosure leaves without a human name on it.</div>
 
 <h2><span class="n">&darr;</span>Files</h2>
 <ul class="plain">
-<li><a href="module-06-pillar3.zip" download><b>Download the lab folder (zip)</b></a> &nbsp;&middot;&nbsp; the data file, the script, and the generated Word document.</li>
-<li><a href="module-06-pillar3/bank_data.json" download>bank_data.json</a> &nbsp;&middot;&nbsp; the structured inputs, with a page citation on every real figure and a label on every illustrative one.</li>
-<li><a href="module-06-pillar3/build_pillar3.py" download>build_pillar3.py</a> &nbsp;&middot;&nbsp; the script Codex should arrive at. About a hundred lines of Python and python-docx.</li>
-<li><a href="module-06-pillar3/Pillar3_Disclosure_ICICI_Mar2025.docx" download>Pillar3_Disclosure_ICICI_Mar2025.docx</a> &nbsp;&middot;&nbsp; the generated output, so you can see the target before you build it.</li>
+<li><a href="module-06-pillar3.zip" download><b>Download the lab folder (zip)</b></a> &nbsp;&middot;&nbsp; the data file, the script, the output folder with the 18 RBI table files, the filing log, the LCR/NSFR appendix, and the combined reading copy.</li>
+<li><a href="module-06-pillar3/bank_data.json" download>bank_data.json</a> &nbsp;&middot;&nbsp; the full structured dataset, one block per RBI table, a page citation on every real figure and a label on every illustrative one.</li>
+<li><a href="module-06-pillar3/build_pillar3.py" download>build_pillar3.py</a> &nbsp;&middot;&nbsp; the script Codex should arrive at. Reconcile first, then one file per table, then the log.</li>
+<li><a href="module-06-pillar3/output/00_filing_log.csv" download>output/00_filing_log.csv</a> &nbsp;&middot;&nbsp; the filing checklist, and <a href="module-06-pillar3/Pillar3_Disclosure_ICICI_Mar2025.docx" download>Pillar3_Disclosure_ICICI_Mar2025.docx</a>, the 18 tables in one reading copy.</li>
 </ul>
 <pre class="cmd">cd module-06-pillar3
 python3 -m pip install python-docx
@@ -147,7 +165,7 @@ python3 build_pillar3.py</pre>
 <h2><span class="n">&rarr;</span>What you leave with</h2>
 <ul class="plain">
 <li>Six ratios you can compute by hand, and the RBI floor each one is measured against.</li>
-<li>One Pillar 3 disclosure in Word, generated from structured data, in the DF-2 and DF-18 layout.</li>
+<li>The RBI Pillar 3 filing set: eighteen table files in filing order, a log, and the habit of writing a gap as a stub instead of hiding it.</li>
 <li>A reconciliation against the bank's own published numbers, and the habit of not issuing anything that fails it.</li>
 <li>An AI-written commentary in which every number was checked by you before it was kept.</li>
 </ul>

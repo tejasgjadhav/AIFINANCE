@@ -381,29 +381,29 @@ footer(s, 6)
 s = new_slide()
 slide_bg(s, BG)
 eyebrow(s, "HOUR 3 · THE LAB")
-title(s, "One sentence, one Word document, one check")
+title(s, "One sentence, eighteen files, one check")
 box(s, 0.6, 1.58, 12.13, 0.84, NAVY2)
 box(s, 0.6, 1.58, 0.07, 0.84, GOLD)
 txt(s, 0.95, 1.58, 11.5, 0.84, [
     (None, 0, [("THE SENTENCE WE TYPE", None, 8.5, True, GOLD)]),
-    (None, 2, [("“Here is a bank's capital, RWA and leverage data in bank_data.json. Compute CET1, Tier 1, total capital, leverage, LCR and NSFR, "
-                "compare each with the RBI minimum, and write a Pillar 3 disclosure in Word with the DF-2 and DF-18 tables.”", "Georgia", 12, True, WHITE)]),
+    (None, 2, [("“Here is a bank's Pillar 3 data in bank_data.json, one block per RBI table. Compute the six ratios, check them against what the bank "
+                "published, and write one Word file per RBI table, DF-1 to DF-18, in filing order, with a filing log.”", "Georgia", 12, True, WHITE)]),
 ], anchor=MSO_ANCHOR.MIDDLE)
 parts = [
     (0.6, 3.95, WHITE, "PART A  ·  30 MIN", "Build it", [
-        "Real data: ICICI Bank's published capital and leverage figures, March 2025",
-        "Six ratios, each one division",
-        "Each ratio next to the RBI floor with buffers",
-        "A Word document in the RBI table layout, written by python-docx",
+        "Real data: ICICI Bank's published Pillar 3 figures, one block per table",
+        "Six ratios, each one division, beside the RBI floor",
+        "One Word file per RBI table, DF-1 to DF-18, written one after another",
+        "A filing log, and a stub for any table the data cannot fill",
     ]),
     (4.72, 3.95, WHITE, "PART B  ·  15 MIN", "Check it", [
         "The bank printed its own ratios: 15.81, 15.81, 16.41 and 10.37",
-        "Your document must land on the same four numbers",
-        "A mismatch means a wrong input or a wrong formula",
-        "A document that does not reconcile is not issued",
+        "Your run must land on the same four, and DF-17 must add up",
+        "The script checks this before it writes a single file",
+        "One mismatch and it stops with nothing filed",
     ]),
     (8.84, 3.89, NAVY, "PART C  ·  15 MIN", "Review it", [
-        "Swap documents with the next desk",
+        "Swap folders with the next desk and open their filing log",
         "Paste the two ratio tables into any free AI chat and ask for a commentary",
         "Check every number in its paragraph against your tables",
         "Keep only the sentences that survive",

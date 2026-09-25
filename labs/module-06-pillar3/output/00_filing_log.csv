@@ -1,0 +1,20 @@
+table,title,data_status,pdf_pages,file
+DF-1,Scope of Application,partial,1-8,01_DF-1_Scope_of_Application.docx
+DF-2,Capital Adequacy,complete,9-12,02_DF-2_Capital_Adequacy.docx
+DF-3,Credit Risk: General Disclosures,complete,13-26,03_DF-3_Credit_Risk_General_Disclosures.docx
+DF-4,Credit Risk: Portfolios Subject to the Standardised Approach,complete,27-28,04_DF-4_Credit_Risk_Portfolios_Subject_to_the_Standardised_Approach.docx
+DF-5,Credit Risk Mitigation: Standardised Approach,not_in_data,29-31,05_DF-5_Credit_Risk_Mitigation_Standardised_Approach.docx
+DF-6,Securitisation Exposures: Standardised Approach,partial,32-38,06_DF-6_Securitisation_Exposures_Standardised_Approach.docx
+DF-7,Market Risk in Trading Book,complete,39-42,07_DF-7_Market_Risk_in_Trading_Book.docx
+DF-8,Operational Risk,complete,43-46,08_DF-8_Operational_Risk.docx
+DF-9,Interest Rate Risk in the Banking Book (IRRBB),complete,47-54,09_DF-9_Interest_Rate_Risk_in_the_Banking_Book_(IRRBB).docx
+DF-10,General Disclosure for Exposures Related to Counterparty Credit Risk,not_in_data,55-63,10_DF-10_General_Disclosure_for_Exposures_Related_to_Counterparty_Credit_Risk.docx
+DF-11,Composition of Capital,not_in_data,separate annexure,11_DF-11_Composition_of_Capital.docx
+DF-12,Composition of Capital: Reconciliation Requirements,not_in_data,separate annexure,12_DF-12_Composition_of_Capital_Reconciliation_Requirements.docx
+DF-13,Main Features of Regulatory Capital Instruments,not_in_data,separate annexure,13_DF-13_Main_Features_of_Regulatory_Capital_Instruments.docx
+DF-14,Full Terms and Conditions of Regulatory Capital Instruments,not_in_data,separate annexure,14_DF-14_Full_Terms_and_Conditions_of_Regulatory_Capital_Instruments.docx
+DF-15,Disclosure Requirements for Remuneration,not_in_data,64-72,15_DF-15_Disclosure_Requirements_for_Remuneration.docx
+DF-16,Equities: Disclosure for Banking Book Positions,complete,73,16_DF-16_Equities_Disclosure_for_Banking_Book_Positions.docx
+DF-17,Summary Comparison of Accounting Assets and Leverage Ratio Exposure,complete,74,17_DF-17_Summary_Comparison_of_Accounting_Assets_and_Leverage_Ratio_Exposure.docx
+DF-18,Leverage Ratio Common Disclosure Template,complete,74-76,18_DF-18_Leverage_Ratio_Common_Disclosure_Template.docx
+Appendix,LCR and NSFR (not an RBI DF table; disclosed elsewhere by the bank),illustrative,n/a,99_Appendix_LCR_NSFR_illustrative.docx

@@ -1,0 +1,67 @@
+{
+  "_about": "Structured input for the Module 6 lab. Capital (DF-2) and leverage (DF-18) figures are the REAL published numbers from ICICI Bank's Basel III Pillar 3 disclosure at 31 March 2025 (consolidated), read from the PDF pages cited. LCR and NSFR inputs are ILLUSTRATIVE teaching figures, because the bank publishes those ratios in its annual report and quarterly LCR disclosure, not in this Pillar 3 document. Replace them with the real ones when you have them.",
+  "bank": "ICICI Bank Limited (consolidated)",
+  "as_of": "31 March 2025",
+  "unit": "INR million",
+  "source": "Basel III Pillar 3 Disclosures, 31 March 2025, pages 11, 12, 75, 76",
+  "is_dsib": true,
+
+  "capital": {
+    "cet1_capital": 2756153.3,
+    "additional_tier1_capital": 0.0,
+    "tier2_capital": 104588.8,
+    "total_capital_funds": 2860742.1,
+    "_note": "Total capital funds and Tier 1 are published (p11, p75). Tier 2 is total minus Tier 1. The bank's published CET1 and Tier 1 ratios are both 15.81% (p12), so AT1 is taken as nil."
+  },
+
+  "capital_requirement": {
+    "credit_risk": 1753721.4,
+    "market_risk": 93032.1,
+    "operational_risk": 193394.3,
+    "total": 2040147.8,
+    "_note": "Capital required at the minimum total CRAR of 11.70%, page 11."
+  },
+
+  "risk_weighted_assets": {
+    "total": 17437160.9,
+    "_note": "Published total RWA, page 11. RWA by risk type is derived as capital requirement / 11.70%."
+  },
+
+  "leverage": {
+    "on_balance_sheet_exposure": 22184056.6,
+    "derivative_exposure": 910490.3,
+    "sft_exposure": 41036.5,
+    "off_balance_sheet_items": 3431306.8,
+    "total_exposure": 26566890.2,
+    "tier1_capital": 2756153.3,
+    "_note": "DF-18, pages 75 and 76."
+  },
+
+  "liquidity_ILLUSTRATIVE": {
+    "hqla": 4500000.0,
+    "net_cash_outflows_30d": 3600000.0,
+    "available_stable_funding": 18000000.0,
+    "required_stable_funding": 14400000.0,
+    "_note": "NOT the bank's figures. Teaching inputs chosen to give an LCR and NSFR of 125%."
+  },
+
+  "rbi_minimums_pct": {
+    "cet1": 5.5,
+    "tier1": 7.0,
+    "total_capital": 9.0,
+    "capital_conservation_buffer": 2.5,
+    "dsib_surcharge": 0.2,
+    "leverage_dsib": 4.0,
+    "leverage_other": 3.5,
+    "lcr": 100.0,
+    "nsfr": 100.0
+  },
+
+  "published_ratios_for_checking_pct": {
+    "cet1_crar": 15.81,
+    "tier1_crar": 15.81,
+    "total_crar": 16.41,
+    "leverage_ratio": 10.37,
+    "_note": "Page 12 and page 76. Your generated document must reproduce these."
+  }
+}

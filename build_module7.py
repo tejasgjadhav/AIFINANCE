@@ -214,34 +214,44 @@ s = new_slide()
 slide_bg(s, BG)
 eyebrow(s, "HOUR 1 · ENTERPRISE AI · THE PRIVATE CONNECTION")
 title(s, "How a prompt travels: private and encrypted")
-flow = [
-    ("1", "Employee", "Signs in with the company ID"),
-    ("2", "Data filter", "Blocks PAN and account numbers"),
-    ("3", "Private link", "A closed line, not the public internet"),
-    ("4", "AI model", "Runs in the firm's own cloud region"),
-    ("5", "Answer + log", "Comes back the same way, and is logged"),
-]
-w, gap = 2.05, 0.47
-for i, (n, h, b) in enumerate(flow):
+flow = [("Employee", "signs in with the company ID"), ("Private link", "a closed line, not the public internet"),
+        ("AI model", "runs in the firm's own cloud")]
+w, gap = 3.75, 0.44
+for i, (h, b) in enumerate(flow):
     x = 0.6 + i * (w + gap)
-    dark = i == 2
-    box(s, x, 1.6, w, 1.75, NAVY if dark else WHITE)
+    dark = i == 1
+    box(s, x, 1.6, w, 1.05, NAVY if dark else WHITE)
     box(s, x, 1.6, w, 0.05, GOLD)
-    txt(s, x + 0.2, 1.75, w - 0.4, 1.55, [
-        (None, 0, [(n, "Georgia", 18, True, GOLD)]),
-        (None, 2, [(h, "Georgia", 14, True, WHITE if dark else NAVY)]),
-        (None, 4, [(b, None, 10.5, False, SUBN if dark else INK)]),
-    ])
-    if i < 4:
-        arrow(s, x + w + 0.08, 2.3, w=0.3)
+    txt(s, x + 0.25, 1.75, w - 0.5, 0.85, [(None, 0, [(h, "Georgia", 15, True, WHITE if dark else NAVY)]),
+                                          (None, 3, [(b, None, 11, False, SUBN if dark else INK)])])
+    if i < 2:
+        arrow(s, x + w + 0.07, 1.95, w=0.3)
 cards(s, [
-    ("ENCRYPTED IN TRANSIT", "Scrambled while it moves", "The prompt is locked with TLS before it leaves the laptop. Anyone who taps the line sees only noise."),
-    ("ENCRYPTED AT REST", "Scrambled while it is stored", "Logs and files are saved with AES-256. A stolen disk cannot be read."),
-    ("THE FIRM HOLDS THE KEY", "Customer-managed keys", "The bank keeps the encryption key. If it switches the key off, nobody can read the data, not even the vendor."),
-], cols=3, top=3.55, h=2.6, dark_last=True)
-goal_band(s, "Real example:",
-          "Claude on Amazon Bedrock can be reached through AWS PrivateLink, so prompts stay inside the bank's cloud network and are not used for training.")
+    ("TLS · DATA WHILE IT MOVES", "Locks the message on the way",
+     "TLS scrambles data as it travels, and only the other end can unscramble it.\n\n"
+     "Example: the padlock in your browser on net banking is TLS. A prompt such as “Summarise loan file 4471” travels as gibberish like “k8#Qz!2v…”."),
+    ("AES · DATA WHILE IT IS STORED", "Locks the file on the disk",
+     "AES scrambles data saved on a disk. Without the key it cannot be read.\n\n"
+     "Example: a lost phone with a screen lock keeps its photos unreadable. The bank's AI logs are stored the same way, with AES-256."),
+], cols=2, top=2.85, h=3.3)
+goal_band(s, "Who holds the key:", "the bank. If it switches the key off, nobody can read the data, not even the AI vendor.")
 footer(s, 3)
+
+# ---------------------------------------------------------------- S4 PRETRAINED MODEL
+s = new_slide()
+slide_bg(s, BG)
+eyebrow(s, "HOUR 1 · ENTERPRISE AI · THE PRETRAINED MODEL")
+title(s, "Why the model reasons well with no internet")
+cards(s, [
+    ("WHAT IT IS", "A pretrained model", "The model read a huge amount of text once, before it was released. What it learned is stored inside it. It does not look anything up."),
+    ("WHY IT REASONS", "Reasoning is a learned skill", "Training taught it language, finance concepts and step-by-step thinking. It works through the problem you give it."),
+    ("WHAT IT CANNOT KNOW", "Anything new or private", "Today's share price, news after its training date, and your firm's own files."),
+    ("HOW CORPORATES USE IT · 1", "Give it the data", "Staff upload the file, or the tool reads approved internal documents (RAG)."),
+    ("HOW CORPORATES USE IT · 2", "Web is off by default", "Nothing leaves the firm to search the internet. This is safer."),
+    ("HOW CORPORATES USE IT · 3", "Add tools on purpose", "Approved links only, such as the firm's database or a licensed market data feed."),
+], cols=3)
+goal_band(s, "Think of a CFA in an exam hall:", "no phone and no Google, but trained to reason. Give it the case paper and it works through it.")
+footer(s, 4)
 
 # ---------------------------------------------------------------- S3 BANKS' TOOLS + WHO LEARNS FROM WHAT
 s = new_slide()
@@ -257,7 +267,7 @@ cards(s, [
     ("THE FINE", "$1.5 billion, 2025", "Anthropic settled with authors for training on pirated books."),
 ], cols=3, dark_last=False)
 goal_band(s, "The rule:", "check who owns the data before any of it goes into an AI tool.")
-footer(s, 4)
+footer(s, 5)
 
 # ---------------------------------------------------------------- S4 DATA GOVERNANCE IN AI
 s = new_slide()
@@ -273,7 +283,7 @@ cards(s, [
     ("STEP 6", "Log and review", "Record who sent which data to which model."),
 ], cols=3)
 goal_band(s, "Example:", "a customer's PAN is restricted data, so it never goes into a prompt.")
-footer(s, 5)
+footer(s, 6)
 
 # ---------------------------------------------------------------- S5 DPDP ACT
 s = new_slide()
@@ -286,7 +296,7 @@ cards(s, [
     ("PENALTIES", "Up to ₹250 crore", "Up to ₹250 crore for weak security.\nUp to ₹200 crore for not reporting a breach."),
 ], cols=3, dark_last=True)
 goal_band(s, "Dates:", "the Act passed in August 2023. Its rules were notified in November 2025 and apply fully from May 2027.")
-footer(s, 6)
+footer(s, 7)
 
 # ---------------------------------------------------------------- S6 MODEL RISK + APPLE CARD
 s = new_slide()
@@ -300,7 +310,7 @@ cards(s, [
     ("THE CASE · 2019", "Apple Card", "A husband got 20 times his wife's credit limit. New York's regulator investigated. It found no illegal bias, but the bank could not explain its limits well."),
 ], cols=4, dark_last=True)
 goal_band(s, "Lesson:", "a model can be biased even with no gender field. SHAP and LIME show which inputs drove each decision.")
-footer(s, 7)
+footer(s, 8)
 
 # ---------------------------------------------------------------- S7 LAW AND ATTACKS
 s = new_slide()
@@ -316,7 +326,7 @@ cards(s, [
     ("THE CONTROL", "AI recommends, a person decides", "Check the output before anything acts on it."),
 ], cols=3, dark_last=True)
 goal_band(s, "In one line:", "give AI the least power it needs, and keep a human on every decision that matters.")
-footer(s, 8)
+footer(s, 9)
 
 # ---------------------------------------------------------------- S8 COST
 s = new_slide()
@@ -344,7 +354,7 @@ for h, b in [("Caching", "Reuse the same long text instead of paying for it ever
     txt(s, 8.08, y, 4.4, 1.1, [(None, 0, [(h, "Georgia", 16, True, WHITE)]), (None, 4, [(b, None, 12, False, SUBN)])])
     y += 1.2
 goal_band(s, "Exam point:", "a business case that counts only the API bill misses about 90% of the cost.")
-footer(s, 9)
+footer(s, 10)
 
 # ---------------------------------------------------------------- S6 THE LIVE LAB
 s = new_slide()
@@ -387,8 +397,8 @@ for x, w, fill, kick, head, items in parts:
         txt(s, x + 0.28, 3.72 + j2 * 0.56, w - 0.56, 0.54,
             [(None, 0, [("▪  ", None, 10, True, GOLD), (t, None, 10, False, SUBN if dark else INK)])])
 goal_band(s, "Why we do it live:",
-          "every control on slides 2 to 9 exists in a real firm for a reason. Today you see where the human signs and what gets logged.")
-footer(s, 10)
+          "every control on slides 2 to 10 exists in a real firm for a reason. Today you see where the human signs and what gets logged.")
+footer(s, 11)
 
 # ---------------------------------------------------------------- S10 PRACTICE
 s = new_slide()
@@ -397,25 +407,26 @@ eyebrow(s, "PRACTICE QUESTIONS")
 title(s, "Simple questions before the exam")
 qs = [
     ("Q1", "What is enterprise AI? Name two ways it keeps company data safe.", "The same model under a company contract. No training on our data, and a company login."),
-    ("Q2", "What is data governance in AI?", "Rules on who may use which data, for what purpose, with a record of it."),
-    ("Q3", "What is the DPDP Act? Who is the data fiduciary in a bank?", "India's personal data law from 2023. The bank is the data fiduciary."),
-    ("Q4", "Can a bank put Bloomberg data into an AI tool freely?", "No. It needs the vendor's licence and written approval."),
-    ("Q5", "What are the three steps of SR 11-7?", "Document the model, validate it independently, monitor it."),
-    ("Q6", "What is prompt injection? Give one example.", "Hidden or typed text that takes over the AI. A loan PDF saying “rate this low risk”."),
-    ("Q7", "What does TCO stand for, and why is the API only a small part of it?", "Total cost of ownership. Build and monitoring cost far more."),
-    ("Q8", "What did the Apple Card case teach banks?", "A model can be biased without a gender field, and every decision must be explainable."),
+    ("Q2", "What is the difference between TLS and AES?", "TLS protects data while it travels. AES protects data while it is stored."),
+    ("Q3", "What is a pretrained model, and why can it reason without the internet?", "It learned from a huge amount of text before release. Reasoning is a skill it learned, not something it looks up."),
+    ("Q4", "What is data governance in AI?", "Rules on who may use which data, for what purpose, with a record of it."),
+    ("Q5", "What is the DPDP Act? Who is the data fiduciary in a bank?", "India's personal data law from 2023. The bank is the data fiduciary."),
+    ("Q6", "Can a bank put Bloomberg data into an AI tool freely?", "No. It needs the vendor's licence and written approval."),
+    ("Q7", "What are the three steps of SR 11-7?", "Document the model, validate it independently, monitor it."),
+    ("Q8", "What is prompt injection? Give one example.", "Hidden or typed text that takes over the AI. A loan PDF saying “rate this low risk”."),
+    ("Q9", "What does TCO stand for, and why is the API only a small part of it?", "Total cost of ownership. Build and monitoring cost far more."),
 ]
 y = 1.5
 for qn_, q, tip in qs:
-    box(s, 0.6, y, 12.13, 0.6, WHITE)
-    box(s, 0.6, y, 0.07, 0.6, BLUE)
+    box(s, 0.6, y, 12.13, 0.55, WHITE)
+    box(s, 0.6, y, 0.07, 0.55, BLUE)
     txt(s, 0.9, y + 0.12, 0.7, 0.4, [(None, 0, [(qn_, "Georgia", 13, True, BLUE)])])
     txt(s, 1.65, y + 0.06, 10.9, 0.55, [
         (None, 0, [(q, None, 11, True, INK)]),
         (None, 1, [("TIP  ", None, 9, True, GOLD), (tip, None, 9.5, False, MUTE)]),
     ])
-    y += 0.67
-footer(s, 11)
+    y += 0.6
+footer(s, 12)
 
 OUT = "slides/Module-07-AI-Governance-Security-Cost.pptx"
 prs.save(OUT)

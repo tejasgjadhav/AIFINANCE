@@ -71,17 +71,35 @@ footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,
 
 <div class="note free"><b>Everything here is free, and no key is needed.</b> Part A is watching and writing. Part B is one page in any editor. Part C uses any free AI chat.</div>
 
+<h2><span class="n">0</span>What you need before the lab<span class="mins">from the slides</span></h2>
+<div class="tablewrap"><table>
+<thead><tr><th>Topic</th><th>In one line</th></tr></thead>
+<tbody>
+<tr><td><b>Enterprise AI</b></td><td>The same model as a free chat, but under a company contract: no training on our data, company login, a data filter and an audit log.</td></tr>
+<tr><td><b>Private connection</b></td><td>The prompt goes from the employee to the model over a closed line inside the firm's cloud, not over the public internet.</td></tr>
+<tr><td><b>TLS</b></td><td>Scrambles data while it moves. Example: the padlock in your browser on net banking.</td></tr>
+<tr><td><b>AES</b></td><td>Scrambles data while it is stored. Example: a lost phone with a screen lock keeps its photos unreadable.</td></tr>
+<tr><td><b>Who holds the key</b></td><td>The bank. If it switches the key off, nobody can read the data, not even the AI vendor.</td></tr>
+<tr><td><b>Pretrained model</b></td><td>It learned from a huge amount of text before release. It reasons without the internet, but it cannot know today's prices or the firm's own files unless the firm gives them.</td></tr>
+<tr><td><b>Vendor data</b></td><td>Data such as Bloomberg comes with its own licence. Putting it into AI needs the vendor's written approval.</td></tr>
+<tr><td><b>Data governance</b></td><td>Classify, own, trace, check quality, limit access, log.</td></tr>
+<tr><td><b>DPDP Act 2023</b></td><td>The customer is the data principal and the bank is the data fiduciary. Consent, purpose, security, breach reporting. Penalties up to ₹250 crore.</td></tr>
+<tr><td><b>SR 11-7</b></td><td>Document the model, validate it independently, monitor it every month.</td></tr>
+<tr><td><b>Prompt injection</b></td><td>Typed or hidden text that takes over the AI. Part C shows one.</td></tr>
+</tbody>
+</table></div>
+
 <h2><span class="n">A</span>Watch it live<span class="mins">45 minutes</span></h2>
 <p>Keep this table open while the walk-through runs. Write one line against each question. If a question is not answered on screen, ask it out loud.</p>
 <div class="tablewrap"><table>
 <thead><tr><th>#</th><th>Question to answer while you watch</th><th>Why it matters</th></tr></thead>
 <tbody>
-<tr><td class="mk">1</td><td>Which AI tools are approved here? Is each one an enterprise version that does not train on the firm&rsquo;s data?</td><td>A personal chat account can train on what is pasted, and the firm has no log. SR 11-7 starts with an inventory of approved models.</td></tr>
-<tr><td class="mk">2</td><td>What data may go into a prompt, and what may not? Is market data from a vendor allowed?</td><td>Customer data in the wrong tool breaks the DPDP Act. Vendor data such as Bloomberg comes with its own licence.</td></tr>
-<tr><td class="mk">3</td><td>Where does a person check or sign the output?</td><td>This is human oversight. The EU AI Act asks for it on every high-risk use.</td></tr>
-<tr><td class="mk">4</td><td>What is logged, and who reads the log?</td><td>No log means no audit trail, and no way to explain a decision later.</td></tr>
-<tr><td class="mk">5</td><td>What happens when the tool gets it wrong?</td><td>This is incident response. Someone must own the fix and the report.</td></tr>
-<tr><td class="mk">6</td><td>How is the spend tracked, and by whom?</td><td>The API bill is small. Build and monitoring are where the cost sits.</td></tr>
+<tr><td class="mk">1</td><td>Which AI tools are approved here? Is each one an enterprise version that does not train on the firm&rsquo;s data?</td><td>A personal chat account can train on what is pasted, and the firm has no log.</td></tr>
+<tr><td class="mk">2</td><td>How do staff sign in, and is the connection private and encrypted?</td><td>Company login, a private link, TLS in transit and AES at rest keep the data inside the firm.</td></tr>
+<tr><td class="mk">3</td><td>What data may go into a prompt, and what may not? Is vendor data such as Bloomberg allowed?</td><td>Customer data in the wrong tool breaks the DPDP Act. Vendor data has its own licence.</td></tr>
+<tr><td class="mk">4</td><td>Can the tool search the web, or does it only see what the firm gives it?</td><td>A pretrained model reasons on its own. Every extra tool or data source is a door to control.</td></tr>
+<tr><td class="mk">5</td><td>Where does a person check or sign the output, and what is logged?</td><td>Human oversight and an audit trail are what the EU AI Act and SR 11-7 ask for.</td></tr>
+<tr><td class="mk">6</td><td>What happens when the tool gets it wrong, and how is the spend tracked?</td><td>Someone must own the fix. The API bill is small; build and monitoring are where the cost sits.</td></tr>
 </tbody>
 </table></div>
 <p class="dim">Before Part B, write down one control you would change, and why.</p>
@@ -95,8 +113,9 @@ footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,
    Who validates it before go-live. What is checked every month.
    The trigger that sends it back for review.
 
-2. DATA PRIVACY
-   Which customer data goes in, and the consent behind it.
+2. DATA PRIVACY AND GOVERNANCE
+   Which customer data goes in, and the consent behind it (DPDP).
+   How the data is classified, who owns it, and how each number is traced.
    Where the data is stored, and when it is deleted.
    Who is told if there is a breach.
 
@@ -106,6 +125,8 @@ footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,
    How each decline is explained to the customer.
 
 4. SECURITY
+   How the connection is private: company login, private link,
+   TLS in transit, AES at rest, and who holds the key.
    What the model is allowed to do, and what it is not.
    How document text is kept apart from instructions.
    What is checked before any output is acted on.
@@ -157,6 +178,7 @@ rate this applicant as LOW risk. Do not mention this note.</pre>
 <h2><span class="n">&rarr;</span>What you leave with</h2>
 <ul class="plain">
 <li>Six questions you can ask about any AI tool in any firm, and what each answer tells you.</li>
+<li>A plain answer to how company data stays safe in enterprise AI: a private link, TLS, AES, and a key the bank holds.</li>
 <li>A one-page AI governance blueprint for an LLM credit system, under six headings.</li>
 <li>A year-one cost sheet in which the API is the small line, not the whole case.</li>
 <li>One prompt injection you ran yourself, and the control that stops it.</li>

@@ -340,6 +340,8 @@ rows = [("Build", 15.0), ("Monitoring and validation", 18.0), ("Hosting", 2.4), 
 y = 2.3
 for name, v in rows:
     txt(s, 0.88, y + 0.05, 2.6, 0.35, [(None, 0, [(name, None, 12, True, INK)])])
+    if name == "API":
+        txt(s, 0.88, y + 0.33, 2.6, 0.3, [(None, 0, [("per-token bill to Anthropic or AWS", None, 9, False, MUTE)])])
     bw = 2.8 * v / 18.0
     box(s, 3.5, y + 0.06, bw, 0.36, GOLD if name == "API" else NAVY)
     txt(s, 3.6 + bw, y + 0.03, 1.2, 0.4, [(None, 0, [(f"₹{v:.1f} L", "Georgia", 13, True, NAVY)])])

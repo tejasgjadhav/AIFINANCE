@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NAV and Reconciliation, Live</title>
+<meta name="description" content="Module 8 live lab: price a ten-holding fund, reconcile it against the custodian and the transfer agent, and draft the NAV commentary.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#03030f;--bg2:#07071a;--c1:#00d4ff;--c2:#7c3aed;--c3:#f59e0b;--c4:#ef4444;--c5:#22c55e;--txt:#f1f5f9;--txt2:#94a3b8;--b1:rgba(0,212,255,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:4rem 1.4rem 5rem}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c1);margin-bottom:1rem}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,5vw,2.9rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.lede{color:var(--txt2);font-size:1.05rem;max-width:700px;margin-bottom:.6rem}
+.pipe{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--c1);background:rgba(0,212,255,.06);border:1px solid var(--b1);border-radius:10px;padding:.6rem 1rem;margin:1.4rem 0 0}
+h2{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;margin:3.2rem 0 .9rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.07)}
+h2 .n{color:var(--c1);font-size:1rem;vertical-align:.12em;margin-right:.5rem}
+h2 .mins{float:right;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--txt2);font-weight:400;margin-top:.45rem}
+h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin:1.8rem 0 .6rem}
+p{margin-bottom:1rem}
+p.dim{color:var(--txt2)}
+ol.comp{list-style:none;counter-reset:c;margin:1.2rem 0}
+ol.comp li{counter-increment:c;position:relative;padding:0 0 1.15rem 3rem}
+ol.comp li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:.15rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;color:var(--c1);border:1px solid var(--b1);border-radius:8px;padding:.1rem .45rem;background:rgba(0,212,255,.05)}
+ol.comp b,ul.plain b{color:var(--txt);font-weight:600}
+ul.plain{list-style:none;margin:1rem 0}
+ul.plain li{position:relative;padding:0 0 .7rem 1.3rem}
+ul.plain li::before{content:"";position:absolute;left:0;top:.72rem;width:6px;height:6px;border-radius:50%;background:var(--c1)}
+pre{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.1rem 1.25rem;overflow-x:auto;margin:1.1rem 0 1.5rem;font-family:'JetBrains Mono',monospace;font-size:.83rem;line-height:1.6;color:#c9d6e3;white-space:pre-wrap}
+.cmd{border-left:3px solid var(--c1)}
+.tablewrap{overflow-x:auto;margin:1.1rem 0 1.5rem;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:var(--bg2)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:.72rem .95rem;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+th{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);font-weight:500;background:rgba(255,255,255,.02)}
+tbody tr:last-child td{border-bottom:none}
+td.mk{font-family:'JetBrains Mono',monospace;color:var(--c1);white-space:nowrap}
+.label{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:1.6rem 0 .6rem}
+.note{background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(124,58,237,.06));border:1px solid var(--b1);border-radius:14px;padding:1.1rem 1.3rem;margin:1.4rem 0}
+.note b{color:var(--c1)}
+.free{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.05)}
+.free b{color:var(--c3)}
+.warn{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.05)}
+.warn b{color:var(--c4)}
+.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1.2rem 0 1.5rem}
+.zone{border-radius:14px;padding:.95rem 1.1rem;border:1px solid rgba(255,255,255,.1)}
+.zone .z{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.zone .c{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:500;line-height:1.2}
+.zg{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.3)}.zg .z,.zg .c{color:var(--c5)}
+.zy{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.3)}.zy .z,.zy .c{color:var(--c3)}
+.zr{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.3)}.zr .z,.zr .c{color:var(--c4)}
+.zone p{font-size:.85rem;color:var(--txt2);margin:.35rem 0 0}
+a{color:var(--c1);text-decoration:none}
+a:hover{text-decoration:underline}
+footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);color:var(--txt2);font-size:.88rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Module 08 &middot; Live Lab &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
+<h1>Build a NAV report, reconcile it, explain it</h1>
+<p class="lede">We price a ten-holding equity fund, check its books against the custodian and the transfer agent, fix the breaks, and write the daily NAV commentary. The instructor first shows Claude's reconciliation skill doing the checking.</p>
+<div class="pipe">A &nbsp;watch the skill &nbsp;&rarr;&nbsp; B &nbsp;run the NAV engine &nbsp;&rarr;&nbsp; C &nbsp;write the commentary</div>
+
+<div class="note free"><b>Free and keyless.</b> The script uses built-in Python only. No API key, no installs, no internet. Run it in Codex, Google Colab or any Python 3.</div>
+<div class="note"><b>The fund is made up.</b> The holdings are named Stock A to Stock J and the prices are illustrative, not market data.</div>
+
+<h2><span class="n">A</span>Watch the skill<span class="mins">20 minutes</span></h2>
+<p>The instructor opens the lab folder in Claude with the finance plugin and types this.</p>
+<pre class="cmd">Use the reconciliation skill. Reconcile the fund's books (fund_books.csv and fund_info.csv) against the custodian statement (custodian.csv) and the transfer agent's units outstanding. List every break, say what most likely caused it, and propose the entry that fixes it. Then work out the NAV after the fixes.</pre>
+<p>What to watch for:</p>
+<ul class="plain">
+<li><b>It lines up the records.</b> Books against custodian for units and cash, books against the transfer agent for units outstanding.</li>
+<li><b>It sorts each difference.</b> A corporate action not booked, income not booked, a transaction booked on one side only.</li>
+<li><b>It proposes the fix, and stops.</b> A person approves every entry. The skill never posts anything.</li>
+</ul>
+
+<h2><span class="n">B</span>Run the NAV engine<span class="mins">30 minutes</span></h2>
+<pre class="cmd">cd module-08-nav
+python3 nav_engine.py</pre>
+<p>It prints four steps.</p>
+<ol class="comp">
+<li><b>NAV from the fund's books.</b> Ten holdings at ₹43.37 crore, cash ₹2.60 crore, expenses ₹0.09 crore. Net assets ₹45.88 crore over 1 crore units gives a NAV of ₹45.8800.</li>
+<li><b>Reconciliation.</b> Three breaks: Stock H shows 4,000 units in the books and 8,000 at the custodian, which is a 2-for-1 split not booked. The custodian holds ₹1,20,000 more cash, which is a dividend not booked. The transfer agent shows 20,000 fewer units, which is a redemption not booked.</li>
+<li><b>NAV after the fixes.</b> ₹45.8920. The split changes nothing in value. The dividend adds cash. The redemption takes units out at NAV, so it does not move the NAV.</li>
+<li><b>Files and a prompt.</b> It writes nav_report.csv and breaks.csv, which open in Excel or Google Sheets, and prints a prompt for the commentary.</li>
+</ol>
+
+<h2><span class="n">C</span>Write the commentary<span class="mins">30 minutes</span></h2>
+<ol class="comp">
+<li><b>Paste the printed prompt into any free AI chat.</b> It asks for a five-sentence daily NAV commentary that uses only the numbers given.</li>
+<li><b>Check every number in the answer against nav_report.csv.</b> A number that is not in the file is a mistake, even if it sounds right.</li>
+<li><b>Swap reports with the next desk.</b> Check their NAV and their breaks without looking at their screen.</li>
+</ol>
+
+<h2><span class="n">&darr;</span>Files</h2>
+<ul class="plain">
+<li><a href="module-08-nav.zip" download><b>Download the lab folder (zip)</b></a> &nbsp;&middot;&nbsp; the script and the three input files.</li>
+<li><a href="module-08-nav/nav_engine.py" download>nav_engine.py</a> &nbsp;&middot;&nbsp; the NAV engine and the reconciliation check.</li>
+<li><a href="module-08-nav/fund_books.csv" download>fund_books.csv</a>, <a href="module-08-nav/custodian.csv" download>custodian.csv</a>, <a href="module-08-nav/fund_info.csv" download>fund_info.csv</a> &nbsp;&middot;&nbsp; the fund's books, the custodian statement, and cash, expenses and units.</li>
+</ul>
+
+<h2><span class="n">&rarr;</span>What you leave with</h2>
+<ul class="plain">
+<li>A NAV you can calculate by hand, and the six steps behind it.</li>
+<li>Three breaks found and fixed, and the reason each one happened.</li>
+<li>A NAV commentary in which every number was checked by you.</li>
+</ul>
+
+<footer>
+Module 08 &middot; Fund Administration: NAV and Transfer Agency &middot; Agentic AI &amp; Advanced Analytics in Finance &middot; PGDM Semester III<br>
+<a href="../index.html">Back to the course page</a>
+</footer>
+
+</div>
+</body>
+</html>

@@ -70,6 +70,27 @@ footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,
 <div class="note free"><b>Free and keyless.</b> The script uses built-in Python only. No API key, no installs, no internet. Run it in Codex, Google Colab or any Python 3.</div>
 <div class="note"><b>The fund is made up.</b> The holdings are named Stock A to Stock J and the prices are illustrative, not market data.</div>
 
+<h2><span class="n">0</span>The three files, and what each one says<span class="mins">read first</span></h2>
+<div class="tablewrap"><table>
+<thead><tr><th>File</th><th>Who writes it</th><th>What is in it</th></tr></thead>
+<tbody>
+<tr><td class="mk">fund_books.csv</td><td>The fund accountant</td><td>Each holding, the units the fund thinks it owns, and today's price. This gives market value.</td></tr>
+<tr><td class="mk">custodian.csv</td><td>The custodian bank</td><td>The units the bank actually holds for each holding, and the cash in the fund's account.</td></tr>
+<tr><td class="mk">fund_info.csv</td><td>The fund accountant, plus one line from the transfer agent</td><td>Cash per the books ₹2,60,00,000. Accrued expenses ₹8,50,000. Units outstanding per the books 1,00,00,000. Units outstanding per the transfer agent 99,80,000.</td></tr>
+</tbody>
+</table></div>
+<p><b>Accrued expenses</b> are money the fund owes but has not paid yet, such as this month's fee to the fund manager. The NAV subtracts them today, before the cash leaves.</p>
+
+<h3>The three breaks, side by side</h3>
+<div class="tablewrap"><table>
+<thead><tr><th>Break</th><th>Books say</th><th>Other side says</th><th>What happened</th><th>The fix</th><th>NAV effect</th></tr></thead>
+<tbody>
+<tr><td><b>1 · Split</b></td><td>Stock H 4,000 units</td><td>Custodian 8,000 units</td><td>Each share became two, price halved to ₹5,700</td><td>Change to 8,000 units at ₹5,700. No money moves.</td><td>None today</td></tr>
+<tr><td><b>2 · Dividend</b></td><td>Cash ₹2,60,00,000</td><td>Custodian ₹2,61,20,000</td><td>A dividend reached the bank but not the books</td><td>Debit cash ₹1,20,000, credit dividend income ₹1,20,000</td><td>+₹0.0120 a unit</td></tr>
+<tr><td><b>3 · Redemption</b></td><td>1,00,00,000 units</td><td>Transfer agent 99,80,000</td><td>An investor sold 20,000 units back</td><td>Debit unit capital ₹9,17,840, credit redemption payable ₹9,17,840</td><td>None</td></tr>
+</tbody>
+</table></div>
+
 <h2><span class="n">A</span>Watch the skill<span class="mins">20 minutes</span></h2>
 <p>The instructor opens the lab folder in Claude with the finance plugin and types this.</p>
 <pre class="cmd">Use the reconciliation skill. Reconcile the fund's books (fund_books.csv and fund_info.csv) against the custodian statement (custodian.csv) and the transfer agent's units outstanding. List every break, say what most likely caused it, and propose the entry that fixes it. Then work out the NAV after the fixes.</pre>

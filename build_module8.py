@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build Module 8 deck: Fund Administration, NAV and Transfer Agency.
-Nine slides: title, who does what, fund types, NAV, transfer agency and KYC, reconciliation, the accounting skill, live lab, practice."""
+Fourteen slides: title, who does what, fund types, NAV, transfer agency and KYC, reconciliation, the three lab files, one slide per break, the accounting skill, the Opus use case, live lab, practice."""
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -222,7 +222,7 @@ cards(s, [
     ("WHO DOES THE WORK", "Fund administrators", "SS&C GlobeOp, Apex Group, HC Global and Opus Fund Services run this work for many funds."),
     ("WHERE AI HELPS", "The checking", "Price checks, finding breaks, reading corporate action notices and drafting reports."),
 ], cols=3, dark_last=True)
-goal_band(s, "Today's case:", "Opus Fund Services and AI-powered fund automation, run from a GCC in Pune.")
+goal_band(s, "Today's case:", "Opus Fund Services, a fund administrator that uses AI to automate NAV work.")
 footer(s, 3)
 
 # ---------------------------------------------------------------- S4 NAV
@@ -291,6 +291,78 @@ cards(s, [
 goal_band(s, "Result:", "after the three fixes the NAV moves from ₹45.8800 to ₹45.8920. A small change, but every investor's money depends on it.")
 footer(s, 6)
 
+# ---------------------------------------------------------------- THE THREE LAB FILES
+s = new_slide()
+slide_bg(s, BG)
+eyebrow(s, "HOUR 2 · THE THREE LAB FILES")
+title(s, "Three files, three points of view")
+cards(s, [
+    ("FILE 1 · fund_books.csv", "The fund's own list of holdings",
+     "Written by the fund accountant. For each holding it has the units the fund thinks it owns and today's price. We use it for market value."),
+    ("FILE 2 · custodian.csv", "The bank's statement",
+     "Written by the custodian bank. It has the units the bank actually holds for each holding, and the cash in the fund's account."),
+    ("FILE 3 · fund_info.csv", "Four more numbers for the NAV",
+     "Cash per the books ₹2,60,00,000. Accrued expenses ₹8,50,000. Units outstanding per the books 1,00,00,000. Units outstanding per the transfer agent 99,80,000."),
+    ("WORD TO KNOW", "Accrued expenses",
+     "Money the fund owes but has not paid yet, such as this month's fee to the fund manager. NAV subtracts it today, before the cash leaves."),
+], cols=2, dark_last=True)
+goal_band(s, "What to compare:", "books against the custodian for units and cash. Books against the transfer agent for units outstanding.")
+footer(s, 7)
+
+
+def break_slide(n, kind, ttl, left, right, diff, diff_sub, what, fix, effect, spot):
+    s = new_slide()
+    slide_bg(s, BG)
+    eyebrow(s, f"HOUR 2 · BREAK {n} OF 3 · {kind}")
+    title(s, ttl)
+    for x, w, dark, k, big, sub in [
+        (0.6, 3.95, False, left[0], left[1], left[2]),
+        (4.72, 3.95, False, right[0], right[1], right[2]),
+        (8.84, 3.89, True, "THE DIFFERENCE", diff, diff_sub),
+    ]:
+        box(s, x, 1.6, w, 1.55, NAVY if dark else WHITE)
+        box(s, x, 1.6, w, 0.05, GOLD)
+        txt(s, x + 0.28, 1.75, w - 0.5, 1.35, [
+            (None, 0, [(k, None, 10, True, GOLD if dark else BLUE)]),
+            (None, 4, [(big, "Georgia", 24, True, GOLD if dark else NAVY)]),
+            (None, 4, [(sub, None, 11, False, SUBN if dark else MUTE)]),
+        ])
+    cards(s, [
+        ("WHAT HAPPENED", "The story", what),
+        ("THE FIX", "What the accountant books", fix),
+        ("NAV EFFECT", "Does the NAV move?", effect),
+    ], cols=3, top=3.35, h=2.8, dark_last=True)
+    goal_band(s, "How to spot it:", spot)
+    footer(s, 8)
+
+
+break_slide(1, "CORPORATE ACTION", "Break 1: a stock split the books missed",
+    ("THE FUND'S BOOKS", "4,000 units", "Stock H at ₹11,400 = ₹4.56 crore"),
+    ("THE CUSTODIAN", "8,000 units", "what the bank actually holds"),
+    "+4,000 units", "exactly 2 times the books",
+    "The company split each share into two. The price halved to ₹5,700. The custodian updated its records. The fund's books did not.",
+    "No money changes hands. Change the holding to 8,000 units at ₹5,700. The value stays ₹4.56 crore.",
+    "None today. If it is missed, tomorrow's price of ₹5,700 is applied to 4,000 units. The NAV would then fall by ₹2.28 a unit for no reason.",
+    "the units are an exact multiple of the books, such as 2 or 3 times. Look for a split or a bonus issue.")
+
+break_slide(2, "INCOME", "Break 2: a dividend the books missed",
+    ("THE FUND'S BOOKS", "₹2,60,00,000", "cash the books show"),
+    ("THE CUSTODIAN", "₹2,61,20,000", "cash in the bank account"),
+    "+₹1,20,000", "more cash at the bank",
+    "A company the fund owns paid a dividend. The money reached the fund's bank account. Nobody recorded it in the books.",
+    "Debit cash ₹1,20,000, so cash goes up. Credit dividend income ₹1,20,000, so income goes up.",
+    "Yes. ₹1,20,000 ÷ 1 crore units = ₹0.0120 a unit. The NAV goes from ₹45.8800 to ₹45.8920.",
+    "the bank has more cash than the books, close to a dividend date. Check the dividend notice before booking it.")
+
+break_slide(3, "INVESTOR UNITS", "Break 3: a redemption the books missed",
+    ("THE FUND'S BOOKS", "1,00,00,000", "units the books show"),
+    ("THE TRANSFER AGENT", "99,80,000", "units investors actually own"),
+    "−20,000 units", "fewer units at the transfer agent",
+    "An investor sold 20,000 units back to the fund. The transfer agent processed it. The fund's books did not.",
+    "Cut units by 20,000. Debit unit capital ₹9,17,840. Credit redemption payable ₹9,17,840, which is 20,000 × ₹45.8920 owed to the investor.",
+    "No. Money and units leave together, so the NAV stays ₹45.8920. If it is missed, the fund owes ₹9,17,840 that its books do not show.",
+    "fewer units at the transfer agent means a redemption is not booked. More units means a subscription is not booked.")
+
 # ---------------------------------------------------------------- S7 THE ACCOUNTING SKILL
 s = new_slide()
 slide_bg(s, BG)
@@ -305,7 +377,23 @@ cards(s, [
     ("THE HUMAN", "Reviews and signs", "The skill never posts an entry. The fund accountant approves every fix."),
 ], cols=3, dark_last=True)
 goal_band(s, "No subscription?", "the lab does the same steps with a free Python script and any free AI chat.")
-footer(s, 7)
+footer(s, 9)
+
+# ---------------------------------------------------------------- OPUS USE CASE
+s = new_slide()
+slide_bg(s, BG)
+eyebrow(s, "HOUR 2 · USE CASE")
+title(s, "Use case: Opus Fund Services, and where Claude fits")
+cards(s, [
+    ("WHO OPUS IS", "A fund administrator", "It keeps the books and calculates the NAV for hedge funds and other funds."),
+    ("ITS DAILY WORK", "The same three jobs as our lab", "It reconciles positions and cash every day, processes corporate actions and prices the portfolio."),
+    ("AI IT ALREADY USES", "Digital agents", "Its website says digital agents use desktop tools and machine learning to calculate NAVs."),
+    ("CLAUDE · RECONCILIATION SKILL", "Finds the breaks", "Lines up the books, the custodian and the transfer agent, like breaks 1, 2 and 3."),
+    ("CLAUDE · JOURNAL ENTRY AND VARIANCE SKILLS", "Drafts the fix, explains the move", "Writes the entry for each break, and says why today's NAV moved."),
+    ("THE HUMAN", "The fund accountant signs", "Approves every entry and releases the NAV."),
+], cols=3, dark_last=True)
+goal_band(s, "How it applies to us:", "our lab is a small copy of this daily job. The Claude mapping is our example, not Opus's own setup.")
+footer(s, 10)
 
 # ---------------------------------------------------------------- S8 THE LIVE LAB
 s = new_slide()
@@ -318,7 +406,7 @@ cards(s, [
     ("PART C · 30 MIN", "Write the commentary", "Paste the printed prompt into any free AI chat. Check every number against nav_report.csv. Swap reports with the next desk."),
 ], cols=3, top=1.6, dark_last=True)
 goal_band(s, "Free and keyless:", "built-in Python only, no API key and no installs. The fund is made up and the prices are illustrative.")
-footer(s, 8)
+footer(s, 11)
 
 # ---------------------------------------------------------------- S9 PRACTICE
 s = new_slide()
@@ -328,7 +416,7 @@ title(s, "Simple questions before the exam")
 qs = [
     ("Q1", "What is NAV, and how is it calculated?", "Net asset value per unit: holdings at market price plus cash minus expenses, divided by units."),
     ("Q2", "What does a custodian do, and what does a transfer agent do?", "The custodian holds the fund's shares and cash. The transfer agent keeps the list of investors and their units."),
-    ("Q3", "Name two transfer agents for Indian mutual funds.", "KFinTech and CAMS."),
+    ("Q3", "What is an accrued expense? Give one fund example.", "Money owed but not yet paid. Example: this month's fee to the fund manager."),
     ("Q4", "An investor puts in ₹10,000 at a NAV of ₹25. How many units does the investor get?", "₹10,000 ÷ ₹25 = 400 units."),
     ("Q5", "What is a reconciliation break? Give one example.", "A difference between two records. Example: a dividend the custodian received that the books did not record."),
     ("Q6", "What is STP?", "Straight-through processing: a transaction runs end to end with no manual step."),
@@ -345,7 +433,7 @@ for qn_, q, tip in qs:
         (None, 1, [("TIP  ", None, 9, True, GOLD), (tip, None, 9.5, False, MUTE)]),
     ])
     y += 0.67
-footer(s, 9)
+footer(s, 12)
 
 OUT = "slides/Module-08-Fund-Administration-NAV.pptx"
 prs.save(OUT)

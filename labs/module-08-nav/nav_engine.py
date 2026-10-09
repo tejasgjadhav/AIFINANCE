@@ -15,6 +15,9 @@ What it does, in order:
   4. Works out the corrected NAV once the breaks are fixed.
   5. Writes nav_report.csv and breaks.csv, and prints a prompt you can paste
      into any free AI chat to draft the fund manager's commentary.
+  6. Optional: if the openpyxl library is available (it is built into Google
+     Colab), it also writes nav_report.xlsx, a formatted report laid out like a
+     fund's NAV and portfolio disclosure. Without openpyxl this step is skipped.
 """
 import csv, os
 
@@ -137,3 +140,95 @@ print(f"Breaks found: {len(breaks)} (a stock split, a dividend not booked, a red
 print("Largest holdings: " + ", ".join(f"{r['holding']} ({r['sector']})" for r in top))
 print("-" * 70)
 print("Then check every number in the AI's answer against nav_report.csv.")
+
+
+# ---- 6. Optional formatted Excel report (needs openpyxl, which Google Colab already has)
+try:
+    from openpyxl import Workbook
+    from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+except ImportError:
+    print("\nopenpyxl is not installed, so nav_report.xlsx was skipped. Run this in Google Colab to get it.")
+else:
+    NAVY_FILL = PatternFill("solid", fgColor="0F2145")
+    WHITE_B = Font(bold=True, color="FFFFFF")
+    BOLD = Font(bold=True)
+    thin = Side(style="thin", color="D5E1F2")
+    RS = '"Rs "#,##,##0.00'
+    wb = Workbook()
+    ws = wb.active
+    ws.title = "NAV report"
+    ws["A1"] = "Illustrative Equity Fund  |  Daily NAV and portfolio statement, after reconciliation"
+    ws["A1"].font = Font(bold=True, size=14)
+    ws["A2"] = "A made-up fund for teaching. Holdings are Stock A to Stock J and prices are illustrative."
+    ws["A2"].font = Font(italic=True, color="5D6B7E")
+
+    ws.append([])
+    ws.append(["PORTFOLIO"])
+    ws.cell(ws.max_row, 1).font = BOLD
+    hdr = ["Holding", "Sector", "Units", "Price", "Market value", "% of net assets"]
+    ws.append(hdr)
+    for c in range(1, 7):
+        ws.cell(ws.max_row, c).font = WHITE_B
+        ws.cell(ws.max_row, c).fill = NAVY_FILL
+    # Show the portfolio after reconciliation: a booked split means the custodian's units at the split-adjusted price.
+    fixed_rows = []
+    for r in books:
+        u, pr = float(r["units"]), float(r["price"])
+        u_c = custodian.get(r["holding"], u)
+        if u_c != u and u and (u_c / u).is_integer():
+            pr, u = pr * u / u_c, u_c
+        fixed_rows.append((r["holding"], r["sector"], u, pr))
+    for h, sec, u, pr in sorted(fixed_rows, key=lambda x: x[2] * x[3], reverse=True):
+        mv = u * pr
+        ws.append([h, sec, u, pr, mv, mv / net_fixed])
+        row = ws.max_row
+        ws.cell(row, 3).number_format = "#,##,##0"
+        ws.cell(row, 4).number_format = RS
+        ws.cell(row, 5).number_format = RS
+        ws.cell(row, 6).number_format = "0.00%"
+
+    ws.append([])
+    ws.append(["NAV CALCULATION", "", "", "", "Before reconciliation", "After reconciliation"])
+    for c in range(1, 7):
+        ws.cell(ws.max_row, c).font = WHITE_B
+        ws.cell(ws.max_row, c).fill = NAVY_FILL
+    lines = [
+        ("Holdings at market price", market_value, market_value),
+        ("Cash", cash, cash_fixed),
+        ("Less accrued expenses", -expenses, -expenses),
+        ("Less redemption payable", 0.0, -round(payable, 2)),
+        ("Net assets", net_assets, net_fixed),
+        ("Units outstanding", units_out, ta_units),
+        ("NAV per unit", nav, nav_fixed),
+    ]
+    for label, before, after in lines:
+        ws.append([label, "", "", "", before, after])
+        row = ws.max_row
+        fmt = "#,##,##0" if label == "Units outstanding" else ('"Rs "0.0000' if label == "NAV per unit" else RS)
+        for c in (5, 6):
+            ws.cell(row, c).number_format = fmt
+        if label in ("Net assets", "NAV per unit"):
+            for c in (1, 5, 6):
+                ws.cell(row, c).font = BOLD
+
+    ws.append([])
+    ws.append(["Prepared by the fund accountant. Reviewed and signed by: ____________________"])
+
+    ws2 = wb.create_sheet("Breaks")
+    ws2.append(["Type", "Item", "Books", "Other side", "Difference", "Likely cause", "Suggested fix"])
+    for c in range(1, 8):
+        ws2.cell(1, c).font = WHITE_B
+        ws2.cell(1, c).fill = NAVY_FILL
+    for b in breaks:
+        ws2.append(b)
+        for c in (3, 4, 5):
+            ws2.cell(ws2.max_row, c).number_format = "#,##,##0.00"
+
+    for sheet, widths in ((ws, [28, 16, 14, 16, 22, 22]), (ws2, [18, 24, 16, 16, 16, 60, 60])):
+        for i, w in enumerate(widths, 1):
+            sheet.column_dimensions[chr(64 + i)].width = w
+        for row in sheet.iter_rows():
+            for cell in row:
+                cell.alignment = Alignment(vertical="top", wrap_text=cell.column >= 6 and sheet is ws2)
+    wb.save(os.path.join(HERE, "nav_report.xlsx"))
+    print("\nWrote nav_report.xlsx, a formatted NAV and portfolio report with a Breaks sheet.")

@@ -272,7 +272,7 @@ box(s, 0.6, 1.6, 6.3, 4.55, WHITE)
 box(s, 0.6, 1.6, 6.3, 0.05, GOLD)
 txt(s, 0.88, 1.8, 5.8, 0.3, [(None, 0, [("THE DAILY STEPS", None, 10, True, BLUE)])])
 steps = [("1", "Capture every trade done today."),
-         ("2", "Price every holding at today's closing price."),
+         ("2", "Price every holding at today's close. This is mark-to-market, or fair value under IFRS 9."),
          ("3", "Book income and corporate actions, such as dividends and splits."),
          ("4", "Subtract expenses, such as the management fee."),
          ("5", "Divide what is left by the number of units."),
@@ -292,7 +292,7 @@ for a, b in rows:
     txt(s, 7.38, y, 3.0, 0.45, [(None, 0, [(a, None, 12, big, WHITE if big else SUBN)])])
     txt(s, 10.2, y - 0.04, 2.3, 0.45, [(PP_ALIGN.RIGHT, 0, [(b, "Georgia", 15 if big else 13, True, GOLD if big else WHITE)])], align=PP_ALIGN.RIGHT)
     y += 0.6
-goal_band(s, "The formula:", "NAV = (holdings at market price + cash − expenses) ÷ units. Indian mutual funds publish it on the AMFI website every day.")
+goal_band(s, "The formula:", "NAV = (holdings at market price + cash − expenses) ÷ units. Investors then get the daily NAV on AMFI, a statement from the RTA and the portfolio every month.")
 footer(s, 4)
 
 # ---------------------------------------------------------------- S5 TRANSFER AGENCY
@@ -301,7 +301,7 @@ slide_bg(s, BG)
 eyebrow(s, "HOUR 2 · TRANSFER AGENCY AND KYC")
 title(s, "How investors get in and out of a fund")
 cards(s, [
-    ("STEP 1 · KYC", "Know your customer", "The investor gives PAN and Aadhaar. Under SEBI rules KYC is done once and stored with a KYC registration agency."),
+    ("STEP 1 · KYC AND AML", "Know your customer", "The investor gives PAN and Aadhaar. AML checks screen out money laundering. KYC is done once and stored with a KYC registration agency."),
     ("WHERE AI HELPS", "Reading and matching", "OCR reads the PAN card. AI matches “R. Kumar” on PAN with “Rajesh Kumar” at the bank. A person approves."),
     ("STEP 2 · SUBSCRIPTION", "Money in, units out", "Units = amount ÷ NAV. Example: ₹50,000 ÷ ₹45.8920 = 1,089.515 units."),
     ("STEP 3 · REDEMPTION", "Units in, money out", "The investor sells units back. The fund pays units × NAV."),
@@ -406,7 +406,7 @@ eyebrow(s, "HOUR 3 · THE LIVE LAB")
 title(s, "Build a NAV report, reconcile it, explain it")
 cards(s, [
     ("PART A · 20 MIN", "Watch the skill", "The instructor runs Claude's reconciliation skill on the lab files and it finds the three breaks."),
-    ("PART B · 30 MIN", "Run the NAV engine", "Run nav_engine.py in Codex, Colab or any Python. It prices the fund, finds the breaks and writes nav_report.csv."),
+    ("PART B · 30 MIN", "Run the NAV engine", "Run nav_engine.py in Codex, Colab or any Python. It prices the fund, finds the breaks and writes the NAV report. In Colab it also writes a formatted Excel report."),
     ("PART C · 30 MIN", "Write the commentary", "Paste the printed prompt into any free AI chat. Check every number against nav_report.csv. Swap reports with the next desk."),
 ], cols=3, top=1.6, dark_last=True)
 goal_band(s, "Free and keyless:", "built-in Python only, no API key and no installs. The fund is made up and the prices are illustrative.")

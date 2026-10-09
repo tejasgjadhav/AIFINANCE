@@ -79,7 +79,46 @@ footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,
 <tr><td class="mk">fund_info.csv</td><td>The fund accountant, plus one line from the transfer agent</td><td>Cash per the books ₹2,60,00,000. Accrued expenses ₹8,50,000. Units outstanding per the books 1,00,00,000. Units outstanding per the transfer agent 99,80,000.</td></tr>
 </tbody>
 </table></div>
-<p><b>Accrued expenses</b> are money the fund owes but has not paid yet, such as this month's fee to the fund manager. The NAV subtracts them today, before the cash leaves.</p>
+<h3>fund_info.csv, one line at a time</h3>
+<p>This file holds four numbers. Here is what each one means, with an everyday example.</p>
+
+<div class="tablewrap"><table>
+<thead><tr><th>Line</th><th>What it means</th><th>Everyday example</th></tr></thead>
+<tbody>
+<tr><td><b>Cash per the books</b><br><span class="mk">₹2,60,00,000</span></td>
+<td>The cash the fund accountant has <b>recorded</b> in the fund's bank account. It is the fund's own note of its cash, not the bank's.</td>
+<td>You keep a diary of your spending, and it says your bank balance is ₹26,000. The bank's app says ₹26,120, because a refund came in that you never wrote down. The diary is "the books". The bank app is the custodian. That is exactly break 2.</td></tr>
+<tr><td><b>Accrued expenses</b><br><span class="mk">₹8,50,000</span></td>
+<td>Bills the fund <b>already owes but has not paid yet</b>. Mostly the fund manager's fee, plus audit and custody fees.</td>
+<td>You use electricity all month, but the bill arrives next month. You already owe the money today. Fund example: the manager's fee is ₹3,80,000 a month. Two months are unpaid, which is ₹7,60,000. An audit fee of ₹90,000 is also due. Together the fund owes ₹8,50,000.</td></tr>
+<tr><td><b>Units outstanding per the books</b><br><span class="mk">1,00,00,000</span></td>
+<td>The total units held by <b>all investors together</b>, as the fund accountant has recorded them. It is 1 crore units.</td>
+<td>A pizza cut into slices. The NAV is the value of the whole pizza divided by the number of slices. Every investor owns some slices.</td></tr>
+<tr><td><b>Units outstanding per the transfer agent</b><br><span class="mk">99,80,000</span></td>
+<td>The same count, but from the <b>transfer agent's investor register</b>. That is the official list of who owns how many units.</td>
+<td>A club's membership register shows one member has left, but the club accountant's list still counts them. The register is right. That is exactly break 3: one investor sold 20,000 units back.</td></tr>
+</tbody>
+</table></div>
+
+<div class="note"><b>Why subtract accrued expenses today, before the cash leaves?</b> The money is already owed. If the NAV ignored it, the NAV would look ₹0.085 a unit too high (₹8,50,000 ÷ 1 crore units). A new investor would overpay, and an investor leaving today would take away money that is needed to pay the bills.</div>
+
+<h3>Putting the four numbers together: the NAV, step by step</h3>
+<p><b>Before reconciliation</b>, using only the fund's books:</p>
+<pre>  Ten holdings at today's price            ₹43,36,50,000
++ Cash per the books                        ₹2,60,00,000
+− Accrued expenses                             ₹8,50,000
+= Net assets                               ₹45,88,00,000
+÷ Units outstanding per the books            1,00,00,000
+= NAV per unit                                  ₹45.8800</pre>
+<p><b>After reconciliation</b>, once the three breaks are fixed:</p>
+<pre>  Ten holdings at today's price            ₹43,36,50,000   the split does not change value
++ Cash per the custodian                    ₹2,61,20,000   includes the ₹1,20,000 dividend
+− Accrued expenses                             ₹8,50,000   unchanged
+− Redemption payable                           ₹9,17,840   20,000 units × ₹45.8920
+= Net assets                               ₹45,80,02,160
+÷ Units outstanding per the transfer agent     99,80,000
+= NAV per unit                                  ₹45.8920</pre>
+<p>The NAV rises by ₹0.0120 a unit, and all of it comes from the dividend: ₹1,20,000 ÷ 1 crore units. The split moves nothing. The redemption takes out money and units in the same proportion, so it moves nothing either.</p>
 
 <h3>The three breaks, side by side</h3>
 <div class="tablewrap"><table>

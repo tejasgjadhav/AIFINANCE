@@ -224,7 +224,7 @@ cols = [
       "Who owns the fund?"]),
     (True, "FUND ADMINISTRATOR", "Looks after the fund's books",
      ["The fund itself", "The ledger: holdings, cash, expenses owed",
-      "Price holdings, book trades and corporate actions, reconcile, calculate NAV",
+      "Record the manager's trades in the books, price holdings, process corporate actions, reconcile, calculate NAV",
       "Opus Fund Services: calculates a fund's NAV and reconciles positions and cash daily",
       "What is the fund worth?"]),
 ]
@@ -271,7 +271,7 @@ title(s, "NAV: what one unit of the fund is worth today")
 box(s, 0.6, 1.6, 6.3, 4.55, WHITE)
 box(s, 0.6, 1.6, 6.3, 0.05, GOLD)
 txt(s, 0.88, 1.8, 5.8, 0.3, [(None, 0, [("THE DAILY STEPS", None, 10, True, BLUE)])])
-steps = [("1", "Capture every trade done today."),
+steps = [("1", "Record every trade the fund manager made today."),
          ("2", "Price every holding at today's close. This is mark-to-market, or fair value under IFRS 9."),
          ("3", "Book income and corporate actions, such as dividends and splits."),
          ("4", "Subtract expenses, such as the management fee."),

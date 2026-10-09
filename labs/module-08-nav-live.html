@@ -143,13 +143,7 @@ footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,
 <h2><span class="n">B</span>Run the NAV engine<span class="mins">30 minutes</span></h2>
 <pre class="cmd">cd module-08-nav
 python3 nav_engine.py</pre>
-<p>It prints four steps.</p>
-<ol class="comp">
-<li><b>NAV from the fund's books.</b> Ten holdings at ₹43.37 crore, cash ₹2.60 crore, expenses ₹0.09 crore. Net assets ₹45.88 crore over 1 crore units gives a NAV of ₹45.8800.</li>
-<li><b>Reconciliation.</b> Three breaks: Stock H shows 4,000 units in the books and 8,000 at the custodian, which is a 2-for-1 split not booked. The custodian holds ₹1,20,000 more cash, which is a dividend not booked. The transfer agent shows 20,000 fewer units, which is a redemption not booked.</li>
-<li><b>NAV after the fixes.</b> ₹45.8920. The split changes nothing in value. The dividend adds cash. The redemption takes units out at NAV, so it does not move the NAV.</li>
-<li><b>Files and a prompt.</b> It writes nav_report.csv and breaks.csv, which open in Excel or Google Sheets, and prints a prompt for the commentary.</li>
-</ol>
+<p>It prints four steps: the NAV from the books (₹45.8800), the three breaks from the table above, the NAV after the fixes (₹45.8920), and a prompt for the commentary. It also writes nav_report.csv and breaks.csv, which open in Excel or Google Sheets.</p>
 
 <h2><span class="n">C</span>Write the commentary<span class="mins">30 minutes</span></h2>
 <ol class="comp">

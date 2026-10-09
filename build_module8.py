@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Build Module 8 deck: Fund Administration, NAV and Transfer Agency.
-Fourteen slides: title, who does what, fund types, NAV, transfer agency and KYC, reconciliation, the three lab files, one slide per break, the accounting skill, the Opus use case, live lab, practice."""
+Thirteen slides: title, who does what, RTA vs fund administrator, fund types, NAV, transfer agency and KYC, reconciliation, one slide per break, Opus and Claude skills, live lab, practice."""
 from pptx import Presentation
 from pptx.util import Inches, Pt
 from pptx.dml.color import RGBColor
@@ -87,6 +87,7 @@ def title(s, text):
 
 
 def footer(s, num, dark=False):
+    num = len(prs.slides._sldIdLst)  # number slides by position, so inserts never break the sequence
     c = MUTEN if dark else MUTE
     txt(s, 0.6, 7.08, 8.0, 0.25, [(None, 0, [(FOOT_L, None, 8, False, c)])])
     txt(s, 10.13, 7.08, 2.6, 0.25, [(PP_ALIGN.RIGHT, 0, [(f"MODULE 8  ·  {num:02d}", None, 8, False, c)])],
@@ -209,6 +210,43 @@ cards(s, [
 goal_band(s, "The key idea:", "the fund accountant's books, the custodian and the transfer agent must all agree before a NAV is published.")
 footer(s, 2)
 
+# ---------------------------------------------------------------- RTA vs FUND ADMINISTRATOR
+s = new_slide()
+slide_bg(s, BG)
+eyebrow(s, "HOUR 1 · THE TWO BACK-OFFICE JOBS")
+title(s, "What an RTA does, and what a fund administrator does")
+rows = ["Looks after", "Keeps", "Daily jobs", "Example", "Answers"]
+cols = [
+    (False, "RTA · REGISTRAR AND TRANSFER AGENT", "Looks after the investors",
+     ["The fund's investors", "The investor register: who owns how many units",
+      "KYC, subscriptions, redemptions, dividends, account statements",
+      "CAMS: you start a ₹5,000 SIP, CAMS records your units and emails your statement",
+      "Who owns the fund?"]),
+    (True, "FUND ADMINISTRATOR", "Looks after the fund's books",
+     ["The fund itself", "The ledger: holdings, cash, expenses owed",
+      "Price holdings, book trades and corporate actions, reconcile, calculate NAV",
+      "Opus Fund Services: calculates a fund's NAV and reconciles positions and cash daily",
+      "What is the fund worth?"]),
+]
+x = 0.6
+for dark, k, h, vals in cols:
+    w = 5.98
+    box(s, x, 1.6, w, 4.55, NAVY if dark else WHITE)
+    box(s, x, 1.6, w, 0.05, GOLD)
+    txt(s, x + 0.3, 1.78, w - 0.6, 0.8, [
+        (None, 0, [(k, None, 10, True, GOLD if dark else BLUE)]),
+        (None, 3, [(h, "Georgia", 17, True, WHITE if dark else NAVY)]),
+    ])
+    y = 2.72
+    for r, v in zip(rows, vals):
+        box(s, x + 0.3, y - 0.06, w - 0.6, 0.01, MUTEN if dark else TINT2)
+        txt(s, x + 0.3, y, 1.5, 0.6, [(None, 0, [(r, None, 10.5, True, GOLD if dark else BLUE)])])
+        txt(s, x + 1.8, y, w - 2.1, 0.62, [(None, 0, [(v, None, 11, False, WHITE if dark else INK)])])
+        y += 0.68
+    x += w + 0.17
+goal_band(s, "Easy way to remember:", "the RTA counts the units, the fund administrator values the fund. NAV = the fund's value ÷ the units.")
+footer(s, 0)
+
 # ---------------------------------------------------------------- S3 FUND TYPES
 s = new_slide()
 slide_bg(s, BG)
@@ -273,41 +311,23 @@ cards(s, [
 goal_band(s, "STP in one line:", "straight-through processing means a transaction runs end to end with no manual step. When it breaks, someone reconciles.")
 footer(s, 5)
 
-# ---------------------------------------------------------------- S6 RECONCILIATION
+# ---------------------------------------------------------------- S6 RECONCILIATION: RECORDS = FILES
 s = new_slide()
 slide_bg(s, BG)
 eyebrow(s, "HOUR 2 · RECONCILIATION")
 title(s, "Three records must agree before the NAV goes out")
 cards(s, [
-    ("RECORD 1", "The fund's books", "What the fund accountant has recorded."),
-    ("RECORD 2", "The custodian", "The shares and cash the bank actually holds."),
-    ("RECORD 3", "The transfer agent", "The units investors actually own."),
-], cols=3, top=1.6, h=1.45)
-cards(s, [
-    ("BREAK 1 · IN OUR LAB", "A split not booked", "Stock H: 4,000 units in the books, 8,000 at the custodian. The value does not change."),
-    ("BREAK 2 · IN OUR LAB", "A dividend not booked", "The custodian holds ₹1,20,000 more cash than the books."),
-    ("BREAK 3 · IN OUR LAB", "A redemption not booked", "The transfer agent shows 20,000 fewer units than the books."),
-], cols=3, top=3.25, h=2.9, dark_last=True)
-goal_band(s, "Result:", "after the three fixes the NAV moves from ₹45.8800 to ₹45.8920. A small change, but every investor's money depends on it.")
-footer(s, 6)
-
-# ---------------------------------------------------------------- THE THREE LAB FILES
-s = new_slide()
-slide_bg(s, BG)
-eyebrow(s, "HOUR 2 · THE THREE LAB FILES")
-title(s, "Three files, three points of view")
-cards(s, [
-    ("FILE 1 · fund_books.csv", "The fund's own list of holdings",
-     "Written by the fund accountant. For each holding it has the units the fund thinks it owns and today's price. We use it for market value."),
-    ("FILE 2 · custodian.csv", "The bank's statement",
-     "Written by the custodian bank. It has the units the bank actually holds for each holding, and the cash in the fund's account."),
-    ("FILE 3 · fund_info.csv", "Four more numbers for the NAV",
-     "Cash per the books ₹2,60,00,000. Accrued expenses ₹8,50,000. Units outstanding per the books 1,00,00,000. Units outstanding per the transfer agent 99,80,000."),
+    ("RECORD 1 · fund_books.csv and fund_info.csv", "The fund's books",
+     "What the fund accountant recorded: units and price for each holding, cash ₹2,60,00,000, expenses owed ₹8,50,000 and 1,00,00,000 units."),
+    ("RECORD 2 · custodian.csv", "The custodian bank",
+     "The units and the cash the bank actually holds for the fund."),
+    ("RECORD 3 · last line of fund_info.csv", "The transfer agent",
+     "The units investors actually own, from the official register: 99,80,000."),
     ("WORD TO KNOW", "Accrued expenses",
-     "Money the fund owes but has not paid yet, such as this month's fee to the fund manager. NAV subtracts it today, before the cash leaves."),
+     "Money the fund owes but has not paid yet, such as the fund manager's fee. The NAV subtracts it today."),
 ], cols=2, dark_last=True)
-goal_band(s, "What to compare:", "books against the custodian for units and cash. Books against the transfer agent for units outstanding.")
-footer(s, 7)
+goal_band(s, "Reconciliation means:", "compare the books with each of the other two records. Every difference is a break. Our lab fund has three.")
+footer(s, 6)
 
 
 def break_slide(n, kind, ttl, left, right, diff, diff_sub, what, fix, effect, spot):
@@ -333,7 +353,7 @@ def break_slide(n, kind, ttl, left, right, diff, diff_sub, what, fix, effect, sp
         ("NAV EFFECT", "Does the NAV move?", effect),
     ], cols=3, top=3.35, h=2.8, dark_last=True)
     goal_band(s, "How to spot it:", spot)
-    footer(s, 8)
+    footer(s, 7)
 
 
 break_slide(1, "CORPORATE ACTION", "Break 1: a stock split the books missed",
@@ -363,37 +383,21 @@ break_slide(3, "INVESTOR UNITS", "Break 3: a redemption the books missed",
     "No. Money and units leave together, so the NAV stays ₹45.8920. If it is missed, the fund owes ₹9,17,840 that its books do not show.",
     "fewer units at the transfer agent means a redemption is not booked. More units means a subscription is not booked.")
 
-# ---------------------------------------------------------------- S7 THE ACCOUNTING SKILL
+# ---------------------------------------------------------------- S10 OPUS + CLAUDE SKILLS
 s = new_slide()
 slide_bg(s, BG)
-eyebrow(s, "HOUR 2 · THE ACCOUNTING SKILL DEMO")
-title(s, "Claude's reconciliation skill does the checking")
+eyebrow(s, "HOUR 2 · DOING IT EVERY DAY")
+title(s, "Opus Fund Services, and where Claude's skills fit")
 cards(s, [
-    ("WHAT A SKILL IS", "Saved instructions for one job", "A skill tells Claude how accountants do a task. The finance reconciliation skill knows how a reconciliation is done."),
-    ("WHAT IT DOES · 1", "Compares two records", "It lines up the fund's books against the custodian and the transfer agent."),
-    ("WHAT IT DOES · 2", "Sorts every difference", "Timing, error or missing entry. It says how old each break is."),
-    ("WHAT IT DOES · 3", "Suggests the fix", "It proposes the correcting entry. The journal-entry skill drafts it."),
-    ("RELATED SKILL", "Variance analysis", "Explains why the NAV moved from yesterday to today."),
-    ("THE HUMAN", "Reviews and signs", "The skill never posts an entry. The fund accountant approves every fix."),
-], cols=3, dark_last=True)
-goal_band(s, "No subscription?", "the lab does the same steps with a free Python script and any free AI chat.")
-footer(s, 9)
-
-# ---------------------------------------------------------------- OPUS USE CASE
-s = new_slide()
-slide_bg(s, BG)
-eyebrow(s, "HOUR 2 · USE CASE")
-title(s, "Use case: Opus Fund Services, and where Claude fits")
-cards(s, [
-    ("WHO OPUS IS", "A fund administrator", "It keeps the books and calculates the NAV for hedge funds and other funds."),
-    ("ITS DAILY WORK", "The same three jobs as our lab", "It reconciles positions and cash every day, processes corporate actions and prices the portfolio."),
+    ("OPUS FUND SERVICES", "A fund administrator", "It keeps the books, calculates NAVs and reconciles positions and cash every day."),
     ("AI IT ALREADY USES", "Digital agents", "Its website says digital agents use desktop tools and machine learning to calculate NAVs."),
-    ("CLAUDE · RECONCILIATION SKILL", "Finds the breaks", "Lines up the books, the custodian and the transfer agent, like breaks 1, 2 and 3."),
-    ("CLAUDE · JOURNAL ENTRY AND VARIANCE SKILLS", "Drafts the fix, explains the move", "Writes the entry for each break, and says why today's NAV moved."),
-    ("THE HUMAN", "The fund accountant signs", "Approves every entry and releases the NAV."),
+    ("WHAT A CLAUDE SKILL IS", "Saved instructions for one job", "A skill tells Claude how accountants do a task, step by step."),
+    ("RECONCILIATION SKILL", "Finds the breaks", "Lines up the books, the custodian and the transfer agent, and sorts each difference."),
+    ("JOURNAL ENTRY AND VARIANCE SKILLS", "Drafts the fix, explains the move", "Writes the entry for each break, and says why today's NAV moved."),
+    ("THE HUMAN", "The fund accountant signs", "Approves every entry. The skill never posts anything."),
 ], cols=3, dark_last=True)
-goal_band(s, "How it applies to us:", "our lab is a small copy of this daily job. The Claude mapping is our example, not Opus's own setup.")
-footer(s, 10)
+goal_band(s, "How it applies to us:", "our lab is a small copy of Opus's daily job. The Claude mapping is our example, not Opus's own setup.")
+footer(s, 8)
 
 # ---------------------------------------------------------------- S8 THE LIVE LAB
 s = new_slide()
@@ -406,7 +410,7 @@ cards(s, [
     ("PART C · 30 MIN", "Write the commentary", "Paste the printed prompt into any free AI chat. Check every number against nav_report.csv. Swap reports with the next desk."),
 ], cols=3, top=1.6, dark_last=True)
 goal_band(s, "Free and keyless:", "built-in Python only, no API key and no installs. The fund is made up and the prices are illustrative.")
-footer(s, 11)
+footer(s, 9)
 
 # ---------------------------------------------------------------- S9 PRACTICE
 s = new_slide()
@@ -433,7 +437,7 @@ for qn_, q, tip in qs:
         (None, 1, [("TIP  ", None, 9, True, GOLD), (tip, None, 9.5, False, MUTE)]),
     ])
     y += 0.67
-footer(s, 12)
+footer(s, 10)
 
 OUT = "slides/Module-08-Fund-Administration-NAV.pptx"
 prs.save(OUT)

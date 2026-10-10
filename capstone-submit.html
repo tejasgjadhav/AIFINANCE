@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capstone Submission</title>
+<meta name="description" content="Upload your capstone report and PowerPoint deck, group by group.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#03030f;--bg2:#07071a;--c1:#00d4ff;--c2:#7c3aed;--c3:#f59e0b;--c4:#ef4444;--c5:#22c55e;--txt:#f1f5f9;--txt2:#94a3b8;--b1:rgba(0,212,255,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:4rem 1.4rem 5rem}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c1);margin-bottom:1rem}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,5vw,2.9rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.lede{color:var(--txt2);font-size:1.05rem;max-width:700px;margin-bottom:.6rem}
+.pipe{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--c1);background:rgba(0,212,255,.06);border:1px solid var(--b1);border-radius:10px;padding:.6rem 1rem;margin:1.4rem 0 0}
+h2{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;margin:3.2rem 0 .9rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.07)}
+h2 .n{color:var(--c1);font-size:1rem;vertical-align:.12em;margin-right:.5rem}
+h2 .mins{float:right;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--txt2);font-weight:400;margin-top:.45rem}
+h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin:1.8rem 0 .6rem}
+p{margin-bottom:1rem}
+p.dim{color:var(--txt2)}
+ol.comp{list-style:none;counter-reset:c;margin:1.2rem 0}
+ol.comp li{counter-increment:c;position:relative;padding:0 0 1.15rem 3rem}
+ol.comp li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:.15rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;color:var(--c1);border:1px solid var(--b1);border-radius:8px;padding:.1rem .45rem;background:rgba(0,212,255,.05)}
+ol.comp b,ul.plain b{color:var(--txt);font-weight:600}
+ul.plain{list-style:none;margin:1rem 0}
+ul.plain li{position:relative;padding:0 0 .7rem 1.3rem}
+ul.plain li::before{content:"";position:absolute;left:0;top:.72rem;width:6px;height:6px;border-radius:50%;background:var(--c1)}
+pre{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.1rem 1.25rem;overflow-x:auto;margin:1.1rem 0 1.5rem;font-family:'JetBrains Mono',monospace;font-size:.83rem;line-height:1.6;color:#c9d6e3;white-space:pre-wrap}
+.cmd{border-left:3px solid var(--c1)}
+.tablewrap{overflow-x:auto;margin:1.1rem 0 1.5rem;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:var(--bg2)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:.72rem .95rem;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+th{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);font-weight:500;background:rgba(255,255,255,.02)}
+tbody tr:last-child td{border-bottom:none}
+td.mk{font-family:'JetBrains Mono',monospace;color:var(--c1);white-space:nowrap}
+.label{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:1.6rem 0 .6rem}
+.note{background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(124,58,237,.06));border:1px solid var(--b1);border-radius:14px;padding:1.1rem 1.3rem;margin:1.4rem 0}
+.note b{color:var(--c1)}
+.free{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.05)}
+.free b{color:var(--c3)}
+.warn{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.05)}
+.warn b{color:var(--c4)}
+.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1.2rem 0 1.5rem}
+.zone{border-radius:14px;padding:.95rem 1.1rem;border:1px solid rgba(255,255,255,.1)}
+.zone .z{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.zone .c{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:500;line-height:1.2}
+.zg{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.3)}.zg .z,.zg .c{color:var(--c5)}
+.zy{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.3)}.zy .z,.zy .c{color:var(--c3)}
+.zr{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.3)}.zr .z,.zr .c{color:var(--c4)}
+.zone p{font-size:.85rem;color:var(--txt2);margin:.35rem 0 0}
+a{color:var(--c1);text-decoration:none}
+a:hover{text-decoration:underline}
+footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);color:var(--txt2);font-size:.88rem}
+label.f{display:block;font-family:'Space Grotesk',sans-serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin:1.3rem 0 .45rem}
+select,input[type=text],input[type=file]{width:100%;background:var(--bg2);color:var(--txt);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:.7rem .85rem;font:inherit;font-size:.95rem}
+input[type=file]::file-selector-button{background:rgba(0,212,255,.1);color:var(--c1);border:1px solid var(--b1);border-radius:8px;padding:.35rem .8rem;margin-right:.8rem;font:inherit;cursor:pointer}
+.who{color:var(--txt2);font-size:.9rem;margin-top:.45rem;min-height:1.4em}
+.hint{color:var(--txt2);font-size:.82rem;margin-top:.35rem}
+button.go{margin-top:1.6rem;width:100%;background:var(--c1);color:#03030f;border:0;border-radius:12px;padding:.9rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;cursor:pointer}
+button.go:disabled{opacity:.45;cursor:not-allowed}
+.msg{margin-top:1rem;border-radius:12px;padding:.9rem 1.1rem;display:none}
+.msg.ok{display:block;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.35);color:#bbf7d0}
+.msg.err{display:block;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.35);color:#fecaca}
+.msg.busy{display:block;background:rgba(0,212,255,.06);border:1px solid var(--b1);color:var(--txt)}
+td.s-ok{color:var(--c5);white-space:nowrap}td.s-no{color:var(--txt2);white-space:nowrap}
+.formbox{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:.4rem 1.4rem 1.5rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Module 10 &middot; Capstone &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
+<h1>Submit your capstone</h1>
+<p class="lede">One submission per group. Upload your report and your PowerPoint deck here. You can submit again before the deadline. The latest upload is the one we mark, and earlier ones are kept.</p>
+
+<div class="tablewrap"><table>
+<thead><tr><th>Deliverable</th><th>File type</th><th>Marks</th></tr></thead>
+<tbody>
+<tr><td><b>Report</b>, 25 to 30 pages</td><td class="mk">Word (.docx) or PDF</td><td>20</td></tr>
+<tr><td><b>PowerPoint deck</b>, 8 to 10 slides. The viva is conducted on this deck.</td><td class="mk">PowerPoint (.pptx) or PDF</td><td>Part of the viva</td></tr>
+</tbody>
+</table></div>
+<div class="note">The hard copy of the report is still handed in before the End Semester Examination. Each file can be up to 20 MB.</div>
+
+<h2><span class="n">&uarr;</span>Upload and submit</h2>
+<div class="formbox">
+<label class="f" for="grp">1. Your group</label>
+<select id="grp"><option value="">Choose your group number</option></select>
+<div class="who" id="who"></div>
+
+<label class="f" for="roll">2. Roll number of either member</label>
+<input type="text" id="roll" placeholder="PGDM/25/01" autocomplete="off">
+<div class="hint">This confirms the submission comes from the group.</div>
+
+<label class="f" for="rep">3. Report (Word or PDF)</label>
+<input type="file" id="rep" accept=".docx,.pdf">
+
+<label class="f" for="deck">4. PowerPoint deck (PowerPoint or PDF)</label>
+<input type="file" id="deck" accept=".pptx,.pdf">
+
+<button class="go" id="go">Submit</button>
+<div class="msg" id="msg"></div>
+</div>
+
+<h2><span class="n">&check;</span>Submission status</h2>
+<p class="dim" id="statusnote">Loading&hellip;</p>
+<div class="tablewrap"><table>
+<thead><tr><th>Group</th><th>Members</th><th>Status</th></tr></thead>
+<tbody id="status"></tbody>
+</table></div>
+
+<footer>
+Module 10 &middot; Capstone &middot; Agentic AI &amp; Advanced Analytics in Finance &middot; PGDM Semester III<br>
+<a href="index.html">Back to the course page</a>
+</footer>
+</div>
+
+<script>
+// The Google Apps Script web app that receives the files. Empty until it is deployed.
+const BACKEND_URL = "";
+const GROUPS = {"1": {"t": "AI Based Financial reporting to LPs and GPs", "n": ["Nikhil Kumawat", "Abhishek Shah"]}, "2": {"t": "Intelligent Portfolio Risk & Financial Insight Platform", "n": ["Mimansa Priyadarsini", "Sachin Bhadouria"]}, "3": {"t": "Statistical Learning-Based Quantitative Trading Strategy for the Indian Equity Market", "n": ["Mahak Bansal", "Ayush Narendra Kale"]}, "4": {"t": "BASEL RISK MIGRATION  - AI-Powered Regulatory Arbitrage & Systemic Credit Intelligence", "n": ["Tulshi Prasantbhai Pal", "Naman Nihalani"]}, "5": {"t": "Advanced AI-Powered Tax Research", "n": ["Abhijit Kumar Mandal", "Pooja Chakraraj Joshi"]}, "6": {"t": "AI-Powered Equity Research and Valuation Assistant", "n": ["Chopda Meet", "Rupesh Kumar Ranjan"]}, "7": {"t": "AI-Based Mutual Fund Recommendation and Portfolio Optimization System", "n": ["Prabhu Ashish Senapati", "Aniket Dattaram Gawade"]}, "8": {"t": "Rolling cash flow forecaster - Predicting 13-week or monthly cash flow using historical patterns + AR/AP aging data", "n": ["Sakshi Kailas Sawant", "Shrirang Vinod Hiwarkar"]}, "9": {"t": "“AI-Driven FP&A Decision Intelligence: Automated Variance Analysis, Forecasting and Executive Reporting”", "n": ["Poonam Mahendar Singh", "HARESH SURESH PALVE"]}, "10": {"t": "AI-Powered Robo-Advisory and Wealth Management", "n": ["Choudhary Joniya Suresh Kumar", "Chetana Adhiya"]}, "11": {"t": "Al Working Capital & Cash Flow Early Warning System", "n": ["Sapna Kumari", "Japjee Ahuja"]}, "12": {"t": "FinAgent - Multi-Agent AI Equity Research & Portfolio Intelligence Platform", "n": ["Sahba Kausar", "Sumit Gorai"]}, "13": {"t": "Smart Finance AI: Personal Debt and Repayment Optimization Platform", "n": ["Vaishali Patel", "Nishant Madan Ingole"]}, "14": {"t": "AI-Based Corporate Bond Credit Spread & Rating Migration Analyser", "n": ["Gupta Sejal Rajkumar", "Abhinav Panchal"]}, "15": {"t": "AI Portfolio & Risk Analyzer", "n": ["Janhavi Jayram Gugale", "Pranav Adhikar Mali"]}, "16": {"t": "PMS Services powered by AI", "n": ["Satyam Mahadev Shelke", "Kavi Katiyar"]}, "17": {"t": "An AI-powered platform for NSE/BSE stock analysis that extracts annual reports, performs fundamental and technical analysis, and generates buy/sell/hold signals to support smarter investment decisions", "n": ["Dimple Chunnilal Pawar", "Harsh Sarle"]}, "18": {"t": "Effective Tax Rates at Indian Listed Companies: Explaining the Gap from the Statutory Rate", "n": ["Manish Tripathi", "Rushikesh Mangesh Thorat"]}, "19": {"t": "AI-Based Automation of NAV Calculation and Validation in Fund Accounting", "n": ["Snehal Kailas Gade", "John Martin"]}, "20": {"t": "Credit risk / loan default prediction model", "n": ["Vedant Damodar Naik", "Ankush Raj"]}, "21": {"t": "Ai Driven Equity Research & Portfolio Management", "n": ["Ayushi Jaiswal", "Dependra Singh Sisodiya"]}, "22": {"t": "AI Portfolio Rebalancing Manager", "n": ["Soumya Ranjan Das", "Jyoti"]}, "23": {"t": "AI - Assisted Financial Analysis & Dashboard Services For SMEs/Startups", "n": ["Harsh Soni", "Prachi Gupta"]}, "24": {"t": "AI powered financial forensic analyst", "n": ["Aditya Sandip Ghadwaje", "Dhruv Sahu"]}, "25": {"t": "Market Regime Detection and Allocation Switching: Does Regime-Aware Allocation Beat a Fixed Mix?", "n": ["Piyush Agarwal", "Joseph Josiah Cardozo"]}, "26": {"t": "FinSmart AI: A Low-Cost AI-Enabled Financial Analytics Service for Small Businesses", "n": ["Yogendra Singh Rana", "Mahesh Sadashiv Bhupati"]}, "27": {"t": "Auditor Qualifications and Emphasis of Matter: What Do Modified Audit Opinions Predict?", "n": ["Pranav Sandip Chavan", "ANAMIKA SINGH"]}, "28": {"t": "Which NSE Disclosure Categories Move the Price? Abnormal Returns by Announcement Type", "n": ["Harshvardhan Soni", "Utkarsha Bandhe"]}, "29": {"t": "AI-Powered Equity Research & Investment Intelligence Platform", "n": ["Rithika Shashidhar", "Krishna Sanjay Bembade"]}, "30": {"t": "FINMATE AI — AI Virtual CFO for Small Businesses", "n": ["RITIKA MAHURKAR", "Rupali Shyam Mohol"]}, "31": {"t": "\"FINIOS\" The Fundamental Analyst.", "n": ["Harshal Rajendra Neve", "Kushanki Kesharwani"]}, "32": {"t": "\"MarketPulse India\" — An AI-Powered Macro Intelligence & Multi-Factor Stock Recommendation Engine for the Indian Equity Market", "n": ["Rohit Shrinivas Kore", "Saahil Manoj Kingre"]}, "33": {"t": "Do Management Guidance Ranges Predict Reported Results?", "n": ["Sumit Kumar Mandal", "Rabheru Harsh Manharlal"]}, "34": {"t": "Bank Lending Concentration and Sectoral Credit Risk", "n": ["Shubham Soni", "Shivani Madanbhai Rathod"]}, "35": {"t": "use ML to forecast inflows/outflows for a category of funds based on market indicators, and discuss implications for liquidity management", "n": ["Rishi Sharma", "Abhishek Tiwari"]}, "36": {"t": "AI-Based Credit Risk Assessment and Loan Default Prediction", "n": ["Karm Brijeshkumar Darji", "Neha Pravin Kuralkar"]}, "37": {"t": "AI-Based IPO Listing Gain Prediction Model for Indian IPOs", "n": ["Shubham Digambar Sangle", "Ashish Awasthi"]}, "38": {"t": "AI Based Stock Recommendation System with Buy , Sell and Hold Recommendation of that Stock with Reasons and Financial Data", "n": ["Ayush Ghagre", "Prajwal Rathore"]}, "39": {"t": "CollectAI: An AI-Powered Accounts Receivable Management and Payment Risk Prediction System for MSMEs", "n": ["Anshuli Saxena", "Sahu Premkumar"]}, "40": {"t": "Personalized Stock Recommendation Engine Using Risk Profiling, Investment Horizon, and Capital Allocation", "n": ["Bhojraj Krishna Kamdi", "Vivek Rajesh Rudani"]}, "41": {"t": "AI Financial Document & Earnings Report Analyzer", "n": ["Utkarsh Anand Pratap Singh", "Priyanshu Jain"]}, "42": {"t": "Intelligent Stock Market Decision System Using AI", "n": ["Tanishq Manoj Sapare", "Kaustubh Narendra Boraste"]}, "43": {"t": "Cost Structure Analysis of Listed Companies: Where Operating Expense Ratios Diverge Within a Sector", "n": ["Shravani Rajiv Pittulwar", "Ragini Vinod Kumar Nishad"]}, "44": {"t": "AI-Powered Cooperative Banking Liquidity & NPA Early Warning Dashboard", "n": ["Avkash Suresh Kothale", "Amruta Pankaj Biswas"]}, "45": {"t": "Real-Time Financial News Summarization and Sentiment-Driven Trading Signal Generator", "n": ["Vaibhav Hemraj Bramhankar", "Shubham Patel"]}, "46": {"t": "AI WealthPilot - AI-Powered Investment Allocation, Trade Risk Assessment & Algorithmic Strategy Optimisation", "n": ["Aayush Vishal Karwa", "SOUMIK SADHUKHAN"]}, "47": {"t": "Ai powered IPO Analyzer", "n": ["Chirag Gupta", "Harshal Saurkar"]}, "48": {"t": "Old versus New Tax Regime: Where the Choice Flips, and How Many Taxpayers Sit Near That Line", "n": ["Vaidik Basal", "Vedika Mahadev Belekar"]}, "49": {"t": "AI-Powered Mutual Fund Factsheet Summarizer + Red-Flag Detector", "n": ["Saharsh Vinay Ganorkar", "Sumit Suresh Shinde"]}, "50": {"t": "AI Investment Research & Portfolio Risk Platform", "n": ["Kanishka Parihar", "Priyansh Sangotra"]}, "51": {"t": "AI Loan & Credit Assessment Engine", "n": ["Deepali Agrawal", "Achal Ghumre"]}, "52": {"t": "Fund Expense Allocation & Accrual Automation Model", "n": ["Nancy Keshri", "Prachi Gajanan Barsagade"]}, "53": {"t": "AlphaGuard AI: Multi-Asset Algorithmic Trading & Risk-Managed Investment Advisory System", "n": ["Takvo Topden Lepcha", "Jeet Subhash Thavrani"]}, "54": {"t": "AI IPO Research & Valuation Assistant", "n": ["Aditi Yadnyadatt Pingle", "Ananya Anand"]}, "55": {"t": "AI MIS & Dashboard Automation for SMEs Project", "n": ["Mehak Sachin Singhal", "Yash Agrawal"]}, "56": {"t": "AI-Powered Management Commentary Analyzer for Financial Decision-Making", "n": ["Khushi Arun Shende", "Akshat Jain"]}, "57": {"t": "Stock Market Sentiment Analysis", "n": ["Anubhav Sanjay Thombare", "Radhika Gupta"]}, "58": {"t": "AI powered merger and acquisition target screening & valuation model", "n": ["Shreyas Sameer Pujari", "Gaurav Subhash Hajare"]}, "59": {"t": "AI-Based Corporate Actions Processing & Reconciliation Engine", "n": ["Khushbu Prashant Jaiswal", "Sachin Sudhir Kanojiya"]}, "60": {"t": "\"AI Deal Team: An Agentic Pipeline for End-to-End M&A Deal Valuation & Structuring", "n": ["Amit Anandrao Patil", "Trupti Vikas Tekawade"]}, "61": {"t": "AI-Based Prediction of Stock Volatility Risk Using Financial and Market Indicators: An Empirical Study of Indian Listed Companies", "n": ["Vipul Kumar Singh", "Shruti Sanjay Paradkar"]}, "62": {"t": "Does Announcement Timing Affect Price Reaction? Pre-Market versus Post-Market NSE Filings", "n": ["Sudhanshu Kumar", "Abhishek Mahesh Chavan"]}, "63": {"t": "AI Based Financial Statement Analyzer", "n": ["Vaishnavi Kundalik Shinde", "Gourang Gurudas Haldar"]}, "64": {"t": "AI Governance & Model Risk Framework for Financial LLM Tools", "n": ["Bhushan Nitin Khamankar", "Sahil Ravindra Gawande"]}, "65": {"t": "AI BASED ESG RISK SCORING OF COMPANIES", "n": ["Piyush Rohit Darji", "Abhay Pratap Singh Rajput"]}, "66": {"t": "AI-Based Stock Market Event Impact Analyzer", "n": ["Pranil Prakash Amrutkar", "Pranay Dadghaye"]}, "67": {"t": "AI-powered Investment monitoring and opportunity discovery platform.", "n": ["Atharv Dhananjay Yawale", "Harshali Dinesh Shinde"]}, "68": {"t": "Agentic AI for M&A Deal Evaluation: Financial Due Diligence, Valuation, Synergy Analysis and Risk Assessment", "n": ["Sakshi Kiran Dhoot", "Avantika Kishor Chavan"]}, "69": {"t": "AI- Powered Personal Finance Manager", "n": ["Nishant Vijay Rindhe", "Rohit Vijay Tirlotkar"]}, "70": {"t": "Bank Complaint Analysis from RBI Ombudsman Reports: Which Grounds Are Rising and Which Banks Concentrate Them", "n": ["Nalin Jain", "Somya Gupta"]}, "71": {"t": "AI-Powered Financial Decision Intelligence & Scenario Simulator for Corporate Management", "n": ["Ashutosh Paul", "Sachin Dilip Singh"]}, "72": {"t": "Transmission of US Fed Rate Changes to Indian Equity and Bond Markets: An Event Study", "n": ["Tanaya Gajendra Khapre", "Poonam Anil Hajare"]}, "73": {"t": "AI CFO — Financial Decision Support Assistant", "n": ["Rahul Shivprasad Pal", "Gauri Jaydev Atkari"]}, "74": {"t": "AI-Driven Model for Financial Statement and Ratio Analysis", "n": ["Dnyanesh Arvind Bhosle", "Arpita Ravindra Pawar"]}, "75": {"t": "“AI-Based Banking Sector Stock Analyzer: A Buy, Hold, or Sell Recommendation System”", "n": ["Niranjana Chanda", "Aniket Gupta"]}, "76": {"t": "An AI-Based Framework for Forecasting Stock Returns Using Corporate Financial Statements", "n": ["ANISHA SARRAF", "Adarsh Choudhury"]}, "77": {"t": "Related Party Transactions: Disclosure Quality and Governance Outcomes", "n": ["Aditya Adhikrao Mohite", "Shroff Anurag Raju"]}, "78": {"t": "Do Sector Rotation Signals Work in India? Relative Strength Across NSE Sector Indices", "n": ["Nikhil Dinesh Chauhan", "Bhoomika B M"]}, "79": {"t": "AI-Based Detection of Overvalued and Undervalued Companies", "n": ["Makhija Bhupendrasing Gulabsing", "Aditi Anant Sutar"]}, "80": {"t": "AI Powered Credit Rating Analysis", "n": ["Sudhanshu Prashant Pande", "Pratik Ravi Solanki"]}, "81": {"t": "AI-Powered Private Equity Fund Intelligence & Investor Reporting System Using RAG", "n": ["Waghmare Onkar Arun", "Sahil Badrinath Basvekar"]}, "82": {"t": "AI-Powered Company financial health/credit risk screener", "n": ["NIMISHA SINGH", "Diksha Satish Gaonkar"]}, "83": {"t": "AI Treasury Risk & Liquidity Optimizer", "n": ["Ayush Bhardwaj", "Nakul Singh Bhadouriya"]}, "84": {"t": "Can AI Detect “Greenwashing” in Corporate Financial Reports?", "n": ["Trupati Vilas Narkhede", "Tanmay Pravin Dhonde"]}, "85": {"t": "AI-Powered Green Bond Risk & Credibility Analyzer", "n": ["Nandini Sanjay Kapse", "Jitu Vyankatesh Annewar"]}, "86": {"t": "AI-Powered Voice of Customer Analytics for Financial Product and Service Improvement", "n": ["Kunal Tiwari", "Nayan Kumar Hota"]}, "87": {"t": "AI-Powered Investment Verification & Due Diligence: Evidence Behind Every Investment Decision.", "n": ["Rashmi Sanjay Chate", "Japleen Kaur"]}};
+const MAX = 20 * 1024 * 1024;
+const $ = id => document.getElementById(id);
+const nums = Object.keys(GROUPS).map(Number).sort((a, b) => a - b);
+
+nums.forEach(n => {
+  const o = document.createElement('option');
+  o.value = n; o.textContent = 'Group ' + n + ' · ' + GROUPS[n].t;
+  $('grp').appendChild(o);
+});
+$('grp').onchange = () => {
+  const g = GROUPS[$('grp').value];
+  $('who').textContent = g ? 'Members: ' + g.n.join(' and ') : '';
+};
+
+function show(kind, html) { const m = $('msg'); m.className = 'msg ' + kind; m.innerHTML = html; }
+function readB64(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(String(r.result).split(',')[1]);
+    r.onerror = () => rej(new Error('Could not read ' + file.name));
+    r.readAsDataURL(file);
+  });
+}
+function check(file, exts, label) {
+  if (!file) return 'Please attach the ' + label + '.';
+  const ext = file.name.split('.').pop().toLowerCase();
+  if (!exts.includes(ext)) return 'The ' + label + ' must be ' + exts.map(e => '.' + e).join(' or ') + '.';
+  if (file.size > MAX) return 'The ' + label + ' is larger than 20 MB.';
+  return '';
+}
+
+$('go').onclick = async () => {
+  const group = $('grp').value, roll = $('roll').value.trim();
+  const rep = $('rep').files[0], deck = $('deck').files[0];
+  if (!BACKEND_URL) return show('err', 'Submissions are not open yet. Please check back soon.');
+  if (!group) return show('err', 'Please choose your group.');
+  if (!roll) return show('err', 'Please enter the roll number of either member.');
+  const e1 = check(rep, ['docx', 'pdf'], 'report'), e2 = check(deck, ['pptx', 'pdf'], 'PowerPoint deck');
+  if (e1 || e2) return show('err', e1 || e2);
+  $('go').disabled = true;
+  show('busy', 'Uploading your files. Please keep this page open&hellip;');
+  try {
+    const body = JSON.stringify({
+      group, roll,
+      report: { name: rep.name, type: rep.type, data: await readB64(rep) },
+      deck: { name: deck.name, type: deck.type, data: await readB64(deck) }
+    });
+    const r = await fetch(BACKEND_URL, { method: 'POST', body });
+    const j = await r.json();
+    if (j.ok) {
+      show('ok', '<b>Submitted.</b> Group ' + j.group + ', at ' + j.at + '. We received ' + j.report + ' and ' + j.deck + '.');
+      loadStatus();
+    } else show('err', j.error || 'The upload failed. Please try again.');
+  } catch (err) {
+    show('err', 'The upload failed: ' + err.message + '. Please try again.');
+  } finally { $('go').disabled = false; }
+};
+
+async function loadStatus() {
+  let done = {};
+  if (BACKEND_URL) {
+    try { const j = await (await fetch(BACKEND_URL)).json(); done = j.submitted || {}; } catch (e) {}
+  }
+  $('status').innerHTML = nums.map(n => {
+    const s = done[n];
+    return '<tr><td class="mk">' + n + '</td><td>' + GROUPS[n].n.join(', ') + '</td>' +
+      (s ? '<td class="s-ok">Submitted ' + s + '</td>' : '<td class="s-no">Not yet</td>') + '</tr>';
+  }).join('');
+  const c = Object.keys(done).length;
+  $('statusnote').textContent = BACKEND_URL ? c + ' of ' + nums.length + ' groups have submitted.' : 'Submissions open soon.';
+}
+loadStatus();
+</script>
+</body>
+</html>

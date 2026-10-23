@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Class Assignments</title>
+<meta name="description" content="Ten-mark true or false assignments on Modules 3 to 9, marked automatically, with a class leaderboard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#03030f;--bg2:#07071a;--c1:#00d4ff;--c2:#7c3aed;--c3:#f59e0b;--c4:#ef4444;--c5:#22c55e;--txt:#f1f5f9;--txt2:#94a3b8;--b1:rgba(0,212,255,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:4rem 1.4rem 5rem}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c1);margin-bottom:1rem}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,5vw,2.9rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.lede{color:var(--txt2);font-size:1.05rem;max-width:700px;margin-bottom:.6rem}
+.pipe{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--c1);background:rgba(0,212,255,.06);border:1px solid var(--b1);border-radius:10px;padding:.6rem 1rem;margin:1.4rem 0 0}
+h2{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;margin:3.2rem 0 .9rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.07)}
+h2 .n{color:var(--c1);font-size:1rem;vertical-align:.12em;margin-right:.5rem}
+h2 .mins{float:right;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--txt2);font-weight:400;margin-top:.45rem}
+h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin:1.8rem 0 .6rem}
+p{margin-bottom:1rem}
+p.dim{color:var(--txt2)}
+ol.comp{list-style:none;counter-reset:c;margin:1.2rem 0}
+ol.comp li{counter-increment:c;position:relative;padding:0 0 1.15rem 3rem}
+ol.comp li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:.15rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;color:var(--c1);border:1px solid var(--b1);border-radius:8px;padding:.1rem .45rem;background:rgba(0,212,255,.05)}
+ol.comp b,ul.plain b{color:var(--txt);font-weight:600}
+ul.plain{list-style:none;margin:1rem 0}
+ul.plain li{position:relative;padding:0 0 .7rem 1.3rem}
+ul.plain li::before{content:"";position:absolute;left:0;top:.72rem;width:6px;height:6px;border-radius:50%;background:var(--c1)}
+pre{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.1rem 1.25rem;overflow-x:auto;margin:1.1rem 0 1.5rem;font-family:'JetBrains Mono',monospace;font-size:.83rem;line-height:1.6;color:#c9d6e3;white-space:pre-wrap}
+.cmd{border-left:3px solid var(--c1)}
+.tablewrap{overflow-x:auto;margin:1.1rem 0 1.5rem;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:var(--bg2)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:.72rem .95rem;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+th{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);font-weight:500;background:rgba(255,255,255,.02)}
+tbody tr:last-child td{border-bottom:none}
+td.mk{font-family:'JetBrains Mono',monospace;color:var(--c1);white-space:nowrap}
+.label{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:1.6rem 0 .6rem}
+.note{background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(124,58,237,.06));border:1px solid var(--b1);border-radius:14px;padding:1.1rem 1.3rem;margin:1.4rem 0}
+.note b{color:var(--c1)}
+.free{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.05)}
+.free b{color:var(--c3)}
+.warn{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.05)}
+.warn b{color:var(--c4)}
+.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1.2rem 0 1.5rem}
+.zone{border-radius:14px;padding:.95rem 1.1rem;border:1px solid rgba(255,255,255,.1)}
+.zone .z{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.zone .c{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:500;line-height:1.2}
+.zg{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.3)}.zg .z,.zg .c{color:var(--c5)}
+.zy{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.3)}.zy .z,.zy .c{color:var(--c3)}
+.zr{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.3)}.zr .z,.zr .c{color:var(--c4)}
+.zone p{font-size:.85rem;color:var(--txt2);margin:.35rem 0 0}
+a{color:var(--c1);text-decoration:none}
+a:hover{text-decoration:underline}
+footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);color:var(--txt2);font-size:.88rem}
+.tabs{display:flex;gap:.6rem;margin:1.6rem 0 0}
+.tab{flex:1;background:var(--bg2);color:var(--txt2);border:1px solid rgba(255,255,255,.12);border-radius:12px 12px 0 0;padding:.85rem;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1rem;cursor:pointer}
+.tab.on{color:var(--c1);border-color:var(--b1);background:rgba(0,212,255,.07)}
+.panel{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:0 0 16px 16px;padding:.6rem 1.4rem 1.6rem;display:none}
+.panel.on{display:block}
+label.f{display:block;font-family:'Space Grotesk',sans-serif;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:var(--txt2);margin:1.2rem 0 .45rem}
+input[type=text],input[type=password]{width:100%;background:#03030f;color:var(--txt);border:1px solid rgba(255,255,255,.15);border-radius:10px;padding:.7rem .85rem;font:inherit}
+button.go{margin-top:1.2rem;width:100%;background:var(--c1);color:#03030f;border:0;border-radius:12px;padding:.85rem;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.02rem;cursor:pointer}
+button.go:disabled{opacity:.45;cursor:not-allowed}
+.q{border-top:1px solid rgba(255,255,255,.07);padding:.9rem 0}
+.q .m{font-family:'JetBrains Mono',monospace;font-size:.75rem;color:var(--c1);margin-right:.4rem}
+.q .opts{margin-top:.5rem;display:flex;gap:.6rem}
+.q .opts label{border:1px solid rgba(255,255,255,.15);border-radius:9px;padding:.35rem 1.1rem;cursor:pointer}
+.q .opts input{margin-right:.4rem}
+.q.right{background:rgba(34,197,94,.06)} .q.wrong{background:rgba(239,68,68,.06)}
+.q .fb{font-size:.85rem;margin-top:.35rem}
+.msg{margin-top:1rem;border-radius:12px;padding:.9rem 1.1rem;display:none}
+.msg.ok{display:block;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.35);color:#bbf7d0}
+.msg.err{display:block;background:rgba(239,68,68,.08);border:1px solid rgba(239,68,68,.35);color:#fecaca}
+.msg.busy{display:block;background:rgba(0,212,255,.06);border:1px solid var(--b1)}
+.timer{height:8px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden;margin:.8rem 0 .3rem}
+.timer i{display:block;height:100%;background:var(--c1);transition:width 1s linear}
+.tleft{font-family:'JetBrains Mono',monospace;color:var(--txt2);font-size:.85rem}
+.qbox{-webkit-user-select:none;user-select:none;font-size:1.25rem;line-height:1.55;margin:1.2rem 0;min-height:4.5rem}
+.tf{display:flex;gap:.8rem}.tf button{flex:1;background:#03030f;color:var(--txt);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:1rem;font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;cursor:pointer}
+.tf button:hover{border-color:var(--c1);color:var(--c1)}
+.warnbar{color:#fecaca;font-size:.88rem;min-height:1.3em;margin-top:.6rem}
+.score{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:700;color:var(--c5)}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<div class="eyebrow">Assignment &middot; Modules 3 to 9 &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
+<h1>Class assignment: true or false</h1>
+<p class="lede">Open your class's tab with the password your faculty gives you, enter your name and roll number, and press Start. You get ten questions, one at a time, with 30 seconds each. Each question carries one mark. You cannot go back. If you leave this tab during the test, the question on screen is lost and the switch is recorded. Your score appears straight away, and the class leaderboard updates. Only your first attempt counts on the leaderboard.</p>
+
+<div class="tabs"><button class="tab on" data-c="A">Assignment &middot; Class A</button><button class="tab" data-c="B">Assignment &middot; Class B</button></div>
+<div class="panel on" id="pA"></div>
+<div class="panel" id="pB"></div>
+
+<footer>Agentic AI &amp; Advanced Analytics in Finance &middot; PGDM Semester III<br><a href="index.html">Back to the course page</a></footer>
+</div>
+<script>
+const API = "https://script.google.com/macros/s/AKfycbzhyCaE0Xue239ya28x_MuP39mwqb3uzOpJSzNKtMGKowFo0VYMJ1V6mFeLAejd5DuS/exec";
+const LOCKED = {"A": {"s": "95bW12bwBtLSzb9xtl3HnQ==", "i": "jeyLaFQWq/3K9RKI", "c": "VGQ4DKweZec/5LmlXg+NAQpnnaozhBBOLghpYo/ItKM1n/qdM2jlwhhNIX5G9hhR33gh9pk6A11Qyjvekv0S00h1dE31V4ZeM25+ugzDHEet0xe5oRr/QVPw8ZRyGx+DClctmjKdBWISdySm7JlHSdUpc/NI5XfnCSmYtXy7EDMFJBwKZeg/Z/jHvz0LdbcAzeRW7uiWATvpPKt814jNq9Gx+zx/iDVve002CzIIjRxjSiXqzWcDtnvKEOvIfUbAEndJfWdNPllc8d4Iy3WooarhjfZOZH7+z4aTKRHLQ5bKRw2v2oSKheYYRKmTqi//ScHethHzEpNSorwux/K2dRw+0V0rStoy4qeKgEjRL++yR2cWYKThH+vF1G5Y1ahiXCc+q4LsB3wXOfQN5bfgVHG+x04jS4oeuXnMn3wcHYVz1x9uitYzYBQ82h+QbwyW1A5ODBECpdPpZNyXGs325kyC2J4uV5Bwu2nHDnxIbKULHX6an4SWgkLGkYe/PRMRb35Pb6rQoRw4yrKu4umKSJgAKzppGTt5OSO/v/ZG+RhT915QYNk8rX4S+AKO35PxDzBcbDXL4z0rXndStsv7lo1oFYwNYTSkTO4qlSvpHtdZcGURN4O/qTj6K2tW69ByrPCkl6Eb6pkgoB1nKrTo94k/o86OUnDBl4BeDazRzjOkcmqKYicP4V03sKMkj9P8jXuh7ILO3AQpS94Xm4ZUpoyzVeLFc7/+0ZrJGAi9Q32+nWJpIZBhFRI8/OdCJyeDOv2uAAn/dmoWk5FF+YvycVerpoKhHs+BsEE0J4x3ccvpgUyLv9MrZtpwfArGGbGhOutqMJmSYMUhNm0o0wtKOictBjGP8qlI5ckFy/cmVYlr/lGmxejHrgXI/+svAd8HiM/ysZz3m7Qzolzf4hGoL0j6nLgzMDU3k2Wwxa0MNFM4QbrUiZIBNOSuturMSpZ0HxxN11WGFvX3gWawW/PocD9qr4JcjSQEXgH6+KzynpkxWTQp5iMNuLcZS6/xM0QOh53mlLyesBlx3UWW6GvN3DTS2HBzNQe16PSOvlCIlrquUhAV18XgM2pH9eL/dSFOfCMGKH652Lu13455koPK/NCTzohp"}, "B": {"s": "Mrya9mi0r8cLdPbJ1/tdAg==", "i": "80QWDdmDybiEAIRB", "c": "ojoeTOmE23MLQ6bJuiRXeHHzaQMQ0rB8h20XCqgN4STk/mxM5rO/Iw9f2hT5uNl3k0fSThRUyUOvGsDbIGnPj8i9L2GZod0rGaB7sq5tf9L2wT7RGT2unAmprvsuMuE0vX/Ps40wSmN6hjtpEXBPJC6hCIaqkbqcdjD3Xdzpx9U7A/24cK1I8r0vOIQUncTGOPpWfXrsyrp3ZtJcIq1iwDPyaAgi2GqMTyIfie7iwDeuJhzRh8RA16j/oe8O09TOIvP/juzqnxF9ilqJZZXymHzFlqg29Re5aE6fIsqc/COKkUw30IepXHwRVZlXDMvh2bmIC806rp++36wIfNMrkuwjVrnbZ7feWGS2Un0XEbBJmcb8zymcKmIUuRCKACwSxfJlBQiMxbyDcFdVdGy6W15atDmUQ4G83xSnXOQqlNXtmVyPpkyFiXKBbnPc4/NfR1LyC5CfT64IugDOTJOpuJ/RAVbSPOV5MsyPjqlVVoTEauvtVMJ6d/5qD+96+vIFkCLBwb7tFdqfawX00i+VOuA+i8VUZCchbughSDYceVs/tZwa6Q1xx8/BnVd6sfPn2mhoshAoPkKfji7xi9enaJsNymlGmC0exAgNyzFzjUWtBolGIZyBJY1iDnnkoPEzS2+C9ZynZrfThug5rxRxJGrgnCtRJFB7V9JAW/nHa5SE65Igsw8Hb0w2xQdXW0BRY9WTjt5pZzYY3V0kTlwwzkOXrFpq88lRaXCDgDliJ3/JkL2cPm7oaxZFgj47FKtlG9ssyWVhZNjT7G+RNnKb+7UQBT8y1I+Ole6+g6mbxE3moxro2onN5XReNwm6NHnAJGebutHLwrW91xpuKaHHXcART3FDnB1oRg+wcMXxIIcaKqCZ+H8TtvnJHb7KB4lqnM8Lvqz6S1C3OqNQCkDPRcfPeO9lTdM0IKTcN5lYHjel6YxIzRla6DT+yiJf24bxezf1CWy/VZPUcdH5HIttPG5KOOAadDAJu7tNsB3DtYFgqYGS+Ibly3GR5KjCbsx8GvAccWtSneml9bFb5kSNRzIYcu8mgCBJVdX6jLl432jSybbmrsEUQ7RYWECPQvnIldyv59WeNvXoUz4OIaX/XA=="}};
+const state = {A: {}, B: {}};
+const SECONDS = 30;
+const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
+const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+// Retries with random spacing, so 60 students pressing a button together all get through.
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+async function call(url, opts, tries = 6) {
+  for (let k = 0; k < tries; k++) {
+    try {
+      const j = await (await fetch(url, opts)).json();
+      if (!j.busy) return j;
+    } catch (e) { if (k === tries - 1) throw e; }
+    await sleep(800 * (k + 1) + Math.random() * 1500);
+  }
+  throw new Error('busy');
+}
+const post = body => call(API, {method: 'POST', body: JSON.stringify(body)});
+let running = null;   // the class whose test is on screen
+
+async function unlock(cls, pw) {
+  const L = LOCKED[cls];
+  const base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw), 'PBKDF2', false, ['deriveKey']);
+  const key = await crypto.subtle.deriveKey({name: 'PBKDF2', salt: b64(L.s), iterations: 150000, hash: 'SHA-256'},
+    base, {name: 'AES-GCM', length: 256}, false, ['decrypt']);
+  const pt = await crypto.subtle.decrypt({name: 'AES-GCM', iv: b64(L.i)}, key, b64(L.c));
+  return JSON.parse(new TextDecoder().decode(pt));
+}
+function msg(id, kind, html) { const m = document.getElementById(id); m.className = 'msg ' + kind; m.innerHTML = html; }
+
+function lockView(cls) {
+  const p = document.getElementById('p' + cls);
+  p.innerHTML = '<label class="f">Password for Class ' + cls + '</label>' +
+    '<input type="password" id="pw' + cls + '" autocomplete="off">' +
+    '<button class="go" id="un' + cls + '">Open the assignment</button><div class="msg" id="lm' + cls + '"></div>' + boardHtml(cls);
+  const go = async () => {
+    const pw = document.getElementById('pw' + cls).value.trim().toUpperCase();
+    try { state[cls].pw = pw; state[cls].qs = await unlock(cls, pw); startView(cls); }
+    catch (e) { msg('lm' + cls, 'err', 'That password is not right.'); }
+  };
+  document.getElementById('un' + cls).onclick = go;
+  document.getElementById('pw' + cls).onkeydown = e => { if (e.key === 'Enter') go(); };
+  board(cls);
+}
+
+function startView(cls) {
+  const p = document.getElementById('p' + cls);
+  p.innerHTML = '<label class="f">Your full name</label><input type="text" id="nm' + cls + '" autocomplete="off">' +
+    '<label class="f">Your roll number</label><input type="text" id="rl' + cls + '" placeholder="PGDM/25/01" autocomplete="off">' +
+    '<p class="dim" style="margin-top:1rem">' + state[cls].qs.length + ' questions, ' + SECONDS + ' seconds each, one mark each. The clock starts when you press Start.</p>' +
+    '<button class="go" id="st' + cls + '">Start the test</button><div class="msg" id="sm' + cls + '"></div>' + boardHtml(cls);
+  document.getElementById('st' + cls).onclick = () => start(cls);
+  board(cls);
+}
+
+async function start(cls) {
+  if (running) return;
+  const name = document.getElementById('nm' + cls).value.trim(), roll = document.getElementById('rl' + cls).value.trim();
+  if (name.length < 2) return msg('sm' + cls, 'err', 'Please enter your full name.');
+  if (!roll) return msg('sm' + cls, 'err', 'Please enter your roll number.');
+  const btn = document.getElementById('st' + cls); btn.disabled = true;
+  msg('sm' + cls, 'busy', 'Starting&hellip;');
+  try {
+    const j = await post({action: 'quizStart', cls, pw: state[cls].pw, name, roll});
+    if (!j.ok) { btn.disabled = false; return msg('sm' + cls, 'err', esc(j.error)); }
+    Object.assign(state[cls], {name, token: j.token, i: 0, answers: [], switches: 0});
+    running = cls;
+    document.querySelectorAll('.tab').forEach(t => t.disabled = true);
+    ask(cls);
+  } catch (e) { btn.disabled = false; msg('sm' + cls, 'err', 'Could not reach the marking service. Please try again.'); }
+}
+
+function ask(cls) {
+  const st = state[cls], q = st.qs[st.i], p = document.getElementById('p' + cls);
+  let left = SECONDS;
+  p.innerHTML = '<h3>Question ' + (st.i + 1) + ' of ' + st.qs.length + '</h3>' +
+    '<div class="timer"><i id="bar" style="width:100%"></i></div><div class="tleft" id="tl">' + left + ' seconds left</div>' +
+    '<div class="qbox">' + esc(q[1]) + '</div>' +
+    '<div class="tf"><button id="bT">True</button><button id="bF">False</button></div>' +
+    '<div class="warnbar" id="wb">' + (st.warn || '') + '</div>';
+  st.warn = '';
+  const answer = a => {
+    clearInterval(st.tick);
+    st.answers.push(a); st.i++;
+    if (st.i < st.qs.length) ask(cls); else finish(cls);
+  };
+  st.answer = answer;
+  document.getElementById('bT').onclick = () => answer('T');
+  document.getElementById('bF').onclick = () => answer('F');
+  st.tick = setInterval(() => {
+    left--;
+    document.getElementById('bar').style.width = (100 * left / SECONDS) + '%';
+    document.getElementById('tl').textContent = left + ' seconds left';
+    if (left <= 0) { st.warn = 'Time ran out on question ' + (st.i + 1) + '.'; answer('N'); }
+  }, 1000);
+}
+
+// Leaving the tab during a test forfeits the question on screen.
+document.addEventListener('visibilitychange', () => {
+  if (!running || document.visibilityState !== 'hidden') return;
+  const st = state[running];
+  if (!st.answer) return;
+  st.switches++;
+  st.warn = 'You left the tab, so question ' + (st.i + 1) + ' was lost.';
+  st.answer('N');
+});
+['copy', 'cut', 'contextmenu'].forEach(ev => document.addEventListener(ev, e => { if (running) e.preventDefault(); }));
+
+async function finish(cls) {
+  const st = state[cls], p = document.getElementById('p' + cls);
+  st.answer = null;
+  p.innerHTML = '<div class="msg busy" style="display:block">Marking your answers&hellip;</div>';
+  try {
+    const j = await post({action: 'quiz', token: st.token, answers: st.answers, switches: st.switches});
+    running = null;
+    document.querySelectorAll('.tab').forEach(t => t.disabled = false);
+    if (!j.ok) { p.innerHTML = '<div class="msg err" style="display:block">' + esc(j.error) + '</div>' + boardHtml(cls); return board(cls); }
+    p.innerHTML = '<div class="msg ok" style="display:block"><div class="score">' + j.score + ' / ' + j.total + '</div>' + esc(st.name) +
+      ', your test is marked. ' + (j.first ? 'This attempt is on the leaderboard.' : 'This was not your first attempt, so the leaderboard keeps your first score.') +
+      (st.switches ? ' You left the tab ' + st.switches + (st.switches === 1 ? ' time.' : ' times.') : '') + '</div>' + boardHtml(cls);
+    board(cls);
+  } catch (e) {
+    running = null;
+    document.querySelectorAll('.tab').forEach(t => t.disabled = false);
+    p.innerHTML = '<div class="msg err" style="display:block">Could not reach the marking service, so this test was not recorded. Please tell your faculty.</div>';
+  }
+}
+
+function boardHtml(cls) {
+  return '<h3>Class ' + cls + ' leaderboard</h3><p class="dim" id="bn' + cls + '">Loading&hellip;</p>' +
+    '<div class="tablewrap"><table><thead><tr><th>Rank</th><th>Name</th><th>Score</th><th>When</th></tr></thead><tbody id="bd' + cls + '"></tbody></table></div>';
+}
+async function board(cls) {
+  try {
+    const j = await call(API + '?board=' + cls, {}, 3);
+    const rows = j.board || [];
+    document.getElementById('bn' + cls).textContent = rows.length + (rows.length === 1 ? ' student has' : ' students have') + ' taken the test. First attempts only.';
+    document.getElementById('bd' + cls).innerHTML = rows.map((r, i) =>
+      '<tr><td class="mk">' + (i + 1) + '</td><td>' + esc(r.name) + '</td><td>' + r.score + ' / ' + r.total + '</td><td>' + esc(r.at) + '</td></tr>').join('');
+  } catch (e) { const n = document.getElementById('bn' + cls); if (n) n.textContent = 'The leaderboard could not be loaded.'; }
+}
+
+document.querySelectorAll('.tab').forEach(t => t.onclick = () => {
+  document.querySelectorAll('.tab').forEach(x => x.classList.toggle('on', x === t));
+  ['A', 'B'].forEach(c => document.getElementById('p' + c).classList.toggle('on', c === t.dataset.c));
+});
+lockView('A'); lockView('B');
+</script>
+</body>
+</html>

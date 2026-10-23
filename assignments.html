@@ -176,7 +176,7 @@ async function start(cls) {
   const btn = document.getElementById('st' + cls); btn.disabled = true;
   msg('sm' + cls, 'busy', 'Starting&hellip;');
   try {
-    const j = await post({action: 'quizStart', cls, pw: state[cls].pw, name, roll});
+    const j = await post({action: 'quizStart', v: 9, cls, pw: state[cls].pw, name, roll});
     if (!j.ok) { btn.disabled = false; return msg('sm' + cls, 'err', esc(j.error)); }
     Object.assign(state[cls], {name, token: j.token, ids: j.ids, i: 0, answers: [], switches: 0});
     running = cls;

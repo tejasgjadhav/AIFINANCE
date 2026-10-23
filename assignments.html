@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Class Assignments</title>
-<meta name="description" content="Ten-mark true or false assignments on Modules 1 to 8, marked automatically, with a class leaderboard.">
+<meta name="description" content="Ten-mark assignments on Modules 1 to 8: five multiple-choice and five true-or-false questions, marked automatically, with a class leaderboard.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -83,7 +83,12 @@ button.go:disabled{opacity:.45;cursor:not-allowed}
 .qbox{-webkit-user-select:none;user-select:none;font-size:1.25rem;line-height:1.55;margin:1.2rem 0;min-height:4.5rem}
 .tf{display:flex;gap:.8rem}.tf button{flex:1;background:#03030f;color:var(--txt);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:1rem;font-family:'Space Grotesk',sans-serif;font-size:1.1rem;font-weight:600;cursor:pointer}
 .tf button:hover{border-color:var(--c1);color:var(--c1)}
+.mc{display:grid;gap:.6rem}.mc button{text-align:left;background:#03030f;color:var(--txt);border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:.85rem 1rem;font:inherit;font-size:1rem;cursor:pointer}
+.mc button:hover{border-color:var(--c1);color:var(--c1)}.mc b{color:var(--c1);margin-right:.35rem}
 .warnbar{color:#fecaca;font-size:.88rem;min-height:1.3em;margin-top:.6rem}
+.pwrap{position:relative}.pwrap input{padding-right:3rem}
+.eye{position:absolute;right:.5rem;top:50%;transform:translateY(-50%);background:none;border:0;color:var(--txt2);cursor:pointer;padding:.3rem;line-height:0}
+.eye:hover{color:var(--c1)}
 .score{font-family:'Space Grotesk',sans-serif;font-size:2.2rem;font-weight:700;color:var(--c5)}
 </style>
 
@@ -91,8 +96,8 @@ button.go:disabled{opacity:.45;cursor:not-allowed}
 <body>
 <div class="wrap">
 <div class="eyebrow">Assignment &middot; Modules 1 to 8 &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
-<h1>Class assignment: true or false</h1>
-<p class="lede">Open your class's tab with the password your faculty gives you, enter your name and roll number, and press Start. You get ten questions, one at a time, with 30 seconds each. Each name and each roll number can take the test only once. Each question carries one mark. You cannot go back. If you leave this tab during the test, the question on screen is lost and the switch is recorded. Your score appears straight away, and the class leaderboard updates. Each name and each roll number can take the test only once.</p>
+<h1>Class assignment</h1>
+<p class="lede">Open your class's tab with the password your faculty gives you, enter your name and roll number, and press Start. You get ten questions, one at a time, with 30 seconds each: five multiple choice and five true or false. Each name and each roll number can take the test only once. Each question carries one mark. You cannot go back. If you leave this tab during the test, the question on screen is lost and the switch is recorded. Your score appears straight away, and the class leaderboard updates. Each name and each roll number can take the test only once.</p>
 
 <div class="tabs"><button class="tab on" data-c="A">Assignment &middot; Class A</button><button class="tab" data-c="B">Assignment &middot; Class B</button></div>
 <div class="panel on" id="pA"></div>
@@ -102,7 +107,7 @@ button.go:disabled{opacity:.45;cursor:not-allowed}
 </div>
 <script>
 const API = "https://script.google.com/macros/s/AKfycbzhyCaE0Xue239ya28x_MuP39mwqb3uzOpJSzNKtMGKowFo0VYMJ1V6mFeLAejd5DuS/exec";
-const LOCKED = {"A": {"s": "mxEZQy/y9g8kPIaA2cCUXA==", "i": "AAF2ZtFo44BgEPAE", "c": "lfFubVjUz6mdhEki/lawfDui+6g6pq0aFvc3d+ejrSihYaVvBHDTU286Xn1+bL1wyVNyVrDVTEjDu9eYs9rZEWhAnAU/mMal1/698wkpVWtwiY3ri1hq98qzhs9gLhLG2u3hi5my3ICK5F64eDt4BoPPIf0aBvU9NEZE6YwU8iH2Ij3yB5gfpdjA5RHnv2Rk9AsOm0ZmQg3C+o/xM94riR4zhx/1TQn584QmCfUuLSSQ2hIkcPXgwz60j4UiXZyF5ejje+ejsXMVGDKbf5So0bsJ7TFH4FxXVTYgxIW8XrJ1eylybH2qr7Q7Femld+zAIgHPxka422AW3eri0y59C6/7+BMHMyHgt2kLvVFFF+JJaZ/TkPePEcIBEhpfjBQ2jBGVoV9gtwQlCRE40n96HN0yX5GJx5+qk473NbKV+pkU/mHCfi1k0JQxh3rpZfB6X7CcNEi5Co2fMLpPj3xUbMQ3RBJBnD9dWciV5nO5DsZeIX+5kpiqL3hNoVb/fBq1XlG0xxnAaOkfLrwGi4+JiZf3d6d6y+Rrv3fiMgcB7ciO9UK+acwni39HCiFwe5J6cfu2cVjduJe0jvsGKYnPZSqHDKb02MNqL+nkxp2qicB/3jcknwM9x6eDAUO4yzctDLt1JNjKk1Sks0u63/xMJe0xN9YhQXg33cTtwhQVeUW49W192fQKYhGcTosl607+aW8+Y+I9OxyGAVsc0+f4JPxy7WHOR4nBW/B0dMdYUfLqGOqGCHWgSddiCwt/VinFuVQOGlZp5P3+yKWtuIwxBls8Ws5xy3qm6bAVumso6pHI+CtCZpYRNxw5U++nbpHpfi0cwZWjmd+J1FU/w1Ux0cDn0mN6ZywrYXtP5qsTeL7ad9hLAv5yrxKxkrV6Zy9DB2O0XguUh07sbNtBWZoMMcWDMsBfMJp1MqSXjAnbDKRtJejpSeM3HBHDDgP+Z8vNE9yODujVCKzt0yYhk51evfXJYZwtyO1aTkEFo15Xh37SAZ8heL+LpitWwXX6V/8ySqrGxtqP8EZ918ejl/M6h3teJXyK4fEjYJAZt+tO5VpOb8FkydtjYM1pC0R6ll/QmIUvTlRPn8b3UkH9L6mfhFvSR1GHyOkJ8O1R3pOyUXQmhLvpgg=="}, "B": {"s": "nTqqjGuJcob9RNnLIDKvDw==", "i": "TaGfUZqpb+Gci0Zj", "c": "G3FbPcuKmZvRNmwAHRWnwmTp3sJCOCMlTn/riZbuC5n46Qb8yahaSyNkNugD1UIVM7FOk6Sd2ogl16KlNQL+O8sxevUfLJwoF/cldcH/lTZfF+rne5H1uNcsstu5KFvLGDMZ8N8sLuV7mD02b6kFNFFaA5+za4vmpjPPFJD6JKshbTShNsNzkJormMdqQoOO8EWEM/zgrA3I/XJSgn4HnSMBcqWNXjYsIMexUHLC7hAjruJqNx9DWAYeY/wCbBKwJhO5HosN44EjUBBFsZoIzAaNV6sVeD7jjsro9UE3wEh0qMR2buCfMRYbllCGMub2E8v23xUF6JgPOoJfgQQUvx4uy+JFqQ9HH3fPBqat81zS11KTUuxU3VhMtULwJwdR631v5pxb4LN64/Y4nbadsC1iAd4bS5ecEP8vAnHl+Ku/YmLwk3W61zLSBO4Dq3Qb9gM/uJhPha3B915se2LBMxt3sQN+j6dMPKZumf7MDz55LGaUIDdvb3sFGizNDQUMEshrxdXXDadDfkaOy3+g55ZMx/HxvhuC7f6uZCYvIMHLvPwE37ffuidGlkx6ygsmlokUExHy9ArfXlNVOmnfZy6atmHVHgxNz2wzjsHmOHS9PD+kWl3mVxsapCyhn3/pU+MaNOuidfL6wRowfzYQjKabggAqC6rbv2st70UD6LA5k/fFzLZ4tA8a/87Nsc2HOhQaVQnyhqca+Jm5JNrTYSMuGGlrBt66I8fG1pPHYY3UBmTSHFXfZUAT4vcambQK3Oc3J4Zmcd6pGaVNRLI7V2dbCXTFKUaM6zFJu5YxrySV0ZN/C4LmurRWNW3RBXuUV2fUKKSSNJOXj/NaVrOqWcvVMocG8VURG3f1KDAZ5Umd9aOYoKHaHopsfrZHaB5w3LKT10CUFGnP7Y3WFT8RR9SpU5TeCTbY9M4Ud93GsqeDm6cdezD7TiSfjB+cuwyKd/tqYJ+roe+4QjCbZSXp6Dcd8QtnEDRQryES+4WE3fuenei9lcsFDZFU9IQQL2z40Y+JepsJpgS5J/jYBMEKylxwQmthemyw2P2pV1V/5YPUcSXkIM+D+JMMbBGu"}};
+const LOCKED = {"A": {"s": "48rrVJi4cT7DGW88oy1ynw==", "i": "K7x7eLpvGJqARFpC", "c": "Lcv9nQDVKwy11a8b7iB09WUj3udI2yy4aGThLNed5Hkmy6GUZHzzF1GRGBh1fiSJQr5hECZVzUG9KOFLCbp3RLq+lQx5QV1PH+Dum9a4+T305JjKmIoZgTHq0JqOKL1T4XJku8NjXKpCmC/MnoqJR+Ouu2ETaumfiAm//aAvo0+JYjL3jqkYPQPKSNshosgNFp0ZdKeO3cDWmYl7poPJxnPXgqLHHvbJdYmjR7JpQ00GR5qIVflxbDqH5XDwidyx6ms5qzH1TvEBQnnRytuWUw/M415U+KcDMPxI7//03SSAwch6eXnv6nY3FiFf+Qz/EHxDIm81IJRBYa5AlOAMUUjc2QkWFEIxR7SImzu5kz9QEn6isajhjbs7GL/lJ+zs2RSKNEbMzdUlpLZ77tJ3bEkAvQAm3vXxLpTc4hAlKRhYnhu9uan7os7rX/XGPwLeof+KFwIV5okHoTEzfWhOsAjjxBSrnZFYVhp/+74//DxYKMfrWtJ7ygDkTUKSQLpfmcuyUkneagAdhzX91HIFiHVvYe5xCjEKhLSlJl+ZE9FO4y7jh66px9GWPbMKx5kELEKblKIpzcfjR07d5CeW6HHwKuSNtCJUwuDNQUgOGF+c1MphMI5nkk/JvdRWBUarPPsi6Ps8FRF3X+IVLoOv6voePklGlALh61Dr/BWiCEkrfMp7fHnd1cHyKlxDWu/GXKlegxdfGN0ARmCRrsG/Rc6v4nUj+nmxJw4U7d2pWVk9D2gduVmD3/3x4Pqc5Sk24lzNExfZwe4goZWQAP5rcUxPJkncZFQ04i0bvqCcXkCDLrkJBsLqUkmbpwhwaAX5WAiMV5b6gSvz+gOorbvvTiAhP9e2fgcVyB+cY0IZFzVT4ssH1vzM69hRkRI9eJrw7cy1bBdpjapq690SL6vtcPDD4nQokf/O5cPEQN/VP8MsBDt5ZvfBoljPFHrl4kliAHpKRBg44orde3IkwhhOLvYVMRGRe+uYNRbEifAWEpPrEgmtWWMC8sdr8ErJrduzUg24h9wbzXHnvDwjbmS1LRUQRrOWMNyxNoduAHQRHp2AWxPeRnj/OexOGWSK8CCmZ+BDYaqW8664ylvreUekJSevi+XbJYfctFj/r6r4VHStiqEXIZgq92ITG/7Q5n4Tq9JDD6bPLhDSjXC/YBHbKoIJKD92pDJDg3uM9YxkARq5qMmSz42UlcAnVFFRsQ+5bIO1KxQosjGXkpYORzmJtO4tW7om0xy0GtUlI1OhBjPKTds9Dp2BPRZ8naVrZS7M3/y10xS/Yo2wQvGOvn+y9tWFokqaUtg5UjiENGPV3nc7FOrnbLY4zCqmdnbJ2X1dUquq7yPSkMbCB1tJ+4JMQdamiLrbUb68UXU5j8I1PjNO5wN0qnRWjJNsCadzYGWtvksWWGtVRk7Qgm0At8NLuz+53/KA8cgD5eujoWA/q94nwjw7t+5nhSvHiEUFyAq8g9B3EY+6yLVtr4A8+8NpkB2JHQKX6dxMpHhzgOe3r1exTEQS7dpk4AzZGOBGS1Q0WeKjDBQUJjgmT+T3GuFuX+aEzpuaBsAXwvWy3ZZj2k1LC1Ut3FCzkYxo2/5lwuxmDxMTdvGnfVR0tyLmAXMT9Kljq870HdB+NqtmFVt+QXEMG7unuFMHznYFITc6DzZRzKSOIAwaJJ6592ULLLJDrrQTbjlCZPqIZsYLWlLR/JDvvfFqxnAZ3bAMYOAgOD2F3YOozE+aYPGuxfQ="}, "B": {"s": "1iFgQGVBCKP1tPByKV6H3w==", "i": "CYtMJhesNOWP3Gkj", "c": "5PdFQ+maROD5hs6XyVpbeye/uEo0rooaiXeogIB0zbId2X9MaFucFYXTHBMNffJeCEZ7oYXaRespiC0P3LubgtwvPSERx7Af9izbAYuQm8jyIsODj0LYgV4M2HafgEtGLp4zmuC5pb5BmaLu0cvOGhMLbGgX+DP0xpPmXnRerYhTzgX9UDdHTXz5ByezXYP/UIbAm5j5koynJE6uOhrKZqgW5iIZ4mZLL1Yu8zj3TzbqhJauRyVSgjRKs8FDy41XknXWoAZLl9LUaU54EBQCkP72U2i/NbLRZ1OWxVoT0R4g31COruvR8AUN4ivPKp55mCiPXiXCTtAK6uRmtXQLXtyZ7JIwtDKVOHy43vLdO2XzTDyTYQFGgZVCyCCcbjXBFWGWe7LdwKvqKWDAvmhTlInx02ZBPYdbYgVyQCqab0jEAdz09yh41zlC99zJ2+jsKLjzwcDm2P9EdD5Nlo2ZwVRcu8RcRMycGHjbSkjAQUJ6fmPiJX/C7Bwb7e1DDYzoesQejmeT9mosCEnn/LMJaqNh6eQFjYZWGE5j8Qdbgnyk6eyftd/FHJzu1mQJgCNia43LpCa7ErXlVj310XnaonfvhysE7lVQh+7K5uvjaLn/SptQGeyulOz51xYw3IrA0oKe4fdx6aH8b+b3ledwFmYaOmfgkdBbZfcxt7xiK5Dx8NvYszpWhLtAvFIcdlXmkk8sBSGJbP6mrD/U04UuToWHJWtKhZrav79aqzF5t33Kfyll6gPPt0VrMdrd2z/7s5XF1uOT6mTpgR4ma4a99uWnj4eBGImSZFvzJTOWMBjJH+Jb3LYn75kcwaz4n2a+bIcl/zjRXxfRHJdoQ5AXlpy1YjkTAV9sdJQvOKejC56Sgiu2w9nG2FWxm8/Ev3E0AtuazXwR8NyPiYyOfp/DmCAder2AgXU2RfAWI9Pq6EN3NLglYdZkfLK1EbWXVpl4FBMm8UzvcBmRQCxGtjalc8h9A51mEImOYPM+uilaCN4oivvXPOvZGywZ79YNfTQaOhcCPJx+5bgB+Zi+prTTk+ycvV9q0m6eHaE2v0z+bj1EIFiQ62DecFXDJPgJby1c/gE4t+/8j/m4B9oI1gkJ9QuetdwYu+9wSrkw2y1KLP6abgpeJuVGL87Stn59QNyffR1ThPm7KJ6d6FiJqTV9Z+LGZwHYBIZk+4Ez0bC9CMlXQWZ2158RWYDVwoEsCSnv+SftnXw2nLi6Y4dvT3N7RYZgla5BYEvu7+v5TTOBQBzbl/UncZhWU+Q8gpgzpBd1SJzaS6RBOQce7HXrB6YjujIZx9km670YMyZAzCh2y1pdjKNNcPHDUHcBpxQr46zs9wfdud7VaSv4UuFZpGXX+FKSXz5x9WM4D8MWiiXEPjksQWny513T/hoJCThxXn6p7vq2wZHnYuOCzH5HaGlGBaHyq27NTJl9JhML06E/ynMdPbYH7qZDe/F9dok1E4tG3mMiktUexrWhzqTRnReQ9YghGVQZsCDOdAyq3K650Cg6MQSSTFO1R/w/rg=="}};
 const state = {A: {}, B: {}};
 const SECONDS = 30;
 const b64 = s => Uint8Array.from(atob(s), c => c.charCodeAt(0));
@@ -135,12 +140,18 @@ function msg(id, kind, html) { const m = document.getElementById(id); m.classNam
 function lockView(cls) {
   const p = document.getElementById('p' + cls);
   p.innerHTML = '<label class="f">Password for Class ' + cls + '</label>' +
-    '<input type="password" id="pw' + cls + '" autocomplete="off">' +
+    '<div class="pwrap"><input type="password" id="pw' + cls + '" autocomplete="off"><button type="button" class="eye" id="ey' + cls + '" aria-label="Show password" title="Show password"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>' +
     '<button class="go" id="un' + cls + '">Open the assignment</button><div class="msg" id="lm' + cls + '"></div>' + boardHtml(cls);
   const go = async () => {
     const pw = document.getElementById('pw' + cls).value.trim().toUpperCase();
     try { state[cls].pw = pw; state[cls].qs = await unlock(cls, pw); startView(cls); }
     catch (e) { msg('lm' + cls, 'err', 'That password is not right.'); }
+  };
+  document.getElementById('ey' + cls).onclick = () => {
+    const i = document.getElementById('pw' + cls), show = i.type === 'password';
+    i.type = show ? 'text' : 'password';
+    document.getElementById('ey' + cls).setAttribute('aria-label', show ? 'Hide password' : 'Show password');
+    document.getElementById('ey' + cls).style.color = show ? 'var(--c1)' : '';
   };
   document.getElementById('un' + cls).onclick = go;
   document.getElementById('pw' + cls).onkeydown = e => { if (e.key === 'Enter') go(); };
@@ -151,7 +162,7 @@ function startView(cls) {
   const p = document.getElementById('p' + cls);
   p.innerHTML = '<label class="f">Your full name</label><input type="text" id="nm' + cls + '" autocomplete="off">' +
     '<label class="f">Your roll number</label><input type="text" id="rl' + cls + '" placeholder="PGDM/25/01" autocomplete="off">' +
-    '<p class="dim" style="margin-top:1rem">' + state[cls].qs.length + ' questions, ' + SECONDS + ' seconds each, one mark each. The clock starts when you press Start.</p>' +
+    '<p class="dim" style="margin-top:1rem">' + state[cls].qs.length + ' questions (five multiple choice, five true or false), ' + SECONDS + ' seconds each, one mark each. The clock starts when you press Start.</p>' +
     '<button class="go" id="st' + cls + '">Start the test</button><div class="msg" id="sm' + cls + '"></div>' + boardHtml(cls);
   document.getElementById('st' + cls).onclick = () => start(cls);
   board(cls);
@@ -180,7 +191,8 @@ function ask(cls) {
   p.innerHTML = '<h3>Question ' + (st.i + 1) + ' of ' + st.qs.length + '</h3>' +
     '<div class="timer"><i id="bar" style="width:100%"></i></div><div class="tleft" id="tl">' + left + ' seconds left</div>' +
     '<div class="qbox">' + esc(q[1]) + '</div>' +
-    '<div class="tf"><button id="bT">True</button><button id="bF">False</button></div>' +
+    (q[2] ? '<div class="mc">' + q[2].map((o, k) => '<button data-a="' + 'ABCD'[k] + '"><b>' + 'ABCD'[k] + '.</b> ' + esc(o) + '</button>').join('') + '</div>'
+          : '<div class="tf"><button data-a="T">True</button><button data-a="F">False</button></div>') +
     '<div class="warnbar" id="wb">' + (st.warn || '') + '</div>';
   st.warn = '';
   const answer = a => {
@@ -189,8 +201,7 @@ function ask(cls) {
     if (st.i < st.qs.length) ask(cls); else finish(cls);
   };
   st.answer = answer;
-  document.getElementById('bT').onclick = () => answer('T');
-  document.getElementById('bF').onclick = () => answer('F');
+  p.querySelectorAll('button[data-a]').forEach(b => b.onclick = () => answer(b.dataset.a));
   st.tick = setInterval(() => {
     left--;
     document.getElementById('bar').style.width = (100 * left / SECONDS) + '%';

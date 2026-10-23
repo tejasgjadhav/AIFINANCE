@@ -92,7 +92,7 @@ button.go:disabled{opacity:.45;cursor:not-allowed}
 <div class="wrap">
 <div class="eyebrow">Assignment &middot; Modules 1 to 8 &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
 <h1>Class assignment: true or false</h1>
-<p class="lede">Open your class's tab with the password your faculty gives you, enter your name and roll number, and press Start. You get ten questions, one at a time, with 30 seconds each. Each question carries one mark. You cannot go back. If you leave this tab during the test, the question on screen is lost and the switch is recorded. Your score appears straight away, and the class leaderboard updates. Only your first attempt counts on the leaderboard.</p>
+<p class="lede">Open your class's tab with the password your faculty gives you, enter your name and roll number, and press Start. You get ten questions, one at a time, with 30 seconds each. Each name and each roll number can take the test only once. Each question carries one mark. You cannot go back. If you leave this tab during the test, the question on screen is lost and the switch is recorded. Your score appears straight away, and the class leaderboard updates. Each name and each roll number can take the test only once.</p>
 
 <div class="tabs"><button class="tab on" data-c="A">Assignment &middot; Class A</button><button class="tab" data-c="B">Assignment &middot; Class B</button></div>
 <div class="panel on" id="pA"></div>
@@ -238,7 +238,7 @@ async function board(cls) {
   try {
     const j = await call(API + '?board=' + cls, {}, 3);
     const rows = j.board || [];
-    document.getElementById('bn' + cls).textContent = rows.length + (rows.length === 1 ? ' student has' : ' students have') + ' taken the test. First attempts only.';
+    document.getElementById('bn' + cls).textContent = rows.length + (rows.length === 1 ? ' student has' : ' students have') + ' taken the test.';
     document.getElementById('bd' + cls).innerHTML = rows.map((r, i) =>
       '<tr><td class="mk">' + (i + 1) + '</td><td>' + esc(r.name) + '</td><td>' + r.score + ' / ' + r.total + '</td><td>' + esc(r.at) + '</td></tr>').join('');
   } catch (e) { const n = document.getElementById('bn' + cls); if (n) n.textContent = 'The leaderboard could not be loaded.'; }

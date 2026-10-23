@@ -231,11 +231,11 @@ eyebrow(s, "HOUR 1 · WORKED EXAMPLE")
 title(s, "A daily market dashboard, seen as five layers")
 cards(s, [
     ("L1 · INGEST", "Morning inputs", "GIFT Nifty, the previous Nifty close, FII and DII flows, crude oil, USD/INR, India VIX and the morning headlines."),
-    ("L2 · EXTRACT", "Numbers from the news", "Pull the figures and the key events out of each headline and report."),
-    ("L3 · ENGINE", "Simple calculations", "Expected gap at the open, net institutional flow, and whether volatility is low or high."),
-    ("L4 · COMMENTARY", "The pre-market brief", "The Claude API writes a short brief using only those numbers."),
+    ("L2 · EXTRACT", "Claude reads the sources", "Claude's web search reads the news and market pages and picks out the figures."),
+    ("L3 · ENGINE", "Today: done by Claude", "Claude also does the arithmetic, such as the expected gap at the open. Your capstone moves this into Python."),
+    ("L4 · COMMENTARY", "The pre-market brief", "Claude writes a short brief from what it found."),
     ("L5 · OUTPUT", "A web page", "A dashboard page, published again every weekday morning."),
-    ("WHY IT IS A GOOD MODEL", "It runs without a person", "It updates itself before the market opens. Your capstone should run end to end the same way."),
+    ("THE LESSON", "Good pipeline, AI-heavy engine", "It runs itself every morning. But a number Claude found or worked out is hard to defend, so your engine must be Python."),
 ], cols=3, dark_last=True)
 goal_band(s, "Note:", "we use the dashboard to show the design. Your project must not give buy, sell or hold calls without an educational-use disclaimer.")
 footer(s, 0)
@@ -246,9 +246,9 @@ slide_bg(s, BG)
 eyebrow(s, "HOUR 1 · HOW IT RUNS ITSELF")
 title(s, "Every weekday morning, with no one pressing a button")
 flow = [("1", "Schedule", "GitHub Actions starts the job every weekday morning."),
-        ("2", "Python script", "Fetches the morning data and runs the calculations."),
-        ("3", "Claude API", "Writes the brief from a fixed prompt template."),
-        ("4", "New page", "The script writes the updated web page."),
+        ("2", "Python script", "Sends Claude the prompt template and today's page."),
+        ("3", "Claude API", "Searches the web for the morning data and writes the updated page."),
+        ("4", "Safety check", "The script checks the new page is complete before saving it."),
         ("5", "Publish", "The page is saved to GitHub and goes live on GitHub Pages.")]
 w, gap = 2.25, 0.22
 for i, (n, h, b) in enumerate(flow):
@@ -267,7 +267,7 @@ cards(s, [
     ("GOVERNANCE · MODULE 7", "The key stays secret", "The API key sits in GitHub's secret store, never in the code. The job stops if the key is missing."),
     ("FOR YOUR CAPSTONE", "Show the same discipline", "Keep your work in a public repository, with commits across the whole project period."),
 ], cols=2, top=4.15, h=2.0, dark_last=True)
-goal_band(s, "Cost:", "it uses the per-token API from Module 7. One short brief a day costs very little.")
+goal_band(s, "Cost:", "it uses the per-token API from Module 7, plus a small charge for each web search.")
 footer(s, 0)
 
 # ---------------------------------------------------------------- S6 REPORT CHAPTERS

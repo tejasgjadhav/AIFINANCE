@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pre-Market Dashboard, Live</title>
+<meta name="description" content="Module 9 live lab: see the daily market dashboard, then build a pre-market dashboard in Python with news sentiment and a DCF, and write a checked AI brief.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#03030f;--bg2:#07071a;--c1:#00d4ff;--c2:#7c3aed;--c3:#f59e0b;--c4:#ef4444;--c5:#22c55e;--txt:#f1f5f9;--txt2:#94a3b8;--b1:rgba(0,212,255,.18)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:'Inter',sans-serif;font-size:1rem;line-height:1.75;-webkit-font-smoothing:antialiased}
+.wrap{max-width:880px;margin:0 auto;padding:4rem 1.4rem 5rem}
+.eyebrow{font-family:'Space Grotesk',sans-serif;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--c1);margin-bottom:1rem}
+h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.9rem,5vw,2.9rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.lede{color:var(--txt2);font-size:1.05rem;max-width:700px;margin-bottom:.6rem}
+.pipe{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:.85rem;color:var(--c1);background:rgba(0,212,255,.06);border:1px solid var(--b1);border-radius:10px;padding:.6rem 1rem;margin:1.4rem 0 0}
+h2{font-family:'Space Grotesk',sans-serif;font-size:1.45rem;font-weight:600;margin:3.2rem 0 .9rem;padding-top:2.2rem;border-top:1px solid rgba(255,255,255,.07)}
+h2 .n{color:var(--c1);font-size:1rem;vertical-align:.12em;margin-right:.5rem}
+h2 .mins{float:right;font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--txt2);font-weight:400;margin-top:.45rem}
+h3{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:600;margin:1.8rem 0 .6rem}
+p{margin-bottom:1rem}
+p.dim{color:var(--txt2)}
+ol.comp{list-style:none;counter-reset:c;margin:1.2rem 0}
+ol.comp li{counter-increment:c;position:relative;padding:0 0 1.15rem 3rem}
+ol.comp li::before{content:counter(c,decimal-leading-zero);position:absolute;left:0;top:.15rem;font-family:'Space Grotesk',sans-serif;font-size:.82rem;color:var(--c1);border:1px solid var(--b1);border-radius:8px;padding:.1rem .45rem;background:rgba(0,212,255,.05)}
+ol.comp b,ul.plain b{color:var(--txt);font-weight:600}
+ul.plain{list-style:none;margin:1rem 0}
+ul.plain li{position:relative;padding:0 0 .7rem 1.3rem}
+ul.plain li::before{content:"";position:absolute;left:0;top:.72rem;width:6px;height:6px;border-radius:50%;background:var(--c1)}
+pre{background:var(--bg2);border:1px solid rgba(255,255,255,.09);border-radius:14px;padding:1.1rem 1.25rem;overflow-x:auto;margin:1.1rem 0 1.5rem;font-family:'JetBrains Mono',monospace;font-size:.83rem;line-height:1.6;color:#c9d6e3;white-space:pre-wrap}
+.cmd{border-left:3px solid var(--c1)}
+.tablewrap{overflow-x:auto;margin:1.1rem 0 1.5rem;border:1px solid rgba(255,255,255,.09);border-radius:14px;background:var(--bg2)}
+table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:.72rem .95rem;border-bottom:1px solid rgba(255,255,255,.07);vertical-align:top}
+th{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt2);font-weight:500;background:rgba(255,255,255,.02)}
+tbody tr:last-child td{border-bottom:none}
+td.mk{font-family:'JetBrains Mono',monospace;color:var(--c1);white-space:nowrap}
+.label{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.12em;text-transform:uppercase;color:var(--txt2);margin:1.6rem 0 .6rem}
+.note{background:linear-gradient(135deg,rgba(0,212,255,.06),rgba(124,58,237,.06));border:1px solid var(--b1);border-radius:14px;padding:1.1rem 1.3rem;margin:1.4rem 0}
+.note b{color:var(--c1)}
+.free{border-color:rgba(245,158,11,.35);background:rgba(245,158,11,.05)}
+.free b{color:var(--c3)}
+.warn{border-color:rgba(239,68,68,.35);background:rgba(239,68,68,.05)}
+.warn b{color:var(--c4)}
+.zones{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:.8rem;margin:1.2rem 0 1.5rem}
+.zone{border-radius:14px;padding:.95rem 1.1rem;border:1px solid rgba(255,255,255,.1)}
+.zone .z{font-family:'Space Grotesk',sans-serif;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem}
+.zone .c{font-family:'JetBrains Mono',monospace;font-size:1.5rem;font-weight:500;line-height:1.2}
+.zg{background:rgba(34,197,94,.07);border-color:rgba(34,197,94,.3)}.zg .z,.zg .c{color:var(--c5)}
+.zy{background:rgba(245,158,11,.07);border-color:rgba(245,158,11,.3)}.zy .z,.zy .c{color:var(--c3)}
+.zr{background:rgba(239,68,68,.07);border-color:rgba(239,68,68,.3)}.zr .z,.zr .c{color:var(--c4)}
+.zone p{font-size:.85rem;color:var(--txt2);margin:.35rem 0 0}
+a{color:var(--c1);text-decoration:none}
+a:hover{text-decoration:underline}
+footer{margin-top:4rem;padding-top:1.6rem;border-top:1px solid rgba(255,255,255,.07);color:var(--txt2);font-size:.88rem}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+
+<div class="eyebrow">Module 09 &middot; Live Lab &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
+<h1>Build a pre-market dashboard</h1>
+<p class="lede">First we look at our daily market dashboard, which refreshes itself every weekday at 8:30 AM. Then you build a smaller version in Python, with news sentiment and a DCF valuation. Finally an AI writes the morning brief and you check every number in it.</p>
+<div class="pipe">A &nbsp;watch it live &nbsp;&rarr;&nbsp; B &nbsp;build your version &nbsp;&rarr;&nbsp; C &nbsp;write and check the brief</div>
+
+<div class="note free"><b>Free and keyless.</b> The script uses built-in Python only. No API key, no installs, no internet. Run it in Codex, Google Colab or any Python 3.</div>
+<div class="note"><b>The numbers are illustrative.</b> The market snapshot and Company X are made up for teaching. Nothing here is advice to buy or sell.</div>
+
+<h2><span class="n">A</span>Watch it live<span class="mins">20 minutes</span></h2>
+<p>The instructor opens the daily market dashboard and runs its job by hand. This is how it works every weekday:</p>
+<ol class="comp">
+<li><b>A schedule starts it.</b> GitHub Actions runs the job every weekday morning, before the 9:15 AM open.</li>
+<li><b>A Python script calls Claude.</b> It sends a fixed prompt template and the current page.</li>
+<li><b>Claude searches and writes.</b> It runs ten or more web searches for the morning numbers and news, and writes the updated page.</li>
+<li><b>A safety check runs.</b> The script checks the new page is complete before it saves it.</li>
+<li><b>The page is published.</b> GitHub Pages puts it live. Nobody has to press a button.</li>
+</ol>
+<div class="note warn"><b>What we would improve.</b> In the live dashboard, Claude finds and works out the numbers. A number an AI found is hard to defend. In your version, Python computes every number, and AI only writes the words.</div>
+
+<h2><span class="n">B</span>Build your version<span class="mins">40 minutes</span></h2>
+<pre class="cmd">cd module-09-dashboard
+python3 build_dashboard.py</pre>
+<div class="tablewrap"><table>
+<thead><tr><th>Layer</th><th>What the script does</th><th>Result with our snapshot</th></tr></thead>
+<tbody>
+<tr><td class="mk">L1 Ingest</td><td>Reads market_snapshot.csv, headlines.txt and dcf_inputs.csv. A blank number stops the run.</td><td>10 market inputs, 8 headlines</td></tr>
+<tr><td class="mk">L3 Engine</td><td>Expected open = GIFT Nifty minus yesterday's Nifty close.</td><td>Gap-up, +68 points</td></tr>
+<tr><td class="mk">L3 Engine</td><td>Currency, crude and volatility moves, and net institutional flows.</td><td>VIX 13.60, low. Net flows +730 crore</td></tr>
+<tr><td class="mk">L3 Engine</td><td>Scores each headline with a simple word list.</td><td>4 positive, 4 negative</td></tr>
+<tr><td class="mk">L3 Engine</td><td>DCF: five years of cash flow growth, a terminal value, less net debt, per share.</td><td>Company X about &#8377;439 a share</td></tr>
+<tr><td class="mk">L5 Output</td><td>Writes dashboard.html with tiles, the scored headlines and the valuation.</td><td>Open it in a browser</td></tr>
+</tbody>
+</table></div>
+<p><b>Spot the mistake in the news mood.</b> &ldquo;Crude oil falls as supply concerns ease&rdquo; is good news for India, because India imports most of its oil. The word list sees &ldquo;concerns&rdquo; and calls it negative. That is why banks use a model like FinBERT, and why a person still reads the output.</p>
+<p><b>Then make it fail on purpose.</b> This is what your capstone viva asks for:</p>
+<pre class="cmd">python3 build_dashboard.py --break</pre>
+<p>It blanks the GIFT Nifty input, refuses to write the dashboard, and says which input is missing.</p>
+
+<h3>Optional, in Google Colab: real FinBERT</h3>
+<pre>from transformers import pipeline
+finbert = pipeline("text-classification", model="ProsusAI/finbert")
+finbert("Crude oil falls as supply concerns ease")</pre>
+<p class="dim">Colab downloads the free FinBERT model the first time. Compare its answer with the word list.</p>
+
+<h2><span class="n">C</span>Write and check the brief<span class="mins">30 minutes</span></h2>
+<ol class="comp">
+<li><b>Paste the printed prompt into any free AI chat.</b> It asks for a five-sentence pre-market brief that uses only the given numbers and gives no buy or sell advice.</li>
+<li><b>Check every number in the brief against the ENGINE RESULTS.</b> A number that is not there is a mistake, even if it sounds right.</li>
+<li><b>Paste the checked brief into dashboard.html</b> under Morning brief, and swap screens with the next desk.</li>
+</ol>
+
+<h2><span class="n">&darr;</span>Files</h2>
+<ul class="plain">
+<li><a href="module-09-dashboard.zip" download><b>Download the lab folder (zip)</b></a> &nbsp;&middot;&nbsp; the script and the three input files.</li>
+<li><a href="module-09-dashboard/build_dashboard.py" download>build_dashboard.py</a>, <a href="module-09-dashboard/market_snapshot.csv" download>market_snapshot.csv</a>, <a href="module-09-dashboard/headlines.txt" download>headlines.txt</a>, <a href="module-09-dashboard/dcf_inputs.csv" download>dcf_inputs.csv</a></li>
+</ul>
+
+<h2><span class="n">&rarr;</span>What you leave with</h2>
+<ul class="plain">
+<li>A dashboard where every number was computed in Python, and you can say how.</li>
+<li>A DCF you can explain step by step, and the reason the terminal value dominates it.</li>
+<li>A morning brief in which every number was checked by you.</li>
+</ul>
+
+<footer>
+Module 09 &middot; Market Commentary &amp; Valuation Dashboards &middot; Agentic AI &amp; Advanced Analytics in Finance &middot; PGDM Semester III<br>
+<a href="../index.html">Back to the course page</a>
+</footer>
+
+</div>
+</body>
+</html>

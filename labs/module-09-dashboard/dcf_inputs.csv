@@ -1,0 +1,8 @@
+item,value,note
+company,Company X,made-up company for teaching
+fcf_last,1000,free cash flow last year in rupees crore
+growth_years_1_5,0.12,growth rate for years 1 to 5
+wacc,0.11,weighted average cost of capital
+terminal_growth,0.05,growth rate after year 5
+net_debt,1500,net debt in rupees crore
+shares_crore,50,shares outstanding in crore

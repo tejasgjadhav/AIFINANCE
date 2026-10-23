@@ -1,0 +1,11 @@
+item,value,unit,note
+nifty_prev_close,24250.00,points,Nifty 50 close yesterday
+gift_nifty,24318.00,points,GIFT Nifty at 8:30 AM
+sp500_change_pct,0.85,percent,S&P 500 overnight change
+usdinr,88.40,rupees per dollar,USD/INR this morning
+usdinr_prev,88.25,rupees per dollar,USD/INR yesterday
+brent,71.20,dollars per barrel,Brent crude this morning
+brent_prev,72.10,dollars per barrel,Brent crude yesterday
+india_vix,13.60,index,India VIX close yesterday
+fii_net_crore,-1250.00,rupees crore,FII net buying yesterday (negative = selling)
+dii_net_crore,1980.00,rupees crore,DII net buying yesterday

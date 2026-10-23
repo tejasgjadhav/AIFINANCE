@@ -106,7 +106,7 @@ body.testing .wrap{padding-top:1rem}body.testing .panel{border-radius:16px}
 <div class="wrap">
 <div class="eyebrow">Assignment &middot; Modules 1 to 8 &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
 <h1>Class assignment</h1>
-<p class="lede">Open your class's tab with the password your faculty gives you, enter your name and roll number, and press Start. You get ten questions, one at a time: five multiple choice with 25 seconds each, and five true or false with 20 seconds each. Each student gets their own set, chosen when they press Start. Each name and each roll number can take the test only once. Each question carries one mark. You cannot go back. If you leave this tab during the test, the question on screen is lost and the switch is recorded. Your score appears straight away, and the class leaderboard updates. Each name and each roll number can take the test only once.</p>
+<p class="lede">Open your class's tab with the password your faculty gives you, enter your name and roll number, and press Start. You get ten questions, one at a time: five multiple choice with 25 seconds each, and five true or false with 20 seconds each. Each student gets their own set, chosen when they press Start. Each roll number can take the test only once. Each question carries one mark. You cannot go back. If you leave this tab during the test, the question on screen is lost and the switch is recorded. Your score appears straight away, and the class leaderboard updates. Each roll number can take the test only once.</p>
 
 <div class="tabs"><button class="tab on" data-c="A">Assignment &middot; Class A</button><button class="tab" data-c="B">Assignment &middot; Class B</button></div>
 <div class="panel on" id="pA"></div>
@@ -180,7 +180,7 @@ function startView(cls) {
 async function start(cls) {
   if (running) return;
   const name = document.getElementById('nm' + cls).value.trim(), roll = document.getElementById('rl' + cls).value.trim();
-  if (name.length < 2) return msg('sm' + cls, 'err', 'Please enter your full name.');
+  if (!name) return msg('sm' + cls, 'err', 'Please enter your name.');
   if (!roll) return msg('sm' + cls, 'err', 'Please enter your roll number.');
   const btn = document.getElementById('st' + cls); btn.disabled = true;
   msg('sm' + cls, 'busy', 'Starting&hellip;');

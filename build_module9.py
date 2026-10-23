@@ -320,7 +320,7 @@ slide_bg(s, BG)
 eyebrow(s, "CLASS ASSIGNMENT")
 title(s, "Ten questions, ten marks, five minutes")
 cards(s, [
-    ("WHERE", "On the course website", "Open \u201cClass assignments (A and B)\u201d from the Module 9 or Module 10 card."),
+    ("WHERE", "On the course website", "Open \u201cClass assignments (A and B)\u201d on the Module 9 card."),
     ("PASSWORD", "Given in class", "Class A and Class B each have their own tab and their own password."),
     ("FORMAT", "True or false", "Ten questions on Modules 1 to 8, one at a time, 30 seconds each."),
     ("RULES", "Stay on the page", "Leaving the tab loses the question on screen. You cannot go back."),

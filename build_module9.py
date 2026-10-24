@@ -201,12 +201,12 @@ title(s, "Sentiment analysis: is this news good or bad?")
 cards(s, [
     ("WHAT IT IS", "Scoring the mood of text", "A model reads a headline or a transcript and labels it positive, negative or neutral."),
     ("FINBERT", "A model trained on finance text", "A version of BERT trained on financial news and reports. It is free to download."),
-    ("WHY NOT A WORD LIST?", "Words mislead", "\u201cCrude oil falls as supply concerns ease\u201d is good news for India. A word list sees \u201cconcerns\u201d and calls it negative."),
+    ("THE TRAP", "Tone is not impact", "\u201cCrude oil falls as supply concerns ease\u201d is good news for India. A word list and FinBERT both call it negative."),
     ("STEP 1", "Collect", "Gather NSE announcements and news headlines each morning."),
     ("STEP 2", "Clean and score", "Remove noise, then score each item with FinBERT."),
     ("STEP 3", "Write the commentary", "AI writes a short note from the scores, and a person checks it."),
 ], cols=3, dark_last=True)
-goal_band(s, "Remember:", "sentiment is a signal, not a decision. It tells you the mood, not what to buy.")
+goal_band(s, "Remember:", "sentiment scores the tone of the words. Who benefits needs context from a person or an LLM, and it is never a decision to buy.")
 footer(s, 0)
 
 # ---------------------------------------------------------------- S3 EARNINGS CALLS
@@ -304,14 +304,14 @@ footer(s, 0)
 # ---------------------------------------------------------------- S8 THE LIVE LAB
 s = new_slide()
 slide_bg(s, BG)
-eyebrow(s, "HOUR 3 · THE LIVE LAB")
-title(s, "Build your own pre-market dashboard")
+eyebrow(s, "HOUR 3 · THE LIVE PROJECT")
+title(s, "Build a dashboard that updates itself every morning")
 cards(s, [
-    ("PART A · 20 MIN", "Watch it live", "The instructor opens the daily market dashboard and runs its job by hand."),
-    ("PART B · 40 MIN", "Build your version", "Run build_dashboard.py. Python computes the gap, flows, VIX, news mood and a DCF, then writes dashboard.html."),
-    ("PART C · 30 MIN", "Write and check the brief", "Paste the printed prompt into any free AI chat. Check every number. Swap with the next desk."),
+    ("STEP 1 · 15 MIN", "Set up GitHub", "Create a public repository, add your API key as a secret, and turn on GitHub Pages."),
+    ("STEP 2 · 20 MIN", "Paste one prompt", "Open the repository in Claude Code and paste the build prompt from the lab page. It writes every file."),
+    ("STEP 3 · 15 MIN", "Set the routine and run it", "The schedule runs it at 6:30 AM on weekdays. Press Run workflow once to test it now."),
 ], cols=3, dark_last=True)
-goal_band(s, "Free and keyless:", "built-in Python only. The snapshot is illustrative. Run it with --break to watch it refuse a missing number.")
+goal_band(s, "No API key?", "the lab page also has a free practice version in plain Python, with a DCF and a refusal on missing data.")
 footer(s, 0)
 
 # ---------------------------------------------------------------- S9 ASSIGNMENT
@@ -338,7 +338,7 @@ title(s, "Simple questions before the exam")
 qs = [
     ("Q1", "What is sentiment analysis?", "Scoring text as positive, negative or neutral."),
     ("Q2", "What is FinBERT?", "A BERT language model trained on financial text to score sentiment."),
-    ("Q3", "Why can a word list get sentiment wrong?", "It ignores context. Falling crude is good for India, but the word list may call it negative."),
+    ("Q3", "Why can even FinBERT get a headline wrong?", "It scores the tone of the words, not who benefits. Falling crude helps India, yet it scores negative."),
     ("Q4", "What are the four steps of a DCF?", "Project cash flows, discount them, add a terminal value, convert to per-share value."),
     ("Q5", "What does P/E tell you?", "How many rupees investors pay for one rupee of earnings."),
     ("Q6", "Why should Python, not AI, do the arithmetic?", "Python gives the same checkable answer every time. A number an AI produced is hard to defend."),

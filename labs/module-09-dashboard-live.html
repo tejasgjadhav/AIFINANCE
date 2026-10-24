@@ -68,31 +68,36 @@ code{font-family:'JetBrains Mono',monospace;font-size:.88em;color:var(--c1)}
 
 <div class="eyebrow">Module 09 &middot; Live Lab &middot; Agentic AI &amp; Advanced Analytics in Finance</div>
 <h1>Build a dashboard that updates itself</h1>
-<p class="lede">You will set up a GitHub repository, add your API key, paste one prompt into Claude Code, and set a morning routine. After that, the dashboard refreshes itself every weekday before the market opens.</p>
-<div class="pipe">1 &nbsp;GitHub &nbsp;&rarr;&nbsp; 2 &nbsp;API key &nbsp;&rarr;&nbsp; 3 &nbsp;the prompt &nbsp;&rarr;&nbsp; 4 &nbsp;the routine &nbsp;&rarr;&nbsp; 5 &nbsp;run it</div>
+<p class="lede">Four steps. Set up GitHub, add the API key, connect Claude to GitHub, and paste one prompt. After that, the dashboard refreshes itself every weekday at 6:30 AM, before the market opens.</p>
+<div class="pipe">1 &nbsp;GitHub setup &nbsp;&rarr;&nbsp; 2 &nbsp;API key &nbsp;&rarr;&nbsp; 3 &nbsp;connect Claude &nbsp;&rarr;&nbsp; 4 &nbsp;the prompt</div>
 
-<div class="note warn"><b>Instructor demo.</b> This version needs a paid Claude API key and Claude Code. Students without a key can use the free practice version at the bottom of this page.</div>
+<div class="note warn"><b>Instructor demo.</b> You need two paid things. A Claude plan (Pro or Max) lets Claude write the files. A Claude API key pays for the daily update. They are billed separately.</div>
 
-<h2><span class="n">1</span>Set up GitHub<span class="mins">10 minutes</span></h2>
+<h2><span class="n">1</span>GitHub setup<span class="mins">10 minutes</span></h2>
 <ol class="comp">
-<li>Go to <b>github.com</b>, click <b>New repository</b>, name it <code>market-dashboard</code>, choose <b>Public</b>, tick <b>Add a README</b>, and click <b>Create</b>.</li>
+<li>Go to <b>github.com</b>, click <b>New repository</b>, name it <code>market-dashboard</code>, choose <b>Public</b>, tick <b>Add a README</b>, and click <b>Create repository</b>.</li>
 <li>Open <b>Settings &rarr; Actions &rarr; General</b>. Under Workflow permissions, choose <b>Read and write permissions</b> and click <b>Save</b>.</li>
 <li>Open <b>Settings &rarr; Pages</b>. Under Source, choose <b>Deploy from a branch</b>, pick <b>main</b> and <b>/ (root)</b>, and click <b>Save</b>.</li>
 </ol>
 
-<h2><span class="n">2</span>Add the API key<span class="mins">5 minutes</span></h2>
+<h2><span class="n">2</span>API key into GitHub<span class="mins">5 minutes</span></h2>
 <ol class="comp">
 <li>Go to <b>console.anthropic.com</b>, open <b>API Keys</b>, and click <b>Create Key</b>. Copy the key. You will not see it again.</li>
 <li>In the repository, open <b>Settings &rarr; Secrets and variables &rarr; Actions</b> and click <b>New repository secret</b>.</li>
 <li>Name it exactly <code>ANTHROPIC_API_KEY</code>, paste the key as the value, and click <b>Add secret</b>.</li>
 </ol>
-<div class="note"><b>Never paste the key into a file or a chat.</b> The secret keeps it hidden. GitHub hands it to the routine only when the routine runs.</div>
+<div class="note"><b>Never paste the key into a file or into the prompt.</b> GitHub keeps the secret hidden and hands it to the routine only when the routine runs.</div>
 
-<h2><span class="n">3</span>Paste the prompt<span class="mins">15 minutes</span></h2>
-<p>Clone the repository, open the folder in Claude Code, and paste this prompt. Claude Code writes every file. Then commit and push.</p>
-<pre class="cmd">git clone https://github.com/YOUR-USERNAME/market-dashboard.git
-cd market-dashboard
-claude</pre>
+<h2><span class="n">3</span>Connect Claude to GitHub<span class="mins">5 minutes</span></h2>
+<ol class="comp">
+<li>Go to <b>claude.ai/code</b> and sign in with your Claude account.</li>
+<li>Click <b>Connect GitHub</b> and sign in to GitHub when it asks.</li>
+<li>GitHub asks you to install the <b>Claude</b> app. Choose <b>Only select repositories</b>, pick <code>market-dashboard</code>, and click <b>Install</b>.</li>
+<li>Back in Claude, choose <code>market-dashboard</code> as the repository for a new session.</li>
+</ol>
+
+<h2><span class="n">4</span>Paste the prompt<span class="mins">15 minutes</span></h2>
+<p>Paste this whole prompt into the session and send it. Claude writes every file, including the routine that runs at 6:30 AM on weekdays.</p>
 <p><button class="copy" onclick="navigator.clipboard.writeText(document.getElementById('prompt').innerText);this.textContent='Copied'">Copy the prompt</button></p>
 <pre id="prompt">Build a pre-market dashboard for the Indian stock market in this repository.
 It must update itself every weekday morning with GitHub Actions and publish with GitHub Pages.
@@ -146,37 +151,14 @@ Create these four files.
 Also replace README.md with a short note on what the dashboard does and how to run it by hand.
 Do not add any personal holdings, portfolio values or my own views on any stock.
 When you finish, list the files you created and tell me how to run the workflow once by hand.</pre>
-
-<h2><span class="n">4</span>Set the routine<span class="mins">5 minutes</span></h2>
-<p>The routine is the schedule line in <code>.github/workflows/daily-update.yml</code>. The prompt already sets it:</p>
-<pre class="cmd">on:
-  schedule:
-    - cron: "0 1 * * 1-5"
-  workflow_dispatch:</pre>
-<div class="tablewrap"><table>
-<thead><tr><th>Part</th><th>Value</th><th>Meaning</th></tr></thead>
-<tbody>
-<tr><td class="mk">0 1</td><td>minute 0, hour 1</td><td>01:00 UTC, which is 6:30 AM in India</td></tr>
-<tr><td class="mk">* *</td><td>any day, any month</td><td>every date</td></tr>
-<tr><td class="mk">1-5</td><td>Monday to Friday</td><td>trading days only</td></tr>
-</tbody>
-</table></div>
-<p>GitHub runs schedules in UTC, so subtract 5 hours 30 minutes from IST. Example: for 7:00 AM IST, write <code>"30 1 * * 1-5"</code>.</p>
-<div class="note"><b>GitHub can start late.</b> A scheduled run often begins 15 to 60 minutes after the set time. That is why we set 6:30 AM for a 9:15 AM open.</div>
-
-<h2><span class="n">5</span>Run it once<span class="mins">10 minutes</span></h2>
 <ol class="comp">
-<li>Open the <b>Actions</b> tab, click <b>daily-update</b>, then <b>Run workflow</b>.</li>
-<li>Wait for the green tick. If it is red, open the run and read the error. The usual causes are a wrong secret name or read-only permissions.</li>
-<li>Open <code>https://YOUR-USERNAME.github.io/market-dashboard/</code> and check three numbers against their sources.</li>
+<li>When Claude finishes, click <b>Create PR</b>, then open the pull request on GitHub and click <b>Merge</b>. The files are now on main.</li>
+<li>Open the <b>Actions</b> tab, click <b>daily-update</b>, then <b>Run workflow</b>, to test it once without waiting for the morning.</li>
+<li>When it shows a green tick, open <code>https://YOUR-USERNAME.github.io/market-dashboard/</code>.</li>
 </ol>
-<div class="note warn"><b>Check the news tone yourself.</b> &ldquo;Crude oil falls as supply concerns ease&rdquo; is good news for India, because India imports most of its oil. We ran the real FinBERT model on it, and FinBERT called it negative with 95% confidence. FinBERT scores the tone of the words, not who benefits. A person, or a reasoning model with the context, has to make that call.</div>
+<div class="note"><b>If GitHub refuses the workflow file.</b> Some connections are not allowed to add files inside <code>.github/workflows</code>. Then ask Claude to print the file, and on GitHub click <b>Add file &rarr; Create new file</b>, name it <code>.github/workflows/daily-update.yml</code>, paste it and commit.</div>
 
-<h2><span class="n">&darr;</span>Free practice version</h2>
-<p>No API key? This folder builds the same kind of dashboard in plain Python with made-up numbers, a word-list news score and a DCF. Run <code>python3 build_dashboard.py</code>, then <code>python3 build_dashboard.py --break</code> to see it refuse a missing input.</p>
-<ul class="plain">
-<li><a href="module-09-dashboard.zip" download><b>Download the practice folder (zip)</b></a></li>
-</ul>
+<p class="dim">No paid plan? The <a href="module-09-dashboard.zip" download>free practice folder</a> builds the same kind of dashboard in plain Python with made-up numbers.</p>
 
 <footer>
 Module 09 &middot; Market Commentary &amp; Valuation Dashboards &middot; Agentic AI &amp; Advanced Analytics in Finance &middot; PGDM Semester III<br>

@@ -307,11 +307,12 @@ slide_bg(s, BG)
 eyebrow(s, "HOUR 3 · THE LIVE PROJECT")
 title(s, "Build a dashboard that updates itself every morning")
 cards(s, [
-    ("STEP 1 · 15 MIN", "Set up GitHub", "Create a public repository, add your API key as a secret, and turn on GitHub Pages."),
-    ("STEP 2 · 20 MIN", "Paste one prompt", "Open the repository in Claude Code and paste the build prompt from the lab page. It writes every file."),
-    ("STEP 3 · 15 MIN", "Set the routine and run it", "The schedule runs it at 6:30 AM on weekdays. Press Run workflow once to test it now."),
-], cols=3, dark_last=True)
-goal_band(s, "No API key?", "the lab page also has a free practice version in plain Python, with a DCF and a refusal on missing data.")
+    ("STEP 1", "GitHub setup", "Create a public repository and turn on Actions write access and Pages."),
+    ("STEP 2", "API key", "Create a key at console.anthropic.com and save it as a repository secret."),
+    ("STEP 3", "Connect Claude", "At claude.ai/code, connect GitHub and allow the Claude app on the repository."),
+    ("STEP 4", "Paste the prompt", "Claude writes the page, the script and the 6:30 AM routine. Merge, then run it once."),
+], cols=4, dark_last=True)
+goal_band(s, "Two bills:", "a Claude plan lets Claude write the files, and the API key pays for each morning update.")
 footer(s, 0)
 
 # ---------------------------------------------------------------- S9 ASSIGNMENT

@@ -34,7 +34,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Dancing+Script:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
 :root {
   --bg: #03030f;
@@ -2339,5 +2339,76 @@ document.querySelectorAll('.mod-hdr').forEach(hdr=>{
   });
 });
 </script>
+
+<!-- ════ NOTE POP-UP (handwritten letter) ════ -->
+<div id="dear-pop" role="dialog" aria-modal="true" aria-labelledby="dear-pop-title" hidden>
+<style>
+#dear-pop{position:fixed;inset:0;z-index:100000;display:flex;align-items:center;justify-content:center;padding:16px;background:radial-gradient(ellipse at center,rgba(13,10,40,.92),rgba(2,2,12,.97));animation:dpfade .5s ease}
+#dear-pop[hidden]{display:none}
+#dear-pop .dp-art{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+#dear-pop .dp-art g{animation:dpfloat 7s ease-in-out infinite}
+#dear-pop .dp-art g:nth-child(2){animation-delay:-2s}#dear-pop .dp-art g:nth-child(3){animation-delay:-4s}#dear-pop .dp-art g:nth-child(4){animation-delay:-5.5s}
+#dear-pop .dp-art text{font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:.18em}
+.dp-paper{position:relative;z-index:2;width:min(680px,calc(100vw - 32px));max-height:88vh;overflow-y:auto;padding:2.6rem 2.6rem 2rem;border-radius:6px;
+  background:linear-gradient(rgba(255,252,240,.97),rgba(250,243,222,.97)),repeating-linear-gradient(transparent 0 33px,rgba(120,150,200,.18) 33px 34px);
+  background-blend-mode:multiply;box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 60px rgba(245,158,11,.25);transform:rotate(-.6deg);color:#1e2a4a;font-family:'Dancing Script',cursive}
+.dp-paper::before{content:"";position:absolute;inset:0;border-radius:6px;pointer-events:none;background:repeating-linear-gradient(transparent 0 33px,rgba(90,120,180,.16) 33px 34px)}
+#dear-pop-title{font-family:'Great Vibes',cursive;font-size:clamp(2.6rem,8vw,3.6rem);font-weight:400;color:#7c2d12;margin:0 0 .6rem;line-height:1.1}
+.dp-body p{font-size:clamp(1.25rem,3.6vw,1.5rem);line-height:1.5;margin:0 0 .75rem;color:#1e2a4a}
+.dp-body p.big{font-weight:700;color:#7c2d12}
+.dp-body .dear-memories{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin:.2rem 0 .9rem}
+.dp-body .dear-memories span{font-size:clamp(1.15rem,3.2vw,1.35rem);color:#9a3412}
+.dp-body .dear-miss{font-family:'Great Vibes',cursive;font-size:clamp(2.2rem,6vw,2.8rem);color:#be185d;margin:.6rem 0 .4rem}
+.dp-body .dear-sign{font-size:1.4rem;color:#1e2a4a}
+.dp-skip{position:absolute;top:18px;right:18px;z-index:3;font:600 .9rem 'Space Grotesk',sans-serif;letter-spacing:.06em;padding:.6rem 1.1rem;border-radius:999px;border:1px solid rgba(253,230,138,.6);background:rgba(7,7,26,.75);color:#fde68a;cursor:pointer}
+.dp-skip:hover{background:#fde68a;color:#07071a}
+.dp-go{display:block;margin:1.2rem auto 0;font:600 1rem 'Space Grotesk',sans-serif;padding:.75rem 1.6rem;border-radius:999px;border:0;cursor:pointer;color:#07071a;background:linear-gradient(90deg,#f59e0b,#fde68a,#f59e0b);background-size:200% auto;animation:dearshine 3s linear infinite}
+@keyframes dpfade{from{opacity:0}to{opacity:1}}
+@keyframes dpfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@media (max-width:600px){.dp-paper{padding:2rem 1.3rem 1.6rem}#dear-pop .dp-art{opacity:.55}}
+@media (prefers-reduced-motion:reduce){#dear-pop,#dear-pop .dp-art g,.dp-go{animation:none}}
+</style>
+<svg class="dp-art" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+  <g stroke="#00d4ff" fill="none" stroke-width="2" opacity=".55">
+    <circle cx="150" cy="150" r="70"/><circle cx="150" cy="150" r="46"/><circle cx="150" cy="150" r="20" fill="rgba(0,212,255,.35)"/>
+    <path d="M150 80v24M150 196v24M80 150h24M196 150h24M101 101l17 17M182 182l17 17M199 101l-17 17M118 182l-17 17"/>
+    <text x="150" y="258" text-anchor="middle" fill="#00d4ff" stroke="none" font-size="22">JARVIS</text>
+  </g>
+  <g stroke="#f87171" fill="none" stroke-width="2" opacity=".55">
+    <path d="M985 150h150a75 75 0 0 1-150 0z"/><path d="M1010 120c0-20 20-20 20-40M1050 120c0-20 20-20 20-40M1090 120c0-20 20-20 20-40"/>
+    <path d="M1040 225l20 25h-60z"/>
+    <text x="1060" y="290" text-anchor="middle" fill="#f87171" stroke="none" font-size="22">ZOMATO</text>
+  </g>
+  <g stroke="#a78bfa" fill="none" stroke-width="2" opacity=".55">
+    <circle cx="160" cy="620" r="26" fill="rgba(167,139,250,.3)"/><circle cx="60" cy="560" r="14"/><circle cx="60" cy="690" r="14"/><circle cx="270" cy="560" r="14"/><circle cx="270" cy="690" r="14"/>
+    <path d="M74 566l62 42M74 684l62-42M256 566l-72 42M256 684l-72-42"/>
+    <text x="165" y="760" text-anchor="middle" fill="#a78bfa" stroke="none" font-size="22">MCP</text>
+  </g>
+  <g stroke="#fbbf24" fill="none" stroke-width="2" opacity=".55">
+    <rect x="975" y="560" width="90" height="115" rx="6"/><rect x="995" y="545" width="90" height="115" rx="6"/><path d="M1010 580h55M1010 600h55M1010 620h40"/>
+    <circle cx="1110" cy="655" r="32"/><path d="M1133 678l30 30"/>
+    <text x="1060" y="760" text-anchor="middle" fill="#fbbf24" stroke="none" font-size="22">RAG</text>
+  </g>
+</svg>
+<button type="button" class="dp-skip" id="dp-skip">Skip &rarr;</button>
+<div class="dp-paper">
+  <h2 id="dear-pop-title">Dear students,</h2>
+  <div class="dp-body" id="dp-body"></div>
+  <button type="button" class="dp-go" id="dp-go">Go to the course &rarr;</button>
+</div>
+<script>
+(function(){
+  var pop=document.getElementById('dear-pop'), card=document.querySelector('#dear-students .dear-card'), body=document.getElementById('dp-body');
+  if(!pop||!card) return;
+  [].slice.call(card.children).forEach(function(n){ if(n.id==='dear-title'||n.classList.contains('dear-eyebrow')) return; body.appendChild(n.cloneNode(true)); });
+  var seen=false; try{ seen=sessionStorage.getItem('dearNoteSeen')==='1'; }catch(e){}
+  function close(){ pop.hidden=true; document.body.style.overflow=''; try{ sessionStorage.setItem('dearNoteSeen','1'); }catch(e){} }
+  function open(){ pop.hidden=false; document.body.style.overflow='hidden'; document.getElementById('dp-skip').focus(); }
+  document.getElementById('dp-skip').onclick=close; document.getElementById('dp-go').onclick=close;
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!pop.hidden) close(); });
+  if(!seen) setTimeout(open, 600);
+})();
+</script>
+</div>
 </body>
 </html>

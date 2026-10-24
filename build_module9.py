@@ -275,12 +275,12 @@ footer(s, 0)
 s = new_slide()
 slide_bg(s, BG)
 eyebrow(s, "THE CASE · HOW IT IS BUILT")
-title(s, "Five steps, run by a schedule")
-flow = [("1", "Schedule", "GitHub Actions starts the job every weekday morning."),
-        ("2", "Python script", "Sends Claude a fixed prompt template and today's page."),
-        ("3", "Claude API", "Runs ten or more web searches and writes the updated page."),
-        ("4", "Safety check", "The script checks the new page is complete before saving it."),
-        ("5", "Publish", "The page is saved to GitHub and goes live on GitHub Pages.")]
+title(s, "What runs every weekday at 6:30 AM")
+flow = [("1", "Routine", "daily-update.yml starts the job at 6:30 AM IST, Monday to Friday."),
+        ("2", "Python script", "update_dashboard.py takes the API key from the GitHub secret and sends the prompt template and today's page."),
+        ("3", "Claude API", "Runs ten or more web searches, gives a source for each number, and writes \u201cnot found\u201d rather than guess."),
+        ("4", "Safety check", "If the new page is incomplete or the disclaimer is missing, yesterday's page stays."),
+        ("5", "Publish", "index.html is committed to GitHub and goes live on GitHub Pages.")]
 w, gap = 2.25, 0.22
 for i, (n, h, b) in enumerate(flow):
     x = 0.6 + i * (w + gap)
@@ -295,7 +295,7 @@ for i, (n, h, b) in enumerate(flow):
     if i < 4:
         txt(s, x + w - 0.02, 2.6, gap + 0.04, 0.4, [(PP_ALIGN.CENTER, 0, [("\u2192", None, 14, True, GOLD)])], align=PP_ALIGN.CENTER)
 cards(s, [
-    ("WHAT WORKS WELL", "It runs itself, reliably", "A schedule, a fixed prompt, a safety check and free hosting."),
+    ("WHAT WORKS WELL", "It runs itself, reliably", "One prompt built it. A routine, a fixed template, a safety check and free hosting run it."),
     ("WHAT WE WOULD IMPROVE", "Numbers in Python, words in AI", "Today Claude finds and works out the numbers. A bank would fetch them in Python and let AI only write."),
 ], cols=2, top=4.15, h=2.0, dark_last=True)
 goal_band(s, "Governance:", "the API key sits in GitHub's secret store, and the job stops if the key is missing.")
@@ -311,7 +311,7 @@ cards(s, [
     ("STEP 2", "API key", "Create a key at console.anthropic.com and save it as a repository secret."),
     ("STEP 3", "Connect Claude", "At claude.ai/code, connect GitHub and allow the Claude app on the repository."),
     ("STEP 4", "Paste the prompt", "Claude writes the page, the script and the 6:30 AM routine. Merge, then run it once."),
-], cols=4, dark_last=True)
+], cols=4, h=2.4, dark_last=True)
 goal_band(s, "Two bills:", "a Claude plan lets Claude write the files, and the API key pays for each morning update.")
 footer(s, 0)
 

@@ -9,3 +9,12 @@ build_m3_doc.py
 build_module4.py
 capstone/*.gs
 assignments-src/
+
+# Student data and answer keys. This repo is public: never publish these.
+midterm-answer-key.md
+midterm-marks-progress.csv
+*-marks*.csv
+*answer-key*
+vish-visit-kit/
+vish-dhingra-ai-accounting-cases.md
+render.applescript
